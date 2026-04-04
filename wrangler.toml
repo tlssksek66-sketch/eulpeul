@@ -1,0 +1,7 @@
+name = "naver-sa-proxy"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+# AUTH_TOKEN, NAVER_API_KEY, NAVER_SECRET_KEY, NAVER_CUSTOMER_ID
+# are set via `wrangler secret put <NAME>`
