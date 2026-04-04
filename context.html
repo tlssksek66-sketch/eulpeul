@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대화 맥락 복기 시스템 | EULPEUL Context Recovery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/context-style.css">
+</head>
+<body>
+    <!-- 사이드바 -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">◇</span>
+                <span class="logo-text">CONTEXT</span>
+            </div>
+            <p class="logo-sub">Conversation Memory</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-view="timeline">
+                <span class="nav-icon">◎</span>
+                <span>타임라인</span>
+            </a>
+            <a href="#" class="nav-item" data-view="new-entry">
+                <span class="nav-icon">＋</span>
+                <span>새 기록 추가</span>
+            </a>
+            <a href="#" class="nav-item" data-view="search">
+                <span class="nav-icon">⊘</span>
+                <span>검색</span>
+            </a>
+            <a href="#" class="nav-item" data-view="brief">
+                <span class="nav-icon">▤</span>
+                <span>컨텍스트 브리프</span>
+            </a>
+            <a href="#" class="nav-item" data-view="data-manage">
+                <span class="nav-icon">⇄</span>
+                <span>Import / Export</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="back-link">← 대시보드로 돌아가기</a>
+        </div>
+    </aside>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+        <!-- 헤더 -->
+        <header class="top-header">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <h1 class="page-title">대화 맥락 복기 시스템</h1>
+            <div class="header-actions">
+                <span class="entry-count" id="entryCount">0개 기록</span>
+            </div>
+        </header>
+
+        <!-- 타임라인 뷰 -->
+        <section class="view active" id="view-timeline">
+            <div class="view-header">
+                <h2>대화 타임라인</h2>
+                <div class="filter-bar">
+                    <select id="filterTag" class="filter-select">
+                        <option value="">모든 태그</option>
+                    </select>
+                    <select id="filterPriority" class="filter-select">
+                        <option value="">모든 중요도</option>
+                        <option value="high">높음</option>
+                        <option value="medium">보통</option>
+                        <option value="low">낮음</option>
+                    </select>
+                    <select id="sortOrder" class="filter-select">
+                        <option value="newest">최신순</option>
+                        <option value="oldest">오래된순</option>
+                    </select>
+                </div>
+            </div>
+            <div class="timeline-container" id="timelineContainer">
+                <p class="empty-state">아직 기록이 없습니다. "새 기록 추가"에서 첫 대화 맥락을 기록하세요.</p>
+            </div>
+        </section>
+
+        <!-- 새 기록 추가 뷰 -->
+        <section class="view" id="view-new-entry">
+            <div class="view-header">
+                <h2 id="formTitle">새 대화 맥락 기록</h2>
+            </div>
+            <form class="entry-form" id="entryForm">
+                <input type="hidden" id="editId" value="">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="entryTitle">제목 *</label>
+                        <input type="text" id="entryTitle" placeholder="예: 영업 대시보드 리팩토링 논의" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="entryDate">날짜</label>
+                        <input type="date" id="entryDate">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="entrySummary">대화 요약 *</label>
+                    <textarea id="entrySummary" rows="4" placeholder="이 대화에서 무엇을 논의했는지 요약하세요..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryDecisions">핵심 결정사항</label>
+                    <textarea id="entryDecisions" rows="3" placeholder="내려진 주요 결정들을 기록하세요... (줄바꿈으로 구분)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryActions">액션 아이템</label>
+                    <textarea id="entryActions" rows="3" placeholder="후속 조치가 필요한 항목들... (줄바꿈으로 구분)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryCodeRefs">코드/파일 참조</label>
+                    <textarea id="entryCodeRefs" rows="2" placeholder="관련 파일 경로나 코드 스니펫... (줄바꿈으로 구분)"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="entryTags">태그</label>
+                        <input type="text" id="entryTags" placeholder="쉼표로 구분 (예: 프론트엔드, 버그수정, 기획)">
+                    </div>
+                    <div class="form-group">
+                        <label for="entryPriority">중요도</label>
+                        <select id="entryPriority">
+                            <option value="medium">보통</option>
+                            <option value="high">높음</option>
+                            <option value="low">낮음</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryNotes">추가 메모</label>
+                    <textarea id="entryNotes" rows="2" placeholder="기타 참고사항..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">기록 저장</button>
+                    <button type="button" class="btn btn-secondary" id="cancelEdit" style="display:none;">취소</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- 검색 뷰 -->
+        <section class="view" id="view-search">
+            <div class="view-header">
+                <h2>기록 검색</h2>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="키워드로 검색... (제목, 요약, 결정사항, 태그 등)">
+                <div class="search-results" id="searchResults">
+                    <p class="empty-state">검색어를 입력하면 관련 기록을 찾아드립니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 컨텍스트 브리프 뷰 -->
+        <section class="view" id="view-brief">
+            <div class="view-header">
+                <h2>컨텍스트 브리프 생성</h2>
+                <p class="view-desc">새 Claude 대화를 시작할 때 붙여넣을 맥락 요약을 생성합니다.</p>
+            </div>
+            <div class="brief-options">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="briefRange">기간 범위</label>
+                        <select id="briefRange">
+                            <option value="7">최근 7일</option>
+                            <option value="14">최근 14일</option>
+                            <option value="30" selected>최근 30일</option>
+                            <option value="90">최근 90일</option>
+                            <option value="all">전체</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="briefTag">태그 필터</label>
+                        <select id="briefTag">
+                            <option value="">전체</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="briefPriority">최소 중요도</label>
+                        <select id="briefPriority">
+                            <option value="all">전체</option>
+                            <option value="medium">보통 이상</option>
+                            <option value="high">높음만</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group checkbox-group">
+                        <label><input type="checkbox" id="briefIncludeDecisions" checked> 핵심 결정사항 포함</label>
+                        <label><input type="checkbox" id="briefIncludeActions" checked> 액션 아이템 포함</label>
+                        <label><input type="checkbox" id="briefIncludeCode" checked> 코드 참조 포함</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="generateBrief">브리프 생성</button>
+            </div>
+            <div class="brief-output-container" id="briefOutputContainer" style="display:none;">
+                <div class="brief-output-header">
+                    <h3>생성된 컨텍스트 브리프</h3>
+                    <button class="btn btn-small btn-accent" id="copyBrief">클립보드에 복사</button>
+                </div>
+                <pre class="brief-output" id="briefOutput"></pre>
+                <p class="brief-tip">위 내용을 복사하여 새 Claude 대화의 첫 메시지로 붙여넣으세요.</p>
+            </div>
+        </section>
+
+        <!-- Import/Export 뷰 -->
+        <section class="view" id="view-data-manage">
+            <div class="view-header">
+                <h2>데이터 관리</h2>
+            </div>
+            <div class="data-manage-grid">
+                <div class="data-card">
+                    <h3>Export (내보내기)</h3>
+                    <p>모든 대화 기록을 JSON 파일로 내보냅니다.</p>
+                    <button class="btn btn-primary" id="exportData">JSON으로 내보내기</button>
+                </div>
+                <div class="data-card">
+                    <h3>Import (가져오기)</h3>
+                    <p>이전에 내보낸 JSON 파일에서 기록을 가져옵니다.</p>
+                    <input type="file" id="importFile" accept=".json" style="display:none;">
+                    <button class="btn btn-primary" id="importData">JSON 파일 선택</button>
+                    <p class="import-status" id="importStatus"></p>
+                </div>
+                <div class="data-card data-card-danger">
+                    <h3>전체 삭제</h3>
+                    <p>모든 대화 기록을 삭제합니다. 이 작업은 되돌릴 수 없습니다.</p>
+                    <button class="btn btn-danger" id="clearAll">모든 기록 삭제</button>
+                </div>
+                <div class="data-card">
+                    <h3>CLAUDE.md 생성</h3>
+                    <p>프로젝트 루트에 놓을 수 있는 CLAUDE.md 형식의 맥락 파일을 다운로드합니다.</p>
+                    <button class="btn btn-accent" id="exportClaudeMd">CLAUDE.md 다운로드</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 상세보기 모달 -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="modal-close" id="modalClose">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-small btn-primary" id="modalEdit">수정</button>
+                <button class="btn btn-small btn-danger" id="modalDelete">삭제</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 알림 -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="assets/js/context-manager.js"></script>
+</body>
+</html>
