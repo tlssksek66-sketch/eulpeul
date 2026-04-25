@@ -112,22 +112,240 @@ const DataStore = {
             labels: ['Q1', 'Q2', 'Q3', 'Q4'],
             target: [2500, 3000, 3200, 3800],
             achieved: [2450, 0, 0, 0]
+        },
+
+        // ===== 샥즈 코리아 매거진 클리핑 =====
+        articles: [
+            {
+                id: 1, featured: 'hero', category: 'product',
+                title: '샥즈, 차세대 골전도 \'OpenRun Pro 2\' 한국 공식 출시... 9세대 듀얼 픽업 탑재',
+                excerpt: '샥즈 코리아가 골전도 진동 9세대 코어와 듀얼 픽업 트랜스듀서를 탑재한 신형 OpenRun Pro 2를 17일 한국 시장에 정식 출시한다고 밝혔다. 저음 보강과 누음 감소 폭이 전작 대비 40% 개선됐다.',
+                source: '지디넷코리아', sourceColor: '#0066ff',
+                date: '2026-04-24', daysAgo: 1, views: 12480, sentiment: 'positive',
+                tags: ['신제품', 'OpenRun Pro 2', '골전도'], type: 'news', author: '김기자',
+                url: 'https://zdnet.co.kr'
+            },
+            {
+                id: 2, featured: 'sub', category: 'sports',
+                title: '손흥민과 함께하는 \'오픈러닝 시즌2\' 캠페인 본격 시동',
+                excerpt: '샥즈 코리아가 글로벌 앰배서더 손흥민 선수와 함께 한강 일대에서 진행하는 오픈러닝 캠페인 시즌2를 5월 1일부터 시작한다.',
+                source: '매일경제', sourceColor: '#cc0000',
+                date: '2026-04-23', daysAgo: 2, views: 9821, sentiment: 'positive',
+                tags: ['손흥민', '오픈러닝', '캠페인'], type: 'news', author: '박기자',
+                url: 'https://mk.co.kr'
+            },
+            {
+                id: 3, featured: 'sub', category: 'review',
+                title: 'GQ가 뽑은 2026 러닝 기어 베스트 5에 OpenRun Pro 선정',
+                excerpt: '런웨이를 달리는 자에게 어떤 사운드가 어울리는가. GQ 코리아 4월호가 꼽은 러닝 기어 5선에 샥즈 OpenRun Pro가 1위로 이름을 올렸다.',
+                source: 'GQ 코리아', sourceColor: '#000000',
+                date: '2026-04-22', daysAgo: 3, views: 7340, sentiment: 'positive',
+                tags: ['리뷰', '러닝', '베스트5'], type: 'review', author: 'GQ 에디터',
+                url: 'https://gqkorea.co.kr'
+            },
+            {
+                id: 4, featured: 'sub', category: 'marketing',
+                title: '샥즈 코리아, 2026 서울 마라톤 공식 사운드 파트너 선정',
+                excerpt: '서울특별시체육회와 협약을 맺고 11월 개최되는 서울 마라톤의 공식 사운드 파트너로 활동한다. 참가자 전원에게 OpenMove 체험 기회 제공.',
+                source: '스포츠경향', sourceColor: '#ff6600',
+                date: '2026-04-21', daysAgo: 4, views: 5210, sentiment: 'positive',
+                tags: ['서울마라톤', '후원', '파트너십'], type: 'news', author: '이기자',
+                url: 'https://sports.khan.co.kr'
+            },
+            {
+                id: 5, category: 'tech',
+                title: '골전도 이어폰, 청력 보호 효과 학계 조명... 이비인후과 학회 발표',
+                excerpt: '대한이비인후과학회 춘계학술대회에서 골전도 방식이 장시간 음악 청취 시 와우 손상을 줄일 수 있다는 연구 결과가 발표됐다. 샥즈 제품군이 임상 비교 대상에 포함됐다.',
+                source: '헬스조선', sourceColor: '#28a745',
+                date: '2026-04-20', daysAgo: 5, views: 4180, sentiment: 'positive',
+                tags: ['청력보호', '학회', '연구'], type: 'news', author: '한기자',
+                url: 'https://health.chosun.com'
+            },
+            {
+                id: 6, category: 'product',
+                title: '\'OpenFit Air\' 출시 6개월, 가벼운 오픈형 이어폰 카테고리 1위',
+                excerpt: '8.7g의 무게와 IP54 방수 등급을 갖춘 OpenFit Air가 국내 오픈형 무선 이어폰 시장 점유율 1위에 올랐다는 GfK 자료가 공개됐다.',
+                source: 'IT조선', sourceColor: '#e60012',
+                date: '2026-04-19', daysAgo: 6, views: 6380, sentiment: 'positive',
+                tags: ['OpenFit Air', '시장점유율', '1위'], type: 'news', author: '최기자',
+                url: 'https://it.chosun.com'
+            },
+            {
+                id: 7, category: 'sports',
+                title: '샥즈 OpenSwim Pro, 오픈워터 수영 마니아 사이 입소문 확산',
+                excerpt: '한강·동해·제주 오픈워터 수영 동호회를 중심으로 샥즈 OpenSwim Pro의 인기가 빠르게 퍼지고 있다. 32GB 내장 메모리와 8시간 배터리가 핵심.',
+                source: '디지털데일리', sourceColor: '#1e88e5',
+                date: '2026-04-18', daysAgo: 7, views: 3120, sentiment: 'positive',
+                tags: ['OpenSwim Pro', '수영', '오픈워터'], type: 'news', author: '강기자',
+                url: 'https://ddaily.co.kr'
+            },
+            {
+                id: 8, category: 'community',
+                title: '김연아 인스타에 등장한 샥즈... \'운동 루틴\' 게시물 24시간 만에 12만 좋아요',
+                excerpt: '피겨 선수 김연아가 자신의 인스타그램에 샥즈 OpenRun을 착용한 사이클 사진을 올리며 화제가 됐다. 별도 광고가 아닌 자연 노출로 알려졌다.',
+                source: '스포츠동아', sourceColor: '#d32f2f',
+                date: '2026-04-18', daysAgo: 7, views: 18920, sentiment: 'positive',
+                tags: ['김연아', 'SNS', '바이럴'], type: 'community', author: '온라인뉴스팀',
+                url: 'https://sports.donga.com'
+            },
+            {
+                id: 9, category: 'marketing',
+                title: '샥즈 코리아, 청담동에 첫 플래그십 스토어 그랜드 오픈',
+                excerpt: '브랜드 체험 공간을 강화하기 위해 청담동에 230㎡ 규모의 플래그십 스토어를 열었다. 골전도 데모룸과 러닝 트랙이 마련됐다.',
+                source: '패션비즈', sourceColor: '#9c27b0',
+                date: '2026-04-17', daysAgo: 8, views: 2890, sentiment: 'positive',
+                tags: ['플래그십', '청담', '오프라인'], type: 'news', author: '오기자',
+                url: 'https://fashionbiz.co.kr'
+            },
+            {
+                id: 10, category: 'marketing',
+                title: '블랙프라이데이 최대 35% 할인... 샥즈 공식몰 4월 26일 시작',
+                excerpt: '봄맞이 블랙프라이데이 행사를 오는 26일부터 5월 5일까지 진행한다. OpenRun Pro 2를 제외한 전 제품 대상 최대 35% 할인.',
+                source: '이데일리', sourceColor: '#ff5722',
+                date: '2026-04-17', daysAgo: 8, views: 5430, sentiment: 'neutral',
+                tags: ['프로모션', '할인', '공식몰'], type: 'press', author: '편집부',
+                url: 'https://edaily.co.kr'
+            },
+            {
+                id: 11, category: 'press',
+                title: '샥즈, 시각장애 마라토너 후원 프로그램 \'런 위드 라이트\' 확장',
+                excerpt: '시각장애 러너 100명에게 골전도 이어폰을 무상 지원하는 사회공헌 프로그램을 전국으로 확대한다고 발표했다.',
+                source: '한겨레', sourceColor: '#005bac',
+                date: '2026-04-16', daysAgo: 9, views: 3760, sentiment: 'positive',
+                tags: ['CSR', '사회공헌', '시각장애'], type: 'press', author: '사회부',
+                url: 'https://hani.co.kr'
+            },
+            {
+                id: 12, category: 'tech',
+                title: 'AI 노이즈 캔슬링 적용 샥즈 차기 모델, 특허 출원 확인',
+                excerpt: '특허정보검색서비스 키프리스에 \'골전도 진동자 기반 AI 노이즈 캔슬링\' 관련 특허 3건이 샥즈 명의로 등록된 것으로 확인됐다.',
+                source: '전자신문', sourceColor: '#1976d2',
+                date: '2026-04-15', daysAgo: 10, views: 8120, sentiment: 'positive',
+                tags: ['특허', 'AI', '노이즈캔슬링'], type: 'news', author: '서기자',
+                url: 'https://etnews.com'
+            },
+            {
+                id: 13, category: 'product',
+                title: '골프존카운티와 협업, 골프 특화 골전도 모델 \'OpenGolf\' 공개',
+                excerpt: '골프 라운딩에 최적화한 풍절음 저감 알고리즘과 거리계 음성 안내 연동을 지원하는 한정판 모델이 공개됐다.',
+                source: '동아일보', sourceColor: '#003478',
+                date: '2026-04-14', daysAgo: 11, views: 4290, sentiment: 'positive',
+                tags: ['골프', '협업', 'OpenGolf'], type: 'news', author: '김기자',
+                url: 'https://donga.com'
+            },
+            {
+                id: 14, category: 'review',
+                title: '사이클링 안전 이어폰, 샥즈는 어떻게 다른가 - 1개월 실사용기',
+                excerpt: '주행 중에도 차량·자전거 벨 소리를 그대로 들을 수 있는 오픈형 골전도의 장점과 한계를 1개월간 도심·아라뱃길 라이딩으로 검증했다.',
+                source: '바이크조선', sourceColor: '#388e3c',
+                date: '2026-04-13', daysAgo: 12, views: 5870, sentiment: 'positive',
+                tags: ['사이클링', '안전', '실사용'], type: 'review', author: '리뷰팀',
+                url: 'https://bike.chosun.com'
+            },
+            {
+                id: 15, category: 'review',
+                title: '트레이너 100인이 꼽은 운동용 이어폰 1위... 샥즈 OpenRun',
+                excerpt: '여성 종합 매거진이 PT 트레이너 100명을 대상으로 진행한 설문에서 샥즈 OpenRun이 \'가장 많이 추천하는 운동용 이어폰\' 1위에 올랐다.',
+                source: '우먼센스', sourceColor: '#e91e63',
+                date: '2026-04-12', daysAgo: 13, views: 3210, sentiment: 'positive',
+                tags: ['설문', '트레이너', '추천'], type: 'review', author: '에디터',
+                url: 'https://womansense.co.kr'
+            },
+            {
+                id: 16, category: 'review',
+                title: '[리뷰] 샥즈 OpenMove - 입문자용 가성비 골전도의 완성',
+                excerpt: '8만원대로 골전도를 처음 경험하기에 좋은 모델. 음질은 한 단계 위 모델 대비 살짝 부족하지만 일상 사용엔 충분하다.',
+                source: '더기어', sourceColor: '#212121',
+                date: '2026-04-11', daysAgo: 14, views: 4760, sentiment: 'neutral',
+                tags: ['OpenMove', '가성비', '입문'], type: 'review', author: '리뷰어',
+                url: 'https://thegear.net'
+            },
+            {
+                id: 17, category: 'press',
+                title: 'CES 2026, 샥즈 부스 라이브 데모 현장... \'골전도 + 공간음향\' 시연',
+                excerpt: '라스베이거스 CES 현장 부스에서 골전도와 공간음향을 결합한 프로토타입 데모가 공개됐다. 한국 출시 일정도 함께 안내됐다.',
+                source: '조선비즈', sourceColor: '#0033a0',
+                date: '2026-04-10', daysAgo: 15, views: 6920, sentiment: 'positive',
+                tags: ['CES', '공간음향', '데모'], type: 'press', author: '이기자',
+                url: 'https://biz.chosun.com'
+            },
+            {
+                id: 18, category: 'community',
+                title: '\'샥즈 매일 착용 후기\' - 헤어 인플루언서 게시물 화제',
+                excerpt: '구독자 80만 헤어 인플루언서가 헤어스타일에 영향을 주지 않는 골전도 착용감을 호평. 댓글 1,200건 달성.',
+                source: '인스타그램', sourceColor: '#e4405f',
+                date: '2026-04-09', daysAgo: 16, views: 11280, sentiment: 'positive',
+                tags: ['인플루언서', '헤어', 'SNS'], type: 'community', author: '@hairlife_kr',
+                url: 'https://instagram.com'
+            },
+            {
+                id: 19, category: 'community',
+                title: '사이클 동호회 단체구매 후기 - "10명 중 9명 만족"',
+                excerpt: '회원 35명 규모 동호회에서 OpenRun Pro 단체구매 진행 후 만족도 설문 결과 공유. 풍절음과 통화품질이 핵심 칭찬 포인트.',
+                source: '네이버 카페', sourceColor: '#03c75a',
+                date: '2026-04-08', daysAgo: 17, views: 1820, sentiment: 'positive',
+                tags: ['동호회', '단체구매', '커뮤니티'], type: 'community', author: '카페지기',
+                url: 'https://cafe.naver.com'
+            },
+            {
+                id: 20, category: 'marketing',
+                title: '러너스월드 인터뷰 - 샥즈 코리아 마케팅 디렉터 \'2026 전략\'',
+                excerpt: '러너스월드 코리아 5월호 커버스토리에 샥즈 코리아 마케팅 디렉터의 단독 인터뷰가 실렸다. 러닝 콘텐츠 IP 확장이 핵심 키워드.',
+                source: '러너스월드', sourceColor: '#ff5252',
+                date: '2026-04-07', daysAgo: 18, views: 2940, sentiment: 'positive',
+                tags: ['인터뷰', '마케팅', '전략'], type: 'press', author: '편집장',
+                url: 'https://runnersworld.co.kr'
+            },
+            {
+                id: 21, category: 'tech',
+                title: '샥즈 펌웨어 1.4.2 배포 - LE Audio·LC3 코덱 정식 지원',
+                excerpt: '블루투스 LE Audio와 LC3 코덱이 OpenRun Pro 2 / OpenFit 시리즈에 정식 지원되는 펌웨어가 배포됐다.',
+                source: '디지털데일리', sourceColor: '#1e88e5',
+                date: '2026-04-06', daysAgo: 19, views: 5410, sentiment: 'positive',
+                tags: ['펌웨어', 'LE Audio', 'LC3'], type: 'news', author: '강기자',
+                url: 'https://ddaily.co.kr'
+            },
+            {
+                id: 22, category: 'sports',
+                title: '제주 울트라 마라톤 100K, 참가자 70%가 샥즈 착용',
+                excerpt: '제주에서 열린 울트라 마라톤 100K 대회 현장 조사 결과 참가자 70%가 골전도 이어폰을 착용했고 그중 80%가 샥즈였다.',
+                source: '스포츠경향', sourceColor: '#ff6600',
+                date: '2026-04-05', daysAgo: 20, views: 3680, sentiment: 'positive',
+                tags: ['울트라마라톤', '제주', '점유율'], type: 'news', author: '이기자',
+                url: 'https://sports.khan.co.kr'
+            }
+        ],
+
+        // 네이버 검색 API 설정
+        naverConfig: {
+            clientId: '',
+            clientSecret: '',
+            query: '샥즈 코리아',
+            display: 20,
+            proxyUrl: '',
+            lastFetched: null
         }
     },
 
     /**
-     * 데이터 로드
+     * 데이터 로드 (기존 저장 데이터에 신규 기본 키 자동 병합)
      */
     load() {
+        const defaults = JSON.parse(JSON.stringify(this.defaultData));
         try {
             const stored = localStorage.getItem(this.STORAGE_KEY);
             if (stored) {
-                return JSON.parse(stored);
+                const parsed = JSON.parse(stored);
+                // 신규 키 누락 시 기본값으로 보강
+                Object.keys(defaults).forEach(k => {
+                    if (parsed[k] === undefined) parsed[k] = defaults[k];
+                });
+                return parsed;
             }
         } catch (e) {
             console.warn('DataStore: Failed to load, using defaults');
         }
-        return JSON.parse(JSON.stringify(this.defaultData));
+        return defaults;
     },
 
     /**

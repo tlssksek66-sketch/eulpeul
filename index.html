@@ -31,6 +31,10 @@
                 <span class="nav-icon">◈</span>
                 <span>IMC 매니지먼트</span>
             </a>
+            <a href="#" class="nav-item" data-view="magazine">
+                <span class="nav-icon">▤</span>
+                <span>샥즈 매거진</span>
+            </a>
             <a href="#" class="nav-item" data-view="pipeline">
                 <span class="nav-icon">▸</span>
                 <span>파이프라인</span>
@@ -406,6 +410,153 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- 샥즈 매거진 뷰 -->
+        <section class="view" id="view-magazine">
+            <div class="view-header mag-view-header">
+                <div>
+                    <div class="mag-brand">
+                        <span class="mag-brand-mark">SHOKZ</span>
+                        <span class="mag-brand-divider">|</span>
+                        <span class="mag-brand-sub">KOREA · CLIPPING MAGAZINE</span>
+                    </div>
+                    <h2>샥즈 코리아 매거진</h2>
+                    <p class="mag-tagline">웹 상의 모든 샥즈 관련 뉴스·기사·콘텐츠를 한 화면에서 모니터링</p>
+                </div>
+                <div class="view-actions">
+                    <input type="text" class="form-input mag-search-input" id="magSearchInput" placeholder="제목·요약·태그 검색...">
+                    <select id="magSort" class="select-sm">
+                        <option value="latest">최신순</option>
+                        <option value="popular">조회수</option>
+                        <option value="featured">피처드</option>
+                    </select>
+                    <button class="btn btn-outline" onclick="App.openNaverPanel()">⟳ 네이버 가져오기</button>
+                    <button class="btn btn-primary" onclick="App.showModal('clipping')">+ 수동 클리핑</button>
+                </div>
+            </div>
+
+            <!-- 통계 스트립 -->
+            <div class="mag-stats">
+                <div class="mag-stat-item">
+                    <span class="mag-stat-num" id="magTotalCount">0</span>
+                    <span class="mag-stat-label">총 클리핑</span>
+                </div>
+                <div class="mag-stat-item">
+                    <span class="mag-stat-num" id="magTodayCount">0</span>
+                    <span class="mag-stat-label">오늘 신규</span>
+                </div>
+                <div class="mag-stat-item">
+                    <span class="mag-stat-num" id="magSourceCount">0</span>
+                    <span class="mag-stat-label">매체 수</span>
+                </div>
+                <div class="mag-stat-item">
+                    <span class="mag-stat-num" id="magViewCount">0</span>
+                    <span class="mag-stat-label">누적 조회</span>
+                </div>
+                <div class="mag-stat-item mag-stat-sentiment">
+                    <span class="mag-stat-num" id="magSentiment">+</span>
+                    <span class="mag-stat-label">전반적 감성</span>
+                </div>
+            </div>
+
+            <!-- 카테고리 탭 -->
+            <div class="mag-tabs" id="magTabs">
+                <button class="mag-tab active" data-cat="all">전체</button>
+                <button class="mag-tab" data-cat="product">신제품</button>
+                <button class="mag-tab" data-cat="review">리뷰</button>
+                <button class="mag-tab" data-cat="tech">기술</button>
+                <button class="mag-tab" data-cat="sports">스포츠/러닝</button>
+                <button class="mag-tab" data-cat="marketing">마케팅·광고</button>
+                <button class="mag-tab" data-cat="press">보도/IR</button>
+                <button class="mag-tab" data-cat="community">커뮤니티/SNS</button>
+            </div>
+
+            <!-- 네이버 API 패널 (접힘) -->
+            <div class="mag-naver-panel" id="magNaverPanel">
+                <div class="mag-naver-header">
+                    <h4>네이버 뉴스 검색 API 연동 <span class="mag-badge-opt">선택사항</span></h4>
+                    <button class="modal-close" onclick="App.closeNaverPanel()">&times;</button>
+                </div>
+                <div class="mag-naver-body">
+                    <p class="mag-naver-hint">
+                        네이버 개발자센터에서 발급받은 키를 입력하면 "샥즈 코리아" 키워드로 자동 수집됩니다.
+                        브라우저에서 직접 호출 시 CORS 정책으로 차단되므로 <strong>CORS 프록시 URL</strong>이 필요합니다.
+                        (예: 사내 프록시 또는 <code>https://corsproxy.io/?</code>)
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Naver Client ID</label>
+                            <input type="text" class="form-input" id="naverClientId" placeholder="X-Naver-Client-Id">
+                        </div>
+                        <div class="form-group">
+                            <label>Naver Client Secret</label>
+                            <input type="password" class="form-input" id="naverClientSecret" placeholder="X-Naver-Client-Secret">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>검색 키워드</label>
+                            <input type="text" class="form-input" id="naverQuery" value="샥즈 코리아">
+                        </div>
+                        <div class="form-group">
+                            <label>가져올 건수 (1-100)</label>
+                            <input type="number" class="form-input" id="naverDisplay" value="20" min="1" max="100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>CORS 프록시 URL (필수)</label>
+                        <input type="text" class="form-input" id="naverProxy" placeholder="https://corsproxy.io/?  또는 사내 프록시 prefix">
+                    </div>
+                    <div class="mag-naver-actions">
+                        <span class="mag-naver-status" id="naverStatus"></span>
+                        <button class="btn btn-outline" onclick="App.saveNaverConfig()">설정 저장</button>
+                        <button class="btn btn-primary" onclick="App.fetchNaverNews()">⟳ 지금 가져오기</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 매거진 본문 레이아웃 -->
+            <div class="magazine-layout">
+                <!-- 좌측 메인 -->
+                <div class="mag-main">
+                    <!-- 히어로 -->
+                    <article class="mag-hero" id="magHero"></article>
+
+                    <!-- 서브 피처드 -->
+                    <div class="mag-sub-featured" id="magSubFeatured"></div>
+
+                    <!-- 섹션 헤더 -->
+                    <div class="mag-section-header">
+                        <h3 id="magGridTitle">최신 클리핑</h3>
+                        <span class="mag-section-count" id="magGridCount"></span>
+                    </div>
+
+                    <!-- 일반 그리드 -->
+                    <div class="mag-grid" id="magGrid"></div>
+
+                    <div class="mag-empty" id="magEmpty" style="display:none">
+                        <div class="mag-empty-icon">▤</div>
+                        <p>해당 조건의 클리핑이 없습니다.</p>
+                    </div>
+                </div>
+
+                <!-- 우측 사이드바 -->
+                <aside class="mag-sidebar">
+                    <div class="mag-widget">
+                        <h4 class="mag-widget-title">매체별 클리핑</h4>
+                        <div class="mag-source-list" id="magSourceList"></div>
+                    </div>
+                    <div class="mag-widget">
+                        <h4 class="mag-widget-title">트렌딩 키워드</h4>
+                        <div class="mag-tag-cloud" id="magTrendingTags"></div>
+                    </div>
+                    <div class="mag-widget">
+                        <h4 class="mag-widget-title">실시간 피드</h4>
+                        <div class="mag-live-feed" id="magLiveFeed"></div>
+                    </div>
+                </aside>
             </div>
         </section>
 
