@@ -864,6 +864,8 @@ const App = {
         setChk('naverChNews', channels.includes('news'));
         setChk('naverChBlog', channels.includes('blog'));
         setChk('naverChCafe', channels.includes('cafe'));
+        // strict는 명시적으로 false일 때만 해제, 그 외 기본 true
+        setChk('naverStrict', cfg.strict !== false);
 
         const status = document.getElementById('naverStatus');
         if (status && cfg.lastFetched) {
@@ -881,7 +883,8 @@ const App = {
             scriptUrl: document.getElementById('naverScriptUrl')?.value.trim() || '',
             query: document.getElementById('naverQuery')?.value.trim() || '샥즈 코리아',
             display: Math.min(100, Math.max(1, parseInt(document.getElementById('naverDisplay')?.value, 10) || 20)),
-            channels
+            channels,
+            strict: !!document.getElementById('naverStrict')?.checked
         };
     },
 
@@ -903,7 +906,7 @@ const App = {
     },
 
     async fetchNaverNews() {
-        const { scriptUrl, query, display, channels } = this.readNaverForm();
+        const { scriptUrl, query, display, channels, strict } = this.readNaverForm();
 
         if (!scriptUrl) {
             this.setNaverStatus('Apps Script Web App URL을 입력하세요.', 'error');
@@ -918,13 +921,14 @@ const App = {
             return;
         }
 
-        this.setNaverStatus(`네이버 ${channels.join(' · ')} 검색 중...`, 'loading');
+        this.setNaverStatus(`네이버 ${channels.join(' · ')} 검색 중${strict ? ' (정확도 필터 ON)' : ''}...`, 'loading');
 
         const url = scriptUrl
             + (scriptUrl.includes('?') ? '&' : '?')
             + 'query=' + encodeURIComponent(query)
             + '&display=' + display
-            + '&channels=' + encodeURIComponent(channels.join(','));
+            + '&channels=' + encodeURIComponent(channels.join(','))
+            + '&strict=' + (strict ? 'true' : 'false');
 
         try {
             // Apps Script 웹 앱은 리다이렉트(302)를 거치므로 redirect: 'follow' 명시
@@ -939,9 +943,15 @@ const App = {
             DataStore.save(this.data);
 
             const counts = json.counts || {};
-            const breakdown = Object.keys(counts).map(k => `${k}:${counts[k]}`).join(' · ');
+            const fc = json.filteredCounts || {};
+            const breakdown = Object.keys(counts)
+                .map(k => fc[k] !== undefined ? `${k}:${fc[k]}/${counts[k]}` : `${k}:${counts[k]}`)
+                .join(' · ');
+            const droppedNote = json.droppedByRelevance
+                ? ` · 노이즈 제외 ${json.droppedByRelevance}건`
+                : '';
             this.setNaverStatus(
-                `✓ 총 ${json.total || 0}건 수신 (${breakdown}), 신규 ${added}건 추가 · ${ts}`,
+                `✓ 총 ${json.total || 0}건 수신 (${breakdown})${droppedNote}, 신규 ${added}건 추가 · ${ts}`,
                 'success'
             );
             this.renderMagazine();

@@ -517,6 +517,18 @@
                             </label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label>정확도 필터</label>
+                        <div class="mag-channel-options">
+                            <label class="mag-channel-chk">
+                                <input type="checkbox" id="naverStrict" checked>
+                                <span>샥즈 관련 키워드 미포함 결과 자동 제외 (strict)</span>
+                            </label>
+                        </div>
+                        <p class="mag-naver-fieldhint">
+                            제목/본문에 <code>샥즈 · 오픈런 · 오픈핏 · 오픈스윔 · 오픈무브 · 골전도 · AfterShokz</code> 등이 없으면 노이즈로 간주해 제외합니다.
+                        </p>
+                    </div>
                     <div class="mag-naver-actions">
                         <span class="mag-naver-status" id="naverStatus"></span>
                         <button class="btn btn-outline" onclick="App.saveNaverConfig()">설정 저장</button>

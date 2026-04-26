@@ -1443,6 +1443,21 @@ textarea.form-input {
     color: var(--text-primary);
 }
 
+.mag-naver-fieldhint {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.55;
+}
+
+.mag-naver-fieldhint code {
+    background: var(--bg-hover);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+    color: var(--accent-cyan);
+}
+
 .mag-naver-actions {
     display: flex;
     align-items: center;

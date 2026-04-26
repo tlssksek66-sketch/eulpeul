@@ -25,14 +25,17 @@
  *       &display=20                  (각 채널당 1~100건)
  *       &channels=news,blog,cafe     (조합 가능)
  *       &sort=date                   ('date' | 'sim', 기본 date)
+ *       &strict=true|false           (관련성 필터, 기본 true)
  *
  *  응답 스키마(요약):
  *  {
- *    query, fetchedAt, total,
+ *    query, fetchedAt, strict, total,
+ *    counts: { news, blog, cafearticle },           // 채널별 원본 수신
+ *    filteredCounts: { news, blog, cafearticle },   // 필터 통과
+ *    droppedByRelevance: N,                         // 관련성 필터 제외 합계
  *    items: [{ id, title, excerpt, url, date, channel,
  *              category, source, sourceColor, tags,
  *              sentiment, bloggerName?, cafeName? }],
- *    counts: { news, blog, cafearticle },
  *    errors?: { news?: '...', blog?: '...' }
  *  }
  * ──────────────────────────────────────────────────────────────────────────
@@ -49,8 +52,16 @@ const CHANNEL_ALIAS = {
 
 // 매체 호스트 → 표시명·컬러 매핑 (지속 추가 가능)
 const NEWS_SOURCE_MAP = {
+  // IT/테크
   'zdnet.co.kr':         { name: '지디넷코리아',   color: '#0066ff' },
   'it.chosun.com':       { name: 'IT조선',        color: '#e60012' },
+  'it.donga.com':        { name: 'IT동아',        color: '#003478' },
+  'etnews.com':          { name: '전자신문',      color: '#1976d2' },
+  'ddaily.co.kr':        { name: '디지털데일리',  color: '#1e88e5' },
+  'thegear.net':         { name: '더기어',        color: '#212121' },
+  'kbench.com':          { name: '케이벤치',      color: '#00838f' },
+  'bloter.net':          { name: '블로터',        color: '#0288d1' },
+  // 종합 일간지
   'biz.chosun.com':      { name: '조선비즈',      color: '#0033a0' },
   'chosun.com':          { name: '조선일보',      color: '#0033a0' },
   'donga.com':           { name: '동아일보',      color: '#003478' },
@@ -58,17 +69,47 @@ const NEWS_SOURCE_MAP = {
   'mk.co.kr':            { name: '매일경제',      color: '#cc0000' },
   'edaily.co.kr':        { name: '이데일리',      color: '#ff5722' },
   'hani.co.kr':          { name: '한겨레',        color: '#005bac' },
-  'etnews.com':          { name: '전자신문',      color: '#1976d2' },
-  'ddaily.co.kr':        { name: '디지털데일리',  color: '#1e88e5' },
-  'health.chosun.com':   { name: '헬스조선',      color: '#28a745' },
+  'khan.co.kr':          { name: '경향신문',      color: '#cc0000' },
+  'joongang.co.kr':      { name: '중앙일보',      color: '#e60012' },
+  'hankyung.com':        { name: '한국경제',      color: '#1565c0' },
+  'mt.co.kr':            { name: '머니투데이',    color: '#d32f2f' },
+  'news.mt.co.kr':       { name: '머니투데이',    color: '#d32f2f' },
+  'yna.co.kr':           { name: '연합뉴스',      color: '#005bac' },
+  'news1.kr':            { name: '뉴스1',         color: '#212121' },
+  'newsis.com':          { name: '뉴시스',        color: '#1565c0' },
+  'etoday.co.kr':        { name: '이투데이',      color: '#1976d2' },
+  'biztribune.co.kr':    { name: '비즈트리뷴',    color: '#2e7d32' },
+  'heraldcorp.com':      { name: '헤럴드경제',    color: '#0033a0' },
+  'news.heraldcorp.com': { name: '헤럴드경제',    color: '#0033a0' },
+  'mediapen.com':        { name: '미디어펜',      color: '#1976d2' },
+  // 자동차/모터스포츠
+  'gpkorea.com':         { name: '지피코리아',    color: '#1a73e8' },
+  'autodaily.co.kr':     { name: '오토데일리',    color: '#212121' },
+  // 스포츠/라이프
   'sports.khan.co.kr':   { name: '스포츠경향',    color: '#ff6600' },
-  'fashionbiz.co.kr':    { name: '패션비즈',      color: '#9c27b0' },
-  'thegear.net':         { name: '더기어',        color: '#212121' },
-  'gqkorea.co.kr':       { name: 'GQ 코리아',     color: '#000000' },
+  'sports.chosun.com':   { name: '스포츠조선',    color: '#e60012' },
+  'sportsworldi.com':    { name: '스포츠월드',    color: '#0d47a1' },
   'runnersworld.co.kr':  { name: '러너스월드',    color: '#ff5252' },
   'bike.chosun.com':     { name: '바이크조선',    color: '#388e3c' },
+  // 헬스/리빙
+  'health.chosun.com':   { name: '헬스조선',      color: '#28a745' },
+  'kormedi.com':         { name: '코메디닷컴',    color: '#0277bd' },
+  // 패션/매거진
+  'fashionbiz.co.kr':    { name: '패션비즈',      color: '#9c27b0' },
+  'gqkorea.co.kr':       { name: 'GQ 코리아',     color: '#000000' },
+  'esquirekorea.co.kr':  { name: '에스콰이어',    color: '#212121' },
   'womansense.co.kr':    { name: '우먼센스',      color: '#e91e63' }
 };
+
+// 샥즈 관련성 판단용 키워드 (정확도 필터 strict=true 시 적용)
+const SHOKZ_RELEVANCE = [
+  '샥즈', '쇼크즈', 'Shokz', 'shokz', 'SHOKZ',
+  '애프터샥', 'AfterShokz', 'aftershokz',
+  'OpenRun', '오픈런', 'OpenFit', '오픈핏',
+  'OpenSwim', '오픈스윔', 'OpenMove', '오픈무브',
+  'OpenComm', '오픈컴', 'OpenDot', '오픈닷', 'OpenGolf', '오픈골프',
+  '골전도'
+];
 
 const SHOKZ_KEYWORDS = [
   'OpenRun', 'OpenFit', 'OpenSwim', 'OpenMove', 'OpenComm', 'OpenGolf',
@@ -83,6 +124,8 @@ function doGet(e) {
   const query = (params.query || '샥즈 코리아').trim();
   const display = clampInt(params.display, 1, 100, 20);
   const sort = (params.sort === 'sim') ? 'sim' : 'date';
+  // 정확도 필터 (default: true) — false 명시 시에만 비활성
+  const strict = String(params.strict || 'true').toLowerCase() !== 'false';
   const channelsRaw = (params.channels || 'news,blog,cafe').split(',')
     .map(s => s.trim().toLowerCase()).filter(Boolean);
   const channels = channelsRaw
@@ -101,14 +144,26 @@ function doGet(e) {
   }
 
   const all = [];
-  const counts = {};
+  const counts = {};       // 채널별 원본 건수
+  const filtered = {};     // 채널별 필터 통과 건수
   const errors = {};
+  let droppedTotal = 0;
 
   channels.forEach(ch => {
     try {
       const items = fetchChannel(ch, query, display, sort, clientId, clientSecret);
       counts[ch] = items.length;
-      items.forEach(it => all.push(normalize(it, ch)));
+      let kept = 0;
+      items.forEach(it => {
+        const normalized = normalize(it, ch);
+        if (strict && !isShokzRelevant(normalized)) {
+          droppedTotal++;
+          return;
+        }
+        all.push(normalized);
+        kept++;
+      });
+      filtered[ch] = kept;
     } catch (err) {
       errors[ch] = String(err && err.message || err);
     }
@@ -134,11 +189,26 @@ function doGet(e) {
   return jsonOut({
     query: query,
     fetchedAt: new Date().toISOString(),
+    strict: strict,
     total: unique.length,
-    counts: counts,
+    counts: counts,                       // 채널별 원본 수신 건수
+    filteredCounts: filtered,             // 채널별 필터 통과 건수
+    droppedByRelevance: droppedTotal,     // 정확도 필터에 의해 제외된 총 건수
     items: unique,
     errors: Object.keys(errors).length ? errors : undefined
   });
+}
+
+/**
+ * 샥즈 관련성 판단 — 제목 또는 본문에 SHOKZ_RELEVANCE 키워드가 하나라도
+ * 포함되면 통과. 노이즈(샥즈가 본문 끝에 살짝 언급된 경우 등) 제거.
+ */
+function isShokzRelevant(article) {
+  const text = (article.title || '') + ' ' + (article.excerpt || '');
+  for (let i = 0; i < SHOKZ_RELEVANCE.length; i++) {
+    if (text.indexOf(SHOKZ_RELEVANCE[i]) !== -1) return true;
+  }
+  return false;
 }
 
 /**
@@ -307,6 +377,6 @@ function jsonOut(obj, statusCode) {
 /* ───── 디버그/관리 (Apps Script 에디터에서 직접 실행) ───── */
 
 function _debug() {
-  const out = doGet({ parameter: { query: '샥즈 코리아', display: 5, channels: 'news,blog,cafe' } });
+  const out = doGet({ parameter: { query: '샥즈 코리아', display: 5, channels: 'news,blog,cafe', strict: 'true' } });
   Logger.log(out.getContent().slice(0, 4000));
 }

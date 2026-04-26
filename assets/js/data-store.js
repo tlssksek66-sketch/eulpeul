@@ -322,6 +322,7 @@ const DataStore = {
             query: '샥즈 코리아',
             display: 20,                         // 채널당 건수 (1-100)
             channels: ['news', 'blog', 'cafe'],  // 수집 채널
+            strict: true,                        // 샥즈 관련 키워드 미포함 결과 제외
             lastFetched: null
         }
     },
