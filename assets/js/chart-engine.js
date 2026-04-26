@@ -1,27 +1,25 @@
 /**
- * ChartEngine - Canvas 기반 경량 차트 라이브러리
- * 외부 의존성 없이 순수 Canvas API로 차트 렌더링
+ * ChartEngine - Canvas 기반 경량 차트 라이브러리 (매거진 전용)
+ * 외부 의존성 없이 순수 Canvas API로 렌더링.
  */
 const ChartEngine = {
     colors: {
         blue: '#4a7cff',
-        blueLight: '#6b99ff',
         green: '#34d399',
+        purple: '#a78bfa',
+        orange: '#fb923c',
         red: '#f87171',
         yellow: '#fbbf24',
-        purple: '#a78bfa',
         cyan: '#22d3ee',
-        orange: '#fb923c',
-        grid: '#2a2e3f',
-        text: '#8b90a0',
+        gray: '#6b7280',
+        grid: '#252836',
+        text: '#9aa0b4',
         textLight: '#5a5f73',
-        bg: '#1e2132'
+        bg: '#13151f'
     },
 
-    palette: ['#4a7cff', '#34d399', '#a78bfa', '#fbbf24', '#fb923c', '#22d3ee', '#f87171', '#6b99ff'],
-
     /**
-     * 캔버스 초기화 & DPI 보정
+     * 캔버스 초기화 + DPI 보정
      */
     initCanvas(canvasId) {
         const canvas = document.getElementById(canvasId);
@@ -29,363 +27,246 @@ const ChartEngine = {
         const ctx = canvas.getContext('2d');
         const dpr = window.devicePixelRatio || 1;
         const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return null;
 
         canvas.width = rect.width * dpr;
         canvas.height = rect.height * dpr;
         ctx.scale(dpr, dpr);
-
         canvas.style.width = rect.width + 'px';
         canvas.style.height = rect.height + 'px';
+        ctx.clearRect(0, 0, rect.width, rect.height);
 
         return { canvas, ctx, width: rect.width, height: rect.height };
     },
 
     /**
-     * 라인 차트
+     * 일별 클리핑 추이 (막대 차트, 값 라벨 표시)
      */
-    lineChart(canvasId, config) {
+    dailyBarChart(canvasId, { labels, counts, color = '#4a7cff' }) {
         const c = this.initCanvas(canvasId);
         if (!c) return;
         const { ctx, width, height } = c;
-        const { labels, datasets, showGrid = true, showDots = true } = config;
-        const padding = { top: 20, right: 20, bottom: 40, left: 60 };
+        const padding = { top: 30, right: 16, bottom: 32, left: 16 };
         const chartW = width - padding.left - padding.right;
         const chartH = height - padding.top - padding.bottom;
 
-        // 최대값 계산
-        let maxVal = 0;
-        datasets.forEach(ds => {
-            ds.data.forEach(v => { if (v > maxVal) maxVal = v; });
-        });
-        maxVal = Math.ceil(maxVal * 1.1);
+        const maxVal = Math.max(1, ...counts) * 1.2;
+        const slot = chartW / counts.length;
+        const barW = Math.min(slot * 0.55, 36);
 
-        // 그리드 라인
-        if (showGrid) {
-            ctx.strokeStyle = this.colors.grid;
-            ctx.lineWidth = 0.5;
-            const gridLines = 5;
-            for (let i = 0; i <= gridLines; i++) {
-                const y = padding.top + (chartH / gridLines) * i;
-                ctx.beginPath();
-                ctx.moveTo(padding.left, y);
-                ctx.lineTo(width - padding.right, y);
-                ctx.stroke();
+        counts.forEach((v, i) => {
+            const x = padding.left + i * slot + (slot - barW) / 2;
+            const h = (v / maxVal) * chartH;
+            const y = padding.top + chartH - h;
 
-                // Y축 레이블
-                const val = maxVal - (maxVal / gridLines) * i;
-                ctx.fillStyle = this.colors.textLight;
-                ctx.font = '11px Inter, sans-serif';
-                ctx.textAlign = 'right';
-                ctx.fillText(this.formatNumber(val), padding.left - 8, y + 4);
-            }
-        }
-
-        // X축 레이블
-        ctx.fillStyle = this.colors.text;
-        ctx.font = '11px Inter, sans-serif';
-        ctx.textAlign = 'center';
-        const stepX = chartW / (labels.length - 1);
-        labels.forEach((label, i) => {
-            const x = padding.left + i * stepX;
-            ctx.fillText(label, x, height - 10);
-        });
-
-        // 데이터셋 그리기
-        datasets.forEach((ds, di) => {
-            const color = ds.color || this.palette[di % this.palette.length];
-
-            // 영역 채우기
-            if (ds.fill) {
-                ctx.beginPath();
-                ctx.moveTo(padding.left, padding.top + chartH);
-                ds.data.forEach((val, i) => {
-                    const x = padding.left + i * stepX;
-                    const y = padding.top + chartH - (val / maxVal) * chartH;
-                    ctx.lineTo(x, y);
-                });
-                ctx.lineTo(padding.left + (ds.data.length - 1) * stepX, padding.top + chartH);
-                ctx.closePath();
-                const grad = ctx.createLinearGradient(0, padding.top, 0, padding.top + chartH);
-                grad.addColorStop(0, color + '30');
-                grad.addColorStop(1, color + '05');
+            // 막대
+            if (v > 0) {
+                const grad = ctx.createLinearGradient(0, y, 0, padding.top + chartH);
+                grad.addColorStop(0, color);
+                grad.addColorStop(1, color + '55');
                 ctx.fillStyle = grad;
+                this._roundRectTop(ctx, x, y, barW, h, 4);
                 ctx.fill();
+
+                // 값 라벨
+                ctx.fillStyle = color;
+                ctx.font = 'bold 11px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(String(v), x + barW / 2, y - 6);
             }
 
-            // 라인
+            // 날짜 라벨
+            ctx.fillStyle = this.colors.textLight;
+            ctx.font = '10px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(labels[i], x + barW / 2, height - 12);
+        });
+    },
+
+    /**
+     * 도넛 차트 (중앙 합계 + 우측 범례)
+     */
+    donutWithCenter(canvasId, { items, centerLabel = '건', centerSize = 'lg' }) {
+        const c = this.initCanvas(canvasId);
+        if (!c) return;
+        const { ctx, width, height } = c;
+        const total = items.reduce((s, x) => s + x.value, 0);
+        if (total === 0) return;
+
+        const cx = Math.min(width * 0.32, height * 0.6);
+        const cy = height / 2;
+        const r = Math.min(cx, cy) - 16;
+        const inner = r * 0.62;
+
+        let start = -Math.PI / 2;
+        items.forEach(it => {
+            const ang = (it.value / total) * Math.PI * 2;
             ctx.beginPath();
-            ctx.strokeStyle = color;
-            ctx.lineWidth = 2.5;
-            ctx.lineJoin = 'round';
-            ds.data.forEach((val, i) => {
-                const x = padding.left + i * stepX;
-                const y = padding.top + chartH - (val / maxVal) * chartH;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            });
-            ctx.stroke();
+            ctx.arc(cx, cy, r, start, start + ang);
+            ctx.arc(cx, cy, inner, start + ang, start, true);
+            ctx.closePath();
+            ctx.fillStyle = it.color;
+            ctx.fill();
+            start += ang;
+        });
 
-            // 점
-            if (showDots) {
-                ds.data.forEach((val, i) => {
-                    const x = padding.left + i * stepX;
-                    const y = padding.top + chartH - (val / maxVal) * chartH;
-                    ctx.beginPath();
-                    ctx.arc(x, y, 3.5, 0, Math.PI * 2);
-                    ctx.fillStyle = color;
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.arc(x, y, 2, 0, Math.PI * 2);
-                    ctx.fillStyle = this.colors.bg;
-                    ctx.fill();
-                });
-            }
+        // 중앙 합계
+        ctx.fillStyle = '#f4f5fb';
+        ctx.font = `bold ${centerSize === 'lg' ? '26' : '20'}px Inter, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(String(total), cx, cy - 6);
+        ctx.font = '11px Noto Sans KR, sans-serif';
+        ctx.fillStyle = this.colors.text;
+        ctx.fillText(centerLabel, cx, cy + 14);
 
-            // 점선 (예측 데이터)
-            if (ds.dashed) {
-                ctx.setLineDash([6, 4]);
-                ctx.beginPath();
-                ctx.strokeStyle = color + '80';
-                ctx.lineWidth = 2;
-                ds.data.forEach((val, i) => {
-                    const x = padding.left + i * stepX;
-                    const y = padding.top + chartH - (val / maxVal) * chartH;
-                    if (i === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                });
-                ctx.stroke();
-                ctx.setLineDash([]);
-            }
+        // 우측 범례
+        const legendX = cx + r + 24;
+        const lineH = 22;
+        const legendY = cy - (items.length * lineH) / 2 + lineH / 2;
+        items.forEach((it, i) => {
+            const y = legendY + i * lineH;
+            ctx.fillStyle = it.color;
+            this._roundRect(ctx, legendX, y - 6, 10, 10, 2);
+            ctx.fill();
+            ctx.fillStyle = this.colors.text;
+            ctx.font = '12px Noto Sans KR, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(it.label, legendX + 18, y);
+            ctx.fillStyle = '#f4f5fb';
+            ctx.font = 'bold 12px Inter, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText(String(it.value), width - 16, y);
+        });
+    },
+
+    /**
+     * 가로 스택 감성바 (긍정/중립/부정)
+     */
+    stackedSentimentBar(canvasId, { items }) {
+        const c = this.initCanvas(canvasId);
+        if (!c) return;
+        const { ctx, width, height } = c;
+        const total = items.reduce((s, x) => s + x.value, 0);
+        if (total === 0) return;
+
+        const barH = 16;
+        const barY = 18;
+        const barW = width - 32;
+        const barX = 16;
+        const r = 8;
+
+        // 배경
+        ctx.fillStyle = '#1c1f2e';
+        this._roundRect(ctx, barX, barY, barW, barH, r);
+        ctx.fill();
+
+        // 스택
+        let cursor = barX;
+        items.forEach((it, i) => {
+            const w = (it.value / total) * barW;
+            ctx.fillStyle = it.color;
+            // 양 끝만 둥글게
+            const isFirst = i === 0;
+            const isLast = i === items.length - 1;
+            ctx.save();
+            ctx.beginPath();
+            this._roundRect(ctx, barX, barY, barW, barH, r);
+            ctx.clip();
+            ctx.fillRect(cursor, barY, w, barH);
+            ctx.restore();
+            cursor += w;
         });
 
         // 범례
-        if (datasets.length > 1) {
-            let legendX = padding.left;
-            datasets.forEach((ds, di) => {
-                const color = ds.color || this.palette[di % this.palette.length];
-                ctx.fillStyle = color;
-                ctx.fillRect(legendX, 4, 12, 3);
-                ctx.fillStyle = this.colors.text;
-                ctx.font = '11px Inter, sans-serif';
-                ctx.textAlign = 'left';
-                ctx.fillText(ds.label || '', legendX + 16, 10);
-                legendX += ctx.measureText(ds.label || '').width + 36;
-            });
-        }
-    },
-
-    /**
-     * 바 차트
-     */
-    barChart(canvasId, config) {
-        const c = this.initCanvas(canvasId);
-        if (!c) return;
-        const { ctx, width, height } = c;
-        const { labels, datasets, horizontal = false } = config;
-        const padding = { top: 20, right: 20, bottom: 40, left: 60 };
-        const chartW = width - padding.left - padding.right;
-        const chartH = height - padding.top - padding.bottom;
-
-        let maxVal = 0;
-        datasets.forEach(ds => {
-            ds.data.forEach(v => { if (v > maxVal) maxVal = v; });
-        });
-        maxVal = Math.ceil(maxVal * 1.15);
-
-        // 그리드
-        ctx.strokeStyle = this.colors.grid;
-        ctx.lineWidth = 0.5;
-        const gridLines = 5;
-        for (let i = 0; i <= gridLines; i++) {
-            const y = padding.top + (chartH / gridLines) * i;
-            ctx.beginPath();
-            ctx.moveTo(padding.left, y);
-            ctx.lineTo(width - padding.right, y);
-            ctx.stroke();
-
-            const val = maxVal - (maxVal / gridLines) * i;
-            ctx.fillStyle = this.colors.textLight;
-            ctx.font = '11px Inter, sans-serif';
-            ctx.textAlign = 'right';
-            ctx.fillText(this.formatNumber(val), padding.left - 8, y + 4);
-        }
-
-        const groupWidth = chartW / labels.length;
-        const barCount = datasets.length;
-        const barWidth = Math.min((groupWidth * 0.7) / barCount, 40);
-        const groupOffset = (groupWidth - barWidth * barCount) / 2;
-
-        datasets.forEach((ds, di) => {
-            const color = ds.color || this.palette[di % this.palette.length];
-            ds.data.forEach((val, i) => {
-                const x = padding.left + i * groupWidth + groupOffset + di * barWidth;
-                const barH = (val / maxVal) * chartH;
-                const y = padding.top + chartH - barH;
-
-                // 바 그라데이션
-                const grad = ctx.createLinearGradient(x, y, x, padding.top + chartH);
-                grad.addColorStop(0, color);
-                grad.addColorStop(1, color + '60');
-                ctx.fillStyle = grad;
-
-                // 둥근 모서리
-                const r = 3;
-                ctx.beginPath();
-                ctx.moveTo(x + r, y);
-                ctx.lineTo(x + barWidth - r, y);
-                ctx.quadraticCurveTo(x + barWidth, y, x + barWidth, y + r);
-                ctx.lineTo(x + barWidth, padding.top + chartH);
-                ctx.lineTo(x, padding.top + chartH);
-                ctx.lineTo(x, y + r);
-                ctx.quadraticCurveTo(x, y, x + r, y);
-                ctx.fill();
-            });
-        });
-
-        // X축 레이블
-        ctx.fillStyle = this.colors.text;
-        ctx.font = '11px Noto Sans KR, sans-serif';
-        ctx.textAlign = 'center';
-        labels.forEach((label, i) => {
-            const x = padding.left + i * groupWidth + groupWidth / 2;
-            ctx.fillText(label, x, height - 10);
-        });
-    },
-
-    /**
-     * 도넛 차트
-     */
-    doughnutChart(canvasId, config) {
-        const c = this.initCanvas(canvasId);
-        if (!c) return;
-        const { ctx, width, height } = c;
-        const { labels, data, colors: customColors } = config;
-
-        const cx = width / 2;
-        const cy = height / 2;
-        const radius = Math.min(cx, cy) - 40;
-        const innerRadius = radius * 0.6;
-        const total = data.reduce((s, v) => s + v, 0);
-
-        let startAngle = -Math.PI / 2;
-        data.forEach((val, i) => {
-            const angle = (val / total) * Math.PI * 2;
-            const color = (customColors && customColors[i]) || this.palette[i % this.palette.length];
-
-            ctx.beginPath();
-            ctx.arc(cx, cy, radius, startAngle, startAngle + angle);
-            ctx.arc(cx, cy, innerRadius, startAngle + angle, startAngle, true);
-            ctx.closePath();
-            ctx.fillStyle = color;
+        const lineY = barY + barH + 24;
+        const colW = barW / items.length;
+        items.forEach((it, i) => {
+            const x = barX + colW * i;
+            ctx.fillStyle = it.color;
+            this._roundRect(ctx, x, lineY - 8, 9, 9, 2);
             ctx.fill();
-
-            // 레이블
-            const midAngle = startAngle + angle / 2;
-            const labelR = radius + 20;
-            const lx = cx + Math.cos(midAngle) * labelR;
-            const ly = cy + Math.sin(midAngle) * labelR;
             ctx.fillStyle = this.colors.text;
-            ctx.font = '11px Noto Sans KR, sans-serif';
-            ctx.textAlign = midAngle > Math.PI / 2 && midAngle < Math.PI * 1.5 ? 'right' : 'left';
-            ctx.fillText(`${labels[i]} ${Math.round(val / total * 100)}%`, lx, ly);
-
-            startAngle += angle;
-        });
-
-        // 중앙 텍스트
-        ctx.fillStyle = this.colors.text;
-        ctx.font = 'bold 16px Inter, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('총 예산', cx, cy - 6);
-        ctx.font = 'bold 14px Inter, sans-serif';
-        ctx.fillStyle = this.colors.blueLight;
-        ctx.fillText(this.formatCurrency(total), cx, cy + 16);
-    },
-
-    /**
-     * 레이더 차트
-     */
-    radarChart(canvasId, config) {
-        const c = this.initCanvas(canvasId);
-        if (!c) return;
-        const { ctx, width, height } = c;
-        const { labels, datasets } = config;
-
-        const cx = width / 2;
-        const cy = height / 2;
-        const radius = Math.min(cx, cy) - 50;
-        const sides = labels.length;
-        const angleStep = (Math.PI * 2) / sides;
-
-        // 배경 다각형
-        for (let level = 5; level >= 1; level--) {
-            const r = (radius / 5) * level;
-            ctx.beginPath();
-            for (let i = 0; i < sides; i++) {
-                const angle = -Math.PI / 2 + i * angleStep;
-                const x = cx + Math.cos(angle) * r;
-                const y = cy + Math.sin(angle) * r;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.closePath();
-            ctx.strokeStyle = this.colors.grid;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-        }
-
-        // 축선
-        for (let i = 0; i < sides; i++) {
-            const angle = -Math.PI / 2 + i * angleStep;
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(cx + Math.cos(angle) * radius, cy + Math.sin(angle) * radius);
-            ctx.strokeStyle = this.colors.grid;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-
-            // 레이블
-            const lx = cx + Math.cos(angle) * (radius + 18);
-            const ly = cy + Math.sin(angle) * (radius + 18);
-            ctx.fillStyle = this.colors.text;
-            ctx.font = '11px Noto Sans KR, sans-serif';
-            ctx.textAlign = 'center';
+            ctx.font = '12px Noto Sans KR, sans-serif';
+            ctx.textAlign = 'left';
             ctx.textBaseline = 'middle';
-            ctx.fillText(labels[i], lx, ly);
-        }
-
-        // 데이터
-        datasets.forEach((ds, di) => {
-            const color = ds.color || this.palette[di];
-            ctx.beginPath();
-            ds.data.forEach((val, i) => {
-                const angle = -Math.PI / 2 + i * angleStep;
-                const r = (val / 100) * radius;
-                const x = cx + Math.cos(angle) * r;
-                const y = cy + Math.sin(angle) * r;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            });
-            ctx.closePath();
-            ctx.fillStyle = color + '20';
-            ctx.fill();
-            ctx.strokeStyle = color;
-            ctx.lineWidth = 2;
-            ctx.stroke();
+            ctx.fillText(it.label, x + 14, lineY - 4);
+            ctx.fillStyle = '#f4f5fb';
+            ctx.font = 'bold 12px Inter, sans-serif';
+            ctx.fillText(`${it.value}  (${it.pct}%)`, x + 14, lineY + 12);
         });
     },
 
     /**
-     * 숫자 포맷팅
+     * 가로 막대 (Top N — 매체/키워드)
      */
-    formatNumber(num) {
-        if (num >= 100000000) return (num / 100000000).toFixed(1) + '억';
-        if (num >= 10000) return (num / 10000).toFixed(0) + '만';
-        if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-        return num.toString();
+    horizontalBarChart(canvasId, { items, color = '#34d399' }) {
+        const c = this.initCanvas(canvasId);
+        if (!c) return;
+        const { ctx, width, height } = c;
+        const padTop = 8, padBottom = 8, padRight = 36, labelW = 180;
+        const max = Math.max(...items.map(x => x.value), 1);
+        const rowH = (height - padTop - padBottom) / items.length;
+
+        items.forEach((it, i) => {
+            const y = padTop + i * rowH + rowH / 2;
+            // 라벨
+            ctx.fillStyle = this.colors.text;
+            ctx.font = '12px Noto Sans KR, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            const label = it.label.length > 18 ? it.label.slice(0, 18) + '…' : it.label;
+            ctx.fillText(label, 8, y);
+
+            // 막대
+            const barX = labelW;
+            const barMax = width - labelW - padRight;
+            const barW = (it.value / max) * barMax;
+            const barH = Math.max(8, rowH * 0.5);
+            const grad = ctx.createLinearGradient(barX, y, barX + barW, y);
+            grad.addColorStop(0, color + 'aa');
+            grad.addColorStop(1, color);
+            ctx.fillStyle = grad;
+            this._roundRect(ctx, barX, y - barH / 2, barW, barH, barH / 2);
+            ctx.fill();
+
+            // 값
+            ctx.fillStyle = '#f4f5fb';
+            ctx.font = 'bold 12px Inter, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(String(it.value), barX + barW + 8, y);
+        });
     },
 
-    formatCurrency(num) {
-        return '₩' + new Intl.NumberFormat('ko-KR').format(num);
+    /**
+     * 라운드 사각형 헬퍼
+     */
+    _roundRect(ctx, x, y, w, h, r) {
+        const rr = Math.min(r, w / 2, h / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + rr, y);
+        ctx.lineTo(x + w - rr, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + rr);
+        ctx.lineTo(x + w, y + h - rr);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - rr, y + h);
+        ctx.lineTo(x + rr, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - rr);
+        ctx.lineTo(x, y + rr);
+        ctx.quadraticCurveTo(x, y, x + rr, y);
+        ctx.closePath();
+    },
+
+    _roundRectTop(ctx, x, y, w, h, r) {
+        const rr = Math.min(r, w / 2, h);
+        ctx.beginPath();
+        ctx.moveTo(x + rr, y);
+        ctx.lineTo(x + w - rr, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + rr);
+        ctx.lineTo(x + w, y + h);
+        ctx.lineTo(x, y + h);
+        ctx.lineTo(x, y + rr);
+        ctx.quadraticCurveTo(x, y, x + rr, y);
+        ctx.closePath();
     }
 };
