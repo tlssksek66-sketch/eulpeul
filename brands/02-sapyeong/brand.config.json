@@ -3,9 +3,27 @@
   "slug": "sapyeong",
   "name": "사평",
   "nameEn": "Sapyeong",
-  "color": "#8B5E3C",
+  "category": "일본식 카레 전문",
+  "tagline": "저수분 숙성 키마카레, 한 그릇의 정수",
+  "color": "#C97B2B",
+  "colorAccent": "#3B2A1E",
   "owner": "",
   "status": "active",
-  "tags": [],
+  "tags": ["일식", "카레", "키마카레", "로컬", "이커머스", "마켓컬리"],
+  "origin": {
+    "city": "대구",
+    "district": "중구",
+    "area": "동성로·교동 일대"
+  },
+  "channels": {
+    "offline": ["대구 본점"],
+    "ecommerce": ["마켓컬리"]
+  },
+  "signature": [
+    "저수분 숙성 키마카레",
+    "국내산 양파 장시간 볶음 베이스",
+    "국내산 돼지고기 키마",
+    "청양고추 매콤 버전"
+  ],
   "createdAt": "2026-04-26"
 }
