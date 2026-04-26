@@ -44,6 +44,11 @@
                 <span>광고 통합 관제</span>
                 <span class="nav-pill" aria-hidden="true">SA·GFA</span>
             </a>
+            <a href="#" class="nav-item" data-view="warehouse">
+                <span class="nav-icon">▦</span>
+                <span>데이터 웨어하우스</span>
+                <span class="nav-pill nav-pill--alt" aria-hidden="true">Tier 2</span>
+            </a>
             <a href="#" class="nav-item" data-view="settings">
                 <span class="nav-icon">⚙</span>
                 <span>설정</span>
@@ -673,6 +678,129 @@
             </div>
         </section>
 
+        <!-- 데이터 웨어하우스 (Tier 2 IndexedDB) -->
+        <section class="view" id="view-warehouse">
+            <div class="view-header">
+                <h2>데이터 웨어하우스 <span class="view-header__sub">SA·GFA 다차원 fact 적재 / 회귀 분석</span></h2>
+                <div class="view-actions">
+                    <button class="btn btn-outline" onclick="App.openWarehouseUpload()">↥ 다차원 CSV 업로드</button>
+                    <button class="btn btn-primary" onclick="App.generateDemoFacts()">데모 1년치 생성</button>
+                </div>
+            </div>
+
+            <!-- Tier / 용량 게이지 -->
+            <div class="wh-stats">
+                <div class="wh-stat">
+                    <span class="wh-stat__label">SA fact rows</span>
+                    <span class="wh-stat__value" id="whSaCount">—</span>
+                </div>
+                <div class="wh-stat">
+                    <span class="wh-stat__label">GFA fact rows</span>
+                    <span class="wh-stat__value" id="whGfaCount">—</span>
+                </div>
+                <div class="wh-stat wh-stat--wide">
+                    <span class="wh-stat__label">브라우저 저장 사용량</span>
+                    <div class="wh-gauge">
+                        <div class="wh-gauge__bar"><div class="wh-gauge__fill" id="whUsageBar" style="width:0%"></div></div>
+                        <span class="wh-gauge__text" id="whUsageText">— / —</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 적재 이력 -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>적재 이력</h3>
+                    <button class="btn btn-sm btn-outline" onclick="App.refreshWarehouse()">↻ 새로고침</button>
+                </div>
+                <div class="card-body">
+                    <table class="data-table data-table--compact">
+                        <thead><tr><th>시각</th><th>소스</th><th>유형</th><th>rows</th><th>비고</th></tr></thead>
+                        <tbody id="whImportTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 쿼리 빌더 + 결과 -->
+            <div class="card card-wide">
+                <div class="card-header">
+                    <h3>시계열 쿼리 & 차트</h3>
+                </div>
+                <div class="card-body">
+                    <div class="wh-query">
+                        <label>소스
+                            <select id="whSource" class="select-sm">
+                                <option value="naver_sa">SA</option>
+                                <option value="naver_gfa">GFA</option>
+                            </select>
+                        </label>
+                        <label>From <input type="date" id="whFrom" class="select-sm"></label>
+                        <label>To <input type="date" id="whTo" class="select-sm"></label>
+                        <label>그룹
+                            <select id="whGroupBy" class="select-sm">
+                                <option value="date">일자</option>
+                                <option value="campaignId">캠페인</option>
+                                <option value="dim.device">디바이스</option>
+                                <option value="dim.region">지역</option>
+                                <option value="dim.keyword">키워드 (SA)</option>
+                                <option value="dim.format">소재유형 (GFA)</option>
+                                <option value="dim.placement">게재면 (GFA)</option>
+                            </select>
+                        </label>
+                        <label>지표
+                            <select id="whMetric" class="select-sm">
+                                <option value="impressions">노출</option>
+                                <option value="clicks">클릭</option>
+                                <option value="cost" selected>비용</option>
+                                <option value="conversions">전환</option>
+                                <option value="revenue">매출</option>
+                                <option value="roas">ROAS</option>
+                            </select>
+                        </label>
+                        <button class="btn btn-primary btn-sm" onclick="App.runWarehouseQuery()">조회</button>
+                    </div>
+                    <canvas id="whChart" height="260"></canvas>
+                    <div class="wh-result-meta" id="whResultMeta"></div>
+                    <table class="data-table data-table--compact" id="whResultTable" style="margin-top:12px"></table>
+                </div>
+            </div>
+
+            <!-- 회귀 분석 -->
+            <div class="card card-wide">
+                <div class="card-header">
+                    <h3>회귀 분석 (단순 선형)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="wh-query">
+                        <label>X축
+                            <select id="whRegX" class="select-sm">
+                                <option value="cost" selected>비용</option>
+                                <option value="impressions">노출</option>
+                                <option value="clicks">클릭</option>
+                                <option value="conversions">전환</option>
+                            </select>
+                        </label>
+                        <label>Y축
+                            <select id="whRegY" class="select-sm">
+                                <option value="revenue" selected>매출</option>
+                                <option value="conversions">전환</option>
+                                <option value="clicks">클릭</option>
+                            </select>
+                        </label>
+                        <label>점 단위
+                            <select id="whRegUnit" class="select-sm">
+                                <option value="date">일자</option>
+                                <option value="date_campaign">일자 × 캠페인</option>
+                            </select>
+                        </label>
+                        <button class="btn btn-primary btn-sm" onclick="App.runWarehouseRegression()">회귀 실행</button>
+                    </div>
+                    <div id="whRegResult" class="wh-reg-result"></div>
+                    <canvas id="whRegChart" height="280"></canvas>
+                </div>
+            </div>
+        </section>
+
         <!-- 설정 뷰 -->
         <section class="view" id="view-settings">
             <div class="view-header">
@@ -763,6 +891,7 @@
 
     <script src="assets/js/chart-engine.js"></script>
     <script src="assets/js/ad-platforms.js"></script>
+    <script src="assets/js/ad-warehouse.js"></script>
     <script src="assets/js/data-store.js"></script>
     <script src="assets/js/app.js"></script>
 </body>

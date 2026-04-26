@@ -129,6 +129,7 @@ const App = {
             pipeline: '영업 파이프라인',
             analytics: '분석 & 리포트',
             adops: '광고 통합 관제 (Naver SA · GFA)',
+            warehouse: '데이터 웨어하우스 (Tier 2 IndexedDB)',
             settings: '시스템 설정'
         };
         document.getElementById('pageTitle').textContent = titles[viewName] || '대시보드';
@@ -151,6 +152,7 @@ const App = {
             case 'pipeline': this.renderPipeline(); break;
             case 'analytics': this.renderAnalytics(); break;
             case 'adops': this.renderAdOps(); break;
+            case 'warehouse': this.renderWarehouse(); break;
         }
     },
 
@@ -1348,6 +1350,382 @@ const App = {
         }, 300000);
     }
 };
+
+// =====================================================
+// 데이터 웨어하우스 (Tier 2 / IndexedDB)
+// =====================================================
+Object.assign(App, {
+    async renderWarehouse() {
+        if (typeof AdWarehouse === 'undefined') return;
+        try { await AdWarehouse.init(); }
+        catch (e) {
+            const el = document.getElementById('whImportTable');
+            if (el) el.innerHTML = '<tr><td colspan="5" style="color:#f87171">IndexedDB 사용 불가: ' + e.message + '</td></tr>';
+            return;
+        }
+        await Promise.all([
+            this.refreshWarehouseStats(),
+            this.refreshWarehouseImports()
+        ]);
+        // 기간 기본값(없으면 최근 30일)
+        const fromEl = document.getElementById('whFrom');
+        const toEl = document.getElementById('whTo');
+        if (fromEl && !fromEl.value) {
+            const t = new Date();
+            const from = new Date(t.getTime() - 30 * 86400000);
+            fromEl.value = from.toISOString().slice(0, 10);
+            toEl.value = t.toISOString().slice(0, 10);
+        }
+    },
+
+    async refreshWarehouse() {
+        await this.refreshWarehouseStats();
+        await this.refreshWarehouseImports();
+    },
+
+    async refreshWarehouseStats() {
+        const sa = await AdWarehouse.count('naver_sa');
+        const gfa = await AdWarehouse.count('naver_gfa');
+        this.setText('whSaCount', sa.toLocaleString());
+        this.setText('whGfaCount', gfa.toLocaleString());
+        const est = await AdWarehouse.estimate();
+        const used = est.usage || 0;
+        const quota = est.quota || 0;
+        const pct = quota > 0 ? Math.min((used / quota) * 100, 100) : 0;
+        const bar = document.getElementById('whUsageBar');
+        if (bar) bar.style.width = pct + '%';
+        this.setText('whUsageText', this.fmtBytes(used) + ' / ' + this.fmtBytes(quota) + ' (' + pct.toFixed(2) + '%)');
+    },
+
+    async refreshWarehouseImports() {
+        const list = await AdWarehouse.listImports(20);
+        const tbody = document.getElementById('whImportTable');
+        if (!tbody) return;
+        if (list.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" style="color:var(--text-muted)">적재된 데이터가 없습니다. "데모 1년치 생성" 또는 "다차원 CSV 업로드"를 진행하세요.</td></tr>';
+            return;
+        }
+        const sourceLabel = { naver_sa: 'SA', naver_gfa: 'GFA' };
+        tbody.innerHTML = list.map((m) => `
+            <tr>
+                <td>${this.relTime(m.at)} <span style="color:var(--text-muted);font-size:11px">(${m.at.slice(0, 19).replace('T', ' ')})</span></td>
+                <td><span class="source-badge source-badge--${m.source}">${sourceLabel[m.source] || m.source}</span></td>
+                <td>${m.kind || '—'}</td>
+                <td>${(m.rows || 0).toLocaleString()}</td>
+                <td style="color:var(--text-muted)">${m.note || ''}</td>
+            </tr>
+        `).join('');
+    },
+
+    /** 데모 1년치 fact 생성 → IndexedDB 적재 */
+    async generateDemoFacts() {
+        if (!confirm('현재 웨어하우스를 비우고 1년(365일) 데모 fact를 생성합니다. 약 13,000~15,000 rows가 적재됩니다. 진행하시겠습니까?')) return;
+        try {
+            await AdWarehouse.init();
+            await AdWarehouse.clear('naver_sa');
+            await AdWarehouse.clear('naver_gfa');
+            const t0 = performance.now();
+            const { sa, gfa } = AdWarehouse.generateDemoFacts({ days: 365 });
+            await AdWarehouse.putBatch('naver_sa', sa);
+            await AdWarehouse.putBatch('naver_gfa', gfa);
+            const ms = (performance.now() - t0).toFixed(0);
+            await AdWarehouse.recordImport({
+                source: 'naver_sa', kind: 'demo_generate', rows: sa.length,
+                note: '1년 시뮬레이션 (계절성+DOW)'
+            });
+            await AdWarehouse.recordImport({
+                source: 'naver_gfa', kind: 'demo_generate', rows: gfa.length,
+                note: '1년 시뮬레이션 (계절성+DOW)'
+            });
+            alert('적재 완료: SA ' + sa.length.toLocaleString() + ' / GFA ' + gfa.length.toLocaleString() + ' rows · ' + ms + 'ms');
+            await this.refreshWarehouse();
+        } catch (e) {
+            alert('데모 적재 실패: ' + e.message);
+        }
+    },
+
+    /** 다차원 CSV 업로드 모달 */
+    openWarehouseUpload() {
+        const overlay = document.getElementById('modalOverlay');
+        const modal = document.getElementById('modalContent');
+        modal.innerHTML = `
+            <div class="modal-header">
+                <h3>다차원 보고서 적재</h3>
+                <button class="modal-close" onclick="App.closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="form-help">SA 다차원리포트 또는 GFA 보고서 CSV를 업로드합니다. row-level fact가 IndexedDB(Tier 2)에 적재됩니다.</p>
+                <p class="form-help">필수 컬럼: <code>일자(date)</code>, <code>캠페인명</code>. 권장: <code>키워드/소재/디바이스/지역/시간/...</code> + <code>노출수, 클릭수, 비용, 전환수, 전환매출</code></p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>소스</label>
+                        <select id="whUpSource" class="form-input">
+                            <option value="naver_sa">Naver SA</option>
+                            <option value="naver_gfa">Naver GFA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>CSV 파일</label>
+                        <input type="file" class="form-input" id="whUpFile" accept=".csv,text/csv">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>또는 CSV 텍스트 붙여넣기</label>
+                    <textarea class="form-input form-input--mono" id="whUpText" rows="8" placeholder="일자,캠페인명,키워드,디바이스,지역,노출수,클릭수,비용,전환수,전환매출\n2026-04-15,키워드_신규유입,러닝 이어폰,MOBILE,서울,5400,124,87000,4,580000"></textarea>
+                </div>
+                <div class="upload-preview" id="whUpPreview"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="App.clearWarehouseSource()">현재 소스 비우기</button>
+                <div class="modal-footer__right">
+                    <button class="btn btn-outline" onclick="App.closeModal()">취소</button>
+                    <button class="btn btn-primary" onclick="App.confirmWarehouseUpload()" id="whUpConfirm" disabled>적재</button>
+                </div>
+            </div>
+        `;
+        overlay.classList.add('active');
+
+        const file = document.getElementById('whUpFile');
+        const ta = document.getElementById('whUpText');
+        const sourceEl = document.getElementById('whUpSource');
+        file.addEventListener('change', (e) => {
+            const f = e.target.files && e.target.files[0]; if (!f) return;
+            const r = new FileReader();
+            r.onload = () => { ta.value = String(r.result || ''); this.previewWarehouseUpload(); };
+            r.readAsText(f, 'utf-8');
+        });
+        ta.addEventListener('input', () => this.previewWarehouseUpload());
+        sourceEl.addEventListener('change', () => this.previewWarehouseUpload());
+    },
+
+    previewWarehouseUpload() {
+        const text = document.getElementById('whUpText').value;
+        const source = document.getElementById('whUpSource').value;
+        const out = document.getElementById('whUpPreview');
+        const btn = document.getElementById('whUpConfirm');
+        if (!text || text.trim().length === 0) {
+            out.innerHTML = ''; btn.disabled = true; this._whUpParsed = null; return;
+        }
+        const parsed = AdWarehouse.parseDetailCSV(text, source);
+        this._whUpParsed = parsed;
+        if (parsed.errors && parsed.errors.length > 0 && parsed.rows.length === 0) {
+            out.innerHTML = '<p class="upload-error">' + parsed.errors.slice(0, 3).join(' · ') + '</p>';
+            btn.disabled = true; return;
+        }
+        const totals = AdPlatforms.sumKpis(parsed.rows.map((r) => r.kpi));
+        const d = AdPlatforms.derive(totals);
+        const dates = Array.from(new Set(parsed.rows.map((r) => r.date))).sort();
+        out.innerHTML = `
+            <div class="upload-summary">
+                <strong>미리보기</strong>
+                <span>${parsed.rows.length.toLocaleString()} rows · 기간 ${dates[0] || '-'} ~ ${dates[dates.length - 1] || '-'}</span>
+                <span>비용 ${this.fmtKRW(totals.cost)} · 매출 ${this.fmtKRW(totals.revenue)} · ROAS ${d.roas.toFixed(0)}%</span>
+            </div>
+            ${parsed.errors && parsed.errors.length > 0 ? '<p class="upload-error">경고: ' + parsed.errors.slice(0, 2).join(' · ') + '</p>' : ''}
+        `;
+        btn.disabled = parsed.rows.length === 0;
+    },
+
+    async confirmWarehouseUpload() {
+        if (!this._whUpParsed || this._whUpParsed.rows.length === 0) return;
+        const source = document.getElementById('whUpSource').value;
+        const rows = this._whUpParsed.rows;
+        try {
+            const t0 = performance.now();
+            await AdWarehouse.putBatch(source, rows);
+            const ms = (performance.now() - t0).toFixed(0);
+            await AdWarehouse.recordImport({
+                source, kind: 'csv_upload', rows: rows.length,
+                note: 'CSV 업로드 (' + ms + 'ms)'
+            });
+            this._whUpParsed = null;
+            this.closeModal();
+            await this.refreshWarehouse();
+            alert('적재 완료: ' + rows.length.toLocaleString() + ' rows · ' + ms + 'ms');
+        } catch (e) {
+            alert('적재 실패: ' + e.message);
+        }
+    },
+
+    async clearWarehouseSource() {
+        const source = document.getElementById('whUpSource').value;
+        if (!confirm((source === 'naver_sa' ? 'SA' : 'GFA') + ' fact를 모두 삭제합니다. 진행하시겠습니까?')) return;
+        await AdWarehouse.clear(source);
+        await AdWarehouse.recordImport({ source, kind: 'clear', rows: 0, note: '소스 비움' });
+        await this.refreshWarehouse();
+    },
+
+    /** 시계열 쿼리 실행 + 차트/테이블 렌더 */
+    async runWarehouseQuery() {
+        const source = document.getElementById('whSource').value;
+        const from = document.getElementById('whFrom').value || null;
+        const to = document.getElementById('whTo').value || null;
+        const groupBy = document.getElementById('whGroupBy').value;
+        const metric = document.getElementById('whMetric').value;
+        const t0 = performance.now();
+        const groupFn = this._groupKeyFn(groupBy);
+        const rows = await AdWarehouse.query({
+            source, from, to,
+            groupBy: groupFn,
+            orderBy: { key: 'key', dir: 'asc' }
+        });
+        const ms = (performance.now() - t0).toFixed(0);
+        const meta = document.getElementById('whResultMeta');
+        if (meta) meta.textContent = rows.length.toLocaleString() + ' 그룹 · 쿼리 ' + ms + 'ms';
+
+        // 차트는 일자 기준일 때만 라인. 그 외에는 bar 대용으로 ChartEngine.barChart.
+        if (groupBy === 'date') {
+            const labels = rows.map((r) => r.key.slice(5)); // MM-DD
+            const data = rows.map((r) => this._metricVal(r.kpi, metric));
+            ChartEngine.lineChart('whChart', {
+                labels, datasets: [{ label: this._metricLabel(metric), data, color: '#03C75A', fill: true }],
+                showDots: false
+            });
+        } else {
+            const top = rows.slice().sort((a, b) => this._metricVal(b.kpi, metric) - this._metricVal(a.kpi, metric)).slice(0, 12);
+            ChartEngine.barChart('whChart', {
+                labels: top.map((r) => String(r.key).slice(0, 14)),
+                datasets: [{ label: this._metricLabel(metric), data: top.map((r) => this._metricVal(r.kpi, metric)), color: '#03C75A' }]
+            });
+        }
+
+        const tbody = document.getElementById('whResultTable');
+        if (tbody) {
+            const top = rows.slice().sort((a, b) => this._metricVal(b.kpi, metric) - this._metricVal(a.kpi, metric)).slice(0, 20);
+            tbody.innerHTML = `
+                <thead><tr><th>그룹</th><th>노출</th><th>클릭</th><th>비용</th><th>전환</th><th>매출</th><th>ROAS</th></tr></thead>
+                <tbody>${top.map((r) => {
+                    const d = AdPlatforms.derive(r.kpi);
+                    return `<tr>
+                        <td>${r.key}</td>
+                        <td>${this.fmtCompact(r.kpi.impressions)}</td>
+                        <td>${this.fmtCompact(r.kpi.clicks)}</td>
+                        <td>${this.fmtKRW(r.kpi.cost)}</td>
+                        <td>${r.kpi.conversions.toLocaleString()}</td>
+                        <td>${this.fmtKRW(r.kpi.revenue)}</td>
+                        <td>${d.roas.toFixed(0)}%</td>
+                    </tr>`;
+                }).join('')}</tbody>
+            `;
+        }
+    },
+
+    _groupKeyFn(spec) {
+        if (spec === 'date') return (r) => r.date;
+        if (spec === 'campaignId') return (r) => r.campaignName || r.campaignId;
+        if (spec.startsWith('dim.')) {
+            const k = spec.slice(4);
+            return (r) => (r.dim && r.dim[k]) || '(없음)';
+        }
+        return (r) => r[spec];
+    },
+
+    _metricVal(kpi, m) {
+        if (m === 'roas') return kpi.cost > 0 ? (kpi.revenue / kpi.cost) * 100 : 0;
+        return kpi[m] || 0;
+    },
+
+    _metricLabel(m) {
+        const map = { impressions: '노출', clicks: '클릭', cost: '비용(원)', conversions: '전환', revenue: '매출(원)', roas: 'ROAS(%)' };
+        return map[m] || m;
+    },
+
+    /** 회귀 분석 실행 */
+    async runWarehouseRegression() {
+        const source = document.getElementById('whSource').value;
+        const from = document.getElementById('whFrom').value || null;
+        const to = document.getElementById('whTo').value || null;
+        const x = document.getElementById('whRegX').value;
+        const y = document.getElementById('whRegY').value;
+        const unit = document.getElementById('whRegUnit').value;
+
+        const groupFn = unit === 'date'
+            ? (r) => r.date
+            : (r) => r.date + '|' + (r.campaignName || r.campaignId);
+        const rows = await AdWarehouse.query({ source, from, to, groupBy: groupFn });
+        const points = rows.map((r) => ({ x: this._metricVal(r.kpi, x), y: this._metricVal(r.kpi, y), key: r.key }))
+            .filter((p) => isFinite(p.x) && isFinite(p.y));
+        const reg = AdWarehouse.linearRegression(points);
+        const out = document.getElementById('whRegResult');
+        if (!reg) {
+            out.innerHTML = '<p class="upload-error">회귀 불가: 데이터가 부족합니다 (' + points.length + ' 포인트).</p>';
+            this._scatterClear('whRegChart');
+            return;
+        }
+        const sign = reg.slope >= 0 ? '+' : '−';
+        const r2pct = (reg.r2 * 100).toFixed(1);
+        const r2color = reg.r2 > 0.6 ? '#34d399' : reg.r2 > 0.3 ? '#fbbf24' : '#f87171';
+        out.innerHTML = `
+            <div class="reg-coef"><span class="reg-label">관측 N</span><strong>${reg.n.toLocaleString()}</strong></div>
+            <div class="reg-coef"><span class="reg-label">slope (β)</span><strong>${sign}${Math.abs(reg.slope).toFixed(4)}</strong></div>
+            <div class="reg-coef"><span class="reg-label">intercept (α)</span><strong>${reg.intercept.toFixed(2)}</strong></div>
+            <div class="reg-coef"><span class="reg-label">R²</span><strong style="color:${r2color}">${r2pct}%</strong></div>
+            <div class="reg-coef reg-coef--wide"><span class="reg-label">모형</span><code>y = ${reg.slope.toFixed(4)} · x + ${reg.intercept.toFixed(2)}</code></div>
+        `;
+        this._renderScatter('whRegChart', points, reg, this._metricLabel(x), this._metricLabel(y));
+    },
+
+    _scatterClear(canvasId) {
+        const c = document.getElementById(canvasId);
+        if (!c) return;
+        const ctx = c.getContext('2d');
+        ctx.clearRect(0, 0, c.width, c.height);
+    },
+
+    /** 산점도 + 회귀선 */
+    _renderScatter(canvasId, points, reg, xLabel, yLabel) {
+        const c = ChartEngine.initCanvas(canvasId);
+        if (!c) return;
+        const { ctx, width, height } = c;
+        const pad = { t: 16, r: 16, b: 36, l: 60 };
+        const cw = width - pad.l - pad.r;
+        const ch = height - pad.t - pad.b;
+        const xs = points.map((p) => p.x), ys = points.map((p) => p.y);
+        const xMin = Math.min(...xs), xMax = Math.max(...xs);
+        const yMin = Math.min(...ys), yMax = Math.max(...ys);
+        const xR = xMax - xMin || 1, yR = yMax - yMin || 1;
+
+        // grid
+        ctx.strokeStyle = '#2a2e3f'; ctx.lineWidth = 0.5;
+        for (let i = 0; i <= 4; i++) {
+            const y = pad.t + (ch / 4) * i;
+            ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(width - pad.r, y); ctx.stroke();
+            const v = yMax - (yR / 4) * i;
+            ctx.fillStyle = '#5a5f73'; ctx.font = '11px Inter'; ctx.textAlign = 'right';
+            ctx.fillText(ChartEngine.formatNumber(v), pad.l - 6, y + 4);
+        }
+        // axis labels
+        ctx.fillStyle = '#8b90a0'; ctx.font = '11px Inter'; ctx.textAlign = 'center';
+        ctx.fillText(xLabel, pad.l + cw / 2, height - 8);
+        ctx.save(); ctx.translate(14, pad.t + ch / 2); ctx.rotate(-Math.PI / 2);
+        ctx.textAlign = 'center'; ctx.fillText(yLabel, 0, 0); ctx.restore();
+
+        // points
+        ctx.fillStyle = 'rgba(3,199,90,0.55)';
+        points.forEach((p) => {
+            const x = pad.l + ((p.x - xMin) / xR) * cw;
+            const y = pad.t + ch - ((p.y - yMin) / yR) * ch;
+            ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fill();
+        });
+        // regression line
+        const xa = xMin, ya = reg.intercept + reg.slope * xa;
+        const xb = xMax, yb = reg.intercept + reg.slope * xb;
+        const xa2 = pad.l + ((xa - xMin) / xR) * cw;
+        const ya2 = pad.t + ch - ((ya - yMin) / yR) * ch;
+        const xb2 = pad.l + ((xb - xMin) / xR) * cw;
+        const yb2 = pad.t + ch - ((yb - yMin) / yR) * ch;
+        ctx.strokeStyle = '#4a7cff'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(xa2, ya2); ctx.lineTo(xb2, yb2); ctx.stroke();
+    },
+
+    fmtBytes(n) {
+        if (!n) return '0 B';
+        if (n >= 1024 * 1024 * 1024) return (n / 1024 / 1024 / 1024).toFixed(2) + ' GB';
+        if (n >= 1024 * 1024) return (n / 1024 / 1024).toFixed(2) + ' MB';
+        if (n >= 1024) return (n / 1024).toFixed(1) + ' KB';
+        return n + ' B';
+    }
+});
 
 // 앱 시작
 document.addEventListener('DOMContentLoaded', () => App.init());
