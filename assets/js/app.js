@@ -925,7 +925,8 @@ const App = {
 
         const url = scriptUrl
             + (scriptUrl.includes('?') ? '&' : '?')
-            + 'query=' + encodeURIComponent(query)
+            + 'format=json'
+            + '&query=' + encodeURIComponent(query)
             + '&display=' + display
             + '&channels=' + encodeURIComponent(channels.join(','))
             + '&strict=' + (strict ? 'true' : 'false');
