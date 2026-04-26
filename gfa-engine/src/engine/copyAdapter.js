@@ -19,9 +19,10 @@ export async function generateCopy({
   endpoint = DEFAULT_ENDPOINT,
   model = DEFAULT_MODEL,
   temperature = 0.7,
+  diversitySeed = 0,
   signal,
 } = {}) {
-  const prompt = buildPrompt({ brief, axis });
+  const prompt = buildPrompt({ brief, axis, diversitySeed });
 
   const res = await fetch(endpoint, {
     method: "POST",
@@ -31,7 +32,7 @@ export async function generateCopy({
       prompt,
       format: "json",
       stream: false,
-      options: { temperature },
+      options: { temperature, seed: diversitySeed || undefined },
     }),
     signal,
   });
@@ -49,6 +50,38 @@ export async function generateCopy({
   }
 
   return validateCopy(parsed);
+}
+
+/**
+ * 한 axis에 대해 N개 후보 카피를 순차 생성. 7950X에서 단일 GPU 추론은 직렬이
+ * 안전하다. temperature를 후보별로 살짝 흔들고(0.7 → 0.95) seed를 변형해
+ * 다양성을 확보.
+ */
+export async function generateCopyCandidates({
+  brief,
+  axis,
+  n = 3,
+  baseTemperature = 0.75,
+  onProgress,
+  ...rest
+} = {}) {
+  const out = [];
+  for (let i = 0; i < n; i += 1) {
+    onProgress?.({ index: i, total: n, status: "start" });
+    const copy = await generateCopy({
+      brief,
+      axis,
+      temperature: clampTemp(baseTemperature + i * 0.07),
+      diversitySeed: 1000 + i * 17,
+      ...rest,
+    });
+    out.push({
+      id: `cand-${axis.audience}-${stamp()}-${i}`,
+      copy,
+    });
+    onProgress?.({ index: i, total: n, status: "ok" });
+  }
+  return out;
 }
 
 export async function generateVariants({
@@ -78,7 +111,19 @@ export async function generateVariants({
   return out;
 }
 
-function buildPrompt({ brief, axis }) {
+const DIVERSITY_HINTS = [
+  "벤치마크: 직접적인 혜택 강조 (할인/스펙 우위).",
+  "벤치마크: 감성적 후킹 (라이프스타일·정체성).",
+  "벤치마크: 페인포인트 자극 (불편 해소).",
+  "벤치마크: 사용 시나리오 묘사형.",
+  "벤치마크: 통계/숫자 기반 신뢰형.",
+];
+
+function buildPrompt({ brief, axis, diversitySeed = 0 }) {
+  const hint =
+    diversitySeed > 0
+      ? DIVERSITY_HINTS[diversitySeed % DIVERSITY_HINTS.length]
+      : null;
   return [
     "[역할] 너는 NAVER GFA(GLAD for Advertiser) 모바일 피드 1200x1200 광고의 한국어 카피라이터다.",
     `[브랜드] ${brief.brand}`,
@@ -86,6 +131,7 @@ function buildPrompt({ brief, axis }) {
     `[프로모션/상황] ${brief.promo ?? "(없음)"}`,
     `[타겟 오디언스] ${axis.audience}`,
     `[톤 앤 매너] ${axis.tone}`,
+    hint && `[방향성] ${hint}`,
     "[제약]",
     `- headline: 한국어 ${COPY_LIMITS.headline}자 이내, 후킹 강하게.`,
     `- description: 한국어 ${COPY_LIMITS.description}자 이내, 혜택/근거 한 줄.`,
@@ -93,7 +139,13 @@ function buildPrompt({ brief, axis }) {
     "[출력 스키마]",
     '{"headline": "...", "description": "...", "ctaText": "..."}',
     "JSON 객체만 출력. 설명, 주석, 코드펜스 금지.",
-  ].join("\n");
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+function clampTemp(t) {
+  return Math.max(0.1, Math.min(1.5, t));
 }
 
 function validateCopy(obj) {

@@ -8,13 +8,13 @@ const DEFAULT_AXES = [
   { audience: "office", tone: "lifestyle" },
 ];
 
-export default function CopyGenerator({ onGenerated }) {
-  const [brand, setBrand] = useState("SHOKZ KOREA");
-  const [product, setProduct] = useState("OpenRun Pro 2 골전도 헤드셋");
-  const [promo, setPromo] = useState("신제품 출시 기념 최대 18% 할인");
-  const [model, setModel] = useState("qwen2.5:7b");
-  const [endpoint, setEndpoint] = useState("http://localhost:11434/api/generate");
-
+export default function CopyGenerator({
+  brief,
+  onBriefChange,
+  llmConfig,
+  onLlmConfigChange,
+  onGenerated,
+}) {
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState(null);
   const [error, setError] = useState(null);
@@ -25,10 +25,10 @@ export default function CopyGenerator({ onGenerated }) {
     setProgress({ index: 0, total: DEFAULT_AXES.length });
     try {
       const variants = await generateVariants({
-        brief: { brand, product, promo },
+        brief,
         axes: DEFAULT_AXES,
-        endpoint,
-        model,
+        endpoint: llmConfig.endpoint,
+        model: llmConfig.model,
         onProgress: (p) => setProgress(p),
       });
       onGenerated(variants);
@@ -36,12 +36,15 @@ export default function CopyGenerator({ onGenerated }) {
       console.error("[gfa-engine] copy gen 실패:", e);
       setError(
         e.message +
-          " — Ollama가 실행 중인지, OLLAMA_ORIGINS에 현재 출처가 허용됐는지 확인하세요."
+          " — Ollama 실행/OLLAMA_ORIGINS에 현재 출처가 허용됐는지 확인하세요."
       );
     } finally {
       setBusy(false);
     }
   };
+
+  const updateBrief = (k, v) => onBriefChange({ ...brief, [k]: v });
+  const updateConfig = (k, v) => onLlmConfigChange({ ...llmConfig, [k]: v });
 
   return (
     <section className="rounded-xl border border-shokz-line bg-white p-5">
@@ -55,16 +58,29 @@ export default function CopyGenerator({ onGenerated }) {
       </div>
 
       <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
-        <Field label="브랜드" value={brand} onChange={setBrand} />
-        <Field label="제품" value={product} onChange={setProduct} />
-        <Field label="프로모션/상황" value={promo} onChange={setPromo} className="md:col-span-2" />
-        <Field label="모델" value={model} onChange={setModel} />
-        <Field label="Ollama 엔드포인트" value={endpoint} onChange={setEndpoint} />
+        <Field label="브랜드" value={brief.brand} onChange={(v) => updateBrief("brand", v)} />
+        <Field label="제품" value={brief.product} onChange={(v) => updateBrief("product", v)} />
+        <Field
+          label="프로모션/상황"
+          value={brief.promo}
+          onChange={(v) => updateBrief("promo", v)}
+          className="md:col-span-2"
+        />
+        <Field
+          label="모델"
+          value={llmConfig.model}
+          onChange={(v) => updateConfig("model", v)}
+        />
+        <Field
+          label="Ollama 엔드포인트"
+          value={llmConfig.endpoint}
+          onChange={(v) => updateConfig("endpoint", v)}
+        />
       </div>
 
       <div className="mt-4 flex items-center justify-between">
         <p className="text-[11px] text-shokz-sub">
-          축 {DEFAULT_AXES.length}개 (runner·commuter·cyclist·office)에 대해 순차 생성합니다.
+          축 {DEFAULT_AXES.length}개(runner·commuter·cyclist·office) 순차 생성. 변경은 카드 단위 후보 픽으로.
         </p>
         <button
           type="button"
