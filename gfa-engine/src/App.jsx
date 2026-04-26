@@ -1,8 +1,10 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import GfaPreview from "./components/GfaPreview.jsx";
 import GfaCreative1200 from "./components/GfaCreative1200.jsx";
 import CopyGenerator from "./components/CopyGenerator.jsx";
 import CandidatePicker from "./components/CandidatePicker.jsx";
+import BatchRunner from "./components/BatchRunner.jsx";
+import BatchHost from "./components/BatchHost.jsx";
 import dataset from "./engine/creatives.json";
 import { injectAll, injectVariant } from "./engine/inject.js";
 import { generateCopyCandidates } from "./engine/copyAdapter.js";
@@ -11,6 +13,7 @@ import {
   downloadCreativesJson,
   readCreativesJson,
 } from "./engine/exportDataset.js";
+import { runBatch, downloadBatchZip } from "./engine/batchRunner.js";
 
 const SEED = injectAll(dataset);
 
@@ -38,6 +41,84 @@ export default function App() {
   const fileInputRef = useRef(null);
   const uploadInputRefs = useRef({});
   const [busy, setBusy] = useState(null);
+
+  // 배치 모드
+  const [batchActiveJob, setBatchActiveJob] = useState(null);
+  const batchReadyResolverRef = useRef(null);
+  const [batchBusy, setBatchBusy] = useState(false);
+  const [batchLog, setBatchLog] = useState([]);
+
+  const handleBatchHostReady = useCallback((refs) => {
+    const resolve = batchReadyResolverRef.current;
+    batchReadyResolverRef.current = null;
+    if (resolve) resolve(refs);
+  }, []);
+
+  const mountAndCapture = useCallback(
+    (jobShell) =>
+      new Promise((resolve) => {
+        batchReadyResolverRef.current = resolve;
+        setBatchActiveJob(jobShell);
+      }),
+    []
+  );
+
+  const handleRunBatch = async (jobs) => {
+    setBatchBusy(true);
+    setBatchLog([`▶ ${jobs.length}개 job 시작`]);
+    const append = (line) =>
+      setBatchLog((prev) => [...prev, line].slice(-200));
+    try {
+      const { blob, summary } = await runBatch({
+        jobs,
+        baseDataset: dataset,
+        llmConfig,
+        mountAndCapture,
+        onProgress: (e) => {
+          switch (e.stage) {
+            case "start":
+              append(`[${e.jobIndex + 1}/${e.jobsTotal}] ${e.jobId} — 시작`);
+              break;
+            case "skip-llm":
+              append(`  · LLM 스킵 (명시 variants 사용)`);
+              break;
+            case "generating":
+              append(`  · LLM 카피 생성 중...`);
+              break;
+            case "gen-step":
+              if (e.status === "ok")
+                append(`    ✓ ${e.axis?.audience}/${e.axis?.tone}`);
+              break;
+            case "rendering":
+              append(`  · 오프스크린 렌더`);
+              break;
+            case "capturing":
+              append(
+                `  · 캡처 ${e.variantIndex + 1}/${e.variantsTotal} (${e.variantId})`
+              );
+              break;
+            case "done":
+              append(`✓ ${e.jobId} 완료`);
+              break;
+            case "zipping":
+              append(`▣ ZIP 생성`);
+              break;
+            default:
+              break;
+          }
+        },
+      });
+      append(`✔ 전체 완료 — ${summary.length}개 job, 다운로드 시작`);
+      downloadBatchZip(blob);
+    } catch (e) {
+      console.error("[gfa-engine] batch 실패:", e);
+      append(`✗ 실패: ${e.message}`);
+      alert(`배치 실패: ${e.message}`);
+    } finally {
+      setBatchActiveJob(null);
+      setBatchBusy(false);
+    }
+  };
 
   const headerMeta = useMemo(
     () => ({
@@ -297,13 +378,21 @@ export default function App() {
         </div>
       </header>
 
-      <div className="mx-auto mb-8 max-w-6xl">
+      <div className="mx-auto mb-6 max-w-6xl">
         <CopyGenerator
           brief={brief}
           onBriefChange={setBrief}
           llmConfig={llmConfig}
           onLlmConfigChange={setLlmConfig}
           onGenerated={handleGenerated}
+        />
+      </div>
+
+      <div className="mx-auto mb-8 max-w-6xl">
+        <BatchRunner
+          onRun={handleRunBatch}
+          busy={batchBusy}
+          log={batchLog}
         />
       </div>
 
@@ -427,7 +516,7 @@ export default function App() {
         })}
       </main>
 
-      {/* 오프스크린 1200x1200 네이티브 렌더 */}
+      {/* 오프스크린 1200x1200 네이티브 렌더 (인터랙티브 카드용) */}
       <div
         aria-hidden="true"
         style={{
@@ -447,6 +536,9 @@ export default function App() {
           </div>
         ))}
       </div>
+
+      {/* 배치 작업 전용 오프스크린 호스트 */}
+      <BatchHost activeJob={batchActiveJob} onReady={handleBatchHostReady} />
     </div>
   );
 }
