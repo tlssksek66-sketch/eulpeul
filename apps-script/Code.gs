@@ -106,6 +106,9 @@ const NEWS_SOURCE_MAP = {
 };
 
 // 샥즈 관련성 판단용 키워드 (정확도 필터 strict=true 시 적용)
+//   SHOKZ_RELEVANCE: 제목 검사용 (브랜드 + 제품명 + 코어 기술명)
+//   SHOKZ_BRAND:     본문 카운트용 — 브랜드명 자체만 (제품명/일반어 제외)
+//                    → 본문에 브랜드가 2번 이상 나와야 진짜 샥즈 기사로 판정
 const SHOKZ_RELEVANCE = [
   '샥즈', '쇼크즈', 'Shokz', 'shokz', 'SHOKZ',
   '애프터샥', 'AfterShokz', 'aftershokz',
@@ -113,6 +116,11 @@ const SHOKZ_RELEVANCE = [
   'OpenSwim', '오픈스윔', 'OpenMove', '오픈무브',
   'OpenComm', '오픈컴', 'OpenDot', '오픈닷', 'OpenGolf', '오픈골프',
   '골전도'
+];
+
+const SHOKZ_BRAND = [
+  '샥즈', '쇼크즈', 'Shokz', 'shokz', 'SHOKZ',
+  '애프터샥', 'AfterShokz', 'aftershokz'
 ];
 
 const SHOKZ_KEYWORDS = [
@@ -222,13 +230,33 @@ function buildMagazineData(params) {
 }
 
 /**
- * 샥즈 관련성 판단 — 제목 또는 본문에 SHOKZ_RELEVANCE 키워드가 하나라도
- * 포함되면 통과. 노이즈(샥즈가 본문 끝에 살짝 언급된 경우 등) 제거.
+ * 샥즈 관련성 판단 (2단계)
+ *   1) 제목에 SHOKZ_RELEVANCE 키워드(브랜드 + 제품명) 하나라도 있으면 통과
+ *   2) 그 외에는 본문(제목+요약)에 브랜드명(SHOKZ_BRAND)이 ≥2회 등장해야 통과
+ *
+ * "다른 글 보기" 같은 영역에 샥즈가 우연히 1번 언급된 보만/갤럭시/폭스바겐
+ * 사은품 류 노이즈를 제외하기 위함.
  */
 function isShokzRelevant(article) {
-  const text = (article.title || '') + ' ' + (article.excerpt || '');
+  const title = article.title || '';
+  const excerpt = article.excerpt || '';
+
+  // 1) 제목 키워드 체크
   for (let i = 0; i < SHOKZ_RELEVANCE.length; i++) {
-    if (text.indexOf(SHOKZ_RELEVANCE[i]) !== -1) return true;
+    if (title.indexOf(SHOKZ_RELEVANCE[i]) !== -1) return true;
+  }
+
+  // 2) 본문 브랜드명 등장 횟수 카운트 (≥2이면 통과)
+  const text = title + ' ' + excerpt;
+  let brandHits = 0;
+  for (let i = 0; i < SHOKZ_BRAND.length; i++) {
+    const k = SHOKZ_BRAND[i];
+    let pos = 0;
+    while ((pos = text.indexOf(k, pos)) !== -1) {
+      brandHits++;
+      if (brandHits >= 2) return true;
+      pos += k.length;
+    }
   }
   return false;
 }
