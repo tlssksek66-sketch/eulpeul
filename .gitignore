@@ -18,3 +18,7 @@ Thumbs.db
 # Environment
 .env
 .env.local
+
+# SA neg-kw runtime outputs (raw dumps with internal IDs — do not commit)
+scripts/neg_kw/output/*
+!scripts/neg_kw/output/.gitkeep
