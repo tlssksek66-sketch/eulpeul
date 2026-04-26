@@ -1,0 +1,54 @@
+name: Daily Magazine Collect
+
+on:
+  schedule:
+    # 매일 KST 08:00 = UTC 23:00 (전날)
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+    inputs:
+      keywords:
+        description: '쉼표로 구분된 검색 키워드 (기본: SHOKZ,샥즈,샥즈코리아,SHOKZ KOREA)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: magazine-collect
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    name: Collect & commit clippings
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run collector
+        env:
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          COLLECT_KEYWORDS: ${{ github.event.inputs.keywords }}
+        run: node scripts/collect.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name "magazine-bot[bot]"
+          git config user.email "magazine-bot@users.noreply.github.com"
+          git add assets/data/clippings.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          ts=$(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M KST')
+          git commit -m "chore(data): 일일 클리핑 수집 ($ts)"
+          git push

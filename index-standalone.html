@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOKZ KOREA · CLIPPING MAGAZINE</title>
+    <style id="inline-css">/* SHOKZ Korea Clipping Magazine — Stylesheet */
+
+:root {
+    --bg: #0d0f17;
+    --bg-elev: #13151f;
+    --bg-card: #161927;
+    --bg-card-hi: #1c1f2e;
+    --border: #232636;
+    --text: #f4f5fb;
+    --text-mid: #b8bcd0;
+    --text-soft: #8389a0;
+    --text-mute: #5a6079;
+    --accent: #4a7cff;
+    --accent-soft: #6b99ff;
+    --green: #34d399;
+    --orange: #fb923c;
+    --purple: #a78bfa;
+    --red: #f87171;
+    --yellow: #fbbf24;
+    --gray: #6b7280;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow-card: 0 1px 0 rgba(255,255,255,0.02), 0 6px 24px rgba(0,0,0,0.32);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(900px 500px at 12% -8%, rgba(74,124,255,0.10), transparent 60%),
+        radial-gradient(900px 600px at 110% 0%, rgba(167,139,250,0.07), transparent 55%),
+        var(--bg);
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input { font-family: inherit; outline: none; border: none; background: none; color: inherit; }
+canvas { display: block; width: 100%; height: 100%; }
+
+/* ---------- Topbar ---------- */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(13, 15, 23, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+.topbar-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-mark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.18em;
+    color: var(--text);
+}
+.brand-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--border);
+}
+.brand-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--text-soft);
+    font-weight: 500;
+}
+.topbar-tools { display: flex; align-items: center; gap: 10px; }
+.search-field {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 16px;
+    width: 320px;
+    transition: border-color .15s, background .15s;
+}
+.search-field:focus-within {
+    border-color: var(--accent);
+    background: var(--bg-card-hi);
+}
+.search-field input {
+    width: 100%;
+    color: var(--text);
+    font-size: 13px;
+}
+.search-field input::placeholder { color: var(--text-mute); }
+.icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s, color .15s, background .15s;
+}
+.icon-btn:hover { background: var(--bg-card-hi); color: var(--accent); }
+.icon-btn.spin { animation: spin .8s linear; }
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+/* ---------- Page ---------- */
+.page {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 28px 28px 56px;
+}
+
+/* ---------- Title block ---------- */
+.title-block { margin-bottom: 18px; }
+.title-block h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+.title-sub {
+    font-size: 13px;
+    color: var(--text-soft);
+    font-weight: 400;
+}
+
+/* ---------- KPI strip ---------- */
+.kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) minmax(180px, 220px);
+    gap: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 22px;
+    box-shadow: var(--shadow-card);
+}
+.kpi-cell {
+    padding: 18px 24px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.kpi-cell:last-child { border-right: none; }
+.kpi-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+.kpi-label {
+    font-size: 12px;
+    color: var(--text-soft);
+    font-weight: 400;
+}
+.kpi-time { background: rgba(74,124,255,0.04); }
+.kpi-time-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+}
+
+/* ---------- Tabs ---------- */
+.tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 14px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+    padding: 12px 18px;
+    font-size: 13px;
+    color: var(--text-soft);
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    white-space: nowrap;
+    transition: color .15s, border-color .15s;
+}
+.tab:hover { color: var(--text-mid); }
+.tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 700;
+}
+
+/* ---------- Filter strip ---------- */
+.filter-strip {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 18px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-soft);
+}
+.filter-strip .fs-key { color: var(--text-mute); margin-right: 4px; }
+.filter-strip .fs-val { color: var(--text-mid); font-weight: 500; }
+.filter-strip .fs-val.brand { color: var(--text); font-weight: 700; }
+.filter-strip .fs-on {
+    color: var(--green);
+    font-weight: 700;
+    padding: 2px 8px;
+    background: rgba(52,211,153,0.10);
+    border-radius: 4px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+}
+.filter-strip .fs-divider { color: var(--text-mute); }
+
+/* ---------- Chart rows / cards ---------- */
+.chart-row {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+.chart-row-wide { grid-template-columns: 1fr; }
+.chart-row-3 { grid-template-columns: repeat(3, 1fr); }
+.chart-row-2 { grid-template-columns: 1fr 1fr; }
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.card-head {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.card-head h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.005em;
+}
+.card-tag {
+    font-size: 11px;
+    color: var(--text-mute);
+    font-weight: 500;
+}
+.card-body {
+    padding: 14px 16px 18px;
+    flex: 1;
+    min-height: 0;
+}
+.card-body canvas {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* ---------- Reactions panel (블로그·카페 반응 지표) ---------- */
+.reactions-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin: 22px 0 8px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+}
+.reactions-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--green), var(--orange));
+}
+.reactions-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+.reactions-head h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+.reactions-sub {
+    font-size: 12px;
+    color: var(--text-mute);
+}
+.reactions-counts {
+    display: flex;
+    gap: 22px;
+}
+.rc-cell { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.rc-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+}
+.rc-num.blog { color: var(--green); }
+.rc-num.cafe { color: var(--orange); }
+.rc-label {
+    font-size: 11px;
+    color: var(--text-mute);
+}
+.reactions-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    gap: 24px;
+}
+.reactions-cell h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 10px;
+}
+.reactions-cell canvas { width: 100%; height: 120px; }
+.reactions-list {
+    list-style: none;
+    counter-reset: rl;
+}
+.reactions-list li {
+    display: grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 12px;
+    border-bottom: 1px dashed var(--border);
+}
+.reactions-list li:last-child { border-bottom: none; }
+.reactions-list .r-rank {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-mute);
+}
+.reactions-list .r-label { color: var(--text-mid); }
+.reactions-list .r-val {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--text);
+}
+.reactions-list .r-empty {
+    text-align: center;
+    color: var(--text-mute);
+    padding: 14px 0;
+    border: none;
+}
+
+@media (max-width: 1100px) {
+    .reactions-grid { grid-template-columns: 1fr 1fr; }
+    .reactions-cell:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+    .reactions-grid { grid-template-columns: 1fr; }
+    .reactions-cell:first-child { grid-column: auto; }
+    .reactions-counts { gap: 14px; }
+}
+
+/* Fresh badge */
+.fresh-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: var(--accent);
+    color: #fff;
+    margin-left: 4px;
+}
+
+/* ---------- Clipping list ---------- */
+.clipping-list-wrap { margin-top: 18px; }
+.clipping-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+.clipping-head h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+}
+.clipping-head .count {
+    font-family: 'Inter', sans-serif;
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 6px;
+}
+.clipping-sub {
+    font-size: 12px;
+    color: var(--text-mute);
+}
+.clipping-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+.clipping {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 16px;
+    transition: border-color .15s, transform .15s;
+}
+.clipping:hover {
+    border-color: #2f3349;
+    transform: translateY(-1px);
+}
+.clipping-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-mute);
+    flex-wrap: wrap;
+}
+.clipping-meta .dot { color: #313547; }
+.clipping-channel {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+.ch-news { background: rgba(74,124,255,0.14); color: var(--accent-soft); }
+.ch-blog { background: rgba(52,211,153,0.14); color: var(--green); }
+.ch-cafearticle { background: rgba(251,146,60,0.14); color: var(--orange); }
+
+.clipping-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+}
+.clipping-title a:hover { color: var(--accent-soft); }
+.clipping-summary {
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.55;
+}
+.clipping-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    grid-column: 1 / -1;
+    margin-top: 4px;
+}
+.tag {
+    font-size: 11px;
+    color: var(--text-soft);
+    background: var(--bg-card-hi);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.sentiment-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    align-self: flex-start;
+    height: fit-content;
+    white-space: nowrap;
+}
+.sentiment-pill::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+.s-positive { color: var(--green); background: rgba(52,211,153,0.10); }
+.s-neutral  { color: var(--text-mid); background: rgba(107,114,128,0.16); }
+.s-negative { color: var(--red); background: rgba(248,113,113,0.10); }
+
+.empty-state {
+    padding: 48px 16px;
+    text-align: center;
+    color: var(--text-mute);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+}
+
+/* ---------- Footer ---------- */
+.page-foot {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-mute);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+    .chart-row-3 { grid-template-columns: 1fr 1fr; }
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .kpi-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .kpi-cell:nth-child(2n) { border-right: 1px solid var(--border); }
+    .kpi-time { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+    .topbar-inner { flex-direction: column; align-items: stretch; gap: 12px; padding: 12px 16px; }
+    .search-field { width: 100%; }
+    .page { padding: 18px 16px 40px; }
+    .chart-row-3, .chart-row-2 { grid-template-columns: 1fr; }
+    .kpi-strip { grid-template-columns: 1fr 1fr; }
+    .title-block h1 { font-size: 22px; }
+}
+
+
+</style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top bar -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <span class="brand-mark">SHOKZ</span>
+                <span class="brand-divider"></span>
+                <span class="brand-sub">KOREA · CLIPPING MAGAZINE</span>
+            </div>
+            <div class="topbar-tools">
+                <div class="search-field">
+                    <input id="searchInput" type="text" placeholder="제목·요약·태그 검색…" autocomplete="off">
+                </div>
+                <button id="refreshBtn" class="icon-btn" title="새로고침">⟳</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <!-- Title block -->
+        <section class="title-block">
+            <h1>샥즈 코리아 매거진</h1>
+            <p class="title-sub">웹 상의 모든 샥즈 관련 뉴스·기사·콘텐츠를 한 화면에서 모니터링</p>
+        </section>
+
+        <!-- KPI strip -->
+        <section class="kpi-strip" id="kpiStrip">
+            <div class="kpi-cell">
+                <span class="kpi-num" id="kpiTotal">0</span>
+                <span class="kpi-label">총 클리핑</span>
+            </div>
+            <div class="kpi-cell">
+                <span class="kpi-num" id="kpiMedia">0</span>
+                <span class="kpi-label">매체 수</span>
+            </div>
+            <div class="kpi-cell">
+                <span class="kpi-num" id="kpiPassed">0</span>
+                <span class="kpi-label">필터 통과</span>
+            </div>
+            <div class="kpi-cell">
+                <span class="kpi-num" id="kpiNoise">0</span>
+                <span class="kpi-label">노이즈 처리</span>
+            </div>
+            <div class="kpi-cell kpi-time">
+                <span class="kpi-time-value" id="kpiTime">--</span>
+                <span class="kpi-label">최근 수집</span>
+            </div>
+        </section>
+
+        <!-- Category tabs -->
+        <nav class="tabs" id="tabs"></nav>
+
+        <!-- Filter strip -->
+        <div class="filter-strip" id="filterStrip"></div>
+
+        <!-- Chart row 1: daily trend (full width) -->
+        <section class="chart-row chart-row-wide">
+            <article class="card">
+                <div class="card-head">
+                    <h3>일별 클리핑 추이</h3>
+                    <span class="card-tag">최근 14일</span>
+                </div>
+                <div class="card-body">
+                    <canvas id="dailyChart" height="200"></canvas>
+                </div>
+            </article>
+        </section>
+
+        <!-- Chart row 2: 3 columns -->
+        <section class="chart-row chart-row-3">
+            <article class="card">
+                <div class="card-head"><h3>채널 믹스</h3></div>
+                <div class="card-body"><canvas id="channelChart" height="220"></canvas></div>
+            </article>
+            <article class="card">
+                <div class="card-head"><h3>카테고리 믹스</h3></div>
+                <div class="card-body"><canvas id="categoryChart" height="220"></canvas></div>
+            </article>
+            <article class="card">
+                <div class="card-head"><h3>감성 비율</h3></div>
+                <div class="card-body"><canvas id="sentimentChart" height="220"></canvas></div>
+            </article>
+        </section>
+
+        <!-- Chart row 3: media + keyword -->
+        <section class="chart-row chart-row-2">
+            <article class="card">
+                <div class="card-head"><h3>매체 Top 10</h3></div>
+                <div class="card-body"><canvas id="mediaChart" height="320"></canvas></div>
+            </article>
+            <article class="card">
+                <div class="card-head"><h3>키워드 Top 10</h3></div>
+                <div class="card-body"><canvas id="keywordChart" height="320"></canvas></div>
+            </article>
+        </section>
+
+        <!-- 소비자 반응 지표 (블로그·카페) -->
+        <section class="reactions-panel">
+            <div class="reactions-head">
+                <div>
+                    <h2>소비자 반응 지표</h2>
+                    <p class="reactions-sub">블로그·카페 발생 콘텐츠를 소비자 반응으로만 집계 (개별 카드 미노출)</p>
+                </div>
+                <div class="reactions-counts">
+                    <div class="rc-cell"><span class="rc-num" id="reactionsTotal">0</span><span class="rc-label">합계</span></div>
+                    <div class="rc-cell"><span class="rc-num blog" id="reactionsBlog">0</span><span class="rc-label">블로그</span></div>
+                    <div class="rc-cell"><span class="rc-num cafe" id="reactionsCafe">0</span><span class="rc-label">카페</span></div>
+                </div>
+            </div>
+            <div class="reactions-grid">
+                <div class="reactions-cell">
+                    <h4>감성 비율</h4>
+                    <canvas id="reactionsSentimentChart" height="120"></canvas>
+                </div>
+                <div class="reactions-cell">
+                    <h4>키워드 Top 10</h4>
+                    <ol class="reactions-list" id="reactionsKeywords"></ol>
+                </div>
+                <div class="reactions-cell">
+                    <h4>매체 Top 8</h4>
+                    <ol class="reactions-list" id="reactionsMedia"></ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clipping list -->
+        <section class="clipping-list-wrap">
+            <div class="clipping-head">
+                <h2>뉴스 클리핑 <span class="count" id="clippingCount">0</span></h2>
+                <span class="clipping-sub" id="clippingSub"></span>
+            </div>
+            <div class="clipping-list" id="clippingList"></div>
+        </section>
+
+        <footer class="page-foot">
+            <span>SHOKZ KOREA · CLIPPING MAGAZINE</span>
+            <span>powered by Magazine Engine</span>
+        </footer>
+    </main>
+
+    <script>
+// === STANDALONE: inline data ===
+window.__MAGAZINE_INLINE_DATA__ = {
+  "meta": {
+    "brand": "SHOKZ",
+    "region": "KOREA",
+    "searchKeyword": "샥즈 코리아",
+    "collectedAt": "2026-04-27T00:09:11+09:00",
+    "totalClippings": 40,
+    "filterPassed": 40,
+    "noiseFiltered": 20,
+    "accuracyFilter": true
+  },
+  "channels": [
+    {
+      "key": "news",
+      "label": "뉴스",
+      "color": "#4a7cff",
+      "collected": 5,
+      "quota": 20
+    },
+    {
+      "key": "blog",
+      "label": "블로그",
+      "color": "#34d399",
+      "collected": 15,
+      "quota": 20
+    },
+    {
+      "key": "cafearticle",
+      "label": "카페",
+      "color": "#fb923c",
+      "collected": 20,
+      "quota": 20
+    }
+  ],
+  "clippings": [
+    {
+      "id": 1,
+      "channel": "news",
+      "media": "디지털타임스",
+      "category": "press",
+      "sentiment": "neutral",
+      "title": "샥즈 코리아, 1분기 매출 전년 대비 38% 성장…골전도 시장 1위 굳혀",
+      "summary": "샥즈 코리아가 2026년 1분기 국내 매출 약 124억원을 기록하며 전년 동기 대비 38% 증가했다고 밝혔다. 러닝·아웃도어 수요가 견인했다는 분석이다.",
+      "date": "2026-04-26 17:42",
+      "url": "https://www.example.com/dt/2026/04/26/shokz-q1",
+      "tags": [
+        "샥즈",
+        "골전도",
+        "실적",
+        "매출",
+        "코리아"
+      ]
+    },
+    {
+      "id": 2,
+      "channel": "news",
+      "media": "전자신문",
+      "category": "product",
+      "sentiment": "positive",
+      "title": "샥즈, 신형 'OpenRun Pro 3' 한국 정식 출시…노이즈 캔슬링 마이크 탑재",
+      "summary": "골전도 헤드폰 강자 샥즈가 신모델 OpenRun Pro 3를 4월 27일부터 국내 판매한다. 6개의 마이크 어레이로 통화 품질을 대폭 개선했다.",
+      "date": "2026-04-27 09:00",
+      "url": "https://www.example.com/etn/openrun-pro-3-launch",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "신제품",
+        "골전도",
+        "헤드폰"
+      ]
+    },
+    {
+      "id": 3,
+      "channel": "news",
+      "media": "헤럴드경제",
+      "category": "product",
+      "sentiment": "neutral",
+      "title": "샥즈 코리아, 수영 전용 'OpenSwim Pro' 색상 2종 추가",
+      "summary": "샥즈 코리아가 방수 골전도 MP3 OpenSwim Pro에 코랄 핑크·딥 블루 컬러 2종을 추가했다. 가격은 기존 모델과 동일.",
+      "date": "2026-04-25 14:10",
+      "url": "https://www.example.com/heraldcorp/openswim-color",
+      "tags": [
+        "샥즈",
+        "OpenSwim",
+        "신제품",
+        "수영",
+        "골전도"
+      ]
+    },
+    {
+      "id": 4,
+      "channel": "news",
+      "media": "IT동아",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "[리뷰] OpenRun Pro 2와 비교한 OpenRun Pro 3, 실제로 얼마나 좋아졌나",
+      "summary": "편집부가 일주일간 신형 OpenRun Pro 3를 사용해본 결과 통화 품질·저음 응답·착용감 모두 개선됐다. 가격 인상은 아쉬운 부분.",
+      "date": "2026-04-26 11:20",
+      "url": "https://www.example.com/itdonga/review-openrun-pro-3",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "리뷰",
+        "골전도",
+        "헤드폰"
+      ]
+    },
+    {
+      "id": 5,
+      "channel": "news",
+      "media": "스포츠조선",
+      "category": "sports",
+      "sentiment": "positive",
+      "title": "샥즈, 2026 서울국제마라톤 공식 헤드폰 파트너 선정",
+      "summary": "샥즈 코리아가 5월 개최되는 서울국제마라톤의 공식 헤드폰 파트너로 선정됐다. 참가자 전원에게 OpenRun 미니 색상 한정판이 증정된다.",
+      "date": "2026-04-27 08:30",
+      "url": "https://www.example.com/sportschosun/shokz-marathon",
+      "tags": [
+        "샥즈",
+        "마라톤",
+        "스포츠",
+        "러닝",
+        "OpenRun"
+      ]
+    },
+    {
+      "id": 6,
+      "channel": "blog",
+      "media": "네이버 블로그 · 희망의 블로그",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "러닝 5년차가 솔직히 써본 샥즈 OpenRun Pro 3 한 달 후기",
+      "summary": "한강 러닝 코스에서 30km 이상 사용해본 결과, 땀 방수와 착용 안정성에 매우 만족. 다만 외부 소음이 큰 도심 구간에서는 음량을 더 키워야 한다.",
+      "date": "2026-04-27 06:15",
+      "url": "https://blog.naver.com/hope-blog/openrun-pro-3-1month",
+      "tags": [
+        "샥즈",
+        "골전도",
+        "러닝",
+        "리뷰",
+        "블로그"
+      ]
+    },
+    {
+      "id": 7,
+      "channel": "blog",
+      "media": "네이버 블로그 · 희망의 블로그",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "샥즈 OpenSwim Pro vs 일반 방수 이어폰 — 수영장에서 진짜 쓸만할까?",
+      "summary": "실제 자유형 1.5km 수영 중 사용해본 비교 후기. 골전도 특성상 물속에서도 음악이 들리는 점이 크지만, 음질은 일반 이어폰 대비 한계가 있다.",
+      "date": "2026-04-26 22:40",
+      "url": "https://blog.naver.com/hope-blog/openswim-vs-regular",
+      "tags": [
+        "샥즈",
+        "OpenSwim",
+        "수영",
+        "골전도",
+        "블로그"
+      ]
+    },
+    {
+      "id": 8,
+      "channel": "blog",
+      "media": "네이버 블로그 · kaptain_oa",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "회사원의 출퇴근용 골전도 헤드폰 — 샥즈 OpenRun 미니 솔직 후기",
+      "summary": "지하철·버스 환승이 많은 출퇴근 환경에서 외부 소리가 들리는 점이 안전상 큰 장점. 다만 고음역대 표현력은 아쉬움.",
+      "date": "2026-04-27 07:05",
+      "url": "https://blog.naver.com/kaptain-oa/openrun-mini",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "출퇴근",
+        "골전도",
+        "블로그"
+      ]
+    },
+    {
+      "id": 9,
+      "channel": "blog",
+      "media": "네이버 블로그 · runningman",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "풀코스 마라톤 페이서가 추천하는 골전도 헤드폰 BEST 1",
+      "summary": "마라톤 페이서 활동 3년차가 다양한 골전도 제품을 직접 비교. 샥즈 OpenRun Pro 3가 장시간 착용·발한 환경에서 가장 우수했다.",
+      "date": "2026-04-26 20:11",
+      "url": "https://blog.naver.com/runningman/best-bone-conduction",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "마라톤",
+        "골전도",
+        "러닝",
+        "블로그"
+      ]
+    },
+    {
+      "id": 10,
+      "channel": "blog",
+      "media": "네이버 블로그 · 사이클러",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "자전거 라이딩에 안전한 헤드폰 찾는다면 — 샥즈 OpenRun Pro 3",
+      "summary": "자전거 동호회 라이딩 중 차량 소리·신호음을 들으면서도 음악 감상이 가능. 헬멧과 간섭 없는 디자인이 특히 좋다.",
+      "date": "2026-04-26 18:45",
+      "url": "https://blog.naver.com/cyclerlee/shokz-bike",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "자전거",
+        "안전",
+        "골전도",
+        "블로그"
+      ]
+    },
+    {
+      "id": 11,
+      "channel": "blog",
+      "media": "네이버 블로그 · 트라이애슬론",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "트라이애슬론 선수의 종목별 헤드폰 추천 — 샥즈 OpenSwim Pro & OpenRun",
+      "summary": "수영·자전거·러닝 전 종목에서 사용해본 결과, 골전도 제품군이 안전성과 편의성 모두 우수. 종목별 추천 모델 정리.",
+      "date": "2026-04-26 15:30",
+      "url": "https://blog.naver.com/triathlonkr/shokz-recommend",
+      "tags": [
+        "샥즈",
+        "트라이애슬론",
+        "수영",
+        "러닝",
+        "골전도",
+        "블로그"
+      ]
+    },
+    {
+      "id": 12,
+      "channel": "blog",
+      "media": "네이버 블로그 · 김프로의 IT",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "샥즈 OpenRun Pro 3 분해 리뷰 — 무게 중심과 마이크 구조 분석",
+      "summary": "신제품을 분해하여 마이크 어레이 배치와 배터리 위치를 확인. 통화 품질 향상의 비결이 6개 마이크에 있음을 확인했다.",
+      "date": "2026-04-26 23:10",
+      "url": "https://blog.naver.com/kim-pro-it/teardown",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "분해",
+        "기술",
+        "골전도",
+        "블로그"
+      ]
+    },
+    {
+      "id": 13,
+      "channel": "blog",
+      "media": "네이버 블로그 · 음악감상실",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "오디오파일이 본 골전도 헤드폰의 한계와 매력 — 샥즈 사용기",
+      "summary": "하이파이 환경에 익숙한 사용자 입장에서 골전도 제품의 음질은 한계가 있지만, 운동·이동 시의 편의성은 대체 불가하다.",
+      "date": "2026-04-25 21:00",
+      "url": "https://blog.naver.com/audio-room/bone-conduction-pros",
+      "tags": [
+        "샥즈",
+        "골전도",
+        "오디오",
+        "음질",
+        "블로그"
+      ]
+    },
+    {
+      "id": 14,
+      "channel": "blog",
+      "media": "네이버 블로그 · 헬스장일기",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "헬스장 운동에 잘 어울리는 헤드폰 — 샥즈 OpenRun 일주일 사용기",
+      "summary": "웨이트 트레이닝·러닝머신·요가 모두 무리 없이 사용 가능. 트레이너의 큐를 들으면서도 음악 재생이 가능해 좋다.",
+      "date": "2026-04-25 19:25",
+      "url": "https://blog.naver.com/gym-diary/shokz-week",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "운동",
+        "헬스",
+        "골전도",
+        "블로그"
+      ]
+    },
+    {
+      "id": 15,
+      "channel": "blog",
+      "media": "네이버 블로그 · 출퇴근라이프",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "직장인의 출퇴근 헤드폰 픽 — 샥즈 OpenRun 미니 vs 노이즈캔슬링",
+      "summary": "환경별로 어울리는 헤드폰이 다르다는 결론. 안전이 중요한 도보 이동 구간에서는 골전도, 사무실에서는 노이즈캔슬링 추천.",
+      "date": "2026-04-25 18:00",
+      "url": "https://blog.naver.com/commute-life/shokz-vs-anc",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "출퇴근",
+        "비교",
+        "골전도",
+        "블로그"
+      ]
+    },
+    {
+      "id": 16,
+      "channel": "blog",
+      "media": "네이버 블로그 · 오디오마니아",
+      "category": "review",
+      "sentiment": "negative",
+      "title": "솔직히 실망한 OpenRun Pro 3 — 가격 인상 대비 체감 차이가 미미",
+      "summary": "전작 대비 마이크 외에 음질·착용감 변화는 크지 않다. 25% 가격 인상은 과도하다는 인상.",
+      "date": "2026-04-26 14:55",
+      "url": "https://blog.naver.com/audio-mania/disappointed",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "리뷰",
+        "단점",
+        "블로그"
+      ]
+    },
+    {
+      "id": 17,
+      "channel": "blog",
+      "media": "네이버 블로그 · 골프초보",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "필드에서 캐디 안내 들으면서 음악도 듣고 — 샥즈 OpenRun 골프 후기",
+      "summary": "라운딩 중 캐디 안내·동반자와 대화를 들으면서도 좋아하는 음악 청취 가능. 의외의 골프용 명템.",
+      "date": "2026-04-25 16:40",
+      "url": "https://blog.naver.com/golf-beginner/shokz-golf",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "골프",
+        "운동",
+        "골전도",
+        "블로그"
+      ]
+    },
+    {
+      "id": 18,
+      "channel": "blog",
+      "media": "네이버 블로그 · 등산좋아",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "주말 등산용 헤드폰으로 샥즈 — 산속에서 진짜 쓸만한가",
+      "summary": "산행 중 자연 소리를 들으면서 음악도 듣는 점은 좋으나, 거센 바람 부는 능선에서는 음량이 다소 부족하다.",
+      "date": "2026-04-25 09:30",
+      "url": "https://blog.naver.com/hiking-fan/shokz-mountain",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "등산",
+        "아웃도어",
+        "골전도",
+        "블로그"
+      ]
+    },
+    {
+      "id": 19,
+      "channel": "blog",
+      "media": "네이버 블로그 · 한강러너",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "한강 야간 러닝에 골전도가 답이다 — 샥즈 OpenRun 추천",
+      "summary": "야간 한강 코스에서 자전거·다른 러너의 접근음을 들을 수 있어 안전. 가시성이 떨어지는 시간대일수록 골전도가 빛난다.",
+      "date": "2026-04-24 22:15",
+      "url": "https://blog.naver.com/hangang-runner/night-running",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "러닝",
+        "한강",
+        "안전",
+        "블로그"
+      ]
+    },
+    {
+      "id": 20,
+      "channel": "blog",
+      "media": "네이버 블로그 · 스마트워치체험",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "갤럭시워치+샥즈 OpenRun 조합 — 스마트워치 러너의 최강 세팅",
+      "summary": "갤럭시워치 GPS·심박 측정과 샥즈 골전도 헤드폰의 음악 재생 조합이 야외 러닝에 최적. 페어링 안정성도 우수.",
+      "date": "2026-04-24 17:45",
+      "url": "https://blog.naver.com/smartwatch-trial/galaxy-shokz",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "스마트워치",
+        "러닝",
+        "골전도",
+        "블로그"
+      ]
+    },
+    {
+      "id": 21,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 워킹클럽",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "샥즈 OpenRun Pro 3 사신 분 계실까요? 후기 부탁드립니다",
+      "summary": "워킹과 가벼운 조깅 위주로 사용할 예정인데 신모델 가치가 있을지 고민됩니다. 사용해보신 분들 의견 부탁드려요.",
+      "date": "2026-04-27 08:55",
+      "url": "https://cafe.naver.com/walkingclub/12001",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "카페",
+        "커뮤니티",
+        "문의"
+      ]
+    },
+    {
+      "id": 22,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 워킹클럽",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "아침 워킹용 골전도 헤드폰 어떤 모델이 좋을까요",
+      "summary": "매일 아침 5km 워킹 코스에서 사용할 헤드폰을 찾고 있습니다. 샥즈 OpenRun과 OpenRun 미니 중 추천 부탁드려요.",
+      "date": "2026-04-27 06:40",
+      "url": "https://cafe.naver.com/walkingclub/12005",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "카페",
+        "커뮤니티",
+        "워킹"
+      ]
+    },
+    {
+      "id": 23,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 워킹클럽",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "샥즈 헤드폰 배터리 오래 쓰는 분 계신가요",
+      "summary": "2년 정도 사용하니 배터리가 눈에 띄게 줄어드는 느낌인데, 다른 분들은 어떠신지 궁금합니다.",
+      "date": "2026-04-26 21:30",
+      "url": "https://cafe.naver.com/walkingclub/11988",
+      "tags": [
+        "샥즈",
+        "배터리",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 24,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 워킹클럽",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "워킹 모임에서 골전도 헤드폰 인기인 이유",
+      "summary": "동호회 모임에서 보면 절반 이상이 샥즈를 사용하시던데, 안전상 이유가 가장 큰 것 같습니다.",
+      "date": "2026-04-26 17:15",
+      "url": "https://cafe.naver.com/walkingclub/11975",
+      "tags": [
+        "샥즈",
+        "워킹",
+        "카페",
+        "커뮤니티",
+        "안전"
+      ]
+    },
+    {
+      "id": 25,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 워킹클럽",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "샥즈 OpenRun 미니 사이즈 사이에서 고민 중입니다",
+      "summary": "여성용 작은 머리에는 미니가 맞을 것 같은데, 일반 사이즈를 쓰시는 분들 후기도 듣고 싶습니다.",
+      "date": "2026-04-25 22:20",
+      "url": "https://cafe.naver.com/walkingclub/11960",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "미니",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 26,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 워킹클럽",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "겨울철 골전도 헤드폰 — 모자 위에 써도 괜찮을까요",
+      "summary": "비니나 모자 위에 샥즈를 쓰셔도 음질이 괜찮은지 궁금합니다. 추운 새벽 워킹 시 꼭 필요한 정보인데요.",
+      "date": "2026-04-25 08:45",
+      "url": "https://cafe.naver.com/walkingclub/11940",
+      "tags": [
+        "샥즈",
+        "골전도",
+        "겨울",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 27,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 워킹클럽",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "샥즈 OpenRun 분실 방지 팁 공유",
+      "summary": "운동 중 헤드폰 분실 위험이 있어서, 케이블에 ID 태그를 부착하는 방법을 공유드립니다.",
+      "date": "2026-04-24 19:10",
+      "url": "https://cafe.naver.com/walkingclub/11920",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "팁",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 28,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 77사이즈 언니",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "다이어트 워킹용 헤드폰 추천 — 샥즈 어떤가요",
+      "summary": "다이어트 시작하면서 매일 1시간씩 빠르게 걷고 있는데, 일반 이어폰은 자꾸 빠져서요. 샥즈 골전도가 답일까요?",
+      "date": "2026-04-26 20:00",
+      "url": "https://cafe.naver.com/77size-sister/8810",
+      "tags": [
+        "샥즈",
+        "다이어트",
+        "워킹",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 29,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 77사이즈 언니",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "샥즈 색상 추천 — 운동복과 매치하기 좋은 컬러",
+      "summary": "새로 나온 OpenSwim Pro 코랄 핑크 너무 예뻐요! 다른 분들은 어떤 색상 쓰고 계신가요?",
+      "date": "2026-04-26 14:25",
+      "url": "https://cafe.naver.com/77size-sister/8795",
+      "tags": [
+        "샥즈",
+        "OpenSwim",
+        "색상",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 30,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 77사이즈 언니",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "여성용 작은 머리에 맞는 골전도 헤드폰",
+      "summary": "머리가 작은 편이라 일반 헤드폰은 자꾸 흘러내려서 고민이었는데, 샥즈 OpenRun 미니가 잘 맞더라고요.",
+      "date": "2026-04-25 12:50",
+      "url": "https://cafe.naver.com/77size-sister/8770",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "미니",
+        "여성용",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 31,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 77사이즈 언니",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "샥즈 OpenRun 어디서 사는 게 가장 저렴한가요",
+      "summary": "공식몰, 쿠팡, 네이버 스마트스토어 가격이 다 다르던데 어디가 가장 안전하고 저렴한지 정보 부탁드려요.",
+      "date": "2026-04-25 09:20",
+      "url": "https://cafe.naver.com/77size-sister/8755",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "구매",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 32,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 네이버 쇼핑픽",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "오늘의 핫딜 — 샥즈 OpenRun Pro 2 마지막 재고 할인",
+      "summary": "신모델 출시로 OpenRun Pro 2가 30% 할인 진행 중. 운동용으로는 충분히 좋은 모델이라 가성비 좋은 선택.",
+      "date": "2026-04-27 10:30",
+      "url": "https://cafe.naver.com/shoppingpick/55401",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "할인",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 33,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 네이버 쇼핑픽",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "샥즈 신제품 OpenRun Pro 3 사전예약 혜택 정리",
+      "summary": "공식몰에서 사전예약 시 전용 케이스와 추가 보증 1년이 제공됩니다. 4월 30일까지.",
+      "date": "2026-04-26 13:00",
+      "url": "https://cafe.naver.com/shoppingpick/55375",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "사전예약",
+        "혜택",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 34,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 당신에게 도움을",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "청각이 좋지 않으신 부모님께 골전도 헤드폰 선물해드린 후기",
+      "summary": "70대 부모님께 샥즈 OpenRun을 선물해드렸더니, 일반 이어폰보다 훨씬 편하게 사용하신다고 합니다.",
+      "date": "2026-04-26 11:15",
+      "url": "https://cafe.naver.com/help-you/3350",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "선물",
+        "시니어",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 35,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 당신에게 도움을",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "보청기 사용자도 쓸 수 있는 샥즈 골전도 헤드폰 정보",
+      "summary": "보청기를 착용하시는 분들도 사용 가능한 골전도 제품에 대한 문의가 많아서 정리해드립니다.",
+      "date": "2026-04-25 14:40",
+      "url": "https://cafe.naver.com/help-you/3340",
+      "tags": [
+        "샥즈",
+        "골전도",
+        "보청",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 36,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 아이템 추천",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "4월 운동템 추천 — 샥즈 OpenRun Pro 3 후기 모음",
+      "summary": "다양한 사용자 후기를 모아보면, 운동용으로 신모델 가치가 충분하다는 평이 많습니다.",
+      "date": "2026-04-26 19:30",
+      "url": "https://cafe.naver.com/itempick/9920",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "추천",
+        "운동",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 37,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 아이템 추천",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "여름 수영장에 가져갈 헤드폰 — 샥즈 OpenSwim Pro 정보",
+      "summary": "5월부터 시즌 시작인 만큼, 방수 골전도 MP3가 미리 필요하신 분들께 추천드려요.",
+      "date": "2026-04-25 17:25",
+      "url": "https://cafe.naver.com/itempick/9905",
+      "tags": [
+        "샥즈",
+        "OpenSwim",
+        "수영",
+        "여름",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 38,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 러닝메이트",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "러닝 동호회 모임 후기 — 샥즈 협찬 굿즈도 받았어요",
+      "summary": "주말 러닝 모임에 샥즈 코리아에서 부스를 운영해 다양한 모델을 체험할 수 있었습니다. OpenRun 미니 한정판 굿즈도 증정.",
+      "date": "2026-04-27 11:45",
+      "url": "https://cafe.naver.com/runmate/4488",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "러닝",
+        "동호회",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 39,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 마라톤사랑",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "서울국제마라톤 참가자분들 — 샥즈 굿즈 받으셨나요",
+      "summary": "이번 마라톤 공식 헤드폰 파트너가 샥즈라서, 참가팩에 OpenRun 미니 한정판이 들어있다고 합니다.",
+      "date": "2026-04-27 09:50",
+      "url": "https://cafe.naver.com/marathon-love/22155",
+      "tags": [
+        "샥즈",
+        "OpenRun",
+        "마라톤",
+        "굿즈",
+        "카페",
+        "커뮤니티"
+      ]
+    },
+    {
+      "id": 40,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 수영가족",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "OpenSwim Pro 신규 컬러 어떠신가요 — 코랄 핑크 후기",
+      "summary": "코랄 핑크 컬러 사진으로만 보다가 실물 보니 더 예쁘네요. 수영장에서 잘 보여서 분실 위험도 줄어들 듯.",
+      "date": "2026-04-26 16:00",
+      "url": "https://cafe.naver.com/swim-family/7720",
+      "tags": [
+        "샥즈",
+        "OpenSwim",
+        "수영",
+        "색상",
+        "카페",
+        "커뮤니티"
+      ]
+    }
+  ]
+};
+</script>
+    <script>/**
+ * ChartEngine - Canvas 기반 경량 차트 라이브러리 (매거진 전용)
+ * 외부 의존성 없이 순수 Canvas API로 렌더링.
+ */
+const ChartEngine = {
+    colors: {
+        blue: '#4a7cff',
+        green: '#34d399',
+        purple: '#a78bfa',
+        orange: '#fb923c',
+        red: '#f87171',
+        yellow: '#fbbf24',
+        cyan: '#22d3ee',
+        gray: '#6b7280',
+        grid: '#252836',
+        text: '#9aa0b4',
+        textLight: '#5a5f73',
+        bg: '#13151f'
+    },
+
+    /**
+     * 캔버스 초기화 + DPI 보정
+     */
+    initCanvas(canvasId) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return null;
+        const ctx = canvas.getContext('2d');
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return null;
+
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        ctx.clearRect(0, 0, rect.width, rect.height);
+
+        return { canvas, ctx, width: rect.width, height: rect.height };
+    },
+
+    /**
+     * 일별 클리핑 추이 (막대 차트, 값 라벨 표시)
+     */
+    dailyBarChart(canvasId, { labels, counts, color = '#4a7cff' }) {
+        const c = this.initCanvas(canvasId);
+        if (!c) return;
+        const { ctx, width, height } = c;
+        const padding = { top: 30, right: 16, bottom: 32, left: 16 };
+        const chartW = width - padding.left - padding.right;
+        const chartH = height - padding.top - padding.bottom;
+
+        const maxVal = Math.max(1, ...counts) * 1.2;
+        const slot = chartW / counts.length;
+        const barW = Math.min(slot * 0.55, 36);
+
+        counts.forEach((v, i) => {
+            const x = padding.left + i * slot + (slot - barW) / 2;
+            const h = (v / maxVal) * chartH;
+            const y = padding.top + chartH - h;
+
+            // 막대
+            if (v > 0) {
+                const grad = ctx.createLinearGradient(0, y, 0, padding.top + chartH);
+                grad.addColorStop(0, color);
+                grad.addColorStop(1, color + '55');
+                ctx.fillStyle = grad;
+                this._roundRectTop(ctx, x, y, barW, h, 4);
+                ctx.fill();
+
+                // 값 라벨
+                ctx.fillStyle = color;
+                ctx.font = 'bold 11px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(String(v), x + barW / 2, y - 6);
+            }
+
+            // 날짜 라벨
+            ctx.fillStyle = this.colors.textLight;
+            ctx.font = '10px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(labels[i], x + barW / 2, height - 12);
+        });
+    },
+
+    /**
+     * 도넛 차트 (중앙 합계 + 우측 범례)
+     */
+    donutWithCenter(canvasId, { items, centerLabel = '건', centerSize = 'lg' }) {
+        const c = this.initCanvas(canvasId);
+        if (!c) return;
+        const { ctx, width, height } = c;
+        const total = items.reduce((s, x) => s + x.value, 0);
+        if (total === 0) return;
+
+        const cx = Math.min(width * 0.32, height * 0.6);
+        const cy = height / 2;
+        const r = Math.min(cx, cy) - 16;
+        const inner = r * 0.62;
+
+        let start = -Math.PI / 2;
+        items.forEach(it => {
+            const ang = (it.value / total) * Math.PI * 2;
+            ctx.beginPath();
+            ctx.arc(cx, cy, r, start, start + ang);
+            ctx.arc(cx, cy, inner, start + ang, start, true);
+            ctx.closePath();
+            ctx.fillStyle = it.color;
+            ctx.fill();
+            start += ang;
+        });
+
+        // 중앙 합계
+        ctx.fillStyle = '#f4f5fb';
+        ctx.font = `bold ${centerSize === 'lg' ? '26' : '20'}px Inter, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(String(total), cx, cy - 6);
+        ctx.font = '11px Noto Sans KR, sans-serif';
+        ctx.fillStyle = this.colors.text;
+        ctx.fillText(centerLabel, cx, cy + 14);
+
+        // 우측 범례
+        const legendX = cx + r + 24;
+        const lineH = 22;
+        const legendY = cy - (items.length * lineH) / 2 + lineH / 2;
+        items.forEach((it, i) => {
+            const y = legendY + i * lineH;
+            ctx.fillStyle = it.color;
+            this._roundRect(ctx, legendX, y - 6, 10, 10, 2);
+            ctx.fill();
+            ctx.fillStyle = this.colors.text;
+            ctx.font = '12px Noto Sans KR, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(it.label, legendX + 18, y);
+            ctx.fillStyle = '#f4f5fb';
+            ctx.font = 'bold 12px Inter, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText(String(it.value), width - 16, y);
+        });
+    },
+
+    /**
+     * 가로 스택 감성바 (긍정/중립/부정)
+     */
+    stackedSentimentBar(canvasId, { items }) {
+        const c = this.initCanvas(canvasId);
+        if (!c) return;
+        const { ctx, width, height } = c;
+        const total = items.reduce((s, x) => s + x.value, 0);
+        if (total === 0) return;
+
+        const barH = 16;
+        const barY = 18;
+        const barW = width - 32;
+        const barX = 16;
+        const r = 8;
+
+        // 배경
+        ctx.fillStyle = '#1c1f2e';
+        this._roundRect(ctx, barX, barY, barW, barH, r);
+        ctx.fill();
+
+        // 스택
+        let cursor = barX;
+        items.forEach((it, i) => {
+            const w = (it.value / total) * barW;
+            ctx.fillStyle = it.color;
+            // 양 끝만 둥글게
+            const isFirst = i === 0;
+            const isLast = i === items.length - 1;
+            ctx.save();
+            ctx.beginPath();
+            this._roundRect(ctx, barX, barY, barW, barH, r);
+            ctx.clip();
+            ctx.fillRect(cursor, barY, w, barH);
+            ctx.restore();
+            cursor += w;
+        });
+
+        // 범례
+        const lineY = barY + barH + 24;
+        const colW = barW / items.length;
+        items.forEach((it, i) => {
+            const x = barX + colW * i;
+            ctx.fillStyle = it.color;
+            this._roundRect(ctx, x, lineY - 8, 9, 9, 2);
+            ctx.fill();
+            ctx.fillStyle = this.colors.text;
+            ctx.font = '12px Noto Sans KR, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(it.label, x + 14, lineY - 4);
+            ctx.fillStyle = '#f4f5fb';
+            ctx.font = 'bold 12px Inter, sans-serif';
+            ctx.fillText(`${it.value}  (${it.pct}%)`, x + 14, lineY + 12);
+        });
+    },
+
+    /**
+     * 가로 막대 (Top N — 매체/키워드)
+     */
+    horizontalBarChart(canvasId, { items, color = '#34d399' }) {
+        const c = this.initCanvas(canvasId);
+        if (!c) return;
+        const { ctx, width, height } = c;
+        const padTop = 8, padBottom = 8, padRight = 36, labelW = 180;
+        const max = Math.max(...items.map(x => x.value), 1);
+        const rowH = (height - padTop - padBottom) / items.length;
+
+        items.forEach((it, i) => {
+            const y = padTop + i * rowH + rowH / 2;
+            // 라벨
+            ctx.fillStyle = this.colors.text;
+            ctx.font = '12px Noto Sans KR, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            const label = it.label.length > 18 ? it.label.slice(0, 18) + '…' : it.label;
+            ctx.fillText(label, 8, y);
+
+            // 막대
+            const barX = labelW;
+            const barMax = width - labelW - padRight;
+            const barW = (it.value / max) * barMax;
+            const barH = Math.max(8, rowH * 0.5);
+            const grad = ctx.createLinearGradient(barX, y, barX + barW, y);
+            grad.addColorStop(0, color + 'aa');
+            grad.addColorStop(1, color);
+            ctx.fillStyle = grad;
+            this._roundRect(ctx, barX, y - barH / 2, barW, barH, barH / 2);
+            ctx.fill();
+
+            // 값
+            ctx.fillStyle = '#f4f5fb';
+            ctx.font = 'bold 12px Inter, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(String(it.value), barX + barW + 8, y);
+        });
+    },
+
+    /**
+     * 라운드 사각형 헬퍼
+     */
+    _roundRect(ctx, x, y, w, h, r) {
+        const rr = Math.min(r, w / 2, h / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + rr, y);
+        ctx.lineTo(x + w - rr, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + rr);
+        ctx.lineTo(x + w, y + h - rr);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - rr, y + h);
+        ctx.lineTo(x + rr, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - rr);
+        ctx.lineTo(x, y + rr);
+        ctx.quadraticCurveTo(x, y, x + rr, y);
+        ctx.closePath();
+    },
+
+    _roundRectTop(ctx, x, y, w, h, r) {
+        const rr = Math.min(r, w / 2, h);
+        ctx.beginPath();
+        ctx.moveTo(x + rr, y);
+        ctx.lineTo(x + w - rr, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + rr);
+        ctx.lineTo(x + w, y + h);
+        ctx.lineTo(x, y + h);
+        ctx.lineTo(x, y + rr);
+        ctx.quadraticCurveTo(x, y, x + rr, y);
+        ctx.closePath();
+    }
+};
+</script>
+    <script>/**
+ * SHOKZ Korea Clipping Magazine - Data Store
+ * assets/data/clippings.json 을 fetch 해서 통계 헬퍼를 제공
+ */
+const MagazineData = {
+    meta: {
+        brand: 'SHOKZ',
+        region: 'KOREA',
+        searchKeyword: '샥즈 코리아',
+        collectedAt: null,
+        totalClippings: 0,
+        filterPassed: 0,
+        noiseFiltered: 0,
+        accuracyFilter: true
+    },
+
+    channels: [
+        { key: 'news',        label: '뉴스',   color: '#4a7cff', collected: 0,  quota: 20 },
+        { key: 'blog',        label: '블로그', color: '#34d399', collected: 0,  quota: 20 },
+        { key: 'cafearticle', label: '카페',   color: '#fb923c', collected: 0,  quota: 20 }
+    ],
+
+    categories: [
+        { key: 'all',       label: '전체' },
+        { key: 'product',   label: '신제품' },
+        { key: 'review',    label: '리뷰' },
+        { key: 'tech',      label: '기술' },
+        { key: 'sports',    label: '스포츠' },
+        { key: 'marketing', label: '마케팅' },
+        { key: 'press',     label: '보도' },
+        { key: 'community', label: '커뮤니티' }
+    ],
+
+    categoryColors: {
+        product:   '#4a7cff',
+        review:    '#34d399',
+        tech:      '#22d3ee',
+        sports:    '#fbbf24',
+        marketing: '#a78bfa',
+        press:     '#f87171',
+        community: '#fb923c'
+    },
+
+    sentimentColors: {
+        positive: '#34d399',
+        neutral:  '#6b7280',
+        negative: '#f87171'
+    },
+
+    clippings: [],
+    loaded: false,
+
+    /**
+     * JSON 파일 로드. 실패 시 빈 데이터로 fallback.
+     */
+    async load() {
+        try {
+            let data;
+            if (window.__MAGAZINE_INLINE_DATA__) {
+                data = window.__MAGAZINE_INLINE_DATA__;
+            } else {
+                const res = await fetch('assets/data/clippings.json', { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                data = await res.json();
+            }
+            this.meta = { ...this.meta, ...(data.meta || {}) };
+            if (Array.isArray(data.channels)) {
+                this.channels = data.channels.map(c => {
+                    const base = this.channels.find(x => x.key === c.key) || {};
+                    return { ...base, ...c };
+                });
+            }
+            this.clippings = Array.isArray(data.clippings) ? data.clippings : [];
+            this.loaded = true;
+        } catch (err) {
+            console.error('[MagazineData] load failed:', err);
+            this.clippings = [];
+            this.loaded = true;
+        }
+    },
+
+    /**
+     * 카테고리 또는 검색어로 필터링 (뉴스만 옵션 지원)
+     */
+    filter(category, query, opts = {}) {
+        const q = (query || '').trim().toLowerCase();
+        const onlyNews = opts.onlyNews === true;
+        return this.clippings.filter(c => {
+            if (onlyNews && c.channel !== 'news') return false;
+            const catOk = !category || category === 'all' || c.category === category;
+            if (!catOk) return false;
+            if (!q) return true;
+            return (c.title + ' ' + c.summary + ' ' + (c.tags || []).join(' ')).toLowerCase().includes(q);
+        });
+    },
+
+    /**
+     * 일별 클리핑 추이 (최근 14일, KST 기준 collectedAt 의 날짜를 today 로)
+     */
+    getDailyTrend() {
+        const dayMap = {};
+        this.clippings.forEach(c => {
+            const day = (c.date || '').slice(0, 10);
+            if (day) dayMap[day] = (dayMap[day] || 0) + 1;
+        });
+        const labels = [];
+        const counts = [];
+        const today = this._todayKST();
+        for (let i = 13; i >= 0; i--) {
+            const d = new Date(today);
+            d.setDate(d.getDate() - i);
+            const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+            labels.push(`${d.getMonth() + 1}/${d.getDate()}`);
+            counts.push(dayMap[key] || 0);
+        }
+        return { labels, counts };
+    },
+
+    _todayKST() {
+        const m = (this.meta.collectedAt || '').match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (m) return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+        const now = new Date();
+        return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    },
+
+    getChannelMix() {
+        const counts = {};
+        this.clippings.forEach(c => { counts[c.channel] = (counts[c.channel] || 0) + 1; });
+        return this.channels.map(ch => ({ label: ch.label, value: counts[ch.key] || 0, color: ch.color }));
+    },
+
+    getCategoryMix() {
+        const counts = {};
+        this.clippings.forEach(c => { counts[c.category] = (counts[c.category] || 0) + 1; });
+        return this.categories
+            .filter(cat => cat.key !== 'all' && (counts[cat.key] || 0) > 0)
+            .map(cat => ({
+                key: cat.key,
+                label: cat.key === 'press' ? '보도/IR' : cat.label,
+                value: counts[cat.key],
+                color: this.categoryColors[cat.key] || '#6b7280'
+            }));
+    },
+
+    getSentimentMix(filterFn) {
+        const list = filterFn ? this.clippings.filter(filterFn) : this.clippings;
+        const counts = { positive: 0, neutral: 0, negative: 0 };
+        list.forEach(c => { counts[c.sentiment] = (counts[c.sentiment] || 0) + 1; });
+        const total = list.length || 1;
+        return [
+            { key: 'positive', label: '긍정', value: counts.positive, color: this.sentimentColors.positive, pct: Math.round(counts.positive / total * 100) },
+            { key: 'neutral',  label: '중립', value: counts.neutral,  color: this.sentimentColors.neutral,  pct: Math.round(counts.neutral  / total * 100) },
+            { key: 'negative', label: '부정', value: counts.negative, color: this.sentimentColors.negative, pct: Math.round(counts.negative / total * 100) }
+        ];
+    },
+
+    getMediaTop(limit = 10, filterFn) {
+        const list = filterFn ? this.clippings.filter(filterFn) : this.clippings;
+        const counts = {};
+        list.forEach(c => { counts[c.media] = (counts[c.media] || 0) + 1; });
+        return Object.entries(counts)
+            .map(([label, value]) => ({ label, value }))
+            .sort((a, b) => b.value - a.value)
+            .slice(0, limit);
+    },
+
+    getKeywordTop(limit = 10, filterFn) {
+        const list = filterFn ? this.clippings.filter(filterFn) : this.clippings;
+        const exclude = new Set(['샥즈', 'SHOKZ', 'OpenRun', 'OpenSwim', '커뮤니티', '샥즈코리아', 'SHOKZ KOREA']);
+        const counts = {};
+        list.forEach(c => {
+            (c.tags || []).forEach(tag => {
+                if (exclude.has(tag)) return;
+                counts[tag] = (counts[tag] || 0) + 1;
+            });
+        });
+        return Object.entries(counts)
+            .map(([label, value]) => ({ label, value }))
+            .sort((a, b) => b.value - a.value)
+            .slice(0, limit);
+    },
+
+    getMediaCount() {
+        return new Set(this.clippings.map(c => c.media)).size;
+    },
+
+    getReactionsSummary() {
+        const isReaction = (c) => c.channel === 'blog' || c.channel === 'cafearticle';
+        const reactions = this.clippings.filter(isReaction);
+        const blogCount = reactions.filter(c => c.channel === 'blog').length;
+        const cafeCount = reactions.filter(c => c.channel === 'cafearticle').length;
+        return {
+            total: reactions.length,
+            blog: blogCount,
+            cafe: cafeCount,
+            sentiment: this.getSentimentMix(isReaction),
+            keywords: this.getKeywordTop(10, isReaction),
+            media: this.getMediaTop(8, isReaction)
+        };
+    }
+};
+</script>
+    <script>/**
+ * SHOKZ Korea Clipping Magazine - Application
+ */
+const MagazineApp = {
+    state: {
+        category: 'all',
+        query: ''
+    },
+    refs: {},
+
+    async init() {
+        this.refs = {
+            kpiTotal: document.getElementById('kpiTotal'),
+            kpiMedia: document.getElementById('kpiMedia'),
+            kpiPassed: document.getElementById('kpiPassed'),
+            kpiNoise: document.getElementById('kpiNoise'),
+            kpiTime: document.getElementById('kpiTime'),
+            tabs: document.getElementById('tabs'),
+            filterStrip: document.getElementById('filterStrip'),
+            searchInput: document.getElementById('searchInput'),
+            refreshBtn: document.getElementById('refreshBtn'),
+            clippingList: document.getElementById('clippingList'),
+            clippingCount: document.getElementById('clippingCount'),
+            clippingSub: document.getElementById('clippingSub'),
+            reactionsBlog: document.getElementById('reactionsBlog'),
+            reactionsCafe: document.getElementById('reactionsCafe'),
+            reactionsTotal: document.getElementById('reactionsTotal'),
+            reactionsKeywords: document.getElementById('reactionsKeywords'),
+            reactionsMedia: document.getElementById('reactionsMedia'),
+            reactionsSentiment: document.getElementById('reactionsSentiment')
+        };
+
+        await MagazineData.load();
+        this.renderAll();
+
+        this.refs.searchInput.addEventListener('input', (e) => {
+            this.state.query = e.target.value;
+            this.renderClippings();
+        });
+        this.refs.refreshBtn.addEventListener('click', () => this.refresh());
+        window.addEventListener('resize', this.debounce(() => this.renderCharts(), 200));
+    },
+
+    async refresh() {
+        this.refs.refreshBtn.classList.add('spin');
+        await MagazineData.load();
+        setTimeout(() => {
+            this.refs.refreshBtn.classList.remove('spin');
+            this.renderAll();
+        }, 300);
+    },
+
+    renderAll() {
+        this.renderKPI();
+        this.renderFilterStrip();
+        this.renderTabs();
+        this.renderCharts();
+        this.renderReactions();
+        this.renderClippings();
+    },
+
+    debounce(fn, ms) {
+        let t;
+        return (...args) => { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); };
+    },
+
+    renderKPI() {
+        const m = MagazineData.meta;
+        this.refs.kpiTotal.textContent = m.totalClippings || MagazineData.clippings.length;
+        this.refs.kpiMedia.textContent = MagazineData.getMediaCount();
+        this.refs.kpiPassed.textContent = m.filterPassed || MagazineData.clippings.length;
+        this.refs.kpiNoise.textContent = m.noiseFiltered || 0;
+        this.refs.kpiTime.textContent = m.collectedAt ? this.formatCollectTime(m.collectedAt) : '--';
+    },
+
+    formatCollectTime(iso) {
+        const d = new Date(iso);
+        if (isNaN(d.getTime())) return '--';
+        const ampm = d.getHours() < 12 ? '오전' : '오후';
+        const hh = d.getHours() % 12 || 12;
+        return `${d.getFullYear()}. ${d.getMonth() + 1}. ${d.getDate()}. ${ampm} ${hh}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
+    },
+
+    renderTabs() {
+        this.refs.tabs.innerHTML = '';
+        MagazineData.categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = 'tab' + (cat.key === this.state.category ? ' active' : '');
+            btn.textContent = cat.label;
+            btn.dataset.key = cat.key;
+            btn.addEventListener('click', () => {
+                this.state.category = cat.key;
+                this.renderTabs();
+                this.renderClippings();
+            });
+            this.refs.tabs.appendChild(btn);
+        });
+    },
+
+    renderFilterStrip() {
+        const m = MagazineData.meta;
+        const channelStr = MagazineData.channels.map(ch => `${ch.key}:${ch.collected || 0}/${ch.quota || 20}`).join(', ');
+        this.refs.filterStrip.innerHTML = `
+            <div><span class="fs-key">검색어:</span><span class="fs-val brand">${this.escape(m.searchKeyword || '샥즈')}</span></div>
+            <span class="fs-divider">·</span>
+            <div><span class="fs-key">채널:</span><span class="fs-val">${this.escape(channelStr)}</span></div>
+            <span class="fs-divider">·</span>
+            <div><span class="fs-on">정확도 필터 ${m.accuracyFilter ? 'ON' : 'OFF'}</span></div>
+        `;
+    },
+
+    escape(s) {
+        return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    },
+
+    renderCharts() {
+        const trend = MagazineData.getDailyTrend();
+        ChartEngine.dailyBarChart('dailyChart', { labels: trend.labels, counts: trend.counts, color: ChartEngine.colors.blue });
+        ChartEngine.donutWithCenter('channelChart', { items: MagazineData.getChannelMix(), centerLabel: '건' });
+        ChartEngine.donutWithCenter('categoryChart', { items: MagazineData.getCategoryMix(), centerLabel: '건' });
+        ChartEngine.stackedSentimentBar('sentimentChart', { items: MagazineData.getSentimentMix() });
+        ChartEngine.horizontalBarChart('mediaChart', { items: MagazineData.getMediaTop(10), color: ChartEngine.colors.green });
+        ChartEngine.horizontalBarChart('keywordChart', { items: MagazineData.getKeywordTop(10), color: ChartEngine.colors.purple });
+    },
+
+    /**
+     * 소비자 반응 패널 (블로그·카페만)
+     */
+    renderReactions() {
+        const r = MagazineData.getReactionsSummary();
+        this.refs.reactionsBlog.textContent = r.blog;
+        this.refs.reactionsCafe.textContent = r.cafe;
+        this.refs.reactionsTotal.textContent = r.total;
+        ChartEngine.stackedSentimentBar('reactionsSentimentChart', { items: r.sentiment });
+        this.refs.reactionsKeywords.innerHTML = r.keywords.map((k, i) =>
+            `<li><span class="r-rank">${i + 1}</span><span class="r-label">${this.escape(k.label)}</span><span class="r-val">${k.value}</span></li>`
+        ).join('') || '<li class="r-empty">데이터 없음</li>';
+        this.refs.reactionsMedia.innerHTML = r.media.map((m, i) =>
+            `<li><span class="r-rank">${i + 1}</span><span class="r-label">${this.escape(this.shortenMedia(m.label))}</span><span class="r-val">${m.value}</span></li>`
+        ).join('') || '<li class="r-empty">데이터 없음</li>';
+    },
+
+    shortenMedia(s) {
+        return s.length > 22 ? s.slice(0, 22) + '…' : s;
+    },
+
+    /**
+     * 메인 클리핑 카드 — 뉴스만 노출
+     */
+    renderClippings() {
+        const list = MagazineData.filter(this.state.category, this.state.query, { onlyNews: true })
+            .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+        this.refs.clippingCount.textContent = list.length;
+
+        const cat = MagazineData.categories.find(c => c.key === this.state.category);
+        const subParts = [`뉴스 카드만 표시`];
+        subParts.push(`카테고리: ${cat ? cat.label : '전체'}`);
+        if (this.state.query) subParts.push(`검색: "${this.state.query}"`);
+        this.refs.clippingSub.textContent = subParts.join(' · ');
+
+        if (list.length === 0) {
+            this.refs.clippingList.innerHTML = '<div class="empty-state">조건에 맞는 뉴스가 없습니다.</div>';
+            return;
+        }
+
+        const sentLabel = { positive: '긍정', neutral: '중립', negative: '부정' };
+        const channelLabel = { news: 'NEWS', blog: 'BLOG', cafearticle: 'CAFE' };
+        const collectedDay = (MagazineData.meta.collectedAt || '').slice(0, 10);
+
+        this.refs.clippingList.innerHTML = list.map(c => {
+            const isFresh = (c.date || '').slice(0, 10) === collectedDay;
+            return `
+            <article class="clipping">
+                <div>
+                    <div class="clipping-meta">
+                        <span class="clipping-channel ch-${c.channel}">${channelLabel[c.channel] || c.channel}</span>
+                        <span>${this.escape(c.media)}</span>
+                        <span class="dot">·</span>
+                        <span>${this.formatDate(c.date)}</span>
+                        ${isFresh ? '<span class="fresh-badge">NEW</span>' : ''}
+                    </div>
+                    <h4 class="clipping-title"><a href="${this.escape(c.url)}" target="_blank" rel="noopener">${this.escape(c.title)}</a></h4>
+                    <p class="clipping-summary">${this.escape(c.summary)}</p>
+                    <div class="clipping-tags">
+                        ${(c.tags || []).map(t => `<span class="tag">#${this.escape(t)}</span>`).join('')}
+                    </div>
+                </div>
+                <span class="sentiment-pill s-${c.sentiment}">${sentLabel[c.sentiment]}</span>
+            </article>`;
+        }).join('');
+    },
+
+    formatDate(s) {
+        if (!s) return '';
+        const m = s.match(/^(\d{4})-(\d{2})-(\d{2})(?: (\d{2}):(\d{2}))?/);
+        if (!m) return s;
+        return m[4] ? `${m[2]}.${m[3]} ${m[4]}:${m[5]}` : `${m[2]}.${m[3]}`;
+    }
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => MagazineApp.init());
+} else {
+    MagazineApp.init();
+}
+</script>
+</body>
+</html>

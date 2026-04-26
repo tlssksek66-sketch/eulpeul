@@ -3,601 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영업 기획 & IMC 매니지먼트 | 중앙 통제 & 관측 시스템</title>
+    <title>SHOKZ KOREA · CLIPPING MAGAZINE</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 사이드바 네비게이션 -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <span class="logo-icon">◆</span>
-                <span class="logo-text">EULPEUL</span>
+    <!-- Top bar -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <span class="brand-mark">SHOKZ</span>
+                <span class="brand-divider"></span>
+                <span class="brand-sub">KOREA · CLIPPING MAGAZINE</span>
             </div>
-            <p class="logo-sub">Central Command</p>
+            <div class="topbar-tools">
+                <div class="search-field">
+                    <input id="searchInput" type="text" placeholder="제목·요약·태그 검색…" autocomplete="off">
+                </div>
+                <button id="refreshBtn" class="icon-btn" title="새로고침">⟳</button>
+            </div>
         </div>
-        <nav class="sidebar-nav">
-            <a href="#" class="nav-item active" data-view="dashboard">
-                <span class="nav-icon">⊞</span>
-                <span>대시보드</span>
-            </a>
-            <a href="#" class="nav-item" data-view="sales">
-                <span class="nav-icon">⊕</span>
-                <span>영업 기획</span>
-            </a>
-            <a href="#" class="nav-item" data-view="imc">
-                <span class="nav-icon">◈</span>
-                <span>IMC 매니지먼트</span>
-            </a>
-            <a href="#" class="nav-item" data-view="pipeline">
-                <span class="nav-icon">▸</span>
-                <span>파이프라인</span>
-            </a>
-            <a href="#" class="nav-item" data-view="analytics">
-                <span class="nav-icon">◉</span>
-                <span>분석 & 리포트</span>
-            </a>
-            <a href="#" class="nav-item" data-view="settings">
-                <span class="nav-icon">⚙</span>
-                <span>설정</span>
-            </a>
-        </nav>
-        <div class="sidebar-footer">
-            <div class="user-info">
-                <div class="user-avatar">관</div>
+    </header>
+
+    <main class="page">
+        <!-- Title block -->
+        <section class="title-block">
+            <h1>샥즈 코리아 매거진</h1>
+            <p class="title-sub">웹 상의 모든 샥즈 관련 뉴스·기사·콘텐츠를 한 화면에서 모니터링</p>
+        </section>
+
+        <!-- KPI strip -->
+        <section class="kpi-strip" id="kpiStrip">
+            <div class="kpi-cell">
+                <span class="kpi-num" id="kpiTotal">0</span>
+                <span class="kpi-label">총 클리핑</span>
+            </div>
+            <div class="kpi-cell">
+                <span class="kpi-num" id="kpiMedia">0</span>
+                <span class="kpi-label">매체 수</span>
+            </div>
+            <div class="kpi-cell">
+                <span class="kpi-num" id="kpiPassed">0</span>
+                <span class="kpi-label">필터 통과</span>
+            </div>
+            <div class="kpi-cell">
+                <span class="kpi-num" id="kpiNoise">0</span>
+                <span class="kpi-label">노이즈 처리</span>
+            </div>
+            <div class="kpi-cell kpi-time">
+                <span class="kpi-time-value" id="kpiTime">--</span>
+                <span class="kpi-label">최근 수집</span>
+            </div>
+        </section>
+
+        <!-- Category tabs -->
+        <nav class="tabs" id="tabs"></nav>
+
+        <!-- Filter strip -->
+        <div class="filter-strip" id="filterStrip"></div>
+
+        <!-- Chart row 1: daily trend (full width) -->
+        <section class="chart-row chart-row-wide">
+            <article class="card">
+                <div class="card-head">
+                    <h3>일별 클리핑 추이</h3>
+                    <span class="card-tag">최근 14일</span>
+                </div>
+                <div class="card-body">
+                    <canvas id="dailyChart" height="200"></canvas>
+                </div>
+            </article>
+        </section>
+
+        <!-- Chart row 2: 3 columns -->
+        <section class="chart-row chart-row-3">
+            <article class="card">
+                <div class="card-head"><h3>채널 믹스</h3></div>
+                <div class="card-body"><canvas id="channelChart" height="220"></canvas></div>
+            </article>
+            <article class="card">
+                <div class="card-head"><h3>카테고리 믹스</h3></div>
+                <div class="card-body"><canvas id="categoryChart" height="220"></canvas></div>
+            </article>
+            <article class="card">
+                <div class="card-head"><h3>감성 비율</h3></div>
+                <div class="card-body"><canvas id="sentimentChart" height="220"></canvas></div>
+            </article>
+        </section>
+
+        <!-- Chart row 3: media + keyword -->
+        <section class="chart-row chart-row-2">
+            <article class="card">
+                <div class="card-head"><h3>매체 Top 10</h3></div>
+                <div class="card-body"><canvas id="mediaChart" height="320"></canvas></div>
+            </article>
+            <article class="card">
+                <div class="card-head"><h3>키워드 Top 10</h3></div>
+                <div class="card-body"><canvas id="keywordChart" height="320"></canvas></div>
+            </article>
+        </section>
+
+        <!-- 소비자 반응 지표 (블로그·카페) -->
+        <section class="reactions-panel">
+            <div class="reactions-head">
                 <div>
-                    <p class="user-name">관리자</p>
-                    <p class="user-role">시스템 운영자</p>
+                    <h2>소비자 반응 지표</h2>
+                    <p class="reactions-sub">블로그·카페 발생 콘텐츠를 소비자 반응으로만 집계 (개별 카드 미노출)</p>
+                </div>
+                <div class="reactions-counts">
+                    <div class="rc-cell"><span class="rc-num" id="reactionsTotal">0</span><span class="rc-label">합계</span></div>
+                    <div class="rc-cell"><span class="rc-num blog" id="reactionsBlog">0</span><span class="rc-label">블로그</span></div>
+                    <div class="rc-cell"><span class="rc-num cafe" id="reactionsCafe">0</span><span class="rc-label">카페</span></div>
                 </div>
             </div>
-        </div>
-    </aside>
-
-    <!-- 메인 컨텐츠 -->
-    <main class="main-content">
-        <!-- 상단 헤더 -->
-        <header class="top-header">
-            <button class="menu-toggle" id="menuToggle">☰</button>
-            <div class="header-title">
-                <h1 id="pageTitle">중앙 통제 대시보드</h1>
-                <span class="header-badge" id="systemStatus">● 시스템 정상</span>
-            </div>
-            <div class="header-actions">
-                <div class="search-box">
-                    <input type="text" placeholder="검색..." id="globalSearch">
+            <div class="reactions-grid">
+                <div class="reactions-cell">
+                    <h4>감성 비율</h4>
+                    <canvas id="reactionsSentimentChart" height="120"></canvas>
                 </div>
-                <button class="header-btn" id="notificationBtn">
-                    <span class="notif-icon">🔔</span>
-                    <span class="notif-badge" id="notifCount">3</span>
-                </button>
-                <button class="header-btn" id="refreshBtn" title="데이터 새로고침">⟳</button>
-            </div>
-        </header>
-
-        <!-- 대시보드 뷰 -->
-        <section class="view active" id="view-dashboard">
-            <!-- KPI 카드 -->
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="kpi-header">
-                        <span class="kpi-label">월 매출 목표</span>
-                        <span class="kpi-trend trend-up">▲ 12.5%</span>
-                    </div>
-                    <div class="kpi-value" id="kpi-revenue">₩2,450,000,000</div>
-                    <div class="kpi-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 78%"></div>
-                        </div>
-                        <span class="progress-text">78% 달성</span>
-                    </div>
+                <div class="reactions-cell">
+                    <h4>키워드 Top 10</h4>
+                    <ol class="reactions-list" id="reactionsKeywords"></ol>
                 </div>
-                <div class="kpi-card">
-                    <div class="kpi-header">
-                        <span class="kpi-label">활성 캠페인</span>
-                        <span class="kpi-trend trend-up">▲ 3건</span>
-                    </div>
-                    <div class="kpi-value" id="kpi-campaigns">14</div>
-                    <div class="kpi-sub">진행 중 8 · 검토 중 4 · 대기 2</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-header">
-                        <span class="kpi-label">리드 전환율</span>
-                        <span class="kpi-trend trend-up">▲ 2.1%p</span>
-                    </div>
-                    <div class="kpi-value" id="kpi-conversion">23.7%</div>
-                    <div class="kpi-sub">전월 대비 개선</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-header">
-                        <span class="kpi-label">고객 만족도</span>
-                        <span class="kpi-trend trend-stable">— 유지</span>
-                    </div>
-                    <div class="kpi-value" id="kpi-satisfaction">4.6 / 5.0</div>
-                    <div class="kpi-sub">NPS 72점</div>
-                </div>
-            </div>
-
-            <!-- 메인 대시보드 그리드 -->
-            <div class="dashboard-grid">
-                <!-- 매출 추이 차트 -->
-                <div class="card card-wide">
-                    <div class="card-header">
-                        <h3>매출 추이 & 예측</h3>
-                        <div class="card-actions">
-                            <select id="revenueChartPeriod" class="select-sm">
-                                <option value="weekly">주간</option>
-                                <option value="monthly" selected>월간</option>
-                                <option value="quarterly">분기</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="revenueChart" height="280"></canvas>
-                    </div>
-                </div>
-
-                <!-- 채널별 성과 -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3>채널별 IMC 성과</h3>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="channelChart" height="280"></canvas>
-                    </div>
-                </div>
-
-                <!-- 파이프라인 현황 -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3>영업 파이프라인</h3>
-                        <span class="card-badge">실시간</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="pipeline-mini">
-                            <div class="pipeline-stage">
-                                <div class="stage-bar" style="height: 80%"></div>
-                                <span class="stage-label">리드</span>
-                                <span class="stage-count">142</span>
-                            </div>
-                            <div class="pipeline-stage">
-                                <div class="stage-bar" style="height: 60%"></div>
-                                <span class="stage-label">접촉</span>
-                                <span class="stage-count">89</span>
-                            </div>
-                            <div class="pipeline-stage">
-                                <div class="stage-bar" style="height: 45%"></div>
-                                <span class="stage-label">제안</span>
-                                <span class="stage-count">54</span>
-                            </div>
-                            <div class="pipeline-stage">
-                                <div class="stage-bar" style="height: 30%"></div>
-                                <span class="stage-label">협상</span>
-                                <span class="stage-count">28</span>
-                            </div>
-                            <div class="pipeline-stage">
-                                <div class="stage-bar" style="height: 20%"></div>
-                                <span class="stage-label">계약</span>
-                                <span class="stage-count">17</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 최근 활동 -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3>최근 활동</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="activity-feed" id="activityFeed">
-                            <!-- JS로 동적 렌더링 -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 캠페인 상태 -->
-                <div class="card card-wide">
-                    <div class="card-header">
-                        <h3>캠페인 실행 현황</h3>
-                        <button class="btn btn-sm" onclick="App.showModal('campaign')">+ 새 캠페인</button>
-                    </div>
-                    <div class="card-body">
-                        <table class="data-table" id="campaignTable">
-                            <thead>
-                                <tr>
-                                    <th>캠페인명</th>
-                                    <th>채널</th>
-                                    <th>상태</th>
-                                    <th>예산</th>
-                                    <th>ROI</th>
-                                    <th>진행률</th>
-                                </tr>
-                            </thead>
-                            <tbody id="campaignTableBody">
-                                <!-- JS로 동적 렌더링 -->
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="reactions-cell">
+                    <h4>매체 Top 8</h4>
+                    <ol class="reactions-list" id="reactionsMedia"></ol>
                 </div>
             </div>
         </section>
 
-        <!-- 영업 기획 뷰 -->
-        <section class="view" id="view-sales">
-            <div class="view-header">
-                <h2>영업 기획 관리</h2>
-                <div class="view-actions">
-                    <button class="btn btn-primary" onclick="App.showModal('salesPlan')">+ 새 영업 계획</button>
-                    <button class="btn btn-outline" onclick="App.exportData('sales')">내보내기</button>
-                </div>
+        <!-- Clipping list -->
+        <section class="clipping-list-wrap">
+            <div class="clipping-head">
+                <h2>뉴스 클리핑 <span class="count" id="clippingCount">0</span></h2>
+                <span class="clipping-sub" id="clippingSub"></span>
             </div>
-
-            <div class="sales-overview">
-                <div class="stat-card">
-                    <span class="stat-icon">📋</span>
-                    <div>
-                        <p class="stat-value" id="totalPlans">12</p>
-                        <p class="stat-label">전체 계획</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-icon">▶</span>
-                    <div>
-                        <p class="stat-value" id="activePlans">5</p>
-                        <p class="stat-label">진행 중</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-icon">✓</span>
-                    <div>
-                        <p class="stat-value" id="completedPlans">4</p>
-                        <p class="stat-label">완료</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-icon">⏳</span>
-                    <div>
-                        <p class="stat-value" id="pendingPlans">3</p>
-                        <p class="stat-label">대기</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 영업 계획 목록 -->
-            <div class="card">
-                <div class="card-header">
-                    <h3>영업 계획 목록</h3>
-                    <div class="filter-group">
-                        <select id="salesFilter" class="select-sm">
-                            <option value="all">전체</option>
-                            <option value="active">진행 중</option>
-                            <option value="completed">완료</option>
-                            <option value="pending">대기</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>계획명</th>
-                                <th>담당자</th>
-                                <th>기간</th>
-                                <th>목표 매출</th>
-                                <th>달성률</th>
-                                <th>상태</th>
-                                <th>관리</th>
-                            </tr>
-                        </thead>
-                        <tbody id="salesPlanTableBody">
-                            <!-- JS로 동적 렌더링 -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- 영업 전략 맵 -->
-            <div class="dashboard-grid">
-                <div class="card">
-                    <div class="card-header"><h3>분기별 목표</h3></div>
-                    <div class="card-body">
-                        <canvas id="quarterlyGoalChart" height="250"></canvas>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3>팀별 실적</h3></div>
-                    <div class="card-body">
-                        <canvas id="teamPerformanceChart" height="250"></canvas>
-                    </div>
-                </div>
-            </div>
+            <div class="clipping-list" id="clippingList"></div>
         </section>
 
-        <!-- IMC 매니지먼트 뷰 -->
-        <section class="view" id="view-imc">
-            <div class="view-header">
-                <h2>IMC 매니지먼트</h2>
-                <div class="view-actions">
-                    <button class="btn btn-primary" onclick="App.showModal('campaign')">+ 새 캠페인</button>
-                    <button class="btn btn-outline">채널 관리</button>
-                </div>
-            </div>
-
-            <!-- IMC 채널 카드 -->
-            <div class="imc-channels">
-                <div class="channel-card" data-channel="digital">
-                    <div class="channel-icon">🌐</div>
-                    <h4>디지털 마케팅</h4>
-                    <p class="channel-budget">₩450,000,000</p>
-                    <div class="channel-metrics">
-                        <span>캠페인 5건</span>
-                        <span>ROI 340%</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 82%"></div></div>
-                </div>
-                <div class="channel-card" data-channel="social">
-                    <div class="channel-icon">📱</div>
-                    <h4>소셜 미디어</h4>
-                    <p class="channel-budget">₩280,000,000</p>
-                    <div class="channel-metrics">
-                        <span>캠페인 3건</span>
-                        <span>ROI 280%</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 68%"></div></div>
-                </div>
-                <div class="channel-card" data-channel="content">
-                    <div class="channel-icon">📝</div>
-                    <h4>콘텐츠 마케팅</h4>
-                    <p class="channel-budget">₩180,000,000</p>
-                    <div class="channel-metrics">
-                        <span>캠페인 4건</span>
-                        <span>ROI 210%</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 55%"></div></div>
-                </div>
-                <div class="channel-card" data-channel="event">
-                    <div class="channel-icon">🎪</div>
-                    <h4>이벤트 & PR</h4>
-                    <p class="channel-budget">₩320,000,000</p>
-                    <div class="channel-metrics">
-                        <span>캠페인 2건</span>
-                        <span>ROI 190%</span>
-                    </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 45%"></div></div>
-                </div>
-            </div>
-
-            <!-- 캠페인 타임라인 -->
-            <div class="card">
-                <div class="card-header">
-                    <h3>캠페인 타임라인</h3>
-                    <div class="card-actions">
-                        <select class="select-sm" id="timelineFilter">
-                            <option value="all">전체 채널</option>
-                            <option value="digital">디지털</option>
-                            <option value="social">소셜</option>
-                            <option value="content">콘텐츠</option>
-                            <option value="event">이벤트</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="timeline" id="campaignTimeline">
-                        <!-- JS로 동적 렌더링 -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- IMC 성과 분석 -->
-            <div class="dashboard-grid">
-                <div class="card">
-                    <div class="card-header"><h3>채널별 예산 배분</h3></div>
-                    <div class="card-body">
-                        <canvas id="budgetAllocationChart" height="280"></canvas>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3>채널 간 시너지 매트릭스</h3></div>
-                    <div class="card-body">
-                        <div class="synergy-matrix" id="synergyMatrix">
-                            <!-- JS로 동적 렌더링 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 파이프라인 뷰 -->
-        <section class="view" id="view-pipeline">
-            <div class="view-header">
-                <h2>영업 파이프라인</h2>
-                <div class="view-actions">
-                    <button class="btn btn-primary" onclick="App.showModal('deal')">+ 새 딜</button>
-                    <button class="btn btn-outline" onclick="App.exportData('pipeline')">내보내기</button>
-                </div>
-            </div>
-
-            <div class="pipeline-board" id="pipelineBoard">
-                <div class="pipeline-column" data-stage="lead">
-                    <div class="column-header">
-                        <h4>리드 발굴</h4>
-                        <span class="column-count" id="leadCount">0</span>
-                    </div>
-                    <div class="column-total" id="leadTotal">₩0</div>
-                    <div class="column-cards" id="leadCards">
-                        <!-- JS로 동적 렌더링 -->
-                    </div>
-                </div>
-                <div class="pipeline-column" data-stage="contact">
-                    <div class="column-header">
-                        <h4>접촉 / 미팅</h4>
-                        <span class="column-count" id="contactCount">0</span>
-                    </div>
-                    <div class="column-total" id="contactTotal">₩0</div>
-                    <div class="column-cards" id="contactCards"></div>
-                </div>
-                <div class="pipeline-column" data-stage="proposal">
-                    <div class="column-header">
-                        <h4>제안 / 견적</h4>
-                        <span class="column-count" id="proposalCount">0</span>
-                    </div>
-                    <div class="column-total" id="proposalTotal">₩0</div>
-                    <div class="column-cards" id="proposalCards"></div>
-                </div>
-                <div class="pipeline-column" data-stage="negotiation">
-                    <div class="column-header">
-                        <h4>협상</h4>
-                        <span class="column-count" id="negotiationCount">0</span>
-                    </div>
-                    <div class="column-total" id="negotiationTotal">₩0</div>
-                    <div class="column-cards" id="negotiationCards"></div>
-                </div>
-                <div class="pipeline-column" data-stage="closed">
-                    <div class="column-header">
-                        <h4>계약 완료</h4>
-                        <span class="column-count" id="closedCount">0</span>
-                    </div>
-                    <div class="column-total" id="closedTotal">₩0</div>
-                    <div class="column-cards" id="closedCards"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 분석 & 리포트 뷰 -->
-        <section class="view" id="view-analytics">
-            <div class="view-header">
-                <h2>분석 & 리포트</h2>
-                <div class="view-actions">
-                    <select id="analyticsPeriod" class="select-sm">
-                        <option value="month">이번 달</option>
-                        <option value="quarter">이번 분기</option>
-                        <option value="year">올해</option>
-                    </select>
-                    <button class="btn btn-outline" onclick="App.exportData('analytics')">PDF 내보내기</button>
-                </div>
-            </div>
-
-            <div class="dashboard-grid">
-                <div class="card card-wide">
-                    <div class="card-header"><h3>매출 vs 마케팅 비용 상관분석</h3></div>
-                    <div class="card-body">
-                        <canvas id="correlationChart" height="300"></canvas>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3>고객 세그먼트 분포</h3></div>
-                    <div class="card-body">
-                        <canvas id="segmentChart" height="280"></canvas>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3>전환 퍼널 분석</h3></div>
-                    <div class="card-body">
-                        <div class="funnel-chart" id="funnelChart">
-                            <!-- JS로 동적 렌더링 -->
-                        </div>
-                    </div>
-                </div>
-                <div class="card card-wide">
-                    <div class="card-header"><h3>주간 성과 요약</h3></div>
-                    <div class="card-body">
-                        <div class="report-summary" id="weeklyReport">
-                            <!-- JS로 동적 렌더링 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 설정 뷰 -->
-        <section class="view" id="view-settings">
-            <div class="view-header">
-                <h2>시스템 설정</h2>
-            </div>
-            <div class="settings-grid">
-                <div class="card">
-                    <div class="card-header"><h3>일반 설정</h3></div>
-                    <div class="card-body">
-                        <div class="setting-item">
-                            <label>시스템 언어</label>
-                            <select class="select-sm"><option>한국어</option><option>English</option></select>
-                        </div>
-                        <div class="setting-item">
-                            <label>통화 단위</label>
-                            <select class="select-sm"><option>KRW (₩)</option><option>USD ($)</option></select>
-                        </div>
-                        <div class="setting-item">
-                            <label>다크 모드</label>
-                            <label class="toggle">
-                                <input type="checkbox" id="darkModeToggle">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <div class="setting-item">
-                            <label>자동 새로고침</label>
-                            <label class="toggle">
-                                <input type="checkbox" id="autoRefreshToggle" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3>알림 설정</h3></div>
-                    <div class="card-body">
-                        <div class="setting-item">
-                            <label>이메일 알림</label>
-                            <label class="toggle">
-                                <input type="checkbox" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <div class="setting-item">
-                            <label>캠페인 상태 변경 알림</label>
-                            <label class="toggle">
-                                <input type="checkbox" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <div class="setting-item">
-                            <label>KPI 경고 알림</label>
-                            <label class="toggle">
-                                <input type="checkbox" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <div class="setting-item">
-                            <label>주간 리포트 자동 발송</label>
-                            <label class="toggle">
-                                <input type="checkbox">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <footer class="page-foot">
+            <span>SHOKZ KOREA · CLIPPING MAGAZINE</span>
+            <span>powered by Magazine Engine</span>
+        </footer>
     </main>
-
-    <!-- 모달 오버레이 -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal" id="modalContent">
-            <!-- JS로 동적 렌더링 -->
-        </div>
-    </div>
-
-    <!-- 알림 패널 -->
-    <div class="notification-panel" id="notificationPanel">
-        <div class="notif-header">
-            <h3>알림</h3>
-            <button class="btn btn-sm" onclick="App.clearNotifications()">모두 읽음</button>
-        </div>
-        <div class="notif-list" id="notifList">
-            <!-- JS로 동적 렌더링 -->
-        </div>
-    </div>
 
     <script src="assets/js/chart-engine.js"></script>
     <script src="assets/js/data-store.js"></script>
