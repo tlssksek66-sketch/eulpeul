@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E599"/>
+      <stop offset="40%" stop-color="#00B8D4"/>
+      <stop offset="100%" stop-color="#0077B6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <!-- motion blur stripes -->
+  <g stroke="rgba(255,255,255,0.45)" stroke-linecap="round" fill="none">
+    <line x1="80" y1="540" x2="380" y2="540" stroke-width="8"/>
+    <line x1="40" y1="600" x2="280" y2="600" stroke-width="6"/>
+    <line x1="120" y1="660" x2="320" y2="660" stroke-width="4"/>
+    <line x1="60" y1="720" x2="240" y2="720" stroke-width="6"/>
+  </g>
+  <!-- bicycle silhouette (right side) -->
+  <g fill="none" stroke="rgba(0,0,0,0.78)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="780" cy="800" r="120"/>
+    <circle cx="1040" cy="800" r="120"/>
+    <path d="M780 800 L 880 640 L 1000 800 M 880 640 L 950 640 M 880 640 L 820 540 M 1040 800 L 970 640"/>
+  </g>
+  <g fill="rgba(0,0,0,0.78)">
+    <circle cx="820" cy="510" r="34"/>
+  </g>
+</svg>

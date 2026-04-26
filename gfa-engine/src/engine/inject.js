@@ -4,7 +4,12 @@
  * 데이터셋(JSON)의 variants[]를 GfaPreview가 받는 { copy, image } 형태로
  * 정규화한다. 검수 단계에서 카피 길이 가드도 같이 친다 (네이버 GFA 가이드:
  * 헤드라인 ≤ 40자 / 설명 ≤ 45자 / CTA ≤ 8자 권장).
+ *
+ * image.src가 비어 있으면 assetResolver가 axis.audience 기준으로 기본 자산을
+ * 매핑한다(public/products/*.svg).
  */
+
+import { resolveVariantImage } from "./assetResolver.js";
 
 const LIMITS = {
   headline: 40,
@@ -14,19 +19,23 @@ const LIMITS = {
 
 export function injectVariant(dataset, variant) {
   const defaults = dataset.defaults ?? {};
+  const axis = variant.axis ?? {};
   const copy = {
     brandName: defaults.brandName,
     brandHandle: defaults.brandHandle,
     adLabel: defaults.adLabel,
     ...variant.copy,
   };
-  const image = {
-    profileFallback: defaults.profileFallback,
-    ...variant.image,
-  };
+  const image = resolveVariantImage(
+    {
+      profileFallback: defaults.profileFallback,
+      ...variant.image,
+    },
+    axis
+  );
   return {
     id: variant.id,
-    axis: variant.axis ?? {},
+    axis,
     copy,
     image,
     warnings: lintCopy(copy),

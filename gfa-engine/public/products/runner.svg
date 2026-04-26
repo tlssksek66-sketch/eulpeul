@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B35"/>
+      <stop offset="40%" stop-color="#FF8E1C"/>
+      <stop offset="100%" stop-color="#003B73"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="80%" cy="22%" r="35%">
+      <stop offset="0%" stop-color="#FFFBE6" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#FFFBE6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#sun)"/>
+  <!-- abstract horizon -->
+  <path d="M0 880 Q 300 820 600 870 T 1200 850 L 1200 1200 L 0 1200 Z" fill="rgba(0,0,0,0.32)"/>
+  <!-- speed lines -->
+  <g stroke="rgba(255,255,255,0.55)" stroke-linecap="round" fill="none" stroke-width="6">
+    <line x1="160" y1="640" x2="320" y2="640"/>
+    <line x1="200" y1="700" x2="420" y2="700"/>
+    <line x1="120" y1="760" x2="260" y2="760"/>
+  </g>
+  <!-- runner silhouette -->
+  <g fill="rgba(0,0,0,0.78)">
+    <circle cx="780" cy="500" r="38"/>
+    <path d="M740 555 L 820 540 L 860 600 L 900 700 L 870 720 L 830 660 L 800 720 L 850 800 L 820 820 L 760 760 L 720 820 L 690 800 L 740 700 L 700 640 L 660 660 L 640 640 L 720 580 Z"/>
+  </g>
+</svg>
