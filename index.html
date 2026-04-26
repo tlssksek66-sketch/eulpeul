@@ -104,10 +104,39 @@
             </article>
         </section>
 
+        <!-- 소비자 반응 지표 (블로그·카페) -->
+        <section class="reactions-panel">
+            <div class="reactions-head">
+                <div>
+                    <h2>소비자 반응 지표</h2>
+                    <p class="reactions-sub">블로그·카페 발생 콘텐츠를 소비자 반응으로만 집계 (개별 카드 미노출)</p>
+                </div>
+                <div class="reactions-counts">
+                    <div class="rc-cell"><span class="rc-num" id="reactionsTotal">0</span><span class="rc-label">합계</span></div>
+                    <div class="rc-cell"><span class="rc-num blog" id="reactionsBlog">0</span><span class="rc-label">블로그</span></div>
+                    <div class="rc-cell"><span class="rc-num cafe" id="reactionsCafe">0</span><span class="rc-label">카페</span></div>
+                </div>
+            </div>
+            <div class="reactions-grid">
+                <div class="reactions-cell">
+                    <h4>감성 비율</h4>
+                    <canvas id="reactionsSentimentChart" height="120"></canvas>
+                </div>
+                <div class="reactions-cell">
+                    <h4>키워드 Top 10</h4>
+                    <ol class="reactions-list" id="reactionsKeywords"></ol>
+                </div>
+                <div class="reactions-cell">
+                    <h4>매체 Top 8</h4>
+                    <ol class="reactions-list" id="reactionsMedia"></ol>
+                </div>
+            </div>
+        </section>
+
         <!-- Clipping list -->
         <section class="clipping-list-wrap">
             <div class="clipping-head">
-                <h2>클리핑 목록 <span class="count" id="clippingCount">0</span></h2>
+                <h2>뉴스 클리핑 <span class="count" id="clippingCount">0</span></h2>
                 <span class="clipping-sub" id="clippingSub"></span>
             </div>
             <div class="clipping-list" id="clippingList"></div>
