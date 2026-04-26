@@ -72,8 +72,7 @@ export async function runBatch({
         axes,
         endpoint: llmConfig.endpoint,
         model: llmConfig.model,
-        onProgress: (p) =>
-          onProgress?.({ stage: "gen-step", jobIndex: i, jobId, ...p }),
+        onProgress: (p) => onProgress?.({ stage: "gen-step", jobIndex: i, jobId, ...p }),
       });
       variants = generated.map((v) => injectVariant(datasetForJob, v));
     } else {
@@ -149,7 +148,11 @@ export function downloadBatchZip(blob, filename) {
 
 function mergeDataset(base, job) {
   return {
-    campaign: { ...(base?.campaign ?? {}), ...(job.campaign ?? {}), id: job.id ?? base?.campaign?.id },
+    campaign: {
+      ...(base?.campaign ?? {}),
+      ...(job.campaign ?? {}),
+      id: job.id ?? base?.campaign?.id,
+    },
     defaults: { ...(base?.defaults ?? {}), ...(job.defaults ?? {}) },
     variants: job.variants ?? [],
   };

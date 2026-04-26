@@ -15,26 +15,22 @@ import React from "react";
 
 const TINT_BY_AUDIENCE = {
   runner: {
-    gradient:
-      "linear-gradient(135deg,#FF6B35 0%,#FF8E1C 22%,#0099E5 58%,#003B73 100%)",
+    gradient: "linear-gradient(135deg,#FF6B35 0%,#FF8E1C 22%,#0099E5 58%,#003B73 100%)",
     accent: "#FF8E1C",
     label: "RUN",
   },
   commuter: {
-    gradient:
-      "linear-gradient(135deg,#0099E5 0%,#0077B6 50%,#003B73 100%)",
+    gradient: "linear-gradient(135deg,#0099E5 0%,#0077B6 50%,#003B73 100%)",
     accent: "#0099E5",
     label: "COMMUTE",
   },
   cyclist: {
-    gradient:
-      "linear-gradient(135deg,#00E599 0%,#00B8D4 45%,#0077B6 100%)",
+    gradient: "linear-gradient(135deg,#00E599 0%,#00B8D4 45%,#0077B6 100%)",
     accent: "#00E599",
     label: "RIDE",
   },
   office: {
-    gradient:
-      "linear-gradient(135deg,#5B6470 0%,#3A4150 45%,#003B73 100%)",
+    gradient: "linear-gradient(135deg,#5B6470 0%,#3A4150 45%,#003B73 100%)",
     accent: "#0099E5",
     label: "WORK",
   },
@@ -63,10 +59,7 @@ export default function GfaCreative1200({ copy = {}, image = {}, axis = {} }) {
           crossOrigin="anonymous"
         />
       ) : (
-        <div
-          className="absolute inset-0"
-          style={{ background: tint.gradient }}
-        />
+        <div className="absolute inset-0" style={{ background: tint.gradient }} />
       )}
 
       {/* 1-b) 노이즈/비넷 (텍스처 살짝) */}
@@ -89,10 +82,7 @@ export default function GfaCreative1200({ copy = {}, image = {}, axis = {} }) {
       />
 
       {/* 3) 상단 좌: 브랜드 락업 */}
-      <div
-        className="absolute flex items-center"
-        style={{ left: 60, top: 60, gap: 18 }}
-      >
+      <div className="absolute flex items-center" style={{ left: 60, top: 60, gap: 18 }}>
         <ShokzMark size={64} />
         <div className="flex flex-col" style={{ lineHeight: 1.05 }}>
           <span
@@ -119,10 +109,7 @@ export default function GfaCreative1200({ copy = {}, image = {}, axis = {} }) {
       </div>
 
       {/* 4) 상단 우: 제품 태그칩 + 축 라벨 */}
-      <div
-        className="absolute flex items-center"
-        style={{ right: 60, top: 60, gap: 12 }}
-      >
+      <div className="absolute flex items-center" style={{ right: 60, top: 60, gap: 12 }}>
         <span
           style={{
             background: "rgba(255,255,255,0.16)",
@@ -208,10 +195,7 @@ export default function GfaCreative1200({ copy = {}, image = {}, axis = {} }) {
       </div>
 
       {/* 6) CTA 칩 (우하단) */}
-      <div
-        className="absolute"
-        style={{ right: 80, bottom: 80 }}
-      >
+      <div className="absolute" style={{ right: 80, bottom: 80 }}>
         <span
           style={{
             display: "inline-flex",

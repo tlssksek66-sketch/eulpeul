@@ -91,9 +91,12 @@ export default function BatchRunner({ onRun, busy, log }) {
       </div>
 
       <p className="mt-3 text-[11px] text-shokz-sub">
-        각 job은 <code className="rounded bg-neutral-100 px-1 text-[10px]">brief</code>(LLM 생성) 또는{" "}
-        <code className="rounded bg-neutral-100 px-1 text-[10px]">variants</code>(명시 카피) 중 하나를 가질 수 있습니다.
-        결과는 <code className="rounded bg-neutral-100 px-1 text-[10px]">job.id/</code> 폴더 단위로 묶인 ZIP으로 다운로드됩니다.
+        각 job은 <code className="rounded bg-neutral-100 px-1 text-[10px]">brief</code>
+        (LLM 생성) 또는{" "}
+        <code className="rounded bg-neutral-100 px-1 text-[10px]">variants</code>(명시
+        카피) 중 하나를 가질 수 있습니다. 결과는{" "}
+        <code className="rounded bg-neutral-100 px-1 text-[10px]">job.id/</code> 폴더
+        단위로 묶인 ZIP으로 다운로드됩니다.
       </p>
 
       <textarea

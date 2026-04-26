@@ -35,8 +35,7 @@ export default function CopyGenerator({
     } catch (e) {
       console.error("[gfa-engine] copy gen 실패:", e);
       setError(
-        e.message +
-          " — Ollama 실행/OLLAMA_ORIGINS에 현재 출처가 허용됐는지 확인하세요."
+        e.message + " — Ollama 실행/OLLAMA_ORIGINS에 현재 출처가 허용됐는지 확인하세요."
       );
     } finally {
       setBusy(false);
@@ -58,8 +57,16 @@ export default function CopyGenerator({
       </div>
 
       <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
-        <Field label="브랜드" value={brief.brand} onChange={(v) => updateBrief("brand", v)} />
-        <Field label="제품" value={brief.product} onChange={(v) => updateBrief("product", v)} />
+        <Field
+          label="브랜드"
+          value={brief.brand}
+          onChange={(v) => updateBrief("brand", v)}
+        />
+        <Field
+          label="제품"
+          value={brief.product}
+          onChange={(v) => updateBrief("product", v)}
+        />
         <Field
           label="프로모션/상황"
           value={brief.promo}
@@ -80,7 +87,8 @@ export default function CopyGenerator({
 
       <div className="mt-4 flex items-center justify-between">
         <p className="text-[11px] text-shokz-sub">
-          축 {DEFAULT_AXES.length}개(runner·commuter·cyclist·office) 순차 생성. 변경은 카드 단위 후보 픽으로.
+          축 {DEFAULT_AXES.length}개(runner·commuter·cyclist·office) 순차 생성. 변경은
+          카드 단위 후보 픽으로.
         </p>
         <button
           type="button"
@@ -111,7 +119,9 @@ export default function CopyGenerator({
 function Field({ label, value, onChange, className = "" }) {
   return (
     <label className={`flex flex-col gap-1 ${className}`}>
-      <span className="text-[11px] font-semibold tracking-kr text-shokz-sub">{label}</span>
+      <span className="text-[11px] font-semibold tracking-kr text-shokz-sub">
+        {label}
+      </span>
       <input
         type="text"
         value={value}

@@ -45,7 +45,7 @@ export async function generateCopy({
   let parsed;
   try {
     parsed = JSON.parse(data.response);
-  } catch (e) {
+  } catch {
     throw new Error(`LLM JSON 파싱 실패: ${data.response?.slice(0, 80)}...`);
   }
 
@@ -84,12 +84,7 @@ export async function generateCopyCandidates({
   return out;
 }
 
-export async function generateVariants({
-  brief,
-  axes,
-  onProgress,
-  ...rest
-} = {}) {
+export async function generateVariants({ brief, axes, onProgress, ...rest } = {}) {
   const out = [];
   for (let i = 0; i < axes.length; i += 1) {
     const axis = axes[i];
@@ -121,9 +116,7 @@ const DIVERSITY_HINTS = [
 
 function buildPrompt({ brief, axis, diversitySeed = 0 }) {
   const hint =
-    diversitySeed > 0
-      ? DIVERSITY_HINTS[diversitySeed % DIVERSITY_HINTS.length]
-      : null;
+    diversitySeed > 0 ? DIVERSITY_HINTS[diversitySeed % DIVERSITY_HINTS.length] : null;
   return [
     "[역할] 너는 NAVER GFA(GLAD for Advertiser) 모바일 피드 1200x1200 광고의 한국어 카피라이터다.",
     `[브랜드] ${brief.brand}`,

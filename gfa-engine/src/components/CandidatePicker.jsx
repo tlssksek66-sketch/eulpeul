@@ -66,9 +66,7 @@ export default function CandidatePicker({
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1">
-                    <p className="text-[10px] font-mono text-shokz-sub">
-                      #{idx + 1}
-                    </p>
+                    <p className="text-[10px] font-mono text-shokz-sub">#{idx + 1}</p>
                     <p className="mt-0.5 text-[13px] font-bold leading-snug tracking-kr-tight text-shokz-ink">
                       {c.copy.headline}
                     </p>

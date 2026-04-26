@@ -9,10 +9,7 @@ import dataset from "./engine/creatives.json";
 import { injectAll, injectVariant } from "./engine/inject.js";
 import { generateCopyCandidates } from "./engine/copyAdapter.js";
 import { exportNodePng, exportAllPng, buildFilename } from "./engine/exportPng.js";
-import {
-  downloadCreativesJson,
-  readCreativesJson,
-} from "./engine/exportDataset.js";
+import { downloadCreativesJson, readCreativesJson } from "./engine/exportDataset.js";
 import { runBatch, downloadBatchZip } from "./engine/batchRunner.js";
 
 const SEED = injectAll(dataset);
@@ -66,8 +63,7 @@ export default function App() {
   const handleRunBatch = async (jobs) => {
     setBatchBusy(true);
     setBatchLog([`▶ ${jobs.length}개 job 시작`]);
-    const append = (line) =>
-      setBatchLog((prev) => [...prev, line].slice(-200));
+    const append = (line) => setBatchLog((prev) => [...prev, line].slice(-200));
     try {
       const { blob, summary } = await runBatch({
         jobs,
@@ -86,8 +82,7 @@ export default function App() {
               append(`  · LLM 카피 생성 중...`);
               break;
             case "gen-step":
-              if (e.status === "ok")
-                append(`    ✓ ${e.axis?.audience}/${e.axis?.tone}`);
+              if (e.status === "ok") append(`    ✓ ${e.axis?.audience}/${e.axis?.tone}`);
               break;
             case "rendering":
               append(`  · 오프스크린 렌더`);
@@ -144,9 +139,7 @@ export default function App() {
     const url = URL.createObjectURL(file);
     setVariants((prev) =>
       prev.map((v) =>
-        v.id === variantId
-          ? { ...v, image: { ...v.image, src: url, alt: file.name } }
-          : v
+        v.id === variantId ? { ...v, image: { ...v.image, src: url, alt: file.name } } : v
       )
     );
   };
@@ -205,16 +198,14 @@ export default function App() {
         n: CANDIDATE_COUNT,
         endpoint: llmConfig.endpoint,
         model: llmConfig.model,
-        onProgress: (p) =>
-          setVariantCandState(variantId, { progress: p, busy: true }),
+        onProgress: (p) => setVariantCandState(variantId, { progress: p, busy: true }),
       });
       setVariantCandState(variantId, { items, busy: false, progress: null });
     } catch (e) {
       console.error("[gfa-engine] candidate gen 실패:", e);
       setVariantCandState(variantId, {
         busy: false,
-        error:
-          e.message + " — Ollama 실행 / OLLAMA_ORIGINS 설정을 확인하세요.",
+        error: e.message + " — Ollama 실행 / OLLAMA_ORIGINS 설정을 확인하세요.",
       });
     }
   };
@@ -319,8 +310,11 @@ export default function App() {
             Shokz GFA Engine · V1
           </h1>
           <p className="mt-1 text-sm text-shokz-sub">
-            캠페인 <code className="rounded bg-white px-1.5 py-0.5 text-[12px]">{headerMeta.campaignId}</code> ·
-            variants {variants.length}건
+            캠페인{" "}
+            <code className="rounded bg-white px-1.5 py-0.5 text-[12px]">
+              {headerMeta.campaignId}
+            </code>{" "}
+            · variants {variants.length}건
           </p>
         </div>
 
@@ -389,11 +383,7 @@ export default function App() {
       </div>
 
       <div className="mx-auto mb-8 max-w-6xl">
-        <BatchRunner
-          onRun={handleRunBatch}
-          busy={batchBusy}
-          log={batchLog}
-        />
+        <BatchRunner onRun={handleRunBatch} busy={batchBusy} log={batchLog} />
       </div>
 
       <main className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
