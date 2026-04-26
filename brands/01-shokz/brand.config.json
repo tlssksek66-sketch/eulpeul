@@ -3,9 +3,28 @@
   "slug": "shokz",
   "name": "샥즈",
   "nameEn": "Shokz",
+  "category": "골전도·오픈-이어 이어폰",
+  "tagline": "Open Ear, Open Possibility — 귀를 열어두는 오디오",
   "color": "#0066FF",
+  "colorAccent": "#0A1A3A",
   "owner": "",
   "status": "active",
-  "tags": ["audio", "wearable"],
+  "tags": ["오디오", "이어폰", "골전도", "오픈-이어", "스포츠", "업무"],
+  "origin": {
+    "type": "글로벌 브랜드",
+    "patents": "600+ 골전도 기술 특허"
+  },
+  "channels": {
+    "official": ["shokz.co.kr"],
+    "retail": ["SSG", "11번가", "다나와", "코스트코"]
+  },
+  "lineup": [
+    { "name": "OpenRun Pro 2", "category": "스포츠", "desc": "프리미엄 스포츠 골전도 헤드폰" },
+    { "name": "OpenRun", "category": "스포츠", "desc": "IP67 방수 베스트셀러" },
+    { "name": "OpenMove", "category": "엔트리", "desc": "입문용 6시간 배터리" },
+    { "name": "OpenSwim Pro", "category": "수영", "desc": "수영 전용 골전도" },
+    { "name": "OpenComm 2", "category": "업무", "desc": "7세대 골전도 + 통화 특화" },
+    { "name": "OpenDots One", "category": "라이프스타일", "desc": "클립온 오픈-이어 이어버드" }
+  ],
   "createdAt": "2026-04-26"
 }
