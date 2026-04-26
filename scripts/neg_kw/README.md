@@ -134,11 +134,18 @@ Naver SA Worker가 반환하는 응답 wrapper가 다양해서(평면, `data`, `
 - `pickField(body, ...names)` — 평면 매칭 우선, 미매칭 시 wrapper 키 재귀 (depth ≤ 4). wrapper-키-이름이 names에 있고 값이 객체면 평면 매칭을 건너뛰고 재귀 진행
 - `pickList(body, ...listKeys)` — 첫 배열 발견 시 반환. 미발견 시 빈 배열
 
-회귀 테스트(`test/worker_client.test.mjs`)는 34개 케이스로 wrapper/배열/null/순환 참조까지 검증. 운영자 raw 응답 도착 시 새 케이스를 픽스처로 추가하고 매핑 보정.
+회귀 테스트는 두 파일로 분리:
+
+- `test/worker_client.test.mjs` — 34개 케이스. `pickField`/`pickList`/`isSuccessBody` 순수 단위 (wrapper, 배열, null, 순환 참조, 평면 vs 객체 분기, 우선순위)
+- `test/worker_integration.test.mjs` — 26개 케이스. `callWorker`/`postTarget`/`deleteTarget`/`getCampaigns`/`getAdGroups`/`getTargets`를 `globalThis.fetch` mock으로 검증 (200/4xx/5xx/403 allowlist fatal/429/네트워크 에러 재시도, 응답 echo 검증, wrapper 추출, body·헤더 직렬화, retry:false, URL trailing slash)
+
+운영자 raw 응답 도착 시 새 케이스를 픽스처로 추가하고 매핑 보정.
 
 ```bash
-npm test     # 또는: node --test test/
+npm test     # node --test test/*.mjs
 ```
+
+`callWorker`는 테스트에서 짧은 재시도 지연을 강제할 수 있도록 `retryDelays` 옵션을 받습니다 (기본값: `[2000, 4000, 8000, 16000]`). 운영 코드는 옵션 미지정으로 기본값 사용.
 
 ## 다음 세션 인계
 

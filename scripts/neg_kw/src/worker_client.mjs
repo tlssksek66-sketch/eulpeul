@@ -20,7 +20,7 @@ export function isSuccessBody(body) {
   return true;
 }
 
-export async function callWorker(method, pathAndQuery, { body, retry = true } = {}) {
+export async function callWorker(method, pathAndQuery, { body, retry = true, retryDelays = RETRY_DELAYS_MS } = {}) {
   const base = requireEnv('WORKER_URL').replace(/\/$/, '');
   const token = requireEnv('WORKER_TOKEN');
   const url = `${base}${pathAndQuery.startsWith('/') ? '' : '/'}${pathAndQuery}`;
@@ -37,7 +37,7 @@ export async function callWorker(method, pathAndQuery, { body, retry = true } = 
     init.body = JSON.stringify(body);
   }
 
-  const attempts = retry ? RETRY_DELAYS_MS.length + 1 : 1;
+  const attempts = retry ? retryDelays.length + 1 : 1;
   let lastErr;
   for (let attempt = 0; attempt < attempts; attempt++) {
     try {
@@ -68,9 +68,9 @@ export async function callWorker(method, pathAndQuery, { body, retry = true } = 
     } catch (err) {
       lastErr = err;
       if (err.fatal) throw err;
-      const delay = RETRY_DELAYS_MS[attempt];
+      const delay = retryDelays[attempt];
       if (delay !== undefined && attempt < attempts - 1) {
-        console.warn(`[RETRY ${attempt + 1}/${RETRY_DELAYS_MS.length}] ${method} ${pathAndQuery} → ${err.message} (wait ${delay}ms)`);
+        console.warn(`[RETRY ${attempt + 1}/${retryDelays.length}] ${method} ${pathAndQuery} → ${err.message} (wait ${delay}ms)`);
         await sleep(delay);
         continue;
       }
