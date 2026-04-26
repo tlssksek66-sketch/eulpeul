@@ -2,6 +2,7 @@ import path from 'node:path';
 import { readFileSync } from 'node:fs';
 import { loadEnv, ts, outputDir, writeJson, readJson, isoNow, latestFile, parseArgs } from './util.mjs';
 import { printHandoff, printPauseBanner } from './inventory_helper.mjs';
+import { flattenProtectPatterns, analyzeGroup } from './diff_analyzer.mjs';
 
 loadEnv();
 const { flags } = parseArgs();
@@ -19,11 +20,7 @@ console.log(`[STEP3] dump 파일: ${dumpPath}`);
 const dump = readJson(dumpPath);
 
 const newKwSet = new Set(newKws.keywords.map((k) => k.keyword));
-const flatPatterns = protect.categories.flatMap((c) => c.patterns.map((p) => ({ pattern: p, category: c.name })));
-
-function matchProtect(kw) {
-  return flatPatterns.filter(({ pattern }) => kw.includes(pattern));
-}
+const flatPatterns = flattenProtectPatterns(protect);
 
 const groupAnalyses = [];
 const protectMatchedAll = [];
@@ -31,43 +28,20 @@ const duplicates = [];
 let totalExisting = 0;
 
 for (const g of dump.groups) {
-  const kept = [];
-  const removable = [];
-  const dupes = [];
-  const conflicts = [];
-
-  for (const kw of g.current_neg_kws) {
-    totalExisting++;
-    const hits = matchProtect(kw.keyword);
-    if (hits.length) {
-      kept.push({ ...kw, protect_categories: hits.map((h) => h.category), patterns_matched: hits.map((h) => h.pattern) });
-      conflicts.push({ ...kw, patterns_matched: hits.map((h) => h.pattern), categories: hits.map((h) => h.category) });
-      protectMatchedAll.push({
-        idx: g.idx, campaign: g.campaign, group: g.group,
-        nccTargetId: kw.nccTargetId, keyword: kw.keyword,
-        patterns_matched: hits.map((h) => h.pattern),
-        categories: hits.map((h) => h.category),
-      });
-    } else if (newKwSet.has(kw.keyword)) {
-      dupes.push(kw);
-      duplicates.push({ idx: g.idx, campaign: g.campaign, group: g.group, ...kw });
-    } else {
-      removable.push(kw);
-    }
+  totalExisting += (g.current_neg_kws || []).length;
+  const analysis = analyzeGroup(g, flatPatterns, newKwSet);
+  for (const c of analysis.conflict_kws) {
+    protectMatchedAll.push({
+      idx: g.idx, campaign: g.campaign, group: g.group,
+      nccTargetId: c.nccTargetId, keyword: c.keyword,
+      patterns_matched: c.patterns_matched,
+      categories: c.categories,
+    });
   }
-
-  groupAnalyses.push({
-    idx: g.idx,
-    campaign: g.campaign,
-    group: g.group,
-    nccAdgroupId: g.nccAdgroupId,
-    high_cost: g.high_cost,
-    existing_count: g.current_neg_kws.length,
-    to_keep: kept,
-    duplicate_with_new: dupes,
-    to_remove_safe: removable,
-    conflict_kws: conflicts,
-  });
+  for (const d of analysis.duplicate_with_new) {
+    duplicates.push({ idx: g.idx, campaign: g.campaign, group: g.group, ...d });
+  }
+  groupAnalyses.push(analysis);
 }
 
 const report = {
