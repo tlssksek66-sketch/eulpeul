@@ -2,7 +2,13 @@ import { requireEnv, sleep } from './util.mjs';
 
 const RETRY_DELAYS_MS = [2000, 4000, 8000, 16000];
 
-function isSuccessBody(body) {
+export const WRAPPER_KEYS = [
+  'data', 'target', 'targets', 'result', 'results',
+  'body', 'payload', 'response', 'item', 'items',
+];
+const PICK_MAX_DEPTH = 4;
+
+export function isSuccessBody(body) {
   if (body == null || typeof body !== 'object') return true;
   if (Array.isArray(body)) return true;
   if (typeof body.status === 'string') {
@@ -74,32 +80,70 @@ export async function callWorker(method, pathAndQuery, { body, retry = true } = 
   throw lastErr;
 }
 
+export function pickList(body, ...listKeys) {
+  return pickListDeep(body, listKeys, 0) ?? [];
+}
+
+function pickListDeep(node, listKeys, depth) {
+  if (node == null || depth > PICK_MAX_DEPTH) return undefined;
+  if (Array.isArray(node)) return node;
+  if (typeof node !== 'object') return undefined;
+  for (const k of listKeys) {
+    if (Array.isArray(node[k])) return node[k];
+  }
+  for (const wk of WRAPPER_KEYS) {
+    if (Object.prototype.hasOwnProperty.call(node, wk) && node[wk] !== undefined && node[wk] !== null) {
+      const v = pickListDeep(node[wk], listKeys, depth + 1);
+      if (v !== undefined) return v;
+    }
+  }
+  return undefined;
+}
+
 export async function getCampaigns() {
   const r = await callWorker('GET', '/campaigns');
   if (!r.ok) throw new Error(`/campaigns failed: ${JSON.stringify(r).slice(0, 300)}`);
-  const list = Array.isArray(r.body) ? r.body : (r.body?.data || r.body?.campaigns || []);
-  return list;
+  return pickList(r.body, 'campaigns');
 }
 
 export async function getAdGroups(nccCampaignId) {
   const r = await callWorker('GET', `/adgroups?nccCampaignId=${encodeURIComponent(nccCampaignId)}`);
   if (!r.ok) throw new Error(`/adgroups ${nccCampaignId} failed`);
-  return Array.isArray(r.body) ? r.body : (r.body?.data || r.body?.adgroups || []);
+  return pickList(r.body, 'adgroups', 'adGroups');
 }
 
 export async function getTargets(ownerId) {
   const r = await callWorker('GET', `/targets?ownerId=${encodeURIComponent(ownerId)}`);
   if (!r.ok) throw new Error(`/targets ${ownerId} failed`);
-  return Array.isArray(r.body) ? r.body : (r.body?.data || r.body?.targets || []);
+  return pickList(r.body, 'targets');
 }
 
-function pickField(body, ...names) {
-  if (body == null || typeof body !== 'object') return undefined;
+export function pickField(body, ...names) {
+  return pickFieldDeep(body, names, 0);
+}
+
+function pickFieldDeep(node, names, depth) {
+  if (node == null || depth > PICK_MAX_DEPTH) return undefined;
+  if (Array.isArray(node)) {
+    for (const el of node) {
+      const v = pickFieldDeep(el, names, depth + 1);
+      if (v !== undefined) return v;
+    }
+    return undefined;
+  }
+  if (typeof node !== 'object') return undefined;
   for (const n of names) {
-    if (body[n] !== undefined) return body[n];
-    if (body.data && body.data[n] !== undefined) return body.data[n];
-    if (body.target && body.target[n] !== undefined) return body.target[n];
-    if (body.result && body.result[n] !== undefined) return body.result[n];
+    if (!Object.prototype.hasOwnProperty.call(node, n)) continue;
+    const v = node[n];
+    if (v === undefined || v === null) continue;
+    if (WRAPPER_KEYS.includes(n) && typeof v === 'object' && !Array.isArray(v)) continue;
+    return v;
+  }
+  for (const wk of WRAPPER_KEYS) {
+    if (Object.prototype.hasOwnProperty.call(node, wk) && node[wk] !== undefined && node[wk] !== null) {
+      const v = pickFieldDeep(node[wk], names, depth + 1);
+      if (v !== undefined) return v;
+    }
   }
   return undefined;
 }

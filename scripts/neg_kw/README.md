@@ -123,6 +123,19 @@ registered → failed        ← STEP 6 누락 감지
 
 `200 OK ≠ 저장 완료` — 이중 200 래퍼 문제 회피 (memory #6/#34).
 
+### 응답 스키마 추출 (pickField / pickList)
+
+Naver SA Worker가 반환하는 응답 wrapper가 다양해서(평면, `data`, `target`, `result`, `body`, `payload`, `response`, `item(s)`, 단일 원소 배열, 다중 wrapper 중첩) 두 헬퍼로 흡수:
+
+- `pickField(body, ...names)` — 평면 매칭 우선, 미매칭 시 wrapper 키 재귀 (depth ≤ 4). wrapper-키-이름이 names에 있고 값이 객체면 평면 매칭을 건너뛰고 재귀 진행
+- `pickList(body, ...listKeys)` — 첫 배열 발견 시 반환. 미발견 시 빈 배열
+
+회귀 테스트(`test/worker_client.test.mjs`)는 34개 케이스로 wrapper/배열/null/순환 참조까지 검증. 운영자 raw 응답 도착 시 새 케이스를 픽스처로 추가하고 매핑 보정.
+
+```bash
+npm test     # 또는: node --test test/
+```
+
 ## 다음 세션 인계
 
 각 STEP 종료 시 콘솔에 `📋 STEP N 종료 — 다음 세션 인계 메시지` 블록 출력. 본 블록을 raw 그대로 다음 Claude 세션에 붙여넣으면 컨텍스트 인계 가능. STEP 3·5·6·7는 특히 다음 행동 지시 명확히 포함.
