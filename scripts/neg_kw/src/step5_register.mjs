@@ -3,42 +3,35 @@ import { existsSync } from 'node:fs';
 import { loadEnv, ts, outputDir, writeJson, readJson, isoNow, parseArgs, pLimit } from './util.mjs';
 import { postTarget, deleteTarget } from './worker_client.mjs';
 import { loadOrInitMaster, saveMaster, setGroupStatus, appendChangeLog, printHandoff } from './inventory_helper.mjs';
+import { validateRegisterGates } from './gates.mjs';
 
 loadEnv();
 const { flags } = parseArgs();
 
-if (!flags.approve) {
-  console.error('[STEP5] GATE 1 실패 — --approve 필수');
-  process.exit(2);
-}
-
 const planFile = flags['plan-file'];
-if (!planFile) {
-  console.error('[STEP5] GATE 2 실패 — --plan-file=output/03_register_plan_*.json 필수');
-  process.exit(2);
-}
-const planPath = path.isAbsolute(planFile) ? planFile : path.join(outputDir(), planFile);
-if (!existsSync(planPath)) {
-  console.error(`[STEP5] GATE 2 실패 — plan 파일 없음: ${planPath}`);
-  process.exit(2);
-}
-const plan = readJson(planPath);
-
-if (!plan.conflict_check || !Array.isArray(plan.conflict_check.protect_pattern_matched_kws_in_existing)) {
-  console.error('[STEP5] GATE 2 실패 — plan.conflict_check.protect_pattern_matched_kws_in_existing 필드 누락. step4 재실행 필요.');
-  process.exit(2);
+const planPath = planFile
+  ? (path.isAbsolute(planFile) ? planFile : path.join(outputDir(), planFile))
+  : null;
+const planFileExists = planPath ? existsSync(planPath) : false;
+let plan = null;
+if (planFileExists) {
+  try { plan = readJson(planPath); }
+  catch (err) {
+    console.error(`[STEP5] GATE 2 실패 — plan 파일 파싱 실패: ${err.message}`);
+    process.exit(2);
+  }
 }
 
-const expected = plan.confirm_text_required;
-const got = flags['confirm-text'];
-if (got !== expected) {
-  console.error(`[STEP5] GATE 3 실패 — --confirm-text="${expected}" 필수 (받은값: "${got || ''}")`);
-  process.exit(2);
-}
-
-if (!plan.approved_by) {
-  console.error('[STEP5] plan.approved_by 누락 — step4를 --approved-by 와 함께 재실행');
-  process.exit(2);
+const gate = validateRegisterGates({
+  flags,
+  plan,
+  planFileProvided: !!planFile,
+  planFileExists,
+});
+if (!gate.ok) {
+  const where = planPath && gate.gate === 2 && !planFileExists ? `: ${planPath}` : '';
+  console.error(`[STEP5] GATE ${gate.gate} 실패 — ${gate.error}${where}`);
+  process.exit(gate.code);
 }
 
 console.log('[STEP5] 3중 게이트 통과');
