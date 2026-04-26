@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>플랫폼·이커머스 동향 | SHOKZ KOREA</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="theme-commerce">
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <span class="brand-mark">SHOKZ</span>
+                <span class="brand-divider"></span>
+                <span class="brand-sub">PLATFORM · COMMERCE WATCH</span>
+            </div>
+            <nav class="mag-toggle">
+                <a href="index.html" class="mag-link">SHOKZ 매거진</a>
+                <a href="commerce.html" class="mag-link active">이커머스 동향</a>
+            </nav>
+            <div class="topbar-tools">
+                <div class="search-field">
+                    <input id="searchInput" type="text" placeholder="제목·요약·태그·키워드 검색…" autocomplete="off">
+                </div>
+                <button id="refreshBtn" class="icon-btn" title="새로고침">⟳</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="title-block">
+            <h1 id="pageTitle">플랫폼·이커머스 동향</h1>
+            <p class="title-sub" id="pageSub">네이버·쿠팡 등 플랫폼 비즈니스 콘텐츠를 매일 자동 수집·인덱싱</p>
+        </section>
+
+        <section class="kpi-strip" id="kpiStrip">
+            <div class="kpi-cell"><span class="kpi-num" id="kpiTotal">0</span><span class="kpi-label">총 클리핑</span></div>
+            <div class="kpi-cell"><span class="kpi-num" id="kpiMedia">0</span><span class="kpi-label">매체 수</span></div>
+            <div class="kpi-cell"><span class="kpi-num" id="kpiKeywords">0</span><span class="kpi-label">시드 키워드</span></div>
+            <div class="kpi-cell"><span class="kpi-num" id="kpiNoise">0</span><span class="kpi-label">노이즈 처리</span></div>
+            <div class="kpi-cell kpi-time"><span class="kpi-time-value" id="kpiTime">--</span><span class="kpi-label">최근 수집</span></div>
+        </section>
+
+        <nav class="tabs" id="tabs"></nav>
+        <div class="filter-strip" id="filterStrip"></div>
+
+        <section class="chart-row chart-row-wide">
+            <article class="card">
+                <div class="card-head"><h3>일별 클리핑 추이</h3><span class="card-tag">최근 14일</span></div>
+                <div class="card-body"><canvas id="dailyChart" height="200"></canvas></div>
+            </article>
+        </section>
+
+        <section class="chart-row chart-row-3">
+            <article class="card"><div class="card-head"><h3>카테고리 분포</h3></div><div class="card-body"><canvas id="categoryChart" height="220"></canvas></div></article>
+            <article class="card"><div class="card-head"><h3>감성 비율</h3></div><div class="card-body"><canvas id="sentimentChart" height="220"></canvas></div></article>
+            <article class="card"><div class="card-head"><h3>매체 Top 10</h3></div><div class="card-body"><canvas id="mediaChart" height="220"></canvas></div></article>
+        </section>
+
+        <!-- 키워드별 인덱스 -->
+        <section class="keyword-index">
+            <div class="ki-head">
+                <h2>시드 키워드별 인덱스</h2>
+                <p class="ki-sub">네이버 검색 API 시드 키워드별 수집 현황 — 노이즈 필터 통과 건수 / 원본 수집 수</p>
+            </div>
+            <div class="ki-grid" id="keywordIndex"></div>
+        </section>
+
+        <section class="clipping-list-wrap">
+            <div class="clipping-head">
+                <h2>클리핑 목록 <span class="count" id="clippingCount">0</span></h2>
+                <span class="clipping-sub" id="clippingSub"></span>
+            </div>
+            <div class="clipping-list" id="clippingList"></div>
+        </section>
+
+        <footer class="page-foot">
+            <span>SHOKZ KOREA · PLATFORM · COMMERCE WATCH</span>
+            <span>powered by Magazine Engine</span>
+        </footer>
+    </main>
+
+    <script src="assets/js/chart-engine.js"></script>
+    <script src="assets/js/data-store.js"></script>
+    <script src="assets/js/commerce-app.js"></script>
+</body>
+</html>

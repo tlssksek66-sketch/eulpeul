@@ -33,18 +33,24 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Run collector
+      - name: Run SHOKZ collector
         env:
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
           COLLECT_KEYWORDS: ${{ github.event.inputs.keywords }}
         run: node scripts/collect.mjs
 
+      - name: Run Commerce collector
+        env:
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+        run: node scripts/collect-commerce.mjs
+
       - name: Commit if changed
         run: |
           git config user.name "magazine-bot[bot]"
           git config user.email "magazine-bot@users.noreply.github.com"
-          git add assets/data/clippings.json
+          git add assets/data/clippings.json assets/data/commerce.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

@@ -132,6 +132,9 @@ async function main() {
         meta: {
             brand: 'SHOKZ',
             region: 'KOREA',
+            kind: 'shokz',
+            title: '샥즈 코리아 매거진',
+            subtitle: '웹 상의 모든 샥즈 관련 뉴스·기사·콘텐츠를 한 화면에서 모니터링',
             searchKeyword: KEYWORDS.join(', '),
             collectedAt: nowKstIso(),
             totalClippings: enriched.length,
@@ -140,6 +143,20 @@ async function main() {
             accuracyFilter: true
         },
         channels: channelsMeta,
+        categories: [
+            { key: 'all',       label: '전체' },
+            { key: 'product',   label: '신제품' },
+            { key: 'review',    label: '리뷰' },
+            { key: 'tech',      label: '기술' },
+            { key: 'sports',    label: '스포츠' },
+            { key: 'marketing', label: '마케팅' },
+            { key: 'press',     label: '보도/IR' },
+            { key: 'community', label: '커뮤니티' }
+        ],
+        categoryColors: {
+            product: '#4a7cff', review: '#34d399', tech: '#22d3ee',
+            sports: '#fbbf24', marketing: '#a78bfa', press: '#f87171', community: '#fb923c'
+        },
         clippings: enriched
     };
 

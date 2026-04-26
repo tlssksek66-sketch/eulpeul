@@ -48,14 +48,17 @@ const MagazineData = {
     },
 
     clippings: [],
+    indexByKeyword: null,
     loaded: false,
+    dataUrl: 'assets/data/clippings.json',
 
     /**
-     * JSON 파일 로드. 실패 시 빈 데이터로 fallback.
+     * JSON 파일 로드. categories/categoryColors 도 JSON에 있으면 덮어씀.
      */
-    async load() {
+    async load(url) {
+        const target = url || this.dataUrl;
         try {
-            const res = await fetch('assets/data/clippings.json', { cache: 'no-store' });
+            const res = await fetch(target, { cache: 'no-store' });
             if (!res.ok) throw new Error('HTTP ' + res.status);
             const data = await res.json();
             this.meta = { ...this.meta, ...(data.meta || {}) };
@@ -65,6 +68,11 @@ const MagazineData = {
                     return { ...base, ...c };
                 });
             }
+            if (Array.isArray(data.categories)) this.categories = data.categories;
+            if (data.categoryColors && typeof data.categoryColors === 'object') {
+                this.categoryColors = data.categoryColors;
+            }
+            this.indexByKeyword = Array.isArray(data.indexByKeyword) ? data.indexByKeyword : null;
             this.clippings = Array.isArray(data.clippings) ? data.clippings : [];
             this.loaded = true;
         } catch (err) {
@@ -131,7 +139,7 @@ const MagazineData = {
             .filter(cat => cat.key !== 'all' && (counts[cat.key] || 0) > 0)
             .map(cat => ({
                 key: cat.key,
-                label: cat.key === 'press' ? '보도/IR' : cat.label,
+                label: cat.label,
                 value: counts[cat.key],
                 color: this.categoryColors[cat.key] || '#6b7280'
             }));
