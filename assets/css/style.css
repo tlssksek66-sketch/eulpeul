@@ -1313,6 +1313,54 @@ textarea.form-input {
     margin-bottom: 16px;
 }
 
+.source-card__heading {
+    flex: 1;
+    min-width: 0;
+}
+
+.ingest-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    cursor: help;
+    white-space: nowrap;
+}
+
+.ingest-badge.ingest-api {
+    background: rgba(74, 124, 255, 0.12);
+    color: var(--accent-blue-light);
+    border: 1px solid rgba(74, 124, 255, 0.3);
+}
+
+.ingest-badge.ingest-upload {
+    background: rgba(251, 191, 36, 0.12);
+    color: var(--accent-yellow);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.source-card__footer {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.source-card__sync {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.source-card__sync strong {
+    color: var(--text-secondary);
+}
+
 .source-mark {
     width: 36px;
     height: 36px;
@@ -1545,6 +1593,82 @@ textarea.form-input {
     text-align: center;
     color: var(--text-muted);
     font-size: 13px;
+}
+
+/* ===== GFA CSV Upload UI ===== */
+.form-help {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    line-height: 1.55;
+}
+
+.form-help code {
+    background: var(--bg-secondary);
+    color: var(--accent-blue-light);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+.form-input--mono {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.55;
+    white-space: pre;
+}
+
+.upload-preview {
+    margin-top: 12px;
+}
+
+.upload-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 14px;
+    background: rgba(52, 211, 153, 0.06);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.upload-summary strong {
+    color: var(--accent-green);
+    letter-spacing: 0.05em;
+}
+
+.upload-error {
+    padding: 10px 12px;
+    background: rgba(248, 113, 113, 0.08);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    border-radius: var(--radius-sm);
+    color: var(--accent-red);
+    font-size: 13px;
+}
+
+.data-table--compact th,
+.data-table--compact td {
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.modal-footer__right {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
 }
 
 /* ===== Sidebar External Link ===== */

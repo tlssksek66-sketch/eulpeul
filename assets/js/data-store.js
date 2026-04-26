@@ -128,7 +128,12 @@ const DataStore = {
 
     /**
      * 데이터 로드.
-     * 광고 데이터(adPlatforms)는 mock 변경 빈도가 높아 항상 모듈 측 정의로 갱신한다.
+     *
+     * adPlatforms 머지 정책:
+     *   - SA(naver_sa) 캠페인/키워드: API 연동 가정 — 항상 defaults(=동기화된 최신 mock)로 대체
+     *   - GFA(naver_gfa) 캠페인/소재: 사용자가 CSV 업로드한 적이 있으면 storage 우선,
+     *     없으면 defaults의 GFA 데모 시드 사용
+     *   - syncState: storage 보존
      */
     load() {
         let stored = null;
@@ -139,9 +144,32 @@ const DataStore = {
             console.warn('DataStore: Failed to parse stored data, using defaults');
         }
         const base = stored || JSON.parse(JSON.stringify(this.defaultData));
-        if (this.defaultData.adPlatforms) {
-            base.adPlatforms = JSON.parse(JSON.stringify(this.defaultData.adPlatforms));
-        }
+        const defAd = this.defaultData.adPlatforms;
+        if (!defAd) return base;
+
+        if (!base.adPlatforms) base.adPlatforms = {};
+        const ap = base.adPlatforms;
+        const storedSync = (stored && stored.adPlatforms && stored.adPlatforms.syncState) || {};
+        const storedCamps = (stored && stored.adPlatforms && stored.adPlatforms.campaigns) || [];
+        const storedCrs = (stored && stored.adPlatforms && stored.adPlatforms.creatives) || [];
+
+        const gfaUploaded = storedSync.naver_gfa && storedSync.naver_gfa.mode === 'manual_upload';
+        const saDef = defAd.campaigns.filter((c) => c.source === 'naver_sa');
+        const gfaDef = defAd.campaigns.filter((c) => c.source === 'naver_gfa');
+        const saDefCr = (defAd.creatives || []).filter((cr) => !(cr.campaignId || '').startsWith('gfa-'));
+        const gfaDefCr = (defAd.creatives || []).filter((cr) => (cr.campaignId || '').startsWith('gfa-'));
+
+        const gfaCamps = gfaUploaded ? storedCamps.filter((c) => c.source === 'naver_gfa') : gfaDef;
+        const gfaCrs = gfaUploaded
+            ? storedCrs.filter((cr) => (cr.campaignId || '').startsWith('gfa-'))
+            : gfaDefCr;
+
+        ap.accounts = JSON.parse(JSON.stringify(defAd.accounts));
+        ap.campaigns = saDef.concat(gfaCamps);
+        ap.keywords = JSON.parse(JSON.stringify(defAd.keywords));
+        ap.creatives = saDefCr.concat(gfaCrs);
+        ap.alerts = JSON.parse(JSON.stringify(defAd.alerts));
+        ap.syncState = storedSync;
         return base;
     },
 

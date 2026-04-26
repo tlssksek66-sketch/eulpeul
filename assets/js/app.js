@@ -564,14 +564,25 @@ const App = {
         const all = AdPlatforms.getKpisBySource(this.data);
         const list = filter === 'all' ? all : all.filter((s) => s.source.id === filter);
 
-        grid.innerHTML = list.map((s) => `
+        grid.innerHTML = list.map((s) => {
+            const ing = s.source.ingestion;
+            const ingBadgeClass = ing === 'api' ? 'ingest-api' : 'ingest-upload';
+            const sync = AdPlatforms.getSyncState(this.data, s.source.id);
+            const syncStr = sync ? this.relTime(sync.at) : '미동기화';
+            const syncNote = sync && sync.note ? ' · ' + sync.note : '';
+            const cta = ing === 'api'
+                ? `<button class="btn btn-sm btn-outline" onclick="App.syncSA()">↻ SA 동기화</button>`
+                : `<button class="btn btn-sm btn-primary" onclick="App.openGFAUploadModal()">↥ GFA CSV 업로드</button>`;
+
+            return `
             <div class="source-card source-card--${s.source.id}">
                 <div class="source-card__header">
                     <span class="source-mark" style="background:${s.source.color}">${s.source.mark}</span>
-                    <div>
+                    <div class="source-card__heading">
                         <div class="source-card__name">${s.source.label}</div>
                         <div class="source-card__sub">${(s.source.products || s.source.objectives || []).join(' · ')}</div>
                     </div>
+                    <span class="ingest-badge ${ingBadgeClass}" title="${s.source.ingestionNote || ''}">${s.source.ingestionLabel}</span>
                 </div>
                 <div class="source-card__metrics">
                     <div>
@@ -591,8 +602,142 @@ const App = {
                         <span class="source-metric-value source-metric-value--accent">${s.kpi.roas.toFixed(0)}%</span>
                     </div>
                 </div>
+                <div class="source-card__footer">
+                    <div class="source-card__sync">최근 동기화: <strong>${syncStr}</strong>${syncNote}</div>
+                    ${cta}
+                </div>
             </div>
-        `).join('');
+            `;
+        }).join('');
+    },
+
+    /** ISO 시각을 상대 시간 표기로 (간단 버전). */
+    relTime(iso) {
+        if (!iso) return '미동기화';
+        const t = new Date(iso).getTime();
+        if (isNaN(t)) return iso;
+        const diff = Math.max(0, (Date.now() - t) / 1000);
+        if (diff < 60) return Math.floor(diff) + '초 전';
+        if (diff < 3600) return Math.floor(diff / 60) + '분 전';
+        if (diff < 86400) return Math.floor(diff / 3600) + '시간 전';
+        return Math.floor(diff / 86400) + '일 전';
+    },
+
+    /** SA OpenAPI 동기화 (현재는 production hook 없음) */
+    syncSA() {
+        // 실제 운영: AdPlatforms.adapter.fetchSACampaigns 호출 → data.adPlatforms.campaigns의 SA 부분 갱신
+        AdPlatforms.setSyncState(this.data, 'naver_sa', { mode: 'api', note: '데모 — production OpenAPI 미연결' });
+        DataStore.save(this.data);
+        this.renderAdOps();
+    },
+
+    // =====================================================
+    // GFA CSV 업로드
+    // =====================================================
+    openGFAUploadModal() {
+        const overlay = document.getElementById('modalOverlay');
+        const modal = document.getElementById('modalContent');
+        modal.innerHTML = `
+            <div class="modal-header">
+                <h3>GFA 보고서 업로드</h3>
+                <button class="modal-close" onclick="App.closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="form-help">네이버 GFA에서 다운로드한 보고서(CSV)를 업로드하거나 텍스트로 붙여넣기 하세요. API 미발급 환경의 정식 인입 채널입니다.</p>
+                <p class="form-help">필수 컬럼: <code>캠페인명</code>, 권장: <code>캠페인목적, 소재명, 소재유형, 노출수, 클릭수, 비용, 전환수, 전환매출</code></p>
+                <div class="form-group">
+                    <label>CSV 파일</label>
+                    <input type="file" class="form-input" id="gfaFile" accept=".csv,text/csv">
+                </div>
+                <div class="form-group">
+                    <label>또는 CSV 텍스트 붙여넣기</label>
+                    <textarea class="form-input form-input--mono" id="gfaCsvText" rows="6" placeholder="캠페인명,캠페인목적,소재명,소재유형,노출수,클릭수,비용,전환수,전환매출\n트래픽_봄,트래픽,러닝이미지,IMAGE,2400000,16400,8200000,220,28000000"></textarea>
+                </div>
+                <div class="upload-preview" id="gfaPreview"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="App.resetGFA()">데모 시드로 되돌리기</button>
+                <div class="modal-footer__right">
+                    <button class="btn btn-outline" onclick="App.closeModal()">취소</button>
+                    <button class="btn btn-primary" onclick="App.confirmGFAImport()" id="gfaConfirmBtn" disabled>업로드 적용</button>
+                </div>
+            </div>
+        `;
+        overlay.classList.add('active');
+
+        const file = document.getElementById('gfaFile');
+        const ta = document.getElementById('gfaCsvText');
+        file.addEventListener('change', (e) => {
+            const f = e.target.files && e.target.files[0];
+            if (!f) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                ta.value = String(reader.result || '');
+                this.previewGFA();
+            };
+            reader.readAsText(f, 'utf-8');
+        });
+        ta.addEventListener('input', () => this.previewGFA());
+    },
+
+    previewGFA() {
+        const ta = document.getElementById('gfaCsvText');
+        const out = document.getElementById('gfaPreview');
+        const btn = document.getElementById('gfaConfirmBtn');
+        if (!ta || !out || !btn) return;
+
+        const parsed = AdPlatforms.parseGFACSV(ta.value);
+        this._gfaParsed = parsed;
+
+        if (parsed.errors && parsed.errors.length > 0) {
+            out.innerHTML = '<p class="upload-error">' + parsed.errors.join(' · ') + '</p>';
+            btn.disabled = true;
+            return;
+        }
+
+        const totals = AdPlatforms.sumKpis(parsed.campaigns.map((c) => c.kpis));
+        const d = AdPlatforms.derive(totals);
+        out.innerHTML = `
+            <div class="upload-summary">
+                <strong>미리보기</strong>
+                <span>캠페인 ${parsed.campaigns.length}건 · 소재 ${parsed.creatives.length}건</span>
+                <span>비용 ${this.fmtKRW(totals.cost)} · 매출 ${this.fmtKRW(totals.revenue)} · ROAS ${d.roas.toFixed(0)}%</span>
+            </div>
+            <table class="data-table data-table--compact">
+                <thead><tr><th>캠페인</th><th>목적</th><th>비용</th><th>전환</th><th>매출</th></tr></thead>
+                <tbody>
+                    ${parsed.campaigns.slice(0, 10).map((c) => `
+                        <tr>
+                            <td>${c.name}</td>
+                            <td>${c.objective || '-'}</td>
+                            <td>${this.fmtKRW(c.kpis.cost)}</td>
+                            <td>${c.kpis.conversions.toLocaleString()}</td>
+                            <td>${this.fmtKRW(c.kpis.revenue)}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+        btn.disabled = parsed.campaigns.length === 0;
+    },
+
+    confirmGFAImport() {
+        if (!this._gfaParsed || this._gfaParsed.campaigns.length === 0) return;
+        AdPlatforms.importGFA(this.data, this._gfaParsed);
+        DataStore.save(this.data);
+        this.searchIndex = this.buildSearchIndex();
+        this._gfaParsed = null;
+        this.closeModal();
+        this.renderAdOps();
+    },
+
+    resetGFA() {
+        if (!confirm('GFA 데이터를 데모 시드로 되돌립니다. 업로드된 자료는 사라집니다. 진행하시겠습니까?')) return;
+        AdPlatforms.resetGFAToDemo(this.data, DataStore.defaultData);
+        DataStore.save(this.data);
+        this.searchIndex = this.buildSearchIndex();
+        this.closeModal();
+        this.renderAdOps();
     },
 
     renderAdOpsCampaignTable(camps) {

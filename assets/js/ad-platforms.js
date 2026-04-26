@@ -21,7 +21,13 @@
  *  - 파생 지표 ctr/cpc/cvr/roas/cpa는 derive() 호출 시 계산
  */
 const AdPlatforms = {
-    /** 광고 소스 정의 (둘 다 네이버) */
+    /**
+     * 광고 소스 정의 (둘 다 네이버).
+     * ingestion: 데이터 인입 방식.
+     *   'api'           : OpenAPI 직접 동기화 (서버리스 프록시 + OAuth 필요)
+     *   'manual_upload' : CSV/TSV 보고서 업로드로 인입
+     *   'manual_input'  : 운영자가 폼으로 직접 입력
+     */
     sources: {
         naver_sa: {
             id: 'naver_sa',
@@ -30,7 +36,10 @@ const AdPlatforms = {
             type: 'search',
             color: '#03C75A',
             mark: 'SA',
-            products: ['파워링크', '쇼핑검색']
+            products: ['파워링크', '쇼핑검색'],
+            ingestion: 'api',
+            ingestionLabel: 'OpenAPI 연동',
+            ingestionNote: '광고주 라이선스 + Customer ID 필요 (서버리스 프록시 경유)'
         },
         naver_gfa: {
             id: 'naver_gfa',
@@ -39,7 +48,10 @@ const AdPlatforms = {
             type: 'performance_display',
             color: '#03C75A',
             mark: 'GFA',
-            objectives: ['트래픽', '전환', '쇼핑프로모션', 'ADVoost쇼핑', '카탈로그']
+            objectives: ['트래픽', '전환', '쇼핑프로모션', 'ADVoost쇼핑', '카탈로그'],
+            ingestion: 'manual_upload',
+            ingestionLabel: 'CSV 업로드',
+            ingestionNote: 'GFA 보고서 다운로드(CSV) → 시스템 업로드. API 미발급'
         }
     },
 
@@ -123,6 +135,22 @@ const AdPlatforms = {
     },
 
     /**
+     * 마지막 동기화/업로드 시각 (소스별).
+     * data.adPlatforms.syncState[sourceId] = { at, mode, note }
+     */
+    getSyncState(data, sourceId) {
+        const m = data.adPlatforms && data.adPlatforms.syncState;
+        return (m && m[sourceId]) || null;
+    },
+
+    setSyncState(data, sourceId, state) {
+        if (!data.adPlatforms.syncState) data.adPlatforms.syncState = {};
+        data.adPlatforms.syncState[sourceId] = Object.assign(
+            { at: new Date().toISOString() }, state
+        );
+    },
+
+    /**
      * 실제 운영용 어댑터 시그니처(스텁).
      * production 시 OAuth + 페이지네이션 + 레이트리밋 처리.
      */
@@ -130,11 +158,181 @@ const AdPlatforms = {
         async fetchSACampaigns(/* customerId, productType, since, until */) {
             // POST https://api.searchad.naver.com/ncc/campaigns 등에 대응
             throw new Error('not_implemented_in_demo');
-        },
-        async fetchGFACampaigns(/* adAccountId, objective, since, until */) {
-            // GFA(성과형 디스플레이광고) Open API에 대응
-            throw new Error('not_implemented_in_demo');
         }
+        // GFA는 OpenAPI 미제공 — 어댑터 없음. importGFACSV 경유.
+    },
+
+    // =====================================================
+    // GFA CSV 인입
+    // =====================================================
+    /** CSV 한 줄을 셀 배열로 파싱 (따옴표·콤마 안전). */
+    _parseCSVLine(line) {
+        const out = [];
+        let cur = '';
+        let inQ = false;
+        for (let i = 0; i < line.length; i++) {
+            const ch = line[i];
+            if (inQ) {
+                if (ch === '"' && line[i + 1] === '"') { cur += '"'; i++; }
+                else if (ch === '"') inQ = false;
+                else cur += ch;
+            } else {
+                if (ch === '"') inQ = true;
+                else if (ch === ',') { out.push(cur); cur = ''; }
+                else cur += ch;
+            }
+        }
+        out.push(cur);
+        return out;
+    },
+
+    /** 숫자 셀 정규화 ("1,200,000원", "12.5%" 같은 표기 허용). */
+    _toNumber(v) {
+        if (v == null) return 0;
+        const s = String(v).trim().replace(/[원₩,\s]/g, '').replace(/%$/, '');
+        if (!s || s === '-') return 0;
+        const n = Number(s);
+        return isFinite(n) ? n : 0;
+    },
+
+    /** GFA 보고서 CSV의 한국어/영문 컬럼명을 표준 키로 매핑. */
+    _gfaHeaderMap: {
+        '캠페인명': 'campaign', 'campaign': 'campaign', 'campaign name': 'campaign',
+        '캠페인목적': 'objective', '캠페인 목적': 'objective', 'objective': 'objective',
+        '광고그룹명': 'adgroup', 'ad group': 'adgroup', 'adgroup': 'adgroup',
+        '소재명': 'creative', '소재': 'creative', 'creative': 'creative', 'creative name': 'creative',
+        '소재유형': 'format', '소재 유형': 'format', 'format': 'format',
+        '노출수': 'impressions', '노출': 'impressions', 'impressions': 'impressions', 'imp': 'impressions',
+        '클릭수': 'clicks', '클릭': 'clicks', 'clicks': 'clicks',
+        '비용': 'cost', '총비용': 'cost', '광고비': 'cost', 'cost': 'cost', 'spend': 'cost',
+        '전환수': 'conversions', '전환': 'conversions', 'conversions': 'conversions', 'conv': 'conversions',
+        '전환매출': 'revenue', '전환매출액': 'revenue', '매출': 'revenue', 'revenue': 'revenue', 'sales': 'revenue'
+    },
+
+    /**
+     * GFA CSV 텍스트 → { rows, campaigns, creatives } 정규화.
+     * - rows: 원본을 표준 키로 매핑한 배열 (미리보기용)
+     * - campaigns: 캠페인명+목적으로 그룹핑해 KPI 합산
+     * - creatives: 소재명이 있는 행만 따로 정리
+     */
+    parseGFACSV(text) {
+        if (!text) return { rows: [], campaigns: [], creatives: [], errors: ['빈 입력'] };
+        const clean = text.replace(/^﻿/, '').trim();
+        const lines = clean.split(/\r?\n/).filter((l) => l.trim().length > 0);
+        if (lines.length < 2) return { rows: [], campaigns: [], creatives: [], errors: ['헤더+데이터 행이 필요합니다'] };
+
+        const headerRaw = this._parseCSVLine(lines[0]).map((h) => h.trim().toLowerCase());
+        const headers = headerRaw.map((h) => this._gfaHeaderMap[h] || null);
+        if (!headers.includes('campaign')) {
+            return { rows: [], campaigns: [], creatives: [], errors: ['필수 컬럼 누락: 캠페인명'] };
+        }
+
+        const rows = [];
+        for (let i = 1; i < lines.length; i++) {
+            const cells = this._parseCSVLine(lines[i]);
+            const obj = {};
+            headers.forEach((key, idx) => {
+                if (!key) return;
+                const v = cells[idx];
+                if (['impressions', 'clicks', 'cost', 'conversions', 'revenue'].includes(key)) {
+                    obj[key] = this._toNumber(v);
+                } else {
+                    obj[key] = (v || '').trim();
+                }
+            });
+            if (obj.campaign) rows.push(obj);
+        }
+
+        // 캠페인 단위 합산
+        const campMap = new Map();
+        rows.forEach((r) => {
+            const k = (r.campaign || '') + '||' + (r.objective || '');
+            if (!campMap.has(k)) {
+                campMap.set(k, {
+                    name: r.campaign,
+                    objective: r.objective || '',
+                    kpis: { impressions: 0, clicks: 0, cost: 0, conversions: 0, revenue: 0 }
+                });
+            }
+            const c = campMap.get(k);
+            c.kpis.impressions += r.impressions || 0;
+            c.kpis.clicks += r.clicks || 0;
+            c.kpis.cost += r.cost || 0;
+            c.kpis.conversions += r.conversions || 0;
+            c.kpis.revenue += r.revenue || 0;
+        });
+        const campaigns = Array.from(campMap.values()).map((c, i) => Object.assign({
+            id: 'gfa-up-' + (i + 1),
+            source: 'naver_gfa',
+            accountId: 'gfa-acct-1',
+            dailyBudget: 0,
+            status: 'active'
+        }, c));
+
+        const creatives = rows
+            .filter((r) => r.creative)
+            .map((r, i) => ({
+                id: 'cr-up-' + (i + 1),
+                campaignId: '',
+                campaignName: r.campaign,
+                name: r.creative,
+                format: r.format || '',
+                objective: r.objective || '',
+                kpi: {
+                    impressions: r.impressions || 0,
+                    clicks: r.clicks || 0,
+                    cost: r.cost || 0,
+                    conversions: r.conversions || 0,
+                    revenue: r.revenue || 0
+                }
+            }));
+
+        // creative.campaignId를 새로 만든 campaign id에 연결
+        const idByName = {};
+        campaigns.forEach((c) => { idByName[c.name + '||' + c.objective] = c.id; });
+        creatives.forEach((cr) => {
+            cr.campaignId = idByName[cr.campaignName + '||' + cr.objective] || '';
+        });
+
+        return { rows, campaigns, creatives, errors: [] };
+    },
+
+    /**
+     * 파싱된 GFA 결과를 data에 머지.
+     * - 기존 GFA 캠페인/소재는 통째로 교체 (단일 소스 of truth로 사용자 업로드 우선)
+     * - SA 데이터는 손대지 않음
+     */
+    importGFA(data, parsed) {
+        if (!data.adPlatforms) data.adPlatforms = { campaigns: [], keywords: [], creatives: [], alerts: [] };
+        const others = (data.adPlatforms.campaigns || []).filter((c) => c.source !== 'naver_gfa');
+        const otherCreatives = (data.adPlatforms.creatives || []).filter((cr) => {
+            const id = cr.campaignId || '';
+            return !id.startsWith('gfa-');
+        });
+        data.adPlatforms.campaigns = others.concat(parsed.campaigns);
+        data.adPlatforms.creatives = otherCreatives.concat(parsed.creatives);
+        this.setSyncState(data, 'naver_gfa', {
+            mode: 'manual_upload',
+            note: '캠페인 ' + parsed.campaigns.length + '건 / 소재 ' + parsed.creatives.length + '건 업로드'
+        });
+        return data;
+    },
+
+    /** GFA 업로드를 데모 시드로 되돌리기 */
+    resetGFAToDemo(data, defaults) {
+        if (!defaults || !defaults.adPlatforms) return data;
+        const sa = (data.adPlatforms.campaigns || []).filter((c) => c.source === 'naver_sa');
+        const saCreatives = (data.adPlatforms.creatives || []).filter((cr) => {
+            return !((cr.campaignId || '').startsWith('gfa-'));
+        });
+        const demoGFA = (defaults.adPlatforms.campaigns || []).filter((c) => c.source === 'naver_gfa');
+        const demoGFACreatives = (defaults.adPlatforms.creatives || []).filter((cr) => {
+            return (cr.campaignId || '').startsWith('gfa-');
+        });
+        data.adPlatforms.campaigns = sa.concat(demoGFA);
+        data.adPlatforms.creatives = saCreatives.concat(demoGFACreatives);
+        if (data.adPlatforms.syncState) delete data.adPlatforms.syncState.naver_gfa;
+        return data;
     }
 };
 
