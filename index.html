@@ -39,6 +39,11 @@
                 <span class="nav-icon">◉</span>
                 <span>분석 & 리포트</span>
             </a>
+            <a href="#" class="nav-item" data-view="adops">
+                <span class="nav-icon">◐</span>
+                <span>광고 통합 관제</span>
+                <span class="nav-pill" aria-hidden="true">SA·GFA</span>
+            </a>
             <a href="#" class="nav-item" data-view="settings">
                 <span class="nav-icon">⚙</span>
                 <span>설정</span>
@@ -540,6 +545,134 @@
             </div>
         </section>
 
+        <!-- 광고 통합 관제 뷰 -->
+        <section class="view" id="view-adops">
+            <div class="view-header">
+                <h2>광고 통합 관제</h2>
+                <div class="view-actions">
+                    <select id="adopsSourceFilter" class="select-sm">
+                        <option value="all">전체 소스</option>
+                        <option value="naver_sa">Naver SA</option>
+                        <option value="naver_gfa">Naver GFA</option>
+                    </select>
+                    <button class="btn btn-outline" onclick="App.exportData('adops')">내보내기</button>
+                </div>
+            </div>
+
+            <!-- 통합 KPI 스트립 -->
+            <div class="adops-kpi-strip">
+                <div class="adops-kpi">
+                    <span class="adops-kpi__label">총 광고비 (30D)</span>
+                    <span class="adops-kpi__value" id="adopsTotalCost">—</span>
+                    <span class="adops-kpi__sub" id="adopsTotalBudget">—</span>
+                </div>
+                <div class="adops-kpi">
+                    <span class="adops-kpi__label">총 매출 (광고기여)</span>
+                    <span class="adops-kpi__value" id="adopsTotalRevenue">—</span>
+                    <span class="adops-kpi__sub" id="adopsTotalConversions">—</span>
+                </div>
+                <div class="adops-kpi">
+                    <span class="adops-kpi__label">평균 ROAS</span>
+                    <span class="adops-kpi__value" id="adopsRoas">—</span>
+                    <span class="adops-kpi__sub">매출 / 광고비</span>
+                </div>
+                <div class="adops-kpi">
+                    <span class="adops-kpi__label">평균 CTR</span>
+                    <span class="adops-kpi__value" id="adopsCtr">—</span>
+                    <span class="adops-kpi__sub" id="adopsImpressions">—</span>
+                </div>
+                <div class="adops-kpi">
+                    <span class="adops-kpi__label">평균 CPC</span>
+                    <span class="adops-kpi__value" id="adopsCpc">—</span>
+                    <span class="adops-kpi__sub" id="adopsClicks">—</span>
+                </div>
+            </div>
+
+            <!-- 소스별 카드 -->
+            <div class="adops-source-grid" id="adopsSourceGrid">
+                <!-- JS 동적 렌더링 -->
+            </div>
+
+            <!-- 캠페인 페이싱 모니터 -->
+            <div class="card card-wide">
+                <div class="card-header">
+                    <h3>캠페인 페이싱 모니터</h3>
+                    <span class="card-badge">실시간</span>
+                </div>
+                <div class="card-body">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>소스</th>
+                                <th>캠페인</th>
+                                <th>제품/목적</th>
+                                <th>상태</th>
+                                <th>일예산</th>
+                                <th>30D 비용</th>
+                                <th>ROAS</th>
+                                <th>페이싱</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adopsCampaignTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SA 키워드 + GFA 소재 -->
+            <div class="dashboard-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>SA · 키워드 성과 Top</h3>
+                        <span class="source-badge source-badge--sa">파워링크 / 쇼핑검색</span>
+                    </div>
+                    <div class="card-body">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>키워드</th>
+                                    <th>매치</th>
+                                    <th>비용</th>
+                                    <th>전환</th>
+                                    <th>ROAS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adopsKeywordTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>GFA · 소재 성과 Top</h3>
+                        <span class="source-badge source-badge--gfa">트래픽·전환·ADVoost·카탈로그</span>
+                    </div>
+                    <div class="card-body">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>소재</th>
+                                    <th>유형</th>
+                                    <th>비용</th>
+                                    <th>전환</th>
+                                    <th>ROAS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adopsCreativeTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 운영 알림 피드 -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>운영 알림 / 이상치</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="adops-alerts" id="adopsAlerts"></ul>
+                </div>
+            </div>
+        </section>
+
         <!-- 설정 뷰 -->
         <section class="view" id="view-settings">
             <div class="view-header">
@@ -629,6 +762,7 @@
     </div>
 
     <script src="assets/js/chart-engine.js"></script>
+    <script src="assets/js/ad-platforms.js"></script>
     <script src="assets/js/data-store.js"></script>
     <script src="assets/js/app.js"></script>
 </body>

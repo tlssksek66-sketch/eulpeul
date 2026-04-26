@@ -8,9 +8,15 @@ const App = {
 
     /**
      * 앱 초기화
+     * - 광고 mock 데이터를 DataStore에 머지(외부 모듈이 있을 때만)
+     * - 글로벌 검색 인덱스 초기화
      */
     init() {
+        if (typeof AdPlatformsMockData !== 'undefined') {
+            DataStore.mergeDefaults(AdPlatformsMockData);
+        }
         this.data = DataStore.load();
+        this.searchIndex = this.buildSearchIndex();
         this.bindEvents();
         this.renderDashboard();
         this.renderNotifications();
@@ -77,8 +83,23 @@ const App = {
         });
 
         // 검색
-        document.getElementById('globalSearch').addEventListener('input', (e) => {
-            this.handleSearch(e.target.value);
+        const searchInput = document.getElementById('globalSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => this.handleSearch(e.target.value));
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    searchInput.value = '';
+                    this.handleSearch('');
+                    searchInput.blur();
+                }
+            });
+        }
+        document.addEventListener('click', (e) => {
+            const box = document.querySelector('.search-box');
+            if (box && !box.contains(e.target)) {
+                const dd = document.getElementById('searchDropdown');
+                if (dd) dd.classList.remove('active');
+            }
         });
     },
 
@@ -107,6 +128,7 @@ const App = {
             imc: 'IMC 매니지먼트',
             pipeline: '영업 파이프라인',
             analytics: '분석 & 리포트',
+            adops: '광고 통합 관제 (Naver SA · GFA)',
             settings: '시스템 설정'
         };
         document.getElementById('pageTitle').textContent = titles[viewName] || '대시보드';
@@ -128,6 +150,7 @@ const App = {
             case 'imc': this.renderIMCView(); break;
             case 'pipeline': this.renderPipeline(); break;
             case 'analytics': this.renderAnalytics(); break;
+            case 'adops': this.renderAdOps(); break;
         }
     },
 
@@ -139,6 +162,29 @@ const App = {
         this.renderChannelChart();
         this.renderActivityFeed();
         this.renderCampaignTable();
+        this.renderDashboardAdKpis();
+    },
+
+    /**
+     * 대시보드 상단 KPI 카드에 광고 통합 지표(총 비용/ROAS) 반영.
+     * KPI 카드 4개 중 '활성 캠페인'을 광고 비용으로,
+     * '리드 전환율'을 광고 ROAS로 덮어 시야를 광고 운영까지 확장한다.
+     */
+    renderDashboardAdKpis() {
+        if (typeof AdPlatforms === 'undefined') return;
+        const t = AdPlatforms.getKpiTotals(this.data);
+        const camps = AdPlatforms.getAllCampaigns(this.data);
+        const active = camps.filter((c) => c.status === 'active').length;
+
+        const campEl = document.getElementById('kpi-campaigns');
+        if (campEl) campEl.textContent = active + ' / ' + camps.length;
+        const campSub = campEl && campEl.parentElement && campEl.parentElement.querySelector('.kpi-sub');
+        if (campSub) campSub.textContent = '광고 30D 비용 ' + this.fmtKRW(t.cost);
+
+        const conv = document.getElementById('kpi-conversion');
+        if (conv) conv.textContent = t.roas.toFixed(0) + '%';
+        const convSub = conv && conv.parentElement && conv.parentElement.querySelector('.kpi-sub');
+        if (convSub) convSub.textContent = '광고 ROAS · CTR ' + t.ctr.toFixed(2) + '%';
     },
 
     renderRevenueChart() {
@@ -470,6 +516,182 @@ const App = {
                 </div>
             </div>
         `).join('');
+    },
+
+    // ==========================================
+    // 광고 통합 관제 (AdOps)
+    // ==========================================
+    renderAdOps() {
+        if (typeof AdPlatforms === 'undefined') return;
+        const filterEl = document.getElementById('adopsSourceFilter');
+        const filter = (filterEl && filterEl.value) || 'all';
+
+        const totals = filter === 'all'
+            ? AdPlatforms.getKpiTotals(this.data)
+            : AdPlatforms.derive(AdPlatforms.sumKpis(AdPlatforms.getAllCampaigns(this.data, filter).map((c) => c.kpis)));
+
+        this.setText('adopsTotalCost', this.fmtKRW(totals.cost));
+        this.setText('adopsTotalRevenue', this.fmtKRW(totals.revenue));
+        this.setText('adopsTotalConversions', '전환 ' + totals.conversions.toLocaleString() + '건');
+        this.setText('adopsRoas', totals.roas.toFixed(0) + '%');
+        this.setText('adopsCtr', totals.ctr.toFixed(2) + '%');
+        this.setText('adopsCpc', '₩' + Math.round(totals.cpc).toLocaleString());
+        this.setText('adopsImpressions', '노출 ' + this.fmtCompact(totals.impressions));
+        this.setText('adopsClicks', '클릭 ' + this.fmtCompact(totals.clicks));
+
+        const camps = filter === 'all'
+            ? AdPlatforms.getAllCampaigns(this.data)
+            : AdPlatforms.getAllCampaigns(this.data, filter);
+        const dailyBudget = camps.reduce((s, c) => s + (c.dailyBudget || 0), 0);
+        this.setText('adopsTotalBudget', '일예산 합계 ₩' + (dailyBudget / 10000).toLocaleString() + '만');
+
+        this.renderAdOpsSourceCards(filter);
+        this.renderAdOpsCampaignTable(camps);
+        this.renderAdOpsKeywordTable();
+        this.renderAdOpsCreativeTable();
+        this.renderAdOpsAlerts();
+
+        // 필터 이벤트 (재바인딩 방지)
+        if (filterEl && !filterEl.dataset.bound) {
+            filterEl.addEventListener('change', () => this.renderAdOps());
+            filterEl.dataset.bound = 'true';
+        }
+    },
+
+    renderAdOpsSourceCards(filter) {
+        const grid = document.getElementById('adopsSourceGrid');
+        if (!grid) return;
+        const all = AdPlatforms.getKpisBySource(this.data);
+        const list = filter === 'all' ? all : all.filter((s) => s.source.id === filter);
+
+        grid.innerHTML = list.map((s) => `
+            <div class="source-card source-card--${s.source.id}">
+                <div class="source-card__header">
+                    <span class="source-mark" style="background:${s.source.color}">${s.source.mark}</span>
+                    <div>
+                        <div class="source-card__name">${s.source.label}</div>
+                        <div class="source-card__sub">${(s.source.products || s.source.objectives || []).join(' · ')}</div>
+                    </div>
+                </div>
+                <div class="source-card__metrics">
+                    <div>
+                        <span class="source-metric-label">캠페인</span>
+                        <span class="source-metric-value">${s.activeCount}/${s.campaignCount}</span>
+                    </div>
+                    <div>
+                        <span class="source-metric-label">30D 비용</span>
+                        <span class="source-metric-value">${this.fmtKRW(s.kpi.cost)}</span>
+                    </div>
+                    <div>
+                        <span class="source-metric-label">30D 매출</span>
+                        <span class="source-metric-value">${this.fmtKRW(s.kpi.revenue)}</span>
+                    </div>
+                    <div>
+                        <span class="source-metric-label">ROAS</span>
+                        <span class="source-metric-value source-metric-value--accent">${s.kpi.roas.toFixed(0)}%</span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    },
+
+    renderAdOpsCampaignTable(camps) {
+        const tbody = document.getElementById('adopsCampaignTable');
+        if (!tbody) return;
+        const statusName = { active: '진행 중', paused: '일시중지', ended: '종료' };
+
+        tbody.innerHTML = camps.map((c) => {
+            const src = AdPlatforms.sources[c.source];
+            const k = AdPlatforms.derive(c.kpis);
+            const pacing = AdPlatforms.pacingPercent(c);
+            const pacingColor = pacing > 110 ? '#f87171' : pacing > 90 ? '#fbbf24' : '#34d399';
+            const pacingClamp = Math.min(pacing, 100);
+            const detail = c.product || c.objective || '';
+            return `
+                <tr>
+                    <td><span class="source-badge source-badge--${c.source}">${src.mark}</span></td>
+                    <td><strong>${c.name}</strong></td>
+                    <td>${detail}</td>
+                    <td><span class="status-badge status-${c.status}">${statusName[c.status] || c.status}</span></td>
+                    <td>₩${(c.dailyBudget / 10000).toLocaleString()}만</td>
+                    <td>₩${(c.kpis.cost / 10000).toLocaleString()}만</td>
+                    <td style="color:${k.roas > 500 ? '#34d399' : k.roas > 200 ? '#fbbf24' : '#f87171'}">${k.roas.toFixed(0)}%</td>
+                    <td>
+                        <div class="pacing-bar"><div class="pacing-fill" style="width:${pacingClamp}%;background:${pacingColor}"></div></div>
+                        <span class="pacing-text" style="color:${pacingColor}">${pacing.toFixed(0)}%</span>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+    },
+
+    renderAdOpsKeywordTable() {
+        const tbody = document.getElementById('adopsKeywordTable');
+        if (!tbody) return;
+        const kws = AdPlatforms.getKeywords(this.data)
+            .map((k) => Object.assign({}, k, { d: AdPlatforms.derive(k.kpi) }))
+            .sort((a, b) => b.d.roas - a.d.roas)
+            .slice(0, 6);
+        tbody.innerHTML = kws.map((k) => `
+            <tr>
+                <td><strong>${k.text}</strong></td>
+                <td>${k.matchType}</td>
+                <td>₩${(k.kpi.cost / 10000).toLocaleString()}만</td>
+                <td>${k.kpi.conversions.toLocaleString()}</td>
+                <td style="color:${k.d.roas > 500 ? '#34d399' : k.d.roas > 200 ? '#fbbf24' : '#f87171'}">${k.d.roas.toFixed(0)}%</td>
+            </tr>
+        `).join('');
+    },
+
+    renderAdOpsCreativeTable() {
+        const tbody = document.getElementById('adopsCreativeTable');
+        if (!tbody) return;
+        const crs = AdPlatforms.getCreatives(this.data)
+            .map((c) => Object.assign({}, c, { d: AdPlatforms.derive(c.kpi) }))
+            .sort((a, b) => b.d.roas - a.d.roas)
+            .slice(0, 6);
+        tbody.innerHTML = crs.map((c) => `
+            <tr>
+                <td><strong>${c.name}</strong></td>
+                <td>${c.format}</td>
+                <td>₩${(c.kpi.cost / 10000).toLocaleString()}만</td>
+                <td>${c.kpi.conversions.toLocaleString()}</td>
+                <td style="color:${c.d.roas > 500 ? '#34d399' : c.d.roas > 200 ? '#fbbf24' : '#f87171'}">${c.d.roas.toFixed(0)}%</td>
+            </tr>
+        `).join('');
+    },
+
+    renderAdOpsAlerts() {
+        const ul = document.getElementById('adopsAlerts');
+        if (!ul) return;
+        const alerts = AdPlatforms.getAlerts(this.data);
+        const sevLabel = { critical: 'CRITICAL', warn: 'WARN', info: 'INFO' };
+        ul.innerHTML = alerts.map((a) => {
+            const src = AdPlatforms.sources[a.source];
+            return `
+                <li class="alert alert--${a.severity}">
+                    <span class="alert-sev">${sevLabel[a.severity] || a.severity}</span>
+                    <span class="source-badge source-badge--${a.source}">${src ? src.mark : a.source}</span>
+                    <span class="alert-text">${a.text}</span>
+                    <span class="alert-time">${a.time}</span>
+                </li>
+            `;
+        }).join('');
+    },
+
+    // ==========================================
+    // 포맷 유틸 (광고용)
+    // ==========================================
+    fmtKRW(n) {
+        if (n >= 100000000) return '₩' + (n / 100000000).toFixed(1) + '억';
+        if (n >= 10000) return '₩' + (n / 10000).toLocaleString() + '만';
+        return '₩' + Math.round(n).toLocaleString();
+    },
+
+    fmtCompact(n) {
+        if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+        if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+        return String(n);
     },
 
     // ==========================================
@@ -842,10 +1064,115 @@ const App = {
         if (el) el.textContent = value;
     },
 
+    /**
+     * 글로벌 검색 인덱스 빌드.
+     * 항목 형태: { type, label, sub, view, ref }
+     *   type: '영업'|'IMC'|'딜'|'광고'|'키워드'|'소재'|'브랜드'
+     *   view: 클릭 시 이동할 뷰 ID (외부 페이지면 url 키 사용)
+     */
+    buildSearchIndex() {
+        const idx = [];
+        (this.data.salesPlans || []).forEach((p) => {
+            idx.push({ type: '영업', label: p.name, sub: p.manager + ' · ' + p.startDate, view: 'sales', ref: p.id });
+        });
+        (this.data.campaigns || []).forEach((c) => {
+            idx.push({ type: 'IMC', label: c.name, sub: (c.channel || '') + ' · ' + (c.status || ''), view: 'imc', ref: c.id });
+        });
+        (this.data.deals || []).forEach((d) => {
+            idx.push({ type: '딜', label: d.name, sub: d.company + ' · ₩' + (d.amount / 10000).toLocaleString() + '만', view: 'pipeline', ref: d.id });
+        });
+        const ap = this.data.adPlatforms;
+        if (ap) {
+            (ap.campaigns || []).forEach((c) => {
+                const sourceLabel = c.source === 'naver_sa' ? 'Naver SA' : 'Naver GFA';
+                const detail = c.product || c.objective || '';
+                idx.push({ type: '광고', label: c.name, sub: sourceLabel + ' · ' + detail, view: 'adops', ref: c.id });
+            });
+            (ap.keywords || []).forEach((k) => {
+                idx.push({ type: '키워드', label: k.text, sub: 'SA · ' + (k.matchType || ''), view: 'adops', ref: k.id });
+            });
+            (ap.creatives || []).forEach((cr) => {
+                idx.push({ type: '소재', label: cr.name, sub: 'GFA · ' + (cr.format || '') + ' · ' + (cr.objective || ''), view: 'adops', ref: cr.id });
+            });
+        }
+        // 브랜드는 외부 페이지로 이동
+        idx.push({ type: '브랜드', label: '샥즈 (Shokz)', sub: '골전도·오픈-이어 이어폰', url: 'brands/01-shokz/' });
+        idx.push({ type: '브랜드', label: '사평 (Sapyeong)', sub: '일본식 카레 · 대구', url: 'brands/02-sapyeong/' });
+        return idx;
+    },
+
     handleSearch(query) {
-        // 간단한 글로벌 검색 구현
-        if (!query || query.length < 2) return;
-        console.log('Search:', query);
+        const dropdown = this.ensureSearchDropdown();
+        const q = (query || '').trim().toLowerCase();
+        if (q.length < 2) {
+            dropdown.classList.remove('active');
+            dropdown.innerHTML = '';
+            return;
+        }
+        const matches = (this.searchIndex || []).filter((item) => {
+            return item.label.toLowerCase().includes(q) || (item.sub || '').toLowerCase().includes(q);
+        }).slice(0, 12);
+
+        if (matches.length === 0) {
+            dropdown.innerHTML = '<div class="search-empty">검색 결과 없음</div>';
+            dropdown.classList.add('active');
+            return;
+        }
+
+        dropdown.innerHTML = matches.map((m, i) => `
+            <button class="search-result" data-idx="${i}">
+                <span class="search-type type-${this.searchTypeKey(m.type)}">${m.type}</span>
+                <span class="search-label">${this.highlight(m.label, q)}</span>
+                <span class="search-sub">${this.highlight(m.sub || '', q)}</span>
+            </button>
+        `).join('');
+        dropdown.classList.add('active');
+
+        dropdown.querySelectorAll('.search-result').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const idx = parseInt(btn.dataset.idx, 10);
+                const item = matches[idx];
+                this.gotoSearchItem(item);
+            });
+        });
+    },
+
+    searchTypeKey(type) {
+        const map = { '영업': 'sales', 'IMC': 'imc', '딜': 'deal', '광고': 'adops', '키워드': 'kw', '소재': 'cr', '브랜드': 'brand' };
+        return map[type] || 'misc';
+    },
+
+    highlight(text, q) {
+        if (!q) return text;
+        try {
+            const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+            return text.replace(re, '<mark>$1</mark>');
+        } catch (e) { return text; }
+    },
+
+    ensureSearchDropdown() {
+        let dd = document.getElementById('searchDropdown');
+        if (!dd) {
+            dd = document.createElement('div');
+            dd.id = 'searchDropdown';
+            dd.className = 'search-dropdown';
+            const box = document.querySelector('.search-box');
+            if (box) box.appendChild(dd);
+        }
+        return dd;
+    },
+
+    gotoSearchItem(item) {
+        const input = document.getElementById('globalSearch');
+        if (input) input.value = '';
+        const dd = document.getElementById('searchDropdown');
+        if (dd) { dd.classList.remove('active'); dd.innerHTML = ''; }
+
+        if (item.url) {
+            window.open(item.url, '_blank', 'noopener');
+            return;
+        }
+        if (item.view) this.switchView(item.view);
     },
 
     exportData(type) {

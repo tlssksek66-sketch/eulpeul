@@ -116,18 +116,33 @@ const DataStore = {
     },
 
     /**
-     * 데이터 로드
+     * 외부 모듈(예: AdPlatformsMockData)을 default 데이터에 머지.
+     * 키 충돌 시 외부 모듈이 우선 — 광고 데이터처럼 도메인 분리 모듈에 위임할 때 사용.
+     */
+    mergeDefaults(extra) {
+        if (!extra) return;
+        Object.keys(extra).forEach((k) => {
+            this.defaultData[k] = extra[k];
+        });
+    },
+
+    /**
+     * 데이터 로드.
+     * 광고 데이터(adPlatforms)는 mock 변경 빈도가 높아 항상 모듈 측 정의로 갱신한다.
      */
     load() {
+        let stored = null;
         try {
-            const stored = localStorage.getItem(this.STORAGE_KEY);
-            if (stored) {
-                return JSON.parse(stored);
-            }
+            const raw = localStorage.getItem(this.STORAGE_KEY);
+            if (raw) stored = JSON.parse(raw);
         } catch (e) {
-            console.warn('DataStore: Failed to load, using defaults');
+            console.warn('DataStore: Failed to parse stored data, using defaults');
         }
-        return JSON.parse(JSON.stringify(this.defaultData));
+        const base = stored || JSON.parse(JSON.stringify(this.defaultData));
+        if (this.defaultData.adPlatforms) {
+            base.adPlatforms = JSON.parse(JSON.stringify(this.defaultData.adPlatforms));
+        }
+        return base;
     },
 
     /**
