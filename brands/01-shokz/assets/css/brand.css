@@ -1,0 +1,201 @@
+/* 샥즈(Shokz) 브랜드 전용 스타일.
+   모든 선택자는 .brand--shokz 네임스페이스 안에서만 정의해
+   다른 브랜드 페이지와 충돌하지 않도록 한다. */
+
+.brand--shokz {
+    --shokz-primary: #0066FF;
+    --shokz-deep: #0A1A3A;
+    --shokz-bg: #0E1525;
+    --shokz-surface: #141C30;
+    --shokz-line: #1F2A45;
+    --shokz-text: #E8ECF5;
+    --shokz-muted: #8893AC;
+
+    background: var(--shokz-bg);
+    color: var(--shokz-text);
+    font-family: "Inter", "Noto Sans KR", sans-serif;
+}
+
+.brand--shokz .brand__header {
+    padding: 5rem 0 3rem;
+    text-align: left;
+    border-bottom: 1px solid var(--shokz-line);
+    background: linear-gradient(180deg, rgba(0,102,255,0.08) 0%, rgba(0,102,255,0) 100%);
+}
+
+.brand--shokz .brand__logo {
+    font-size: 0.75rem;
+    letter-spacing: 0.5em;
+    color: var(--shokz-primary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.brand--shokz .brand__title {
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    color: #fff;
+}
+
+.brand--shokz .brand__tagline {
+    font-size: 1.125rem;
+    color: var(--shokz-muted);
+    max-width: 560px;
+}
+
+.brand--shokz .section {
+    padding: 4.5rem 0;
+    border-bottom: 1px solid var(--shokz-line);
+}
+
+.brand--shokz .section:last-of-type {
+    border-bottom: 0;
+}
+
+.brand--shokz .section__label {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: var(--shokz-primary);
+    margin-bottom: 0.875rem;
+    font-weight: 600;
+}
+
+.brand--shokz .section__title {
+    font-size: clamp(1.625rem, 3vw, 2.25rem);
+    margin-bottom: 1.5rem;
+    color: #fff;
+    letter-spacing: -0.01em;
+}
+
+.brand--shokz .section__body {
+    max-width: 720px;
+    color: var(--shokz-muted);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+}
+
+.brand--shokz .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.brand--shokz .stat-card {
+    background: var(--shokz-surface);
+    border: 1px solid var(--shokz-line);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.brand--shokz .stat-card__value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--shokz-primary);
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+}
+
+.brand--shokz .stat-card__label {
+    font-size: 0.8125rem;
+    color: var(--shokz-muted);
+    letter-spacing: 0.05em;
+}
+
+.brand--shokz .lineup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.brand--shokz .lineup-card {
+    background: var(--shokz-surface);
+    border: 1px solid var(--shokz-line);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.brand--shokz .lineup-card:hover {
+    border-color: var(--shokz-primary);
+    transform: translateY(-2px);
+}
+
+.brand--shokz .lineup-card__category {
+    display: inline-block;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    color: var(--shokz-primary);
+    border: 1px solid var(--shokz-primary);
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    margin-bottom: 0.875rem;
+    font-weight: 500;
+}
+
+.brand--shokz .lineup-card__name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.brand--shokz .lineup-card__desc {
+    font-size: 0.9375rem;
+    color: var(--shokz-muted);
+    line-height: 1.6;
+}
+
+.brand--shokz .channel-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin-top: 1.5rem;
+}
+
+.brand--shokz .channel-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--shokz-surface);
+    border: 1px solid var(--shokz-line);
+    color: var(--shokz-text);
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    border-radius: 999px;
+}
+
+.brand--shokz .channel-tag--featured {
+    background: var(--shokz-primary);
+    color: #fff;
+    border-color: var(--shokz-primary);
+}
+
+.brand--shokz .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.brand--shokz .meta-item__label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.25em;
+    color: var(--shokz-muted);
+    margin-bottom: 0.5rem;
+}
+
+.brand--shokz .meta-item__value {
+    font-size: 1rem;
+    color: var(--shokz-text);
+}
+
+.brand--shokz .brand__footer {
+    padding: 2.5rem 0 3rem;
+    text-align: center;
+    color: var(--shokz-muted);
+    font-size: 0.8125rem;
+    letter-spacing: 0.15em;
+    border-top: 1px solid var(--shokz-line);
+}

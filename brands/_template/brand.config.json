@@ -1,0 +1,11 @@
+{
+  "id": "00",
+  "slug": "template",
+  "name": "브랜드 이름",
+  "nameEn": "Brand Name",
+  "color": "#000000",
+  "owner": "담당자",
+  "status": "draft",
+  "tags": [],
+  "createdAt": "YYYY-MM-DD"
+}
