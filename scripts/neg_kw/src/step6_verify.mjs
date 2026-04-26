@@ -2,6 +2,7 @@ import path from 'node:path';
 import { readFileSync } from 'node:fs';
 import { loadEnv, ts, outputDir, writeJson, readJson, isoNow, latestFile, parseArgs, sleep, pLimit } from './util.mjs';
 import { getTargets } from './worker_client.mjs';
+import { loadOrInitMaster, saveMaster, setGroupStatus, appendChangeLog, printHandoff } from './inventory_helper.mjs';
 
 loadEnv();
 const { flags } = parseArgs();
@@ -83,12 +84,53 @@ const dumpAfter = {
 };
 
 const t = ts();
-writeJson(path.join(outputDir(), `05_dump_after_${t}.json`), dumpAfter);
-writeJson(path.join(outputDir(), `05_diff_after_${t}.json`), verification);
+const dumpAfterPath = path.join(outputDir(), `05_dump_after_${t}.json`);
+const diffAfterPath = path.join(outputDir(), `05_diff_after_${t}.json`);
+writeJson(dumpAfterPath, dumpAfter);
+writeJson(diffAfterPath, verification);
+
+const master = loadOrInitMaster();
+for (const g of groupDiff) {
+  const allEightPresent = g.new_kws_missing.length === 0;
+  setGroupStatus(master, g.idx, allEightPresent ? 'verified' : 'failed', {
+    verified_at: verification.verify_timestamp,
+    after_kw_count: g.after_count,
+    new_kws_present: g.new_kws_registered,
+    new_kws_missing_at_verify: g.new_kws_missing,
+  });
+}
+appendChangeLog(master, {
+  step: 6,
+  action: 'VERIFY_DONE',
+  passed: verification.passed,
+  groups_verified: groupsAfter.length,
+  missing_slots: allNewMissing.length,
+  dump_after: path.basename(dumpAfterPath),
+  diff_after: path.basename(diffAfterPath),
+});
+saveMaster(master);
 
 console.log(`[STEP6] passed=${verification.passed}  groups=${groupsAfter.length}  missing_slots=${allNewMissing.length}`);
 if (!verification.passed) {
   console.error('[STEP6] FAIL — 누락 슬롯:');
   for (const m of allNewMissing.slice(0, 20)) console.error(`  - ${m}`);
+  printHandoff(6, [
+    `상태: FAIL`,
+    `누락 슬롯: ${allNewMissing.length}건`,
+    `dump 실패: ${fails.length}개`,
+    `산출물: ${path.basename(dumpAfterPath)}, ${path.basename(diffAfterPath)}`,
+    ``,
+    `다음 세션 Claude에 공유: "T010 STEP 6 검증 실패. ${path.basename(diffAfterPath)} 누락 슬롯 분석 필요"`,
+    ``,
+    `다음 단계: 누락 KW만 재등록 후 step6 재실행`,
+  ]);
   process.exit(1);
 }
+printHandoff(6, [
+  `상태: VERIFIED`,
+  `28그룹 모두 신규 8KW 등록 확인`,
+  `register_groups status=verified`,
+  `산출물: ${path.basename(dumpAfterPath)}, ${path.basename(diffAfterPath)}`,
+  ``,
+  `다음 단계: node src/step7_inventory.mjs  (인벤토리 자산화 + change_log 시간흐름)`,
+]);

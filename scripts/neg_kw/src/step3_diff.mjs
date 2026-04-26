@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { readFileSync } from 'node:fs';
 import { loadEnv, ts, outputDir, writeJson, readJson, isoNow, latestFile, parseArgs } from './util.mjs';
+import { printHandoff, printPauseBanner } from './inventory_helper.mjs';
 
 loadEnv();
 const { flags } = parseArgs();
@@ -96,6 +97,28 @@ console.log(`  - 기존 KW 합계: ${totalExisting}건`);
 console.log(`  - 보존 패턴 매칭: ${protectMatchedAll.length}건  (⚠️ 옵션 1 시 누수 위험)`);
 console.log(`  - 신규와 중복: ${duplicates.length}건`);
 console.log(`  - 충돌 그룹: ${groupAnalyses.filter((g) => g.conflict_kws.length).length}/28`);
-console.log('');
-console.log('[STEP3] ⚠️ 파트너 검토 단계 — diff 파일을 검토 후 step4를 옵션과 함께 실행');
-console.log(`        node src/step4_plan.mjs --option=1|2|3|4 --diff-file=${path.basename(out)}`);
+
+printPauseBanner('STEP 3 완료 — 작업 일시 정지', [
+  '충돌 KW 검토 결과를 raw 그대로 Claude에 공유하고',
+  '옵션 1/2/3/4 결정 후 STEP 4로 진행하세요.',
+  '',
+  '옵션 1: 전체 교체 (기존 DELETE + 신규 POST) ⚠️ 보존 KW 누수',
+  '옵션 2: 신규 8개만 추가 (DELETE 없음) — 권장',
+  '옵션 3: 보존 매칭만 유지 + 그 외 교체',
+  '옵션 4: 작업 보류 (dump만 보존)',
+]);
+
+printHandoff(3, [
+  `상태: 일시 정지 — 파트너 검토 필요`,
+  `기존 KW: ${totalExisting}건 / 보존 매칭: ${protectMatchedAll.length}건 / 중복: ${duplicates.length}건`,
+  `충돌 그룹: ${groupAnalyses.filter((g) => g.conflict_kws.length).length}/28`,
+  `산출물: ${path.basename(out)}`,
+  ``,
+  `[다음 세션 Claude에 공유할 raw]`,
+  `STEP 3 완료. diff 파일 ${path.basename(out)}을 검토 결과:`,
+  `- 보존 매칭 KW ${protectMatchedAll.length}건 (옵션 1 시 누수)`,
+  `- 신규 중복 KW ${duplicates.length}건 (이미 등록됨)`,
+  `결정한 옵션과 그 사유를 알려주면 STEP 4 plan을 생성합니다.`,
+  ``,
+  `다음 단계: node src/step4_plan.mjs --option=N --approved-by="이름"`,
+]);

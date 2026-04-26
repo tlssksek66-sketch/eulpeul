@@ -2,6 +2,7 @@ import path from 'node:path';
 import { readFileSync } from 'node:fs';
 import { loadEnv, ts, outputDir, writeJson, isoNow, pLimit } from './util.mjs';
 import { getCampaigns, getAdGroups, getTargets } from './worker_client.mjs';
+import { loadOrInitMaster, saveMaster, upsertGroup, appendChangeLog, writeDumpSummary, printHandoff } from './inventory_helper.mjs';
 
 loadEnv();
 
@@ -93,11 +94,50 @@ const report = {
   groups: groupsDump,
 };
 
-const out = path.join(outputDir(), `01_dump_before_${ts()}.json`);
+const stamp = ts();
+const out = path.join(outputDir(), `01_dump_before_${stamp}.json`);
 writeJson(out, report);
+
+const summaryPath = writeDumpSummary(stamp, report);
+
+const master = loadOrInitMaster();
+for (const g of groupsDump) {
+  upsertGroup(master, {
+    idx: g.idx,
+    campaign: g.campaign,
+    group: g.group,
+    high_cost: g.high_cost,
+    register_status: 'pending',
+    status_updated_at: isoNow(),
+    before_kw_count: g.current_neg_kws.length,
+    last_dump_timestamp: report.dump_timestamp,
+  });
+}
+appendChangeLog(master, {
+  step: 2,
+  action: 'DUMP_COMPLETE',
+  groups_dumped: groupsDump.length,
+  total_existing_kws: totalKw,
+  output_file: path.basename(out),
+  inventory_summary: path.basename(summaryPath),
+});
+saveMaster(master);
 
 console.log(`[STEP2] OK — ${groupsDump.length}그룹 / 기존 KW ${totalKw}건 dump 완료`);
 if (dumpFails.length) {
   console.error(`[STEP2] WARN — ${dumpFails.length}개 그룹 dump 실패`);
+  printHandoff(2, [
+    `상태: PARTIAL — ${dumpFails.length}개 그룹 실패`,
+    `산출물: output/${path.basename(out)} + inventory/${path.basename(summaryPath)}`,
+    `다음: 실패 그룹 재시도 후 step3 진행`,
+  ]);
   process.exit(1);
 }
+printHandoff(2, [
+  `상태: OK`,
+  `28그룹 dump 완료. 기존 KW 총 ${totalKw}건`,
+  `산출물(output): ${path.basename(out)}`,
+  `산출물(inventory): ${path.basename(summaryPath)} ← 다음 세션 인계용 (민감정보 제거)`,
+  `register_groups 모두 status=pending`,
+  `다음 단계: node src/step3_diff.mjs`,
+]);

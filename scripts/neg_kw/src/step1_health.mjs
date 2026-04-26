@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { loadEnv, ts, outputDir, writeJson, isoNow } from './util.mjs';
 import { getCampaigns } from './worker_client.mjs';
+import { printHandoff } from './inventory_helper.mjs';
 import { readFileSync } from 'node:fs';
 
 loadEnv();
@@ -41,6 +42,17 @@ writeJson(out, report);
 
 if (!report.ok) {
   console.error(`[STEP1] FAIL — 예상 캠페인 누락: ${missing.join(', ')}`);
+  printHandoff(1, [
+    `상태: FAIL`,
+    `누락 캠페인: ${missing.join(', ')}`,
+    `다음: 캠페인명 패턴 확인, Worker 권한 점검`,
+  ]);
   process.exit(1);
 }
 console.log('[STEP1] OK — T010 5개 캠페인 모두 확인');
+printHandoff(1, [
+  `상태: OK`,
+  `T010 캠페인 ${matched.length}개 모두 확인`,
+  `산출물: ${path.basename(out)}`,
+  `다음 단계: node src/step2_dump.mjs`,
+]);

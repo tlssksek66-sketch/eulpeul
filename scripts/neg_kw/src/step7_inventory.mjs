@@ -1,14 +1,20 @@
 import path from 'node:path';
-import fs from 'node:fs';
-import { loadEnv, ts, outputDir, inventoryDir, writeJson, readJson, isoNow, latestFile, parseArgs } from './util.mjs';
+import { loadEnv, ts, outputDir, writeJson, readJson, isoNow, latestFile, parseArgs } from './util.mjs';
+import { loadOrInitMaster, saveMaster, appendChangeLog, appendChangeLogMd, printHandoff } from './inventory_helper.mjs';
 
 loadEnv();
 const { flags } = parseArgs();
 
-const planFile = flags['plan-file'] ? (path.isAbsolute(flags['plan-file']) ? flags['plan-file'] : path.join(outputDir(), flags['plan-file'])) : latestFile(outputDir(), '03_register_plan_');
-const resultFile = flags['result-file'] ? (path.isAbsolute(flags['result-file']) ? flags['result-file'] : path.join(outputDir(), flags['result-file'])) : latestFile(outputDir(), '04_register_results_');
-const verifyFile = flags['verify-file'] ? (path.isAbsolute(flags['verify-file']) ? flags['verify-file'] : path.join(outputDir(), flags['verify-file'])) : latestFile(outputDir(), '05_diff_after_');
-const beforeFile = flags['before-file'] ? (path.isAbsolute(flags['before-file']) ? flags['before-file'] : path.join(outputDir(), flags['before-file'])) : latestFile(outputDir(), '01_dump_before_');
+const resolve = (flagName, prefix) => {
+  const v = flags[flagName];
+  if (v) return path.isAbsolute(v) ? v : path.join(outputDir(), v);
+  return latestFile(outputDir(), prefix);
+};
+
+const planFile = resolve('plan-file', '03_register_plan_');
+const resultFile = resolve('result-file', '04_register_results_');
+const verifyFile = resolve('verify-file', '05_diff_after_');
+const beforeFile = resolve('before-file', '01_dump_before_');
 
 if (!planFile || !resultFile || !verifyFile || !beforeFile) {
   console.error('[STEP7] 필요한 산출물 미발견 (plan / result / verify / before 모두 필요)');
@@ -22,7 +28,6 @@ const verify = readJson(verifyFile);
 const before = readJson(beforeFile);
 
 const sanitizeKw = (k) => ({ keyword: k.keyword, match_type: k.match_type, categories: k.categories });
-const sanitizeAction = (a) => ({ type: a.type, idx: a.idx, group: a.group, keyword: a.keyword, reason: a.reason });
 
 const summary = {
   task_id: 'T010_NEGKW_REPLACE_2026-04-26',
@@ -51,20 +56,10 @@ const summary = {
 const finalOut = path.join(outputDir(), `06_inventory_final_${ts()}.json`);
 writeJson(finalOut, summary);
 
-const invDir = inventoryDir();
-const masterPath = path.join(invDir, 't010_inventory_master.json');
-const logPath = path.join(invDir, 't010_change_log.md');
-
-const master = fs.existsSync(masterPath) ? readJson(masterPath) : {
-  task_id: 'T010_NEGKW_REPLACE_2026-04-26',
-  created_at: isoNow(),
-  change_log: [],
-  register_groups: [],
-};
-
-master.change_log.push({
-  timestamp: summary.finalized_at,
-  action: 'REGISTERED',
+const master = loadOrInitMaster();
+appendChangeLog(master, {
+  step: 7,
+  action: 'FINALIZED',
   operation: summary.decision,
   before_count: summary.before_total_kws,
   after_count: summary.before_total_kws - summary.delete_ok + summary.post_ok,
@@ -74,23 +69,9 @@ master.change_log.push({
   verification: summary.verification_passed ? 'passed' : 'failed',
   approved_by: summary.approved_by,
 });
+saveMaster(master);
 
-const groupKey = (g) => `${g.idx}|${g.group}`;
-const existingByKey = new Map(master.register_groups.map((g) => [groupKey(g), g]));
-for (const g of summary.per_group_changes) {
-  existingByKey.set(groupKey(g), {
-    idx: g.idx, group: g.group,
-    register_status: summary.verification_passed ? 'registered' : 'partial',
-    register_timestamp: summary.finalized_at,
-    last_added: g.added,
-    last_removed: g.removed,
-    after_count: g.after_count,
-  });
-}
-master.register_groups = [...existingByKey.values()].sort((a, b) => a.idx - b.idx);
-writeJson(masterPath, master);
-
-const logEntry = [
+const logLines = [
   `## ${summary.finalized_at}  ${summary.decision}`,
   `- 승인자: ${summary.approved_by}`,
   `- 기존 → 후: ${summary.before_total_kws} → ${summary.before_total_kws - summary.delete_ok + summary.post_ok}`,
@@ -98,18 +79,28 @@ const logEntry = [
   `- POST ok/fail: ${summary.post_ok}/${summary.post_fail}`,
   `- 보존 매칭: ${summary.protect_pattern_matched_in_existing.length}건`,
   `- 추가 KW: ${summary.added_kws.join(', ')}`,
-  summary.removed_kws.length ? `- 삭제 KW: ${summary.removed_kws.join(', ')}` : null,
-  `- 검증: ${summary.verification_passed ? 'passed' : 'failed'}`,
-  '',
-].filter(Boolean).join('\n');
-
-const header = '# T010 제외KW 변경 이력\n\n';
-const existing = fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8') : header;
-const next = existing.startsWith(header) ? existing.replace(header, header + logEntry + '\n') : header + logEntry + '\n' + existing;
-fs.writeFileSync(logPath, next, 'utf8');
-console.log(`[WRITE] ${logPath}`);
+];
+if (summary.removed_kws.length) logLines.push(`- 삭제 KW: ${summary.removed_kws.join(', ')}`);
+logLines.push(`- 검증: ${summary.verification_passed ? 'passed' : 'failed'}`);
+appendChangeLogMd(logLines);
 
 console.log('[STEP7] inventory 동기화 완료');
-console.log(`  master: ${masterPath}`);
-console.log(`  log:    ${logPath}`);
 console.log(`  final:  ${finalOut}`);
+
+const verifiedCount = master.register_groups.filter((g) => g.register_status === 'verified').length;
+const failedCount = master.register_groups.filter((g) => g.register_status === 'failed').length;
+
+printHandoff(7, [
+  `상태: FINALIZED`,
+  `결정: ${summary.decision} (${summary.decision_label})`,
+  `등록 KW: ${summary.added_kws.join(', ')}`,
+  `검증된 그룹: ${verifiedCount}/${master.register_groups.length}  (실패 ${failedCount})`,
+  `산출물: ${path.basename(finalOut)} + inventory/t010_inventory_master.json + inventory/t010_change_log.md`,
+  ``,
+  `[다음 세션 Claude에 공유할 raw]`,
+  `T010 NEGKW 작업 완료 (${summary.finalized_at}).`,
+  `${summary.decision} 옵션으로 ${summary.post_ok}건 POST + ${summary.delete_ok}건 DELETE 성공.`,
+  `28개 그룹 중 ${verifiedCount}개 verified, ${failedCount}개 failed.`,
+  `다음 세션에서 inventory/t010_inventory_master.json 참조 가능.`,
+  `사후 점검 트리거: T+1/T+3/T+7/T+14/T+28 (README.md 참조).`,
+]);

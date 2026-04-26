@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { readFileSync } from 'node:fs';
 import { loadEnv, ts, outputDir, writeJson, readJson, isoNow, latestFile, parseArgs } from './util.mjs';
+import { printHandoff } from './inventory_helper.mjs';
 
 loadEnv();
 const { flags } = parseArgs();
@@ -96,9 +97,26 @@ console.log(`  confirm-text:    "${plan.confirm_text_required}"`);
 
 if (option === '4') {
   console.log('[STEP4] 옵션 4 — 등록 미수행. step5 호출 금지.');
+  printHandoff(4, [
+    `상태: 옵션 4 보류`,
+    `dump만 보존, 등록은 별도 시점`,
+    `다음 세션 Claude에 공유: "T010 NEGKW 작업 옵션 4 보류 결정. 재개 시 STEP 3 결과 재검토 후 옵션 재결정 필요."`,
+  ]);
   process.exit(0);
 }
 
 console.log('');
 console.log('[STEP4] step5 실행 명령 (3중 게이트):');
 console.log(`  node src/step5_register.mjs --approve --plan-file=${path.basename(out)} --confirm-text="${plan.confirm_text_required}"`);
+
+printHandoff(4, [
+  `상태: 계획 확정`,
+  `옵션: ${plan.decision} — ${plan.decision_label}`,
+  `승인자: ${plan.approved_by}`,
+  `POST: ${counts.POST}건 / DELETE: ${counts.DELETE}건 / 보존 매칭: ${plan.conflict_check.matched_count}건`,
+  `confirm-text: "${plan.confirm_text_required}"`,
+  `산출물: ${path.basename(out)}`,
+  ``,
+  `다음 단계 (3중 게이트 모두 필수):`,
+  `  node src/step5_register.mjs --approve --plan-file=${path.basename(out)} --confirm-text="${plan.confirm_text_required}"`,
+]);

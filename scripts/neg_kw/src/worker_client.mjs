@@ -93,12 +93,48 @@ export async function getTargets(ownerId) {
   return Array.isArray(r.body) ? r.body : (r.body?.data || r.body?.targets || []);
 }
 
+function pickField(body, ...names) {
+  if (body == null || typeof body !== 'object') return undefined;
+  for (const n of names) {
+    if (body[n] !== undefined) return body[n];
+    if (body.data && body.data[n] !== undefined) return body.data[n];
+    if (body.target && body.target[n] !== undefined) return body.target[n];
+    if (body.result && body.result[n] !== undefined) return body.result[n];
+  }
+  return undefined;
+}
+
 export async function postTarget({ ownerId, keyword, match_type = 'exact' }) {
-  return callWorker('POST', '/targets', {
-    body: { ownerId, type: 'NEGATIVE_KEYWORD', keyword, match_type },
-  });
+  const requestBody = { ownerId, type: 'NEGATIVE_KEYWORD', keyword, match_type };
+  const r = await callWorker('POST', '/targets', { body: requestBody });
+  if (!r.ok) return r;
+
+  const echoedKeyword = pickField(r.body, 'keyword', 'target');
+  const echoedOwner = pickField(r.body, 'ownerId', 'nccAdgroupId');
+  const echoedTargetId = pickField(r.body, 'nccTargetId', 'id', 'targetId');
+
+  const mismatches = [];
+  if (echoedKeyword !== undefined && echoedKeyword !== keyword) {
+    mismatches.push(`keyword: sent="${keyword}" got="${echoedKeyword}"`);
+  }
+  if (echoedOwner !== undefined && echoedOwner !== ownerId) {
+    mismatches.push(`ownerId: sent="${ownerId}" got="${echoedOwner}"`);
+  }
+  if (mismatches.length) {
+    return { ...r, ok: false, reason: 'request_response_mismatch', mismatches };
+  }
+  if (echoedTargetId === undefined && echoedKeyword === undefined) {
+    return { ...r, ok: false, reason: 'response_lacks_identifiers', requested: requestBody };
+  }
+  return { ...r, verified_keyword: echoedKeyword ?? keyword, verified_target_id: echoedTargetId };
 }
 
 export async function deleteTarget(nccTargetId) {
-  return callWorker('DELETE', `/targets/${encodeURIComponent(nccTargetId)}`);
+  const r = await callWorker('DELETE', `/targets/${encodeURIComponent(nccTargetId)}`);
+  if (!r.ok) return r;
+  const echoedId = pickField(r.body, 'nccTargetId', 'id', 'targetId', 'deletedId');
+  if (echoedId !== undefined && echoedId !== nccTargetId) {
+    return { ...r, ok: false, reason: 'delete_id_mismatch', sent: nccTargetId, got: echoedId };
+  }
+  return r;
 }

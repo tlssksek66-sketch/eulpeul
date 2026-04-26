@@ -99,6 +99,34 @@ OUTPUT_DIR=/c/Users/dudvu/SHOKZ_T010_NEGKW_2026-04-26 node src/step1_health.mjs
 | `inventory/` | ✓ | 민감정보 제거된 영구 자산. 변경 이력 추적 |
 | `config/` | ✓ | 작업 정의 (대상 그룹, 신규 KW, 보존 패턴) |
 
+## 상태 머신 — `inventory/t010_inventory_master.json`
+
+각 그룹의 `register_status` 필드는 다음 흐름:
+
+```
+(미존재)  →  pending      ← STEP 2 dump 완료
+pending   →  in_progress  ← STEP 5 등록 시작
+in_progress → registered  ← STEP 5 등록 완료 (전체 OK)
+in_progress → failed       ← STEP 5 일부 실패
+registered → verified      ← STEP 6 재dump로 8KW 모두 확인
+registered → failed        ← STEP 6 누락 감지
+```
+
+각 STEP은 종료 시 `change_log[]`에 항목 추가하고 `last_updated_at` 갱신.
+
+## 3중 검증 (worker_client.mjs)
+
+`postTarget()` 응답 시 다음 3가지 모두 통과해야 OK:
+1. HTTP 200~299
+2. body.status가 실패 시그널이 아님 (`error`, `false` 등)
+3. 응답 body의 `keyword` / `ownerId` 가 요청값과 일치 (불일치 시 `request_response_mismatch`)
+
+`200 OK ≠ 저장 완료` — 이중 200 래퍼 문제 회피 (memory #6/#34).
+
+## 다음 세션 인계
+
+각 STEP 종료 시 콘솔에 `📋 STEP N 종료 — 다음 세션 인계 메시지` 블록 출력. 본 블록을 raw 그대로 다음 Claude 세션에 붙여넣으면 컨텍스트 인계 가능. STEP 3·5·6·7는 특히 다음 행동 지시 명확히 포함.
+
 ## 사후 점검 트리거
 
 - T+1일: step6 재실행으로 등록 상태 재확인
