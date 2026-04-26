@@ -4,15 +4,12 @@
     const root = document.querySelector(".brand--sapyeong");
     if (!root) return;
 
-    fetch("./brand.config.json", { cache: "no-cache" })
-        .then((res) => (res.ok ? res.json() : null))
-        .then((config) => {
-            if (!config) return;
-            const yearEl = root.querySelector("[data-year]");
-            if (yearEl) yearEl.textContent = new Date().getFullYear();
-        })
-        .catch(() => {
-            const yearEl = root.querySelector("[data-year]");
-            if (yearEl) yearEl.textContent = new Date().getFullYear();
-        });
+    const yearEl = root.querySelector("[data-year]");
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+    const cards = root.querySelectorAll(".signature-card");
+    cards.forEach((card) => {
+        card.addEventListener("mouseenter", () => card.classList.add("is-hover"));
+        card.addEventListener("mouseleave", () => card.classList.remove("is-hover"));
+    });
 })();

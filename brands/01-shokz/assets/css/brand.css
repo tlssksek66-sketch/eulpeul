@@ -16,6 +16,39 @@
     font-family: "Inter", "Noto Sans KR", sans-serif;
 }
 
+.brand--shokz .brand__topbar {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--shokz-line);
+    background: rgba(14, 21, 37, 0.6);
+}
+
+.brand--shokz .brand__topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.brand--shokz .brand__crumb {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--shokz-muted);
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.brand--shokz .brand__crumb:hover,
+.brand--shokz .brand__crumb:focus-visible {
+    color: var(--shokz-primary);
+    outline: none;
+}
+
+.brand--shokz .brand__crumb--id {
+    font-weight: 700;
+    color: var(--shokz-text);
+    letter-spacing: 0.3em;
+}
+
 .brand--shokz .brand__header {
     padding: 5rem 0 3rem;
     text-align: left;
@@ -198,4 +231,34 @@
     font-size: 0.8125rem;
     letter-spacing: 0.15em;
     border-top: 1px solid var(--shokz-line);
+}
+
+.brand--shokz .brand__footer-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--shokz-primary);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.brand--shokz .brand__footer-link:hover,
+.brand--shokz .brand__footer-link:focus-visible {
+    color: #fff;
+    outline: none;
+}
+
+.brand--shokz a:focus-visible {
+    outline: 2px solid var(--shokz-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+    .brand--shokz .brand__header {
+        padding: 3rem 0 2rem;
+    }
+    .brand--shokz .section {
+        padding: 3rem 0;
+    }
 }

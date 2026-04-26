@@ -8,16 +8,52 @@
     --sapyeong-cream: #F7F1E6;
     --sapyeong-line: #E5DCCB;
     --sapyeong-muted: #6B5B47;
+    --sapyeong-surface: #FFFFFF;
 
     background: var(--sapyeong-cream);
     color: var(--sapyeong-deep);
     font-family: "Noto Serif KR", "Noto Sans KR", serif;
 }
 
+.brand--sapyeong .brand__topbar {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--sapyeong-line);
+    background: rgba(255, 255, 255, 0.5);
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.brand--sapyeong .brand__topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.brand--sapyeong .brand__crumb {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--sapyeong-muted);
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.brand--sapyeong .brand__crumb:hover,
+.brand--sapyeong .brand__crumb:focus-visible {
+    color: var(--sapyeong-primary);
+    outline: none;
+}
+
+.brand--sapyeong .brand__crumb--id {
+    font-weight: 700;
+    color: var(--sapyeong-deep);
+    letter-spacing: 0.3em;
+}
+
 .brand--sapyeong .brand__header {
-    padding: 4rem 0 2.5rem;
+    padding: 4.5rem 0 3rem;
     text-align: center;
     border-bottom: 1px solid var(--sapyeong-line);
+    background: linear-gradient(180deg, rgba(201, 123, 43, 0.08) 0%, rgba(247, 241, 230, 0) 100%);
 }
 
 .brand--sapyeong .brand__logo {
@@ -67,29 +103,103 @@
     line-height: 1.85;
 }
 
+/* ===== Stat (Brand Core) ===== */
+.brand--sapyeong .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.brand--sapyeong .stat-card {
+    background: var(--sapyeong-surface);
+    border: 1px solid var(--sapyeong-line);
+    padding: 1.5rem;
+    border-radius: 6px;
+}
+
+.brand--sapyeong .stat-card__value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--sapyeong-primary);
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+    font-family: "Inter", sans-serif;
+}
+
+.brand--sapyeong .stat-card__label {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: var(--sapyeong-muted);
+    text-transform: uppercase;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/* ===== Signature ===== */
 .brand--sapyeong .signature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
 }
 
 .brand--sapyeong .signature-card {
-    background: #fff;
+    background: var(--sapyeong-surface);
     border: 1px solid var(--sapyeong-line);
     padding: 1.5rem;
-    border-radius: 4px;
+    border-radius: 6px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.brand--sapyeong .signature-card:hover {
+    border-color: var(--sapyeong-primary);
+    transform: translateY(-2px);
 }
 
 .brand--sapyeong .signature-card__num {
     font-size: 0.75rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     color: var(--sapyeong-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.625rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
 }
 
-.brand--sapyeong .signature-card__text {
+.brand--sapyeong .signature-card__name {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--sapyeong-deep);
+}
+
+.brand--sapyeong .signature-card__desc {
+    font-size: 0.9375rem;
+    color: var(--sapyeong-muted);
+    line-height: 1.65;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/* ===== Store Info ===== */
+.brand--sapyeong .store-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+}
+
+.brand--sapyeong .store-item__label {
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    color: var(--sapyeong-primary);
+    margin-bottom: 0.5rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.brand--sapyeong .store-item__value {
     font-size: 1rem;
+    color: var(--sapyeong-deep);
     line-height: 1.6;
 }
 
@@ -136,9 +246,41 @@
 }
 
 .brand--sapyeong .brand__footer {
-    padding: 2rem 0 3rem;
+    padding: 2.5rem 0 3rem;
     text-align: center;
     color: var(--sapyeong-muted);
     font-size: 0.875rem;
     letter-spacing: 0.1em;
+    border-top: 1px solid var(--sapyeong-line);
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.brand--sapyeong .brand__footer-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--sapyeong-primary);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.brand--sapyeong .brand__footer-link:hover,
+.brand--sapyeong .brand__footer-link:focus-visible {
+    color: var(--sapyeong-deep);
+    outline: none;
+}
+
+.brand--sapyeong a:focus-visible {
+    outline: 2px solid var(--sapyeong-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+    .brand--sapyeong .brand__header {
+        padding: 3rem 0 2rem;
+    }
+    .brand--sapyeong .section {
+        padding: 3rem 0;
+    }
 }

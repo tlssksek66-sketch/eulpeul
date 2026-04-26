@@ -3,16 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사평 - 저수분 숙성 키마카레</title>
-    <meta name="description" content="대구 동성로의 일본식 카레 전문 브랜드 사평. 저수분 숙성 키마카레로 로컬 매장에서 마켓컬리 이커머스까지 진출.">
+    <title>사평 Sapyeong · 저수분 숙성 키마카레</title>
+    <meta name="description" content="대구 동성로의 일본식 카레 전문 브랜드 사평. 저수분 숙성 키마카레로 로컬 매장에서 마켓컬리 이커머스까지.">
+    <meta name="theme-color" content="#F7F1E6">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="사평 Sapyeong · 저수분 숙성 키마카레">
+    <meta property="og:description" content="대구 동성로 일본식 카레 전문 브랜드. 저수분 숙성 키마카레로 로컬에서 이커머스까지.">
+    <meta property="og:locale" content="ko_KR">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F7F1E6'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23C97B2B'/%3E%3C/svg%3E">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../shared/styles/base.css">
     <link rel="stylesheet" href="assets/css/brand.css">
 </head>
 <body class="brand brand--sapyeong">
-    <header class="brand__header">
+    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+    <nav class="brand__topbar" aria-label="브레드크럼">
+        <div class="container brand__topbar-inner">
+            <a class="brand__crumb brand__crumb--id" href="../">← BRANDS</a>
+            <a class="brand__crumb" href="../../index.html">메인 대시보드 ↑</a>
+        </div>
+    </nav>
+
+    <header class="brand__header" role="banner">
         <div class="container">
             <p class="brand__logo">SAPYEONG</p>
             <h1 class="brand__title">사평</h1>
@@ -20,49 +39,71 @@
         </div>
     </header>
 
-    <main class="brand__main">
-        <section class="section">
+    <main class="brand__main" id="main">
+        <section class="section" aria-labelledby="sec-core">
             <div class="container">
-                <p class="section__label">BRAND STORY</p>
-                <h2 class="section__title">한 그릇의 카레에서 시작된 여정</h2>
+                <p class="section__label">BRAND CORE</p>
+                <h2 class="section__title" id="sec-core">한 그릇의 카레에서 시작된 여정</h2>
                 <div class="section__body">
                     <p>사평은 일본에서 마주한 카레 한 그릇의 깊이에 매료되어 시작되었습니다. 대구 동성로 한편에서 천천히 끓이는 정성으로 출발한 작은 가게는, 이제 로컬 매장의 손님을 넘어 가정의 식탁까지 닿고자 합니다.</p>
                 </div>
+                <dl class="stat-grid" aria-label="사평 브랜드 코어 지표">
+                    <div class="stat-card">
+                        <dt class="stat-card__label">Origin</dt>
+                        <dd class="stat-card__value">대구 동성로</dd>
+                    </div>
+                    <div class="stat-card">
+                        <dt class="stat-card__label">Signature</dt>
+                        <dd class="stat-card__value">키마카레</dd>
+                    </div>
+                    <div class="stat-card">
+                        <dt class="stat-card__label">Channels</dt>
+                        <dd class="stat-card__value">2</dd>
+                    </div>
+                    <div class="stat-card">
+                        <dt class="stat-card__label">Status</dt>
+                        <dd class="stat-card__value">Active</dd>
+                    </div>
+                </dl>
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" aria-labelledby="sec-signature">
             <div class="container">
                 <p class="section__label">SIGNATURE</p>
-                <h2 class="section__title">시그니처 메뉴</h2>
+                <h2 class="section__title" id="sec-signature">시그니처 메뉴</h2>
                 <div class="section__body">
                     <p>국내산 양파를 오래 볶아 만든 베이스에 국내산 돼지고기 키마를 더해 저수분으로 숙성합니다. 감칠맛과 향신료의 균형을 가장 중요하게 다룹니다.</p>
                 </div>
                 <div class="signature-grid">
                     <article class="signature-card">
-                        <p class="signature-card__num">01</p>
-                        <p class="signature-card__text">저수분 숙성 키마카레 — 시그니처</p>
+                        <p class="signature-card__num">01 · SIGNATURE</p>
+                        <h3 class="signature-card__name">저수분 숙성 키마카레</h3>
+                        <p class="signature-card__desc">사평의 시그니처. 수분을 최소화한 깊은 풍미와 균형 잡힌 향신료.</p>
                     </article>
                     <article class="signature-card">
-                        <p class="signature-card__num">02</p>
-                        <p class="signature-card__text">국내산 양파 장시간 볶음 베이스</p>
+                        <p class="signature-card__num">02 · BASE</p>
+                        <h3 class="signature-card__name">국내산 양파 베이스</h3>
+                        <p class="signature-card__desc">국내산 양파를 장시간 볶아낸 단맛의 토대.</p>
                     </article>
                     <article class="signature-card">
-                        <p class="signature-card__num">03</p>
-                        <p class="signature-card__text">국내산 돼지고기 키마</p>
+                        <p class="signature-card__num">03 · KIMA</p>
+                        <h3 class="signature-card__name">국내산 돼지고기 키마</h3>
+                        <p class="signature-card__desc">국내산 돼지고기를 곱게 다져 결을 살린 정통 키마.</p>
                     </article>
                     <article class="signature-card">
-                        <p class="signature-card__num">04</p>
-                        <p class="signature-card__text">청양고추 매콤 버전</p>
+                        <p class="signature-card__num">04 · SPICY</p>
+                        <h3 class="signature-card__name">청양고추 매콤 버전</h3>
+                        <p class="signature-card__desc">청양고추로 끌어올린 사평 스타일 매콤 라인.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" aria-labelledby="sec-channel">
             <div class="container">
                 <p class="section__label">CHANNEL</p>
-                <h2 class="section__title">로컬에서 이커머스까지</h2>
+                <h2 class="section__title" id="sec-channel">로컬에서 이커머스까지</h2>
                 <div class="section__body">
                     <p>오프라인 매장에서 쌓아온 신뢰를 기반으로, 마켓컬리에 입점해 전국 가정의 식탁으로 영역을 확장합니다.</p>
                 </div>
@@ -73,35 +114,64 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" aria-labelledby="sec-store">
+            <div class="container">
+                <p class="section__label">STORE</p>
+                <h2 class="section__title" id="sec-store">매장 정보</h2>
+                <div class="section__body">
+                    <p>대구 동성로·교동 일대에서 운영하는 본점. 좌석 수와 영업시간은 운영 변경 시 갱신됩니다.</p>
+                </div>
+                <dl class="store-grid">
+                    <div class="store-item">
+                        <dt class="store-item__label">Location</dt>
+                        <dd class="store-item__value">대구 중구 동성로·교동 일대</dd>
+                    </div>
+                    <div class="store-item">
+                        <dt class="store-item__label">Hours</dt>
+                        <dd class="store-item__value">운영 시간 별도 공지</dd>
+                    </div>
+                    <div class="store-item">
+                        <dt class="store-item__label">Reservation</dt>
+                        <dd class="store-item__value">현장 우선 · 혼잡 시 대기</dd>
+                    </div>
+                    <div class="store-item">
+                        <dt class="store-item__label">E-commerce</dt>
+                        <dd class="store-item__value">마켓컬리 정기 입고</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="sec-meta">
             <div class="container">
                 <p class="section__label">META</p>
-                <h2 class="section__title">브랜드 정보</h2>
-                <div class="meta-grid">
+                <h2 class="section__title" id="sec-meta">브랜드 정보</h2>
+                <dl class="meta-grid">
                     <div class="meta-item">
-                        <p class="meta-item__label">CATEGORY</p>
-                        <p class="meta-item__value">일본식 카레 전문</p>
+                        <dt class="meta-item__label">CATEGORY</dt>
+                        <dd class="meta-item__value">일본식 카레 전문</dd>
                     </div>
                     <div class="meta-item">
-                        <p class="meta-item__label">ORIGIN</p>
-                        <p class="meta-item__value">대구 중구 동성로·교동</p>
+                        <dt class="meta-item__label">ORIGIN</dt>
+                        <dd class="meta-item__value">대구 중구 동성로·교동</dd>
                     </div>
                     <div class="meta-item">
-                        <p class="meta-item__label">STATUS</p>
-                        <p class="meta-item__value">Active</p>
+                        <dt class="meta-item__label">STATUS</dt>
+                        <dd class="meta-item__value">Active</dd>
                     </div>
                     <div class="meta-item">
-                        <p class="meta-item__label">BRAND ID</p>
-                        <p class="meta-item__value">02 / sapyeong</p>
+                        <dt class="meta-item__label">BRAND ID</dt>
+                        <dd class="meta-item__value">02 / sapyeong</dd>
                     </div>
-                </div>
+                </dl>
             </div>
         </section>
     </main>
 
-    <footer class="brand__footer">
+    <footer class="brand__footer" role="contentinfo">
         <div class="container">
             <p>© <span data-year>2026</span> SAPYEONG. ALL RIGHTS RESERVED.</p>
+            <a class="brand__footer-link" href="../">← 브랜드 인덱스로 돌아가기</a>
         </div>
     </footer>
 

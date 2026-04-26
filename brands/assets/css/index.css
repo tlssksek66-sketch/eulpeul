@@ -1,0 +1,243 @@
+/* brands/assets/css/index.css
+   브랜드 포트폴리오 인덱스 전용 스타일.
+   브랜드별 페이지(.brand--{slug})와 충돌하지 않도록 .brand-index 네임스페이스에서 정의. */
+
+.brand-index {
+    background: #0E1525;
+    color: #E8ECF5;
+    font-family: "Inter", "Noto Sans KR", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-index a {
+    color: inherit;
+}
+
+/* ===== Top Bar ===== */
+.brand-index__topbar {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #1F2A45;
+}
+
+.brand-index__topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.brand-index__brand-mark {
+    font-size: 0.8125rem;
+    letter-spacing: 0.4em;
+    color: #E8ECF5;
+    font-weight: 700;
+}
+
+.brand-index__topbar-link {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #8893AC;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.brand-index__topbar-link:hover,
+.brand-index__topbar-link:focus-visible {
+    color: #fff;
+    outline: none;
+}
+
+/* ===== Header ===== */
+.brand-index__header {
+    padding: 5rem 0 3rem;
+    border-bottom: 1px solid #1F2A45;
+}
+
+.brand-index__label {
+    font-size: 0.75rem;
+    letter-spacing: 0.5em;
+    color: #0066FF;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.brand-index__title {
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+}
+
+.brand-index__desc {
+    font-size: 1.0625rem;
+    color: #8893AC;
+    max-width: 640px;
+    line-height: 1.7;
+}
+
+/* ===== Summary Stats ===== */
+.brand-index__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.brand-index__stat {
+    padding: 1.25rem 1.5rem;
+    background: #141C30;
+    border: 1px solid #1F2A45;
+    border-radius: 10px;
+}
+
+.brand-index__stat-value {
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+}
+
+.brand-index__stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: #8893AC;
+    text-transform: uppercase;
+}
+
+/* ===== Main Grid ===== */
+.brand-index__main {
+    flex: 1;
+    padding: 4rem 0 6rem;
+}
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+}
+
+.brand-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 2rem;
+    background: #141C30;
+    border: 1px solid #1F2A45;
+    border-radius: 12px;
+    color: inherit;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.brand-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--brand-color, #0066FF);
+}
+
+.brand-card:hover,
+.brand-card:focus-visible {
+    border-color: var(--brand-color, #0066FF);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    outline: none;
+}
+
+.brand-card__id {
+    font-size: 0.6875rem;
+    letter-spacing: 0.3em;
+    color: var(--brand-color, #0066FF);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.brand-card__name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+}
+
+.brand-card__name-en {
+    font-size: 0.875rem;
+    color: #8893AC;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.25rem;
+}
+
+.brand-card__category {
+    font-size: 0.875rem;
+    color: #8893AC;
+    margin-bottom: 0.75rem;
+}
+
+.brand-card__tagline {
+    font-size: 1rem;
+    color: #E8ECF5;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.brand-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.brand-card__tag {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid #1F2A45;
+    color: #8893AC;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    border-radius: 999px;
+}
+
+.brand-card__cta {
+    margin-top: auto;
+    font-size: 0.8125rem;
+    color: var(--brand-color, #0066FF);
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+.brand-card__cta::after {
+    content: " →";
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.brand-card:hover .brand-card__cta::after,
+.brand-card:focus-visible .brand-card__cta::after {
+    transform: translateX(4px);
+}
+
+/* ===== Footer ===== */
+.brand-index__footer {
+    text-align: center;
+    color: #8893AC;
+    font-size: 0.8125rem;
+    letter-spacing: 0.15em;
+    padding: 2rem 0 3rem;
+    border-top: 1px solid #1F2A45;
+}
+
+@media (max-width: 600px) {
+    .brand-index__header {
+        padding: 3rem 0 2rem;
+    }
+
+    .brand-card {
+        padding: 1.75rem;
+    }
+}
