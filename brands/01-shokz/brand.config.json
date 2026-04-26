@@ -1,0 +1,11 @@
+{
+  "id": "01",
+  "slug": "shokz",
+  "name": "샥즈",
+  "nameEn": "Shokz",
+  "color": "#0066FF",
+  "owner": "",
+  "status": "active",
+  "tags": ["audio", "wearable"],
+  "createdAt": "2026-04-26"
+}
