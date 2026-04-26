@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0099E5"/>
+      <stop offset="55%" stop-color="#0077B6"/>
+      <stop offset="100%" stop-color="#001E40"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <!-- city skyline silhouette -->
+  <g fill="rgba(0,0,0,0.6)">
+    <rect x="40" y="780" width="120" height="320"/>
+    <rect x="180" y="700" width="90" height="400"/>
+    <rect x="290" y="820" width="140" height="280"/>
+    <rect x="450" y="640" width="100" height="460"/>
+    <rect x="570" y="740" width="160" height="360"/>
+    <rect x="750" y="660" width="110" height="440"/>
+    <rect x="880" y="760" width="130" height="340"/>
+    <rect x="1030" y="700" width="140" height="400"/>
+  </g>
+  <!-- subway light streak -->
+  <g fill="rgba(255,255,255,0.18)">
+    <rect x="0" y="900" width="1200" height="6"/>
+    <rect x="0" y="930" width="1200" height="2"/>
+  </g>
+  <!-- accent dots (windows) -->
+  <g fill="rgba(255,255,255,0.85)">
+    <circle cx="220" cy="780" r="3"/><circle cx="240" cy="800" r="3"/><circle cx="260" cy="780" r="3"/>
+    <circle cx="490" cy="720" r="3"/><circle cx="510" cy="740" r="3"/><circle cx="530" cy="720" r="3"/>
+    <circle cx="610" cy="820" r="3"/><circle cx="630" cy="800" r="3"/><circle cx="650" cy="820" r="3"/>
+    <circle cx="790" cy="740" r="3"/><circle cx="810" cy="720" r="3"/>
+  </g>
+  <!-- safety beam -->
+  <path d="M 100 100 L 1100 100" stroke="rgba(0,229,153,0.55)" stroke-width="2" stroke-dasharray="4 12"/>
+</svg>
