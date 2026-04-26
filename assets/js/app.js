@@ -855,11 +855,15 @@ const App = {
     applyNaverConfigToForm() {
         const cfg = this.data.naverConfig || {};
         const setVal = (id, v) => { const el = document.getElementById(id); if (el && v !== undefined) el.value = v; };
-        setVal('naverClientId', cfg.clientId || '');
-        setVal('naverClientSecret', cfg.clientSecret || '');
+        setVal('naverScriptUrl', cfg.scriptUrl || '');
         setVal('naverQuery', cfg.query || '샥즈 코리아');
         setVal('naverDisplay', cfg.display || 20);
-        setVal('naverProxy', cfg.proxyUrl || '');
+
+        const channels = cfg.channels || ['news', 'blog', 'cafe'];
+        const setChk = (id, on) => { const el = document.getElementById(id); if (el) el.checked = !!on; };
+        setChk('naverChNews', channels.includes('news'));
+        setChk('naverChBlog', channels.includes('blog'));
+        setChk('naverChCafe', channels.includes('cafe'));
 
         const status = document.getElementById('naverStatus');
         if (status && cfg.lastFetched) {
@@ -868,13 +872,23 @@ const App = {
         }
     },
 
-    saveNaverConfig() {
-        this.data.naverConfig = {
-            clientId: document.getElementById('naverClientId')?.value.trim() || '',
-            clientSecret: document.getElementById('naverClientSecret')?.value.trim() || '',
+    readNaverForm() {
+        const channels = [];
+        if (document.getElementById('naverChNews')?.checked) channels.push('news');
+        if (document.getElementById('naverChBlog')?.checked) channels.push('blog');
+        if (document.getElementById('naverChCafe')?.checked) channels.push('cafe');
+        return {
+            scriptUrl: document.getElementById('naverScriptUrl')?.value.trim() || '',
             query: document.getElementById('naverQuery')?.value.trim() || '샥즈 코리아',
-            display: parseInt(document.getElementById('naverDisplay')?.value, 10) || 20,
-            proxyUrl: document.getElementById('naverProxy')?.value.trim() || '',
+            display: Math.min(100, Math.max(1, parseInt(document.getElementById('naverDisplay')?.value, 10) || 20)),
+            channels
+        };
+    },
+
+    saveNaverConfig() {
+        const form = this.readNaverForm();
+        this.data.naverConfig = {
+            ...form,
             lastFetched: this.data.naverConfig?.lastFetched || null
         };
         DataStore.save(this.data);
@@ -889,119 +903,92 @@ const App = {
     },
 
     async fetchNaverNews() {
-        // 폼 값 우선 적용 (저장 없이도 시도 가능)
-        const clientId = document.getElementById('naverClientId')?.value.trim() || '';
-        const clientSecret = document.getElementById('naverClientSecret')?.value.trim() || '';
-        const query = document.getElementById('naverQuery')?.value.trim() || '샥즈 코리아';
-        const display = Math.min(100, Math.max(1, parseInt(document.getElementById('naverDisplay')?.value, 10) || 20));
-        const proxy = document.getElementById('naverProxy')?.value.trim() || '';
+        const { scriptUrl, query, display, channels } = this.readNaverForm();
 
-        if (!clientId || !clientSecret) {
-            this.setNaverStatus('Client ID와 Secret을 모두 입력하세요.', 'error');
+        if (!scriptUrl) {
+            this.setNaverStatus('Apps Script Web App URL을 입력하세요.', 'error');
+            return;
+        }
+        if (!/^https:\/\/script\.google\.com\//i.test(scriptUrl)) {
+            this.setNaverStatus('Apps Script URL 형식이 올바르지 않습니다 (script.google.com 으로 시작).', 'error');
+            return;
+        }
+        if (!channels.length) {
+            this.setNaverStatus('수집 채널을 1개 이상 선택하세요.', 'error');
             return;
         }
 
-        this.setNaverStatus('네이버 뉴스 검색 중...', 'loading');
+        this.setNaverStatus(`네이버 ${channels.join(' · ')} 검색 중...`, 'loading');
 
-        const apiUrl = `https://openapi.naver.com/v1/search/news.json?query=${encodeURIComponent(query)}&display=${display}&sort=date`;
-        const requestUrl = proxy ? proxy + encodeURIComponent(apiUrl) : apiUrl;
+        const url = scriptUrl
+            + (scriptUrl.includes('?') ? '&' : '?')
+            + 'query=' + encodeURIComponent(query)
+            + '&display=' + display
+            + '&channels=' + encodeURIComponent(channels.join(','));
 
         try {
-            const res = await fetch(requestUrl, {
-                method: 'GET',
-                headers: {
-                    'X-Naver-Client-Id': clientId,
-                    'X-Naver-Client-Secret': clientSecret
-                }
-            });
-            if (!res.ok) {
-                throw new Error(`HTTP ${res.status} - ${res.statusText}`);
-            }
+            // Apps Script 웹 앱은 리다이렉트(302)를 거치므로 redirect: 'follow' 명시
+            const res = await fetch(url, { method: 'GET', redirect: 'follow' });
+            if (!res.ok) throw new Error(`HTTP ${res.status} - ${res.statusText}`);
             const json = await res.json();
-            const items = json.items || [];
-            const added = this.mergeNaverItems(items);
+            if (json.error) throw new Error(json.error);
 
+            const added = this.mergeNaverItems(json.items || []);
             const ts = new Date().toLocaleString('ko-KR');
-            this.data.naverConfig = this.data.naverConfig || {};
-            this.data.naverConfig.lastFetched = ts;
+            this.data.naverConfig = { ...this.readNaverForm(), lastFetched: ts };
             DataStore.save(this.data);
 
-            this.setNaverStatus(`✓ ${items.length}건 수신, 신규 ${added}건 추가됨 (${ts})`, 'success');
+            const counts = json.counts || {};
+            const breakdown = Object.keys(counts).map(k => `${k}:${counts[k]}`).join(' · ');
+            this.setNaverStatus(
+                `✓ 총 ${json.total || 0}건 수신 (${breakdown}), 신규 ${added}건 추가 · ${ts}`,
+                'success'
+            );
             this.renderMagazine();
         } catch (err) {
-            console.error('Naver API error:', err);
-            const hint = !proxy
-                ? ' — CORS 차단 가능성이 큽니다. 프록시 URL을 입력해보세요.'
-                : ' — 프록시 응답 오류일 수 있습니다.';
-            this.setNaverStatus(`✗ 호출 실패: ${err.message}${hint}`, 'error');
+            console.error('Apps Script fetch error:', err);
+            this.setNaverStatus(`✗ 호출 실패: ${err.message} — Apps Script 배포 권한이 "모든 사용자"인지 확인하세요.`, 'error');
         }
     },
 
-    // 네이버 검색 결과 → 매거진 article 형태로 변환·병합
+    // Apps Script가 이미 정규화한 items[] → 매거진 article로 병합
     mergeNaverItems(items) {
         if (!Array.isArray(items) || !items.length) return 0;
         this.data.articles = this.data.articles || [];
 
-        const stripTags = (html) => (html || '').replace(/<[^>]+>/g, '').replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'");
-        const inferSource = (url) => {
-            try {
-                const host = new URL(url).hostname.replace(/^www\./, '');
-                const map = {
-                    'zdnet.co.kr': { name: '지디넷코리아', color: '#0066ff' },
-                    'it.chosun.com': { name: 'IT조선', color: '#e60012' },
-                    'mk.co.kr': { name: '매일경제', color: '#cc0000' },
-                    'donga.com': { name: '동아일보', color: '#003478' },
-                    'sports.donga.com': { name: '스포츠동아', color: '#d32f2f' },
-                    'edaily.co.kr': { name: '이데일리', color: '#ff5722' },
-                    'hani.co.kr': { name: '한겨레', color: '#005bac' },
-                    'etnews.com': { name: '전자신문', color: '#1976d2' },
-                    'biz.chosun.com': { name: '조선비즈', color: '#0033a0' },
-                    'ddaily.co.kr': { name: '디지털데일리', color: '#1e88e5' },
-                    'health.chosun.com': { name: '헬스조선', color: '#28a745' },
-                    'sports.khan.co.kr': { name: '스포츠경향', color: '#ff6600' }
-                };
-                return map[host] || { name: host, color: '#8b90a0' };
-            } catch (e) {
-                return { name: 'Naver News', color: '#03c75a' };
-            }
-        };
-        const inferCategory = (title, desc) => {
-            const t = (title + ' ' + desc).toLowerCase();
-            if (/리뷰|후기|체험|시승/.test(t)) return 'review';
-            if (/출시|신제품|공개|발표/.test(t)) return 'product';
-            if (/특허|기술|연구|학회|코덱|펌웨어/.test(t)) return 'tech';
-            if (/마라톤|러닝|사이클|골프|수영|선수|운동/.test(t)) return 'sports';
-            if (/캠페인|광고|모델|앰배서더|매장|할인|프로모션/.test(t)) return 'marketing';
-            if (/sns|인플루언서|커뮤니티|카페|인스타/.test(t)) return 'community';
-            return 'press';
-        };
-
         const existingTitles = new Set(this.data.articles.map(a => a.title));
-        let nextId = (this.data.articles.reduce((m, a) => Math.max(m, a.id || 0), 0)) + 1;
+        const existingUrls = new Set(this.data.articles.map(a => a.url).filter(Boolean));
+        let nextId = (this.data.articles.reduce((m, a) => Math.max(m, typeof a.id === 'number' ? a.id : 0), 0)) + 1;
         let added = 0;
 
         items.forEach(it => {
-            const title = stripTags(it.title);
+            const title = (it.title || '').trim();
+            if (!title) return;
             if (existingTitles.has(title)) return;
-            const desc = stripTags(it.description);
-            const url = it.originallink || it.link;
-            const src = inferSource(url || '');
-            const pubDate = it.pubDate ? new Date(it.pubDate) : new Date();
-            const dateStr = pubDate.toISOString().split('T')[0];
-            const daysAgo = Math.max(0, Math.floor((Date.now() - pubDate.getTime()) / 86400000));
+            if (it.url && existingUrls.has(it.url)) return;
+
+            const date = it.date || new Date().toISOString().slice(0, 10);
+            const daysAgo = Math.max(0, Math.floor((Date.now() - new Date(date).getTime()) / 86400000));
 
             this.data.articles.push({
                 id: nextId++,
-                category: inferCategory(title, desc),
+                category: it.category || 'press',
                 title,
-                excerpt: desc,
-                source: src.name, sourceColor: src.color,
-                date: dateStr, daysAgo,
-                views: 0, sentiment: 'neutral',
-                tags: ['네이버수집'], type: 'news', author: src.name,
-                url, source_origin: 'naver'
+                excerpt: it.excerpt || '',
+                source: it.source || '네이버',
+                sourceColor: it.sourceColor || '#03c75a',
+                date, daysAgo,
+                views: 0,
+                sentiment: it.sentiment || 'neutral',
+                tags: Array.isArray(it.tags) ? it.tags : [],
+                type: it.type || 'news',
+                author: it.author || it.bloggerName || it.cafeName || '편집부',
+                url: it.url || '',
+                channel: it.channel,
+                source_origin: 'apps-script'
             });
             existingTitles.add(title);
+            if (it.url) existingUrls.add(it.url);
             added++;
         });
 

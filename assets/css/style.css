@@ -1410,6 +1410,39 @@ textarea.form-input {
     color: var(--accent-cyan);
 }
 
+.mag-channel-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mag-channel-chk {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-secondary);
+}
+
+.mag-channel-chk:hover {
+    border-color: var(--accent-blue);
+    color: var(--text-primary);
+}
+
+.mag-channel-chk input { accent-color: var(--accent-blue); }
+
+.mag-channel-chk:has(input:checked) {
+    border-color: var(--accent-blue);
+    background: rgba(74, 124, 255, 0.1);
+    color: var(--text-primary);
+}
+
 .mag-naver-actions {
     display: flex;
     align-items: center;

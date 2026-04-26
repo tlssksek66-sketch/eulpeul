@@ -316,13 +316,12 @@ const DataStore = {
             }
         ],
 
-        // 네이버 검색 API 설정
+        // 네이버 검색 연동 설정 (Apps Script Web App 백엔드)
         naverConfig: {
-            clientId: '',
-            clientSecret: '',
+            scriptUrl: '',                      // Apps Script Web App 배포 URL
             query: '샥즈 코리아',
-            display: 20,
-            proxyUrl: '',
+            display: 20,                         // 채널당 건수 (1-100)
+            channels: ['news', 'blog', 'cafe'],  // 수집 채널
             lastFetched: null
         }
     },
