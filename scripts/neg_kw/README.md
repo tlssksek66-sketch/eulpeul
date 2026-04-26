@@ -12,8 +12,12 @@ cp .env.example .env
 node --version   # v18 이상
 ```
 
-> ⚠️ Worker는 host allowlist 기반 차단 사용. 실행 머신의 egress IP/Host가 Worker allowlist에 등록되어 있어야 합니다.
-> Claude Code 샌드박스 환경에서는 차단(`Host not in allowlist`)되며, 운영자 로컬 머신에서만 실행 가능.
+> ⚠️ **실행 환경 제약 — 운영자 로컬에서만 실행 가능**
+> Claude Code on the web 샌드박스는 외부 egress가 플랫폼 proxy로 차단됩니다 (응답: `HTTP 403`, 헤더 `x-deny-reason: host_not_allowed`, 본문 `Host not in allowlist`). 따라서 본 스크립트는 **운영자 로컬 머신에서만** 실제 호출이 가능합니다.
+>
+> - 차단 주체: Naver SA Worker가 아니라 **샌드박스 자체의 egress proxy**. settings.json·환경 변수로 우회 불가 (Anthropic 플랫폼 레벨 정책).
+> - 본 코드 측 식별: `worker_client.mjs`는 응답에 `allowlist` 문자열이 포함된 `403`을 fatal 에러(`Worker host allowlist 거부`)로 처리하고 즉시 중단. 메시지 표현은 외부 호스트 차단 일반을 가리킴 — Worker 측 정책일 수도, 샌드박스 측 차단일 수도 있음.
+> - 만약 운영자 로컬에서도 동일 403이 나오면 그때는 Worker 측 IP/Host allowlist 문제이므로 운영자의 egress IP를 Worker 관리자에게 등록 요청.
 
 ## 실행 순서 (STEP 1~7)
 
