@@ -1244,6 +1244,86 @@ textarea.form-input {
     background: var(--text-muted);
 }
 
+/* ===== Sidebar External Link ===== */
+.nav-item--external {
+    margin-top: 8px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
+    color: var(--text-muted);
+    position: relative;
+}
+
+.nav-item--external .nav-external-icon {
+    margin-left: auto;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.nav-item--external:hover {
+    color: var(--accent-blue-light);
+}
+
+/* ===== Brand Portfolio Card on Dashboard ===== */
+.brand-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+}
+
+.brand-portfolio-card {
+    display: block;
+    position: relative;
+    padding: 18px 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+}
+
+.brand-portfolio-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--brand-color, var(--accent-blue));
+}
+
+.brand-portfolio-card:hover {
+    border-color: var(--brand-color, var(--accent-blue));
+    transform: translateY(-2px);
+    background: var(--bg-hover);
+}
+
+.brand-portfolio-card__id {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    font-weight: 700;
+    color: var(--brand-color, var(--accent-blue));
+    margin-bottom: 8px;
+}
+
+.brand-portfolio-card__name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.brand-portfolio-card__cat {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.brand-portfolio-card__tag {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 1200px) {
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }

@@ -50,10 +50,19 @@
 }
 
 .brand--sapyeong .brand__header {
-    padding: 4.5rem 0 3rem;
+    padding: 8rem 0 3rem;
     text-align: center;
     border-bottom: 1px solid var(--sapyeong-line);
-    background: linear-gradient(180deg, rgba(201, 123, 43, 0.08) 0%, rgba(247, 241, 230, 0) 100%);
+    background:
+        url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cg fill='none' stroke='%23C97B2B' stroke-opacity='0.22' stroke-linecap='round'%3E%3Cpath d='M170 80 q6 -20 0 -40 q-6 -20 0 -40' stroke-width='1.5'/%3E%3Cpath d='M200 70 q7 -20 0 -40 q-7 -20 0 -40' stroke-width='1.5'/%3E%3Cpath d='M230 80 q6 -20 0 -40 q-6 -20 0 -40' stroke-width='1.5'/%3E%3Cpath d='M150 130 a50 14 0 1 0 100 0 a50 14 0 1 0 -100 0' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E") no-repeat center top / 320px 160px,
+        linear-gradient(180deg, rgba(201, 123, 43, 0.08) 0%, rgba(247, 241, 230, 0) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.brand--sapyeong .brand__header > .container {
+    position: relative;
+    z-index: 1;
 }
 
 .brand--sapyeong .brand__logo {
@@ -278,7 +287,8 @@
 
 @media (max-width: 600px) {
     .brand--sapyeong .brand__header {
-        padding: 3rem 0 2rem;
+        padding: 5rem 0 2rem;
+        background-size: 200px 100px, auto;
     }
     .brand--sapyeong .section {
         padding: 3rem 0;

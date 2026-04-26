@@ -53,7 +53,16 @@
     padding: 5rem 0 3rem;
     text-align: left;
     border-bottom: 1px solid var(--shokz-line);
-    background: linear-gradient(180deg, rgba(0,102,255,0.08) 0%, rgba(0,102,255,0) 100%);
+    background:
+        url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='%230066FF' stroke-opacity='0.18' stroke-width='1'%3E%3Ccircle cx='340' cy='90' r='50'/%3E%3Ccircle cx='340' cy='90' r='90'/%3E%3Ccircle cx='340' cy='90' r='130'/%3E%3Ccircle cx='340' cy='90' r='170'/%3E%3C/g%3E%3C/svg%3E") no-repeat top right / 420px 420px,
+        linear-gradient(180deg, rgba(0,102,255,0.08) 0%, rgba(0,102,255,0) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.brand--shokz .brand__header > .container {
+    position: relative;
+    z-index: 1;
 }
 
 .brand--shokz .brand__logo {

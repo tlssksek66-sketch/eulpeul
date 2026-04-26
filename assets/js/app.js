@@ -21,8 +21,9 @@ const App = {
      * 이벤트 바인딩
      */
     bindEvents() {
-        // 네비게이션
+        // 네비게이션 (외부 링크는 기본 이동 허용)
         document.querySelectorAll('.nav-item').forEach(item => {
+            if (item.dataset.external === 'true') return;
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const view = item.dataset.view;
