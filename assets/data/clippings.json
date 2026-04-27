@@ -6,7 +6,7 @@
     "title": "샥즈 코리아 매거진",
     "subtitle": "웹 상의 모든 샥즈 관련 뉴스·기사·콘텐츠를 한 화면에서 모니터링",
     "searchKeyword": "SHOKZ, 샥즈, 샥즈코리아, SHOKZ KOREA",
-    "collectedAt": "2026-04-28T03:32:44+09:00",
+    "collectedAt": "2026-04-28T05:41:57+09:00",
     "totalClippings": 60,
     "filterPassed": 60,
     "noiseFiltered": 274,
@@ -502,6 +502,132 @@
     {
       "id": 21,
       "channel": "blog",
+      "media": "네이버 블로그 · 5천만 국민.질병 없는.백년건강 위하여~~~",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "IT/과학1*헤드라인 뉴스.모바일.인터넷/SNS.통신/뉴미디어....",
+      "summary": "샥즈(Shokz)의 신작 ‘오픈핏 프로(OpenFit Pro)’를 처음 써본 기자의 감상평이다. 오픈핏 프로는 오픈형 이어폰에 대한 기존 인식을 상 헤럴드경제 5시간전 10이상+ AiRS 추천으로 구성된 뉴스를 제공합니다....",
+      "date": "2026-04-28",
+      "url": "https://blog.naver.com/c1c1b1b1/224267439033",
+      "tags": [
+        "오픈핏",
+        "과학",
+        "헤드라인",
+        "뉴스",
+        "모바일",
+        "인터넷",
+        "SNS",
+        "통신"
+      ]
+    },
+    {
+      "id": 22,
+      "channel": "blog",
+      "media": "네이버 블로그 · fycleaner님의 블로그",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "샥즈 오픈런 프로 2 S820 골전도 이어폰으로 운동할 때 들은...",
+      "summary": "그러다 샥즈 오픈런 프로 2 S820 골전도 이어폰을 알게 됐어요. 고감도 사운드에 오픈형 디자인이라... 운동할 때 꼭 추천하고 싶은 이어폰 샥즈 오픈런 프로 2 S820 골전도 이어폰은 운동할 때 필요한 여러 조건을...",
+      "date": "2026-04-28",
+      "url": "https://blog.naver.com/fycleaner/224267466205",
+      "tags": [
+        "샥즈",
+        "오픈런",
+        "프로",
+        "S820",
+        "골전도",
+        "운동할",
+        "이어폰으로",
+        "들은"
+      ]
+    },
+    {
+      "id": 23,
+      "channel": "blog",
+      "media": "네이버 블로그 · 떠나보자",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "빠져서 고민이라면? 샥즈 오픈런 미니 C타입 쓰고 광명 찾았어요",
+      "summary": "혜택가로 확인하기 [요즘 대세] [샥즈 공식] 오픈런 C타입 미니 OpenRun USB-C Mini S806 골전도 블루투스... 그러다 운동 마니아들 사이에서 유명한 [샥즈 공식] 오픈런 C타입 미니 OpenRun USB-C Mini S806을 우연히 보게...",
+      "date": "2026-04-28",
+      "url": "https://blog.naver.com/blogwhfdjqvo/224267298793",
+      "tags": [
+        "샥즈",
+        "오픈런",
+        "미니",
+        "타입",
+        "공식",
+        "OpenRun",
+        "USB",
+        "Mini"
+      ]
+    },
+    {
+      "id": 24,
+      "channel": "blog",
+      "media": "네이버 블로그 · fogy54791님의 블로그",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "샥즈 오픈핏2+ 플러스 무선 이어폰 한 달 써보고 느낀 진짜 후기",
+      "summary": "그래서 여러 제품 중에서 샥즈 오픈핏2+ 플러스를 골라봤어요. 가격대는 조금 있지만 오픈형이라 소음... 샥즈 오픈핏2+ 플러스 후기 마무리 한 달간 써본 바로는 자연스러운 소리와 편안한 착용감 덕분에...",
+      "date": "2026-04-28",
+      "url": "https://blog.naver.com/fogy54791/224265940441",
+      "tags": [
+        "샥즈",
+        "오픈핏",
+        "플러스",
+        "후기",
+        "무선",
+        "이어폰",
+        "써보고",
+        "느낀"
+      ]
+    },
+    {
+      "id": 25,
+      "channel": "blog",
+      "media": "네이버 블로그 · w8fnxpr님의 블로그",
+      "category": "review",
+      "sentiment": "negative",
+      "title": "샥즈 오픈런 스윔, 동시 충전 USB 케이블은 필수템",
+      "summary": "운동할 때, 특히 수영할 때 샥즈 오픈런 이어폰은 정말 필수템이잖아요. 그런데 운동 끝나고 오면 꼭... 만약 샥즈 오픈런 이어폰을 가지고 계신데 충전 때문에 불편함을 느끼셨다면, 혹은 앞으로 편하게 쓰고...",
+      "date": "2026-04-28",
+      "url": "https://blog.naver.com/w8fnxpr/224267452682",
+      "tags": [
+        "샥즈",
+        "오픈런",
+        "충전",
+        "스윔",
+        "동시",
+        "USB",
+        "케이블은",
+        "필수템"
+      ]
+    },
+    {
+      "id": 26,
+      "channel": "blog",
+      "media": "네이버 블로그 · idiotkd2님의 블로그",
+      "category": "sports",
+      "sentiment": "neutral",
+      "title": "초경량 스포츠 이어폰, 샥즈 오픈닷 원 E310 블루투스 이어폰",
+      "summary": "──────────────────── 상품명: 샥즈 오픈닷 원 E310 클립형 귀찌 귀걸이형 오픈형 블루투스 초경량 스포츠 이어폰 브랜드: 샥즈 코리아 최근 운동할 때 이어폰은 필수 아이템이죠. 특히...",
+      "date": "2026-04-28",
+      "url": "https://blog.naver.com/idiotkd2/224267448532",
+      "tags": [
+        "이어폰",
+        "샥즈",
+        "초경량",
+        "스포츠",
+        "오픈닷",
+        "E310",
+        "블루투스",
+        "상품명"
+      ]
+    },
+    {
+      "id": 27,
+      "channel": "blog",
       "media": "네이버 블로그 · imposeoco님의 블로그",
       "category": "review",
       "sentiment": "neutral",
@@ -521,7 +647,7 @@
       ]
     },
     {
-      "id": 22,
+      "id": 28,
       "channel": "blog",
       "media": "네이버 블로그 · orstyhs님의 블로그",
       "category": "review",
@@ -542,7 +668,7 @@
       ]
     },
     {
-      "id": 23,
+      "id": 29,
       "channel": "blog",
       "media": "네이버 블로그 · qu1bjl님의 블로그",
       "category": "sports",
@@ -563,7 +689,7 @@
       ]
     },
     {
-      "id": 24,
+      "id": 30,
       "channel": "blog",
       "media": "네이버 블로그 · buckd0r님의 블로그",
       "category": "review",
@@ -584,7 +710,7 @@
       ]
     },
     {
-      "id": 25,
+      "id": 31,
       "channel": "blog",
       "media": "네이버 블로그 · captaineb님의 블로그",
       "category": "review",
@@ -605,7 +731,7 @@
       ]
     },
     {
-      "id": 26,
+      "id": 32,
       "channel": "blog",
       "media": "네이버 블로그 · suddent3님의 블로그",
       "category": "review",
@@ -626,7 +752,7 @@
       ]
     },
     {
-      "id": 27,
+      "id": 33,
       "channel": "blog",
       "media": "네이버 블로그 · succeedlo님의 블로그",
       "category": "review",
@@ -647,7 +773,7 @@
       ]
     },
     {
-      "id": 28,
+      "id": 34,
       "channel": "blog",
       "media": "네이버 블로그 · countqjw님의 블로그",
       "category": "tech",
@@ -668,7 +794,7 @@
       ]
     },
     {
-      "id": 29,
+      "id": 35,
       "channel": "blog",
       "media": "네이버 블로그 · etherealnote61님의 블로그",
       "category": "review",
@@ -689,7 +815,7 @@
       ]
     },
     {
-      "id": 30,
+      "id": 36,
       "channel": "blog",
       "media": "네이버 블로그 · 0507's Life",
       "category": "review",
@@ -710,7 +836,7 @@
       ]
     },
     {
-      "id": 31,
+      "id": 37,
       "channel": "blog",
       "media": "네이버 블로그 · mia_ssong님의 블로그",
       "category": "review",
@@ -731,7 +857,7 @@
       ]
     },
     {
-      "id": 32,
+      "id": 38,
       "channel": "blog",
       "media": "네이버 블로그 · 어르신들 복지용구",
       "category": "review",
@@ -752,7 +878,7 @@
       ]
     },
     {
-      "id": 33,
+      "id": 39,
       "channel": "blog",
       "media": "네이버 블로그 · 코코더스",
       "category": "review",
@@ -773,7 +899,7 @@
       ]
     },
     {
-      "id": 34,
+      "id": 40,
       "channel": "blog",
       "media": "네이버 블로그 · IT 레시피(IT Recipe)",
       "category": "review",
@@ -791,132 +917,6 @@
         "운동은",
         "장비",
         "안전과"
-      ]
-    },
-    {
-      "id": 35,
-      "channel": "blog",
-      "media": "네이버 블로그 · esactor님의 블로그",
-      "category": "sports",
-      "sentiment": "positive",
-      "title": "운동 중 편안한 착용감! 샥즈 오픈닷 원 E310 블루투스 이어폰",
-      "summary": "브랜드 또는 제조사 정보 샥즈(Shokz)는 오픈형 이어폰을 전문으로 하는 브랜드로, 스포츠와 운동용으로 특화된 이어폰을 많이 출시한 브랜드입니다. 특히 이 브랜드는 사용자들이 운동을 하면서도 편리하게...",
-      "date": "2026-04-27",
-      "url": "https://blog.naver.com/esactor/224267103082",
-      "tags": [
-        "샥즈",
-        "이어폰을",
-        "운동",
-        "편안한",
-        "착용감",
-        "오픈닷",
-        "E310",
-        "블루투스"
-      ]
-    },
-    {
-      "id": 36,
-      "channel": "blog",
-      "media": "네이버 블로그 · 알쓸쭌잡",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "샥즈 오픈닷 원 언박싱 찐후기 & 2026 샥즈 가정의 달 프로모션...",
-      "summary": "사전 이벤트 바로 가기: https://shokz.info/FamilyMonthPreheat [STEP 2] 본 프로모션 (본격 득템 찬스) 가족... (재고 소진 전 스피드가 생명입니다.) 본 프로모션 바로 가기: https://shokz.info/FamilyMonth 어디서 구매할 수...",
-      "date": "2026-04-27",
-      "url": "https://blog.naver.com/shj2911/224267037083",
-      "tags": [
-        "프로모션",
-        "샥즈",
-        "가기",
-        "https",
-        "shokz",
-        "info",
-        "오픈닷",
-        "언박싱"
-      ]
-    },
-    {
-      "id": 37,
-      "channel": "blog",
-      "media": "네이버 블로그 · 59 Select",
-      "category": "review",
-      "sentiment": "positive",
-      "title": "달걀 1개보다 가벼운 착용감 운동 중에도 선명한 사운드...",
-      "summary": "구분 내용 쉽게 말하면 제품명 Shokz OpenRun Pro 2 샥즈 오픈런 프로 2 착용 방식 오픈 이어 디자인 귀를 막지 않는 골전도 방식 음향 구조 DualPitch, 듀얼 드라이버 고음·저음을 나눠 들려줌 배터리 최대 12시간...",
-      "date": "2026-04-27",
-      "url": "https://blog.naver.com/quokka_goout/224266970731",
-      "tags": [
-        "방식",
-        "달걀",
-        "개보다",
-        "가벼운",
-        "착용감",
-        "운동",
-        "중에도",
-        "선명한"
-      ]
-    },
-    {
-      "id": 38,
-      "channel": "blog",
-      "media": "네이버 블로그 · 간디",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "오픈런 프로 2 S820 애프터샥 골전도 이어폰 마라톤 헬스...",
-      "summary": "샥즈 오픈런과 SHOKZ OpenRun Pro 같은 이름이 자주 보였던 이유가 있네요. 개인적으로는 출퇴근길, 실내... 샥즈 오픈런과 SHOKZ OpenRun Pro 같은 모델을 비교해 보고 개인 용도에 맞게 선택해 보세요. 최종적으로는...",
-      "date": "2026-04-27",
-      "url": "https://blog.naver.com/warn1083/224266727125",
-      "tags": [
-        "샥즈",
-        "오픈런과",
-        "SHOKZ",
-        "OpenRun",
-        "Pro",
-        "같은",
-        "오픈런",
-        "프로"
-      ]
-    },
-    {
-      "id": 39,
-      "channel": "blog",
-      "media": "네이버 블로그 · 가전비교랩",
-      "category": "review",
-      "sentiment": "positive",
-      "title": "러닝크루 추천 이어폰｜샥즈 오픈런 프로 2 후기 달릴 때 왜...",
-      "summary": "이번에 살펴본 제품은 Shokz 샥즈 오픈런 프로 2 S820 입니다. 러닝, 마라톤, 자전거, 헬스용으로 많이... 러닝크루추천 #운동이어폰 #마라톤이어폰 #자전거이어폰 #헬스이어폰 #Shokz #오픈런프로 #러닝필수템",
-      "date": "2026-04-27",
-      "url": "https://blog.naver.com/dani153/224266703562",
-      "tags": [
-        "샥즈",
-        "오픈런",
-        "프로",
-        "Shokz",
-        "러닝크루",
-        "추천",
-        "이어폰",
-        "후기"
-      ]
-    },
-    {
-      "id": 40,
-      "channel": "blog",
-      "media": "네이버 블로그 · 행복한 일상",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "운동 필수템! 샥즈 오픈런 프로2 미니 S821, 직접 써보니...",
-      "summary": "상품 스펙 항목 내용 모델명 S821 (Mini) 제조사 샥즈 (SHOKZ) 무게 30g 블루투스 버전 5.3 재생 시간 최대 12시간 충전 방식 USB-C 방수 등급 IP55 핵심 기능 골전도+공기전도 듀얼 드라이버, 멀티포인트 페어링, AI 노이즈...",
-      "date": "2026-04-27",
-      "url": "https://blog.naver.com/dodolove7376/224266363290",
-      "tags": [
-        "샥즈",
-        "S821",
-        "시간",
-        "운동",
-        "필수템",
-        "오픈런",
-        "프로",
-        "미니"
       ]
     },
     {

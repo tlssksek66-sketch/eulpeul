@@ -1,10 +1,10 @@
 {
   "meta": {
-    "indexedAt": "2026-04-28T03:33:48+09:00",
+    "indexedAt": "2026-04-28T05:42:03+09:00",
     "indexed": 10,
     "analyzedThisRun": 0,
-    "cachedHits": 0,
-    "failed": 10,
+    "cachedHits": 10,
+    "failed": 0,
     "pruned": 0,
     "maxPdfsPerRun": 10
   },

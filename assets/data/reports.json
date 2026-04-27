@@ -3,9 +3,9 @@
     "kind": "reports",
     "title": "리서치 리포트",
     "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
-    "collectedAt": "2026-04-28T03:32:49+09:00",
+    "collectedAt": "2026-04-28T05:42:02+09:00",
     "totalReports": 37,
-    "freshCount": 37,
+    "freshCount": 0,
     "sources": [
       {
         "key": "nasmedia-regular",
@@ -44,7 +44,7 @@
         "url": "https://www.dmcreport.co.kr/report"
       }
     ],
-    "updatedAt": "2026-04-28T03:32:49+09:00"
+    "updatedAt": "2026-04-28T05:42:02+09:00"
   },
   "categories": [
     {
