@@ -86,4 +86,13 @@ jobs:
           fi
           ts=$(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M KST')
           git commit -m "chore(data): 일일 클리핑 수집 ($ts)"
-          git push
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Push succeeded on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected on attempt $attempt — rebasing onto remote main and retrying..."
+            git pull --rebase origin main
+          done
+          echo "Push failed after 5 attempts."
+          exit 1
