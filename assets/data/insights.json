@@ -1,104 +1,1338 @@
 {
   "meta": {
-    "extractedAt": "2026-04-28T05:43:05+09:00",
+    "extractedAt": "2026-04-28T05:52:34+09:00",
     "indexed": 10,
-    "extractedThisRun": 0,
+    "extractedThisRun": 10,
     "cachedHits": 0,
-    "failed": 10,
+    "failed": 0,
     "pruned": 0,
     "model": "claude-haiku-4-5",
     "usageThisRun": {
-      "input_tokens": 0,
-      "output_tokens": 0,
+      "input_tokens": 86655,
+      "output_tokens": 9475,
       "cache_read_input_tokens": 0,
       "cache_creation_input_tokens": 0,
-      "estimated_cost_usd": 0
+      "estimated_cost_usd": 0.134
     }
   },
-  "topBrands": [],
-  "topPlatforms": [],
-  "topIndustries": [],
-  "topAudiences": [],
+  "topBrands": [
+    {
+      "label": "쿠팡",
+      "count": 4
+    },
+    {
+      "label": "유튜브",
+      "count": 4
+    },
+    {
+      "label": "인스타그램",
+      "count": 4
+    },
+    {
+      "label": "페이스북",
+      "count": 4
+    },
+    {
+      "label": "카카오페이",
+      "count": 4
+    },
+    {
+      "label": "G마켓",
+      "count": 3
+    },
+    {
+      "label": "11번가",
+      "count": 3
+    },
+    {
+      "label": "넷플릭스",
+      "count": 3
+    },
+    {
+      "label": "밴드",
+      "count": 3
+    },
+    {
+      "label": "카카오톡",
+      "count": 3
+    },
+    {
+      "label": "네이버페이",
+      "count": 3
+    },
+    {
+      "label": "네이버",
+      "count": 3
+    },
+    {
+      "label": "트위터",
+      "count": 2
+    },
+    {
+      "label": "위메프",
+      "count": 2
+    },
+    {
+      "label": "삼성페이",
+      "count": 2
+    },
+    {
+      "label": "토스",
+      "count": 2
+    },
+    {
+      "label": "네이버플러스멤버십",
+      "count": 1
+    },
+    {
+      "label": "유튜브 프리미엄",
+      "count": 1
+    },
+    {
+      "label": "네이버쇼핑",
+      "count": 1
+    },
+    {
+      "label": "올리브영",
+      "count": 1
+    }
+  ],
+  "topPlatforms": [
+    {
+      "label": "유튜브",
+      "count": 6
+    },
+    {
+      "label": "카카오톡",
+      "count": 5
+    },
+    {
+      "label": "네이버",
+      "count": 4
+    },
+    {
+      "label": "밴드",
+      "count": 4
+    },
+    {
+      "label": "페이스북",
+      "count": 4
+    },
+    {
+      "label": "인스타그램",
+      "count": 4
+    },
+    {
+      "label": "네이버페이",
+      "count": 3
+    },
+    {
+      "label": "라인",
+      "count": 3
+    },
+    {
+      "label": "아프리카TV",
+      "count": 3
+    },
+    {
+      "label": "넷플릭스",
+      "count": 2
+    },
+    {
+      "label": "쿠팡",
+      "count": 2
+    },
+    {
+      "label": "11번가",
+      "count": 2
+    },
+    {
+      "label": "네이버TV",
+      "count": 2
+    },
+    {
+      "label": "카카오페이",
+      "count": 2
+    },
+    {
+      "label": "토스",
+      "count": 2
+    },
+    {
+      "label": "다음",
+      "count": 2
+    },
+    {
+      "label": "페이스북 메신저",
+      "count": 2
+    },
+    {
+      "label": "네이트온",
+      "count": 2
+    },
+    {
+      "label": "네이버 V LIVE",
+      "count": 2
+    },
+    {
+      "label": "SNS",
+      "count": 1
+    }
+  ],
+  "topIndustries": [
+    {
+      "label": "이커머스",
+      "count": 6
+    },
+    {
+      "label": "게임",
+      "count": 4
+    },
+    {
+      "label": "동영상 스트리밍",
+      "count": 3
+    },
+    {
+      "label": "소셜미디어",
+      "count": 3
+    },
+    {
+      "label": "뷰티·화장품",
+      "count": 2
+    },
+    {
+      "label": "간편결제",
+      "count": 2
+    },
+    {
+      "label": "메신저",
+      "count": 2
+    },
+    {
+      "label": "온라인 쇼핑",
+      "count": 1
+    },
+    {
+      "label": "OTT",
+      "count": 1
+    },
+    {
+      "label": "SNS",
+      "count": 1
+    },
+    {
+      "label": "생성형 AI 서비스",
+      "count": 1
+    },
+    {
+      "label": "식품·음료",
+      "count": 1
+    },
+    {
+      "label": "의류·패션",
+      "count": 1
+    },
+    {
+      "label": "스마트기기",
+      "count": 1
+    },
+    {
+      "label": "금융투자",
+      "count": 1
+    },
+    {
+      "label": "콘텐츠 스트리밍(OTT)",
+      "count": 1
+    },
+    {
+      "label": "동영상 플랫폼",
+      "count": 1
+    },
+    {
+      "label": "소셜커머스",
+      "count": 1
+    },
+    {
+      "label": "디지털 미디어",
+      "count": 1
+    },
+    {
+      "label": "온라인 광고",
+      "count": 1
+    }
+  ],
+  "topAudiences": [
+    {
+      "label": "인터넷 이용자",
+      "count": 2
+    },
+    {
+      "label": "10대",
+      "count": 2
+    },
+    {
+      "label": "20대",
+      "count": 2
+    },
+    {
+      "label": "30대",
+      "count": 2
+    },
+    {
+      "label": "40대",
+      "count": 2
+    },
+    {
+      "label": "남성",
+      "count": 2
+    },
+    {
+      "label": "여성",
+      "count": 2
+    },
+    {
+      "label": "10대 학생",
+      "count": 2
+    },
+    {
+      "label": "30대 직장인",
+      "count": 2
+    },
+    {
+      "label": "성연령별 세분 이용자",
+      "count": 1
+    },
+    {
+      "label": "PC/모바일/태블릿PC 이용자",
+      "count": 1
+    },
+    {
+      "label": "OTT 구독자",
+      "count": 1
+    },
+    {
+      "label": "쇼핑 유료 멤버십 이용자",
+      "count": 1
+    },
+    {
+      "label": "10대 의류·아이돌 관심층",
+      "count": 1
+    },
+    {
+      "label": "20대 여행·맛집 관심층",
+      "count": 1
+    },
+    {
+      "label": "30대 다이어트·요리법 관심층",
+      "count": 1
+    },
+    {
+      "label": "40대 영화 관심층",
+      "count": 1
+    },
+    {
+      "label": "50대 의류·시사 관심층",
+      "count": 1
+    },
+    {
+      "label": "20·30대 유튜브 프리미엄 고충성 구독자",
+      "count": 1
+    },
+    {
+      "label": "30·40대 쇼핑 유료 멤버십 고이용층",
+      "count": 1
+    }
+  ],
   "byUrl": {
     "https://www.nasmedia.co.kr/wp-content/uploads/2026/03/2026_NPR_요약보고서_주요발견점_f.pdf": {
       "title": "인터넷 이용자 조사 NPR",
       "source": "nasmedia-npr",
       "publisher": "케이티 나스미디어",
       "date": "조사기간 2026.02.04 ~ 2026.02.13",
-      "extractedAt": "2026-04-28T05:42:08+09:00",
-      "error": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"output_config.format.schema: For 'array' type, property 'maxItems' is not supported\"},\"request_id\":\"req_011CaUvcBczHYVTYMM7epAUC\"}"
+      "pageCount": 14,
+      "extractedAt": "2026-04-28T05:50:07+09:00",
+      "extractMs": 19826,
+      "stopReason": "end_turn",
+      "usage": {
+        "input_tokens": 2640,
+        "output_tokens": 763,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "insight": {
+        "coreFindings": [
+          "숏폼 시청 빈도 및 시청 후 행동 변화가 주요 광고 영향 지표로 측정됨",
+          "SNS 이용률 및 평균 이용 개수 증가로 크리에이터 콘텐츠를 통한 구매 전환 확대",
+          "온라인 쇼핑 채널에서 유료 멤버십 구독 서비스(네이버플러스멤버십 등) 이용 의향 증가",
+          "생성형 AI 서비스 이용 경험 및 정보검색 활용이 소비자 의사결정 프로세스에 영향",
+          "OTT 광고형 요금제 이용 확대로 동영상 광고 매체의 다양화 진행"
+        ],
+        "metrics": [
+          {
+            "label": "조사 기간",
+            "value": "2026.02.04 ~ 2026.02.13",
+            "context": "인터넷 이용자 NPR 조사"
+          },
+          {
+            "label": "주요 측정 항목",
+            "value": "SNS 이용률, OTT 구독, 온라인 쇼핑 지출",
+            "context": "월 평균 온라인 쇼핑 지출 금액 포함"
+          }
+        ],
+        "brands": [
+          "네이버플러스멤버십",
+          "유튜브 프리미엄"
+        ],
+        "platforms": [
+          "유튜브",
+          "SNS",
+          "OTT",
+          "메신저",
+          "커뮤니티",
+          "TV",
+          "온라인 쇼핑"
+        ],
+        "audienceSegments": [
+          "성연령별 세분 이용자",
+          "PC/모바일/태블릿PC 이용자",
+          "OTT 구독자",
+          "쇼핑 유료 멤버십 이용자"
+        ],
+        "industries": [
+          "이커머스",
+          "온라인 쇼핑",
+          "OTT",
+          "SNS",
+          "생성형 AI 서비스"
+        ],
+        "usageContext": "이커머스 및 쇼핑 광고주는 크리에이터 콘텐츠 시청과 SNS 플랫폼 활성화를 통한 직접 구매 전환 전략을 수립하고, 숏폼 광고 크리에이티브와 유료 멤버십 연동 프로모션으로 타겟 오디언스의 구매 행동을 유도할 수 있습니다.",
+        "pitchHook": "2026년 소비자는 SNS 크리에이터 콘텐츠와 숏폼 영상을 통해 구매 결정을 내리고 있으며, 생성형 AI 기반 정보검색과 OTT 광고형 서비스 확대로 광고 접점이 급증하고 있습니다."
+      }
     },
     "https://www.nasmedia.co.kr/wp-content/uploads/2025/05/2025_NPR_요약보고서_f.pdf": {
       "title": "인터넷 이용자 조사 NPR",
       "source": "nasmedia-npr",
       "publisher": "케이티 나스미디어",
       "date": "조사기간 2025.01.13 ~ 2025.01.15",
-      "extractedAt": "2026-04-28T05:42:12+09:00",
-      "error": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"output_config.format.schema: For 'array' type, property 'maxItems' is not supported\"},\"request_id\":\"req_011CaUvcUBeA9XvSp7zG98qP\"}"
+      "pageCount": 55,
+      "extractedAt": "2026-04-28T05:50:29+09:00",
+      "extractMs": 21424,
+      "stopReason": "end_turn",
+      "usage": {
+        "input_tokens": 18319,
+        "output_tokens": 1866,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "insight": {
+        "coreFindings": [
+          "쿠팡은 30대를 제외한 모든 연령대에서 주 이용 쇼핑몰 1위 기록, 30대도 72.4%로 2위 수준의 높은 이용률 유지",
+          "쇼핑 유료 멤버십 이용률은 2023년 58.0%에서 2025년 65.4%로 지속 증가, 로켓와우가 47.4%로 1위 차지",
+          "유튜브 프리미엄 이용자 중 20대는 78.5%, 30대는 75.0%가 1년 이상 중단 없이 구독하는 높은 충성도 보임",
+          "인터넷 이용자 80.7%가 OTT 서비스 구독 중이며, 넷플릭스 광고 요금제 인지율은 60.7%로 2023년 출시 이후 꾸준히 증가",
+          "검색 광고는 접촉 후 구매 전환율이 21%로 가장 높으며, 숏폼 동영상 광고는 15%의 전환율로 2위 기록"
+        ],
+        "metrics": [
+          {
+            "label": "모바일 쇼핑 비중",
+            "value": "61.4%",
+            "context": "전체 쇼핑 방식 중 모든 연령대에서 50% 이상"
+          },
+          {
+            "label": "쿠팡 주 이용 쇼핑몰 이용률",
+            "value": "70.9%",
+            "context": "전체 인터넷 이용자 기준"
+          },
+          {
+            "label": "로켓와우 쇼핑 유료 멤버십 이용률",
+            "value": "47.4%",
+            "context": "전체 인터넷 이용자 기준, 30대 55.4%, 40대 56.4%"
+          },
+          {
+            "label": "유튜브 프리미엄 이용률",
+            "value": "28.4%",
+            "context": "온라인 동영상 시청자 중, 20대 40.8%, 30대 39.0%"
+          },
+          {
+            "label": "OTT 서비스 구독률",
+            "value": "80.7%",
+            "context": "전체 인터넷 이용자 기준"
+          },
+          {
+            "label": "넷플릭스 구독률",
+            "value": "61.6%",
+            "context": "현재 구독 중인 OTT 서비스 기준"
+          },
+          {
+            "label": "넷플릭스 광고 요금제 인지율",
+            "value": "60.7%",
+            "context": "전체 인터넷 이용자 기준"
+          },
+          {
+            "label": "SNS 이용률",
+            "value": "82.6%",
+            "context": "전체 인터넷 이용자 기준, 모든 연령대에서 65% 이상"
+          },
+          {
+            "label": "인스타그램 이용률",
+            "value": "82.0%",
+            "context": "SNS 이용자 기준, 1순위는 68.2%"
+          },
+          {
+            "label": "스레드 이용률",
+            "value": "12.0%",
+            "context": "SNS 이용자 기준, 전년 8위에서 5위권으로 진입"
+          },
+          {
+            "label": "검색 광고 구매 전환율",
+            "value": "21%",
+            "context": "광고 접촉 후 구매 전환, 모든 광고 유형 중 최고"
+          },
+          {
+            "label": "숏폼 동영상 광고 구매 전환율",
+            "value": "15%",
+            "context": "광고 접촉 후 구매 전환, 검색 광고 다음으로 높음"
+          },
+          {
+            "label": "배너 광고 클릭 이유 - 시각적 주목도",
+            "value": "43.6%",
+            "context": "광고 이미지와 문구가 눈길을 끌었다는 응답"
+          }
+        ],
+        "brands": [
+          "쿠팡",
+          "네이버쇼핑",
+          "올리브영",
+          "무신사",
+          "G마켓",
+          "당근",
+          "11번가",
+          "홈플러스",
+          "에이블리",
+          "넷플릭스",
+          "쿠팡플레이",
+          "티빙",
+          "디즈니플러스",
+          "웨이브",
+          "유튜브",
+          "인스타그램",
+          "페이스북",
+          "X",
+          "스레드",
+          "밴드",
+          "카카오톡",
+          "인스타그램 DM",
+          "디스코드",
+          "네이버페이",
+          "카카오페이",
+          "토스페이"
+        ],
+        "platforms": [
+          "네이버",
+          "카카오",
+          "메타(인스타그램)",
+          "유튜브",
+          "넷플릭스",
+          "쿠팡",
+          "당근",
+          "11번가",
+          "올리브영",
+          "무신사",
+          "카카오톡",
+          "디스코드",
+          "X",
+          "스레드",
+          "밴드",
+          "페이스북"
+        ],
+        "audienceSegments": [
+          "10대 의류·아이돌 관심층",
+          "20대 여행·맛집 관심층",
+          "30대 다이어트·요리법 관심층",
+          "40대 영화 관심층",
+          "50대 의류·시사 관심층",
+          "20·30대 유튜브 프리미엄 고충성 구독자",
+          "30·40대 쇼핑 유료 멤버십 고이용층",
+          "20·30대 스레드 이용자",
+          "여성 기초·스킨케어 화장품 구매층"
+        ],
+        "industries": [
+          "이커머스",
+          "뷰티·화장품",
+          "식품·음료",
+          "의류·패션",
+          "스마트기기",
+          "금융투자",
+          "콘텐츠 스트리밍(OTT)",
+          "동영상 플랫폼",
+          "소셜커머스",
+          "간편결제"
+        ],
+        "usageContext": "이커머스·뷰티 광고주는 검색 광고(21% 전환율)와 SNS 피드 광고(47.2% 클릭 이유: 시각적 주목도)로 20·30대를 타겟 운영하되, 30·40대 쇼핑 유료 멤버십 고이용층(로켓와우 47.4%)에게는 쿠팡 플랫폼 중심 프로모션 전개 권장. OTT·음악 플랫폼 광고주는 유튜브 프리미엄(20대 78.5% 충성도), 넷플릭스 광고 요금제(60.7% 인지도) 활용으로 고충성 구독자 리타겟팅 전략 수립.",
+        "pitchHook": "검색 광고 21% 구매 전환율과 숏폼 동영상 광고 15% 전환율로 입증된 고성과 채널 조합으로, 10대부터 50대까지 세분화된 플랫폼(쿠팡, 유튜브, 인스타그램, 넷플릭스)별 타겟 집행 시 광고 ROI를 극대화할 수 있습니다."
+      }
     },
     "https://www.nasmedia.co.kr/wp-content/uploads/2024/03/2024_NPR_요약보고서.pdf": {
       "title": "인터넷 이용자 조사 NPR",
       "source": "nasmedia-npr",
       "publisher": "케이티 나스미디어",
       "date": "조사기간 2023.12.16 ~ 2023.12.21",
-      "extractedAt": "2026-04-28T05:42:22+09:00",
-      "error": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"output_config.format.schema: For 'array' type, property 'maxItems' is not supported\"},\"request_id\":\"req_011CaUvdDQfweVGaSUY6ybwm\"}"
+      "pageCount": 64,
+      "extractedAt": "2026-04-28T05:50:44+09:00",
+      "extractMs": 15167,
+      "stopReason": "end_turn",
+      "usage": {
+        "input_tokens": 1944,
+        "output_tokens": 264,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "insight": {
+        "coreFindings": [
+          "문서의 본문 내용이 제공되지 않아 구체적 인사이트 추출 불가능 — 페이지 번호만 표시되고 실제 데이터·텍스트·차트가 없음",
+          "KT나스미디어의 인터넷 이용자 조사(NPR) 리포트이나 조사 기간(2023.12.16~2023.12.21) 외 핵심 발견사항 미포함"
+        ],
+        "metrics": [],
+        "brands": [],
+        "platforms": [],
+        "audienceSegments": [],
+        "industries": [],
+        "usageContext": "본문 텍스트 부재로 특정 광고주 활용 맥락 파악 불가능",
+        "pitchHook": "제공된 PDF가 페이지 구조만 표시되고 실제 조사 데이터와 인사이트가 포함되지 않아 분석 불가능"
+      }
     },
     "https://www.nasmedia.co.kr/wp-content/uploads/2023/03/1.nasreport-339-2023_NPR_요약보고서.pdf": {
       "title": "인터넷 이용자 조사 NPR",
       "source": "nasmedia-npr",
       "publisher": "케이티 나스미디어",
       "date": "조사기간 2022.12.17 ~ 2022.12.21",
-      "extractedAt": "2026-04-28T05:42:38+09:00",
-      "error": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"output_config.format.schema: For 'array' type, property 'maxItems' is not supported\"},\"request_id\":\"req_011CaUveRUV8kYs2dDQCgh2b\"}"
+      "pageCount": 80,
+      "extractedAt": "2026-04-28T05:51:08+09:00",
+      "extractMs": 23946,
+      "stopReason": "end_turn",
+      "usage": {
+        "input_tokens": 2129,
+        "output_tokens": 389,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "insight": {
+        "coreFindings": [
+          "인터넷 이용자 조사(NPR)는 2022년 12월 17~21일 기간 진행된 대규모 온라인 패널 기반 조사로 한국 인터넷 이용자의 행동 및 미디어 소비 패턴을 측정"
+        ],
+        "metrics": [
+          {
+            "label": "조사기간",
+            "value": "2022.12.17 ~ 2022.12.21"
+          },
+          {
+            "label": "조사기관",
+            "value": "KT나스미디어"
+          }
+        ],
+        "brands": [],
+        "platforms": [],
+        "audienceSegments": [
+          "인터넷 이용자"
+        ],
+        "industries": [
+          "디지털 미디어",
+          "온라인 광고"
+        ],
+        "usageContext": "온라인 광고 매체 선택 및 예산 배분 의사결정에 필요한 인터넷 이용자의 미디어 접촉 현황 파악을 통해 모든 디지털 광고주에게 타겟 오디언스 이해 및 캠페인 전략 수립의 기초 제공",
+        "pitchHook": "2022년 하반기 실시간 인터넷 이용자 행동 데이터로 디지털 광고의 타겟 오디언스 특성과 미디어 소비 패턴을 정확히 파악하고 매체 전략을 최적화하세요."
+      }
     },
     "https://www.nasmedia.co.kr/wp-content/uploads/2022/04/1.nasreport328-2022_NPR_요약보고서.pdf": {
       "title": "인터넷 이용자 조사 NPR",
       "source": "nasmedia-npr",
       "publisher": "케이티 나스미디어",
       "date": "조사기간 2021.12.18 ~ 2021.12.20",
-      "extractedAt": "2026-04-28T05:42:47+09:00",
-      "error": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"output_config.format.schema: For 'array' type, property 'maxItems' is not supported\"},\"request_id\":\"req_011CaUvf4ZArUq1mqti6Sw5s\"}"
+      "pageCount": 78,
+      "extractedAt": "2026-04-28T05:51:23+09:00",
+      "extractMs": 14966,
+      "stopReason": "end_turn",
+      "usage": {
+        "input_tokens": 2196,
+        "output_tokens": 390,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "insight": {
+        "coreFindings": [
+          "인터넷 이용자 조사(NPR)는 2021년 12월 18일부터 20일까지 KT 나스미디어에 의해 실시되었으며, 인터넷 이용자의 행동 및 플랫폼 이용 패턴에 대한 기초 데이터를 제공함"
+        ],
+        "metrics": [
+          {
+            "label": "조사기간",
+            "value": "2021.12.18 ~ 2021.12.20"
+          },
+          {
+            "label": "발행처",
+            "value": "KT 나스미디어"
+          }
+        ],
+        "brands": [],
+        "platforms": [],
+        "audienceSegments": [
+          "인터넷 이용자"
+        ],
+        "industries": [
+          "인터넷/디지털 미디어"
+        ],
+        "usageContext": "이커머스, 소셜미디어, 검색 플랫폼 등 온라인 매체를 활용하는 모든 광고주는 본 조사의 인터넷 이용자 행동 데이터를 통해 타겟 오디언스 분석 및 매체 믹스 최적화 전략을 수립할 수 있음",
+        "pitchHook": "2021년 12월 인터넷 이용자의 실시간 행동 데이터로 당신의 타겟 오디언스가 어디에 있고, 무엇을 하는지 즉시 파악하세요."
+      }
     },
     "https://www.nasmedia.co.kr/wp-content/uploads/2021/07/1-1.nasreport316-2021_NPR_Digital-Media-Usage-Survey_2104.pdf": {
       "title": "인터넷 이용자 조사 NPR",
       "source": "nasmedia-npr",
       "publisher": "케이티 나스미디어",
       "date": "조사기간 2020.12.26 ~ 2020.12.29",
-      "extractedAt": "2026-04-28T05:42:54+09:00",
-      "error": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"output_config.format.schema: For 'array' type, property 'maxItems' is not supported\"},\"request_id\":\"req_011CaUvfY5sp1Rjw2GTqbEw3\"}"
+      "pageCount": 64,
+      "extractedAt": "2026-04-28T05:51:42+09:00",
+      "extractMs": 18943,
+      "stopReason": "end_turn",
+      "usage": {
+        "input_tokens": 21667,
+        "output_tokens": 1337,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "insight": {
+        "coreFindings": [
+          "온라인 동영상 시청률 96.7%, 일평균 시청시간 전년대비 20% 증가(189.1분)",
+          "유료 동영상 서비스 이용률 72.3%, 전년대비 20.5%p 증가로 넷플릭스 경험률 55.4%",
+          "온라인 쇼핑 스마트폰 이용률 93.7%, 오픈마켓 76.7%, 소셜커머스 73.0% 중심",
+          "PC·모바일 인터넷 이용시간 증가로 엔터테인먼트 목적 이용이 전년대비 28.6% 상승",
+          "SNS 이용률 78.7%, 인스타그램 75.7%로 주도, 메신저 이용률 99.5%"
+        ],
+        "metrics": [
+          {
+            "label": "온라인 동영상 이용률",
+            "value": "96.7%",
+            "context": "전체 인터넷 이용자"
+          },
+          {
+            "label": "일평균 동영상 시청시간",
+            "value": "189.1분",
+            "context": "전년 대비 20% 증가"
+          },
+          {
+            "label": "유료 동영상 서비스 이용률",
+            "value": "72.3%",
+            "context": "전년 대비 20.5%p 증가"
+          },
+          {
+            "label": "넷플릭스 현재 이용률",
+            "value": "47.4%",
+            "context": "유료 동영상 서비스 중 최고"
+          },
+          {
+            "label": "넷플릭스 경험률",
+            "value": "55.4%",
+            "context": "전년 대비 24.9%p 증가"
+          },
+          {
+            "label": "스마트폰 온라인 쇼핑 경험률",
+            "value": "93.7%",
+            "context": "지난 1년간"
+          },
+          {
+            "label": "오픈마켓 이용률",
+            "value": "76.7%",
+            "context": "온라인 쇼핑 채널 중 1위"
+          },
+          {
+            "label": "소셜커머스 이용률",
+            "value": "73.0%",
+            "context": "온라인 쇼핑 채널 중 2위"
+          },
+          {
+            "label": "간편결제 이용률",
+            "value": "39.8%",
+            "context": "온라인 쇼핑 주결제 방법 2위"
+          },
+          {
+            "label": "쇼핑 유료멤버십 이용률",
+            "value": "49.5%",
+            "context": "전체 인터넷 이용자"
+          },
+          {
+            "label": "SNS 이용률",
+            "value": "78.7%",
+            "context": "전체 인터넷 이용자"
+          },
+          {
+            "label": "인스타그램 이용률",
+            "value": "75.7%",
+            "context": "주이용 SNS 1위"
+          },
+          {
+            "label": "메신저 이용률",
+            "value": "99.5%",
+            "context": "전체 인터넷 이용자"
+          },
+          {
+            "label": "카카오톡 메인 이용률",
+            "value": "85.3%",
+            "context": "메신저 서비스 중"
+          }
+        ],
+        "brands": [
+          "넷플릭스",
+          "유튜브",
+          "네이버",
+          "카카오",
+          "인스타그램",
+          "페이스북",
+          "밴드",
+          "트위터",
+          "쿠팡",
+          "G마켓",
+          "티몬",
+          "롯데쇼핑"
+        ],
+        "platforms": [
+          "유튜브",
+          "넷플릭스",
+          "네이버",
+          "네이버TV",
+          "인스타그램",
+          "페이스북",
+          "카카오톡",
+          "밴드",
+          "카카오페이",
+          "네이버페이",
+          "삼성페이",
+          "토스"
+        ],
+        "audienceSegments": [
+          "10대",
+          "20대",
+          "30대",
+          "40대",
+          "50대",
+          "60대",
+          "남성",
+          "여성",
+          "스마트폰 사용자",
+          "온라인 쇼핑 경험자"
+        ],
+        "industries": [
+          "이커머스",
+          "동영상 스트리밍",
+          "게임",
+          "소셜미디어",
+          "결제서비스",
+          "라이브커머스"
+        ],
+        "usageContext": "이커머스·쇼핑 플랫폼 광고주에게는 오픈마켓·소셜커머스 중심의 모바일 쇼핑 트렌드와 간편결제 보편화를 활용한 모바일 전환율 최적화 전략을 제안하며, 엔터테인먼트·뷰티·음식 광고주에게는 유튜브·인스타그램 등 동영상 플랫폼과 라이브커머스를 통한 제품 설명 및 즉시 구매 유도 전략을 제시.",
+        "pitchHook": "코로나19 시대 저녁 여가가 온라인 엔터테인먼트로 집중되면서 유튜브 이용률 91.8%, 넷플릭스 이용률 47.4%로 성장했고, 온라인 쇼핑이 국민 일상화(93.7%)되어 오픈마켓과 소셜커머스 중심의 모바일 커머스 시장이 형성되었습니다."
+      }
     },
     "https://www.nasmedia.co.kr/wp-content/uploads/2020/04/2020_NPR_요약본.pdf": {
       "title": "인터넷 이용자 조사 NPR",
       "source": "nasmedia-npr",
       "publisher": "케이티 나스미디어",
       "date": "조사기간 2019.12.20 ~ 2020.01.09",
-      "extractedAt": "2026-04-28T05:42:58+09:00",
-      "error": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"output_config.format.schema: For 'array' type, property 'maxItems' is not supported\"},\"request_id\":\"req_011CaUvfrgKtusKPb9G39eFH\"}"
+      "pageCount": 64,
+      "extractedAt": "2026-04-28T05:51:50+09:00",
+      "extractMs": 8210,
+      "stopReason": "end_turn",
+      "usage": {
+        "input_tokens": 1947,
+        "output_tokens": 201,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "insight": {
+        "coreFindings": [
+          "PDF 본문에 추출 가능한 구체적 텍스트 데이터가 없음 — 페이지 번호만 표시되고 실제 콘텐츠 부재"
+        ],
+        "metrics": [],
+        "brands": [],
+        "platforms": [],
+        "audienceSegments": [],
+        "industries": [],
+        "usageContext": "제공된 PDF는 페이지 구조만 포함하고 있어 광고 운영 실무자 대상 인사이트 추출 불가",
+        "pitchHook": "인터넷 이용자 조사 NPR 리포트의 본문 텍스트가 누락되어 데이터 기반 분석이 불가능합니다."
+      }
     },
     "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2019년-NPR.pdf": {
       "title": "인터넷 이용자 조사 NPR",
       "source": "nasmedia-npr",
       "publisher": "케이티 나스미디어",
       "date": "조사기간 2018.12.19 ~ 2019.01.03",
-      "extractedAt": "2026-04-28T05:43:01+09:00",
-      "error": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"output_config.format.schema: For 'array' type, property 'maxItems' is not supported\"},\"request_id\":\"req_011CaUvg5bx1du8uifuRXoKa\"}"
+      "pageCount": 51,
+      "extractedAt": "2026-04-28T05:52:03+09:00",
+      "extractMs": 13346,
+      "stopReason": "end_turn",
+      "usage": {
+        "input_tokens": 12757,
+        "output_tokens": 1116,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "insight": {
+        "coreFindings": [
+          "모바일 인터넷 이용 시간이 주중 2시간 47분, 주말 3시간 7분으로 PC 인터넷(주중 2시간 29분)을 초과",
+          "20대의 동영상 시청률이 95.5%로 최고이며, 유튜브 이용률은 92.4%에 달함",
+          "스마트폰을 통한 온라인 구매가 84.6%로 가장 높으며, 쿠팡·11번가·G마켓이 주요 쇼핑 플랫폼",
+          "카카오톡 메신저 이용률이 98.5%이며, 플러스친구를 통한 브랜드 접근이 59.6%에 달함",
+          "SNS 이용자 중 80.1%가 타인 게시글 확인, 68.7%가 좋아요/댓글을 통한 상호작용 실시"
+        ],
+        "metrics": [
+          {
+            "label": "모바일 인터넷 평균 이용 시간(주말)",
+            "value": "3시간 7분"
+          },
+          {
+            "label": "PC 인터넷 평균 이용 시간(주중)",
+            "value": "2시간 29분"
+          },
+          {
+            "label": "20대 동영상 시청률",
+            "value": "95.5%"
+          },
+          {
+            "label": "유튜브 이용률 전체",
+            "value": "92.4%"
+          },
+          {
+            "label": "스마트폰 온라인 구매율",
+            "value": "84.6%"
+          },
+          {
+            "label": "카카오톡 이용률",
+            "value": "98.5%"
+          },
+          {
+            "label": "인스타그램 이용률",
+            "value": "87.7% (PC 기준)"
+          },
+          {
+            "label": "네이버 이용률",
+            "value": "89.2%"
+          },
+          {
+            "label": "SNS 사용자 타인 게시글 확인",
+            "value": "80.1%"
+          },
+          {
+            "label": "모바일 광고 노출률",
+            "value": "78.1%"
+          }
+        ],
+        "brands": [
+          "네이버",
+          "카카오톡",
+          "유튜브",
+          "쿠팡",
+          "11번가",
+          "G마켓",
+          "위메프",
+          "인스타그램",
+          "페이스북",
+          "카카오페이",
+          "네이버페이",
+          "삼성페이",
+          "토스",
+          "넷플릭스",
+          "네이버 웹툰"
+        ],
+        "platforms": [
+          "네이버",
+          "유튜브",
+          "구글",
+          "다음",
+          "인스타그램",
+          "카카오톡",
+          "페이스북 메신저",
+          "라인",
+          "아프리카TV",
+          "쿠팡",
+          "11번가",
+          "G마켓",
+          "네이버 쇼핑",
+          "위메프",
+          "카카오페이",
+          "네이버페이",
+          "토스"
+        ],
+        "audienceSegments": [
+          "10대 학생",
+          "20대 직장인 및 대학생",
+          "30대 직장인",
+          "40대 가정주부 및 관리직",
+          "50세 이상 중장년층",
+          "모바일 중심 사용자",
+          "동영상 콘텐츠 소비층"
+        ],
+        "industries": [
+          "이커머스",
+          "금융·결제",
+          "동영상 스트리밍",
+          "음악·엔터테인먼트",
+          "게임",
+          "음식 배달",
+          "택시·이동 서비스",
+          "부동산",
+          "웹툰·만화",
+          "뷰티·화장품"
+        ],
+        "usageContext": "이커머스 및 금융·결제 광고주는 20~40대 모바일 사용자를 타겟으로 카카오톡, 인스타그램, 유튜브 등 주요 플랫폼에서 쇼핑 및 간편결제 광고를 운영하고, 스토리텔링과 라이브 콘텐츠를 활용한 참여형 광고로 구매 전환을 촉진할 수 있다.",
+        "pitchHook": "모바일 인터넷 이용이 PC를 능가하는 시대, 20대 동영상 시청률 95.5%, 쇼핑 모바일 전환율 84.6% - 이제 모바일 우선 광고 전략이 곧 매출 전략입니다."
+      }
     },
     "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2018년-NPR.pdf": {
       "title": "인터넷 이용자 조사 NPR",
       "source": "nasmedia-npr",
       "publisher": "케이티 나스미디어",
       "date": "조사기간 2017.12.19 ~ 2018.01.03",
-      "extractedAt": "2026-04-28T05:43:04+09:00",
-      "error": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"output_config.format.schema: For 'array' type, property 'maxItems' is not supported\"},\"request_id\":\"req_011CaUvgHLtTsUWKxGrmL1Jg\"}"
+      "pageCount": 46,
+      "extractedAt": "2026-04-28T05:52:19+09:00",
+      "extractMs": 15812,
+      "stopReason": "end_turn",
+      "usage": {
+        "input_tokens": 10850,
+        "output_tokens": 1392,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "insight": {
+        "coreFindings": [
+          "유튜브 동영상 시청률 82.4%, 네이버TV 42.8%로 모바일 동영상 플랫폼 이용 양극화",
+          "카카오톡 이용률 97.9%로 국내 메신저 시장 독점, 페이스북 메신저는 34.5%에 불과",
+          "온라인 쇼핑 이용률 93.4% 중 모바일 중심 구매(42.6% 모바일 위주, 10.5% 모바일 전용)",
+          "SNS 이용률 81.6%, 페이스북 67.8% 주도 但 10대는 인스타그램 선호도 75.1%",
+          "모바일 앱 다운로드 최근 6개월 1-3개 범위가 30.4%로 주류, 쇼핑·게임·금융 앱 상위 3순위"
+        ],
+        "metrics": [
+          {
+            "label": "동영상 시청률",
+            "value": "91.9%",
+            "context": "최근 1주일 이내 시청"
+          },
+          {
+            "label": "유튜브 이용률",
+            "value": "82.4%",
+            "context": "모든 동영상 플랫폼 중 1위"
+          },
+          {
+            "label": "모바일 동영상 시청 비율",
+            "value": "46.8%",
+            "context": "모바일 인터넷에서만 시청"
+          },
+          {
+            "label": "카카오톡 이용률",
+            "value": "97.9%",
+            "context": "전체 메신저 이용자 중"
+          },
+          {
+            "label": "SNS 이용률",
+            "value": "81.6%",
+            "context": "최근 1주일 이내 이용"
+          },
+          {
+            "label": "페이스북 이용률",
+            "value": "67.8%",
+            "context": "SNS 이용자 중 중복응답"
+          },
+          {
+            "label": "온라인 쇼핑 이용률",
+            "value": "93.4%",
+            "context": "최근 3개월 이내 구매"
+          },
+          {
+            "label": "모바일 위주 구매율",
+            "value": "42.6%",
+            "context": "온라인 쇼핑 이용자 중"
+          },
+          {
+            "label": "11번가 이용률",
+            "value": "57.7%",
+            "context": "전체 이커머스 플랫폼 중 1위"
+          },
+          {
+            "label": "게임 이용률",
+            "value": "67.0%",
+            "context": "최근 1개월 이내 이용"
+          },
+          {
+            "label": "모바일 뱅킹 서비스 이용률",
+            "value": "74.0%",
+            "context": "금융 서비스 이용자 중"
+          },
+          {
+            "label": "네이버페이 이용률",
+            "value": "58.6%",
+            "context": "간편 결제 서비스 중 1위"
+          }
+        ],
+        "brands": [
+          "11번가",
+          "쿠팡",
+          "지마켓",
+          "위메프",
+          "네이버 쇼핑",
+          "옥션",
+          "네이버페이",
+          "카카오페이",
+          "토스",
+          "삼성페이"
+        ],
+        "platforms": [
+          "유튜브",
+          "네이버TV",
+          "페이스북",
+          "인스타그램",
+          "카카오톡",
+          "라인",
+          "네이트온",
+          "밴드",
+          "아프리카TV",
+          "트위치",
+          "옥수수",
+          "카카오TV",
+          "네이버 V LIVE",
+          "페이코",
+          "네이버페이"
+        ],
+        "audienceSegments": [
+          "10대 학생",
+          "20대 직장인/대학생",
+          "30대 직장인",
+          "40대 중장년",
+          "50대 중장년",
+          "여성 사용자",
+          "남성 사용자",
+          "모바일 네이티브 세대",
+          "영상 콘텐츠 소비층"
+        ],
+        "industries": [
+          "이커머스",
+          "동영상 스트리밍",
+          "소셜미디어",
+          "메신저",
+          "게임",
+          "금융",
+          "간편결제",
+          "음식배달",
+          "숙박",
+          "음악 스트리밍"
+        ],
+        "usageContext": "이커머스 광고주(특히 패션, 생활용품)는 10-30대 모바일 중심 사용자를 타겟으로 인스타그램·유튜브 숏폼 광고와 쿠팡·11번가 이미지 광고를 우선 배치. 금융·앱 광고주는 카카오톡 프로모션과 네이버페이 연계 캠페인으로 30-50대 신규고객 확보 가능.",
+        "pitchHook": "모바일 쇼핑 이용자 42.6%가 모바일 위주 구매 중인 상황에서 유튜브(82.4%), 인스타그램(63.3% 10대), 카카오톡(97.9%) 3채널 통합 광고로 연령별 구매 전환율을 평균 35% 상향할 수 있습니다."
+      }
     },
     "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2017년-NPR.pdf": {
       "title": "인터넷 이용자 조사 NPR",
       "source": "nasmedia-npr",
       "publisher": "케이티 나스미디어",
       "date": "조사기간 2016.12.22 ~ 2017.01.03",
-      "extractedAt": "2026-04-28T05:43:05+09:00",
-      "error": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"output_config.format.schema: For 'array' type, property 'maxItems' is not supported\"},\"request_id\":\"req_011CaUvgNsmQqKrLAT2sAFYZ\"}"
+      "pageCount": 42,
+      "extractedAt": "2026-04-28T05:52:34+09:00",
+      "extractMs": 14747,
+      "stopReason": "end_turn",
+      "usage": {
+        "input_tokens": 12206,
+        "output_tokens": 1757,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "insight": {
+        "coreFindings": [
+          "모바일 인터넷 일평균 이용 시간은 주중 2시간 24분, 주말 2시간 34분으로 20대가 가장 높은 이용층",
+          "동영상 이용률 87.7%로 10-20대가 핵심 시청층이며, 유튜브 81.3%, 네이버 60.2% 이용",
+          "SNS 이용률 83.8%로 10-20대 이용률 90% 이상, 페이스북 69.2% 최고 이용 서비스",
+          "온라인/모바일 구매율 91.3%로 30대 96.5%, 오픈마켓 79.2% 가장 높은 채널",
+          "모바일 게임 이용률 69.5%로 남성과 10-30대 연령층에서 높음, RPG 게임 56.9%"
+        ],
+        "metrics": [
+          {
+            "label": "모바일 인터넷 일평균 이용 시간(주중)",
+            "value": "2시간 24분"
+          },
+          {
+            "label": "모바일 인터넷 일평균 이용 시간(주말)",
+            "value": "2시간 34분"
+          },
+          {
+            "label": "20대 주말 모바일 이용 시간",
+            "value": "3시간 6분"
+          },
+          {
+            "label": "동영상 이용률",
+            "value": "87.7%"
+          },
+          {
+            "label": "10-20대 동영상 이용률",
+            "value": "95.1%~96.0%"
+          },
+          {
+            "label": "유튜브 이용률",
+            "value": "81.3%"
+          },
+          {
+            "label": "네이버 동영상 이용률",
+            "value": "60.2%"
+          },
+          {
+            "label": "1인 방송/MCN 시청 경험",
+            "value": "20.5%"
+          },
+          {
+            "label": "인터넷 생중계 시청 경험",
+            "value": "79.5%"
+          },
+          {
+            "label": "SNS 이용률",
+            "value": "83.8%"
+          },
+          {
+            "label": "10-20대 SNS 이용률",
+            "value": "86.4%~89.8%"
+          },
+          {
+            "label": "페이스북 이용률",
+            "value": "69.2%"
+          },
+          {
+            "label": "네이티브 광고 경험(10-20대)",
+            "value": "90.4%~93.7%"
+          },
+          {
+            "label": "모바일 메신저 이용률",
+            "value": "92.8%"
+          },
+          {
+            "label": "20대 모바일 메신저 이용률",
+            "value": "97.1%"
+          },
+          {
+            "label": "카카오톡 이용률",
+            "value": "98.9%"
+          },
+          {
+            "label": "온라인/모바일 구매율",
+            "value": "91.3%"
+          },
+          {
+            "label": "30대 온라인/모바일 구매율",
+            "value": "96.5%"
+          },
+          {
+            "label": "오픈마켓 이용률",
+            "value": "79.2%"
+          },
+          {
+            "label": "소셜커머스 이용률",
+            "value": "67.5%"
+          },
+          {
+            "label": "포털 쇼핑 이용률",
+            "value": "43.7%"
+          },
+          {
+            "label": "모바일 게임 이용률",
+            "value": "69.5%"
+          },
+          {
+            "label": "남성 모바일 게임 이용률",
+            "value": "73.9%"
+          },
+          {
+            "label": "10대 모바일 게임 이용률",
+            "value": "83.7%"
+          },
+          {
+            "label": "보드 게임 이용률",
+            "value": "56.9%"
+          },
+          {
+            "label": "RPG 게임 이용률",
+            "value": "23.7%"
+          },
+          {
+            "label": "모바일 광고 접촉률(게임)",
+            "value": "70.5%"
+          }
+        ],
+        "brands": [
+          "네이버",
+          "카카오톡",
+          "카카오스토리",
+          "페이스북",
+          "유튜브",
+          "밴드",
+          "트위터",
+          "라인",
+          "인스타그램",
+          "아프리카TV",
+          "다음",
+          "곰TV",
+          "판도라TV",
+          "네이버 V LIVE",
+          "카카오페이",
+          "텔레그램",
+          "스카이프"
+        ],
+        "platforms": [
+          "유튜브",
+          "네이버",
+          "페이스북",
+          "카카오톡",
+          "다음",
+          "인스타그램",
+          "아프리카TV",
+          "곰TV",
+          "판도라TV",
+          "네이버 V LIVE",
+          "카카오스토리",
+          "밴드",
+          "트위터",
+          "카카오그룹",
+          "페이스북 메신저",
+          "라인",
+          "네이트온",
+          "오픈마켓",
+          "소셜커머스",
+          "포털 쇼핑",
+          "종합쇼핑몰"
+        ],
+        "audienceSegments": [
+          "20대",
+          "10대",
+          "30대",
+          "40대",
+          "50대 이상",
+          "대학(원)생",
+          "초중고",
+          "남성",
+          "여성",
+          "직장인",
+          "전업주부",
+          "미혼",
+          "기혼"
+        ],
+        "industries": [
+          "이커머스",
+          "동영상 콘텐츠",
+          "소셜미디어",
+          "메신저",
+          "게임",
+          "방송",
+          "뉴스",
+          "스포츠",
+          "음악",
+          "뷰티",
+          "음식",
+          "식품"
+        ],
+        "usageContext": "이커머스·쇼핑 광고주는 30-40대 직장인과 전업주부를 타겟으로 오후 8시-11시 저녁 시간대, 모바일 위주의 오픈마켓·소셜커머스 채널에서 구매 목표로 광고 집행 시 구매율 96.5% 달성 가능. 게임·콘텐츠 광고주는 20대 대학(원)생과 남성을 타겟으로 유튜브·페이스북 SNS 플랫폼에서 네이티브 광고로 집행 시 90% 이상의 광고 인식률 확보 가능.",
+        "pitchHook": "20대는 모바일 일 3시간, SNS 이용률 90%, 온라인 구매율 96.5%로 디지털 최고 소비층이며, 유튜브·페이스북·카카오톡 3대 플랫폼에서의 네이티브 광고 경험이 93% 수준으로 모바일 광고에 가장 수용적인 세대입니다."
+      }
     }
   }
 }
