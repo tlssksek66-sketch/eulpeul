@@ -6,7 +6,7 @@
     "title": "샥즈 코리아 매거진",
     "subtitle": "웹 상의 모든 샥즈 관련 뉴스·기사·콘텐츠를 한 화면에서 모니터링",
     "searchKeyword": "SHOKZ, 샥즈, 샥즈코리아, SHOKZ KOREA",
-    "collectedAt": "2026-04-28T07:03:42+09:00",
+    "collectedAt": "2026-04-28T08:59:22+09:00",
     "totalClippings": 60,
     "filterPassed": 60,
     "noiseFiltered": 274,
@@ -523,6 +523,48 @@
     {
       "id": 22,
       "channel": "blog",
+      "media": "네이버 블로그 · 먹고 마시고 달리고~",
+      "category": "sports",
+      "sentiment": "negative",
+      "title": "4/27 야외러닝!",
+      "summary": "사이즈감이 살짝 작아진것이 아쉽지만 잘신고 있습니다. : #러닝라이프헤어밴드 : #더라온짐 : #나이키 : #브로니스 ⌚ : #가민포러너265 : #샥즈오픈런 : #써코니엔돌핀스피드5 (누적 106km)",
+      "date": "2026-04-28",
+      "url": "https://blog.naver.com/sankoggili/224267537058",
+      "tags": [
+        "야외러닝",
+        "사이즈감이",
+        "살짝",
+        "작아진것이",
+        "아쉽지만",
+        "잘신고",
+        "있습니다",
+        "러닝라이프헤어밴드"
+      ]
+    },
+    {
+      "id": 23,
+      "channel": "blog",
+      "media": "네이버 블로그 · 이거저거, 여기저기",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "마미앤대디 액상칼슘 3+1 솔직 후기, 임산부도 OK!",
+      "summary": "함께보면 좋은글 샥즈 오픈런 C타입 한 달 실사용, 음악과 함께하는 안전한 운동의 비밀 https://blog.naver.com/logspick/224249769334 아기 이유식 손 선풍기? 지수라이프가 답인 이유 https://blog.naver.com/logspick...",
+      "date": "2026-04-28",
+      "url": "https://blog.naver.com/logspick/224266451719",
+      "tags": [
+        "https",
+        "blog",
+        "naver",
+        "com",
+        "logspick",
+        "마미앤대디",
+        "액상칼슘",
+        "솔직"
+      ]
+    },
+    {
+      "id": 24,
+      "channel": "blog",
       "media": "네이버 블로그 · succeeduq님의 블로그",
       "category": "sports",
       "sentiment": "neutral",
@@ -542,7 +584,7 @@
       ]
     },
     {
-      "id": 23,
+      "id": 25,
       "channel": "blog",
       "media": "네이버 블로그 · fycleaner님의 블로그",
       "category": "review",
@@ -563,7 +605,7 @@
       ]
     },
     {
-      "id": 24,
+      "id": 26,
       "channel": "blog",
       "media": "네이버 블로그 · 떠나보자",
       "category": "review",
@@ -584,7 +626,7 @@
       ]
     },
     {
-      "id": 25,
+      "id": 27,
       "channel": "blog",
       "media": "네이버 블로그 · fogy54791님의 블로그",
       "category": "review",
@@ -605,7 +647,7 @@
       ]
     },
     {
-      "id": 26,
+      "id": 28,
       "channel": "blog",
       "media": "네이버 블로그 · w8fnxpr님의 블로그",
       "category": "review",
@@ -626,7 +668,7 @@
       ]
     },
     {
-      "id": 27,
+      "id": 29,
       "channel": "blog",
       "media": "네이버 블로그 · idiotkd2님의 블로그",
       "category": "sports",
@@ -647,7 +689,7 @@
       ]
     },
     {
-      "id": 28,
+      "id": 30,
       "channel": "blog",
       "media": "네이버 블로그 · imposeoco님의 블로그",
       "category": "review",
@@ -668,7 +710,7 @@
       ]
     },
     {
-      "id": 29,
+      "id": 31,
       "channel": "blog",
       "media": "네이버 블로그 · orstyhs님의 블로그",
       "category": "review",
@@ -689,7 +731,7 @@
       ]
     },
     {
-      "id": 30,
+      "id": 32,
       "channel": "blog",
       "media": "네이버 블로그 · qu1bjl님의 블로그",
       "category": "sports",
@@ -710,7 +752,7 @@
       ]
     },
     {
-      "id": 31,
+      "id": 33,
       "channel": "blog",
       "media": "네이버 블로그 · buckd0r님의 블로그",
       "category": "review",
@@ -731,7 +773,7 @@
       ]
     },
     {
-      "id": 32,
+      "id": 34,
       "channel": "blog",
       "media": "네이버 블로그 · captaineb님의 블로그",
       "category": "review",
@@ -752,7 +794,7 @@
       ]
     },
     {
-      "id": 33,
+      "id": 35,
       "channel": "blog",
       "media": "네이버 블로그 · suddent3님의 블로그",
       "category": "review",
@@ -773,7 +815,7 @@
       ]
     },
     {
-      "id": 34,
+      "id": 36,
       "channel": "blog",
       "media": "네이버 블로그 · succeedlo님의 블로그",
       "category": "review",
@@ -794,7 +836,7 @@
       ]
     },
     {
-      "id": 35,
+      "id": 37,
       "channel": "blog",
       "media": "네이버 블로그 · countqjw님의 블로그",
       "category": "tech",
@@ -815,7 +857,7 @@
       ]
     },
     {
-      "id": 36,
+      "id": 38,
       "channel": "blog",
       "media": "네이버 블로그 · etherealnote61님의 블로그",
       "category": "review",
@@ -836,7 +878,7 @@
       ]
     },
     {
-      "id": 37,
+      "id": 39,
       "channel": "blog",
       "media": "네이버 블로그 · 0507's Life",
       "category": "review",
@@ -857,7 +899,7 @@
       ]
     },
     {
-      "id": 38,
+      "id": 40,
       "channel": "blog",
       "media": "네이버 블로그 · mia_ssong님의 블로그",
       "category": "review",
@@ -878,49 +920,28 @@
       ]
     },
     {
-      "id": 39,
-      "channel": "blog",
-      "media": "네이버 블로그 · 어르신들 복지용구",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "오늘의 IT 뉴스 요약 2026년 4월 27일 23시 AI·빅테크 이슈...",
-      "summary": "샥즈(Shokz)의 신작 ‘오픈핏 프로(OpenFit Pro)’를 처음 써본 기자의 감상평이다. 오픈핏 프로는 오픈형 이어폰에 대한 기존 인식을 상 링크: https://n.news.naver.com/mnews/article/016/0002636103 제목...",
-      "date": "2026-04-27",
-      "url": "https://blog.naver.com/boas2003/224267300450",
-      "tags": [
-        "오픈핏",
-        "오늘의",
-        "뉴스",
-        "요약",
-        "빅테크",
-        "이슈",
-        "샥즈",
-        "Shokz"
-      ]
-    },
-    {
-      "id": 40,
-      "channel": "blog",
-      "media": "네이버 블로그 · 코코더스",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "[코스트코 의정부점] 26년 4월 다섯째주 할인품목 가정의달...",
-      "summary": "SHOKZ 오픈런 프로 (골전도 헤드셋) * 가격: 199,900원 * 특징: 운동을 즐기시는 활동적인 부모님이나... SHOKZ 오픈핏 에어 SE (골전도 헤드셋) * 가격: 139,900원 * 특징: 운동을 즐기시는 활동적인 부모님이나...",
-      "date": "2026-04-27",
-      "url": "https://blog.naver.com/cocoders/224267281183",
-      "tags": [
-        "SHOKZ",
-        "골전도",
-        "헤드셋",
-        "가격",
-        "특징",
-        "운동을",
-        "즐기시는",
-        "활동적인"
-      ]
-    },
-    {
       "id": 41,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 삼송 마을",
+      "category": "community",
+      "sentiment": "positive",
+      "title": "라잇굿즈 샥즈 오픈런 충전기, 편리함을 더하다",
+      "summary": "최근에 제가 구매한 라잇굿즈 샥즈 오픈런 충전기 마그네틱 호환 홀더 케이블 SHOKZ S810 S803 S811에 대해... 또한, 호환성도 우수해서 SHOKZ S810, S803, S811 등 다양한 모델과 잘 작동한다고 하더군요. 물론 제가 가진 모델은...",
+      "date": "2026-04-28",
+      "url": "http://cafe.naver.com/skyblueil2gc/181",
+      "tags": [
+        "라잇굿즈",
+        "샥즈",
+        "오픈런",
+        "충전기",
+        "제가",
+        "SHOKZ",
+        "S810",
+        "S803"
+      ]
+    },
+    {
+      "id": 42,
       "channel": "cafearticle",
       "media": "네이버 카페 · 패션다모아",
       "category": "community",
@@ -941,7 +962,7 @@
       ]
     },
     {
-      "id": 42,
+      "id": 43,
       "channel": "cafearticle",
       "media": "네이버 카페 · 여성부 폐지 운동본부",
       "category": "community",
@@ -962,7 +983,7 @@
       ]
     },
     {
-      "id": 43,
+      "id": 44,
       "channel": "cafearticle",
       "media": "네이버 카페 · 여성부 폐지 운동본부",
       "category": "community",
@@ -983,7 +1004,7 @@
       ]
     },
     {
-      "id": 44,
+      "id": 45,
       "channel": "cafearticle",
       "media": "네이버 카페 · 여성부 폐지 운동본부",
       "category": "community",
@@ -1004,7 +1025,7 @@
       ]
     },
     {
-      "id": 45,
+      "id": 46,
       "channel": "cafearticle",
       "media": "네이버 카페 · 여성부 폐지 운동본부",
       "category": "community",
@@ -1025,7 +1046,7 @@
       ]
     },
     {
-      "id": 46,
+      "id": 47,
       "channel": "cafearticle",
       "media": "네이버 카페 · 댄스업!",
       "category": "community",
@@ -1046,7 +1067,7 @@
       ]
     },
     {
-      "id": 47,
+      "id": 48,
       "channel": "cafearticle",
       "media": "네이버 카페 · 여성부 폐지 운동본부",
       "category": "community",
@@ -1067,7 +1088,7 @@
       ]
     },
     {
-      "id": 48,
+      "id": 49,
       "channel": "cafearticle",
       "media": "네이버 카페 · 댄스업!",
       "category": "community",
@@ -1088,7 +1109,7 @@
       ]
     },
     {
-      "id": 49,
+      "id": 50,
       "channel": "cafearticle",
       "media": "네이버 카페 · 무술 해부학",
       "category": "community",
@@ -1109,7 +1130,7 @@
       ]
     },
     {
-      "id": 50,
+      "id": 51,
       "channel": "cafearticle",
       "media": "네이버 카페 · 댄스업!",
       "category": "community",
@@ -1130,7 +1151,7 @@
       ]
     },
     {
-      "id": 51,
+      "id": 52,
       "channel": "cafearticle",
       "media": "네이버 카페 · 댄스업!",
       "category": "community",
@@ -1151,7 +1172,7 @@
       ]
     },
     {
-      "id": 52,
+      "id": 53,
       "channel": "cafearticle",
       "media": "네이버 카페 · ★재테크 지금 바로 시작★ (절약 부동...",
       "category": "community",
@@ -1172,7 +1193,7 @@
       ]
     },
     {
-      "id": 53,
+      "id": 54,
       "channel": "cafearticle",
       "media": "네이버 카페 · BMW MANIA [BMW 1,2,3,4,5,6,7,X,i,M시...",
       "category": "community",
@@ -1193,7 +1214,7 @@
       ]
     },
     {
-      "id": 54,
+      "id": 55,
       "channel": "cafearticle",
       "media": "네이버 카페 · 토토포럼[토토,프로토,스포츠분석,축구...",
       "category": "community",
@@ -1214,7 +1235,7 @@
       ]
     },
     {
-      "id": 55,
+      "id": 56,
       "channel": "cafearticle",
       "media": "네이버 카페 · 배달배달메롱이다/토리",
       "category": "community",
@@ -1235,7 +1256,7 @@
       ]
     },
     {
-      "id": 56,
+      "id": 57,
       "channel": "cafearticle",
       "media": "네이버 카페 · 코리아인력 인천지점",
       "category": "community",
@@ -1256,7 +1277,7 @@
       ]
     },
     {
-      "id": 57,
+      "id": 58,
       "channel": "cafearticle",
       "media": "네이버 카페 · 스타크래프트와 슈퍼다운",
       "category": "community",
@@ -1277,7 +1298,7 @@
       ]
     },
     {
-      "id": 58,
+      "id": 59,
       "channel": "cafearticle",
       "media": "네이버 카페 · 시흥신림맘스홀릭",
       "category": "community",
@@ -1298,7 +1319,7 @@
       ]
     },
     {
-      "id": 59,
+      "id": 60,
       "channel": "cafearticle",
       "media": "네이버 카페 · ㅇrㄱl천사들아 모여라~~~♥^*^♥",
       "category": "community",
@@ -1316,27 +1337,6 @@
         "AUX",
         "노트북",
         "컴퓨터"
-      ]
-    },
-    {
-      "id": 60,
-      "channel": "cafearticle",
-      "media": "네이버 카페 · 감나무 아래 양",
-      "category": "community",
-      "sentiment": "positive",
-      "title": "후기 보고 고른 샥즈 오픈핏 무선 블루투스 이어폰 OpenFit T910 shokz 리뷰♥",
-      "summary": "샥즈 오픈핏 무선 블루투스 이어폰으로 더 자유롭게, 더 선명하게 음악을 즐기세요 ￦ 128,300원 내 몸에 딱 맞는 편안함과 뛰어난 무선 자유로 진정한 음악 감상 경험 오픈핏 디자인이기 때문에 귀에 딱 꽂았을 때의...",
-      "date": "2026-04-28",
-      "url": "http://cafe.naver.com/sang23500/4557",
-      "tags": [
-        "오픈핏",
-        "무선",
-        "샥즈",
-        "블루투스",
-        "후기",
-        "보고",
-        "고른",
-        "이어폰"
       ]
     }
   ]
