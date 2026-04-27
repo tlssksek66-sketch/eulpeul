@@ -3,9 +3,9 @@
     "kind": "reports",
     "title": "리서치 리포트",
     "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
-    "collectedAt": null,
-    "totalReports": 0,
-    "freshCount": 0,
+    "collectedAt": "2026-04-28T02:44:12+09:00",
+    "totalReports": 23,
+    "freshCount": 23,
     "sources": [
       {
         "key": "nasmedia-regular",
@@ -25,7 +25,8 @@
         "publisher": "CJ 메조미디어",
         "url": "https://www.cjmezzomedia.com/insight-m"
       }
-    ]
+    ],
+    "updatedAt": "2026-04-28T02:44:12+09:00"
   },
   "categories": [
     {
@@ -91,6 +92,10 @@
     {
       "key": "타겟 분석",
       "label": "타겟 분석"
+    },
+    {
+      "key": "기타",
+      "label": "기타"
     }
   ],
   "categoryColors": {
@@ -109,9 +114,311 @@
     "시장 트렌드": "#fbbf24",
     "업종 분석": "#22d3ee",
     "캠페인 사례": "#a78bfa",
-    "타겟 분석": "#f87171"
+    "타겟 분석": "#f87171",
+    "기타": "#5a6079"
   },
-  "bySource": {},
-  "byCategory": {},
-  "reports": []
+  "bySource": {
+    "nasmedia-regular": 2,
+    "nasmedia-npr": 18,
+    "cjmezzo-insight-m": 3
+  },
+  "byCategory": {
+    "기타": 18,
+    "On/Mobile": 2,
+    "타겟 분석": 1,
+    "마케팅 전략 가이드": 1,
+    "미디어&마켓": 1
+  },
+  "reports": [
+    {
+      "id": 1,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2026.02.04 ~ 2026.02.13",
+      "url": "https://www.nasmedia.co.kr/NPR/2026/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/03/2026_NPR_요약보고서_주요발견점_f.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 2,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2025.01.13 ~ 2025.01.15",
+      "url": "https://www.nasmedia.co.kr/NPR/2025/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2025/05/2025_NPR_요약보고서_f.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 3,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2023.12.16 ~ 2023.12.21",
+      "url": "https://www.nasmedia.co.kr/NPR/2024/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2024/03/2024_NPR_요약보고서.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 4,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2022.12.17 ~ 2022.12.21",
+      "url": "https://www.nasmedia.co.kr/NPR/2023/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2023/03/1.nasreport-339-2023_NPR_요약보고서.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 5,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2021.12.18 ~ 2021.12.20",
+      "url": "https://www.nasmedia.co.kr/NPR/2022/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2022/04/1.nasreport328-2022_NPR_요약보고서.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 6,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2020.12.26 ~ 2020.12.29",
+      "url": "https://www.nasmedia.co.kr/NPR/2021/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2021/07/1-1.nasreport316-2021_NPR_Digital-Media-Usage-Survey_2104.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 7,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2019.12.20 ~ 2020.01.09",
+      "url": "https://www.nasmedia.co.kr/NPR/2020/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2020/04/2020_NPR_요약본.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 8,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2018.12.19 ~ 2019.01.03",
+      "url": "https://www.nasmedia.co.kr/NPR/2019년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2019년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 9,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2017.12.19 ~ 2018.01.03",
+      "url": "https://www.nasmedia.co.kr/NPR/2018년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2018년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 10,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2016.12.22 ~ 2017.01.03",
+      "url": "https://www.nasmedia.co.kr/NPR/2017년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2017년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 11,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2015.12.17 ~ 2015.12.28",
+      "url": "https://www.nasmedia.co.kr/NPR/2016년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2016년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 12,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2014.12.11 ~ 2014.12.26",
+      "url": "https://www.nasmedia.co.kr/NPR/2015년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2015년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 13,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2013.12.16 ~ 2014.01.26",
+      "url": "https://www.nasmedia.co.kr/NPR/2014년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2014년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 14,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2012.12.17 ~ 2013.02.03",
+      "url": "https://www.nasmedia.co.kr/NPR/2013년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2013년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 15,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2011.11.28 ~ 2012.01.08",
+      "url": "https://www.nasmedia.co.kr/NPR/2012년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2012년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 16,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2011.02.07 ~ 2011.03.20",
+      "url": "https://www.nasmedia.co.kr/NPR/2011년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2011년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 17,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2009.11.30 ~ 2010.01.10",
+      "url": "https://www.nasmedia.co.kr/NPR/2010년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2010년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 18,
+      "source": "nasmedia-npr",
+      "sourceLabel": "나스리포트 NPR",
+      "publisher": "케이티 나스미디어",
+      "title": "인터넷 이용자 조사 NPR",
+      "category": "기타",
+      "date": "조사기간 2008.11.07 ~ 2008.12.20",
+      "url": "https://www.nasmedia.co.kr/NPR/2009년/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2019/12/2009년-NPR.pdf",
+      "thumbnail": ""
+    },
+    {
+      "id": 19,
+      "source": "nasmedia-regular",
+      "sourceLabel": "나스리포트 정기보고서",
+      "publisher": "케이티 나스미디어",
+      "title": "[2026년 4월] MEDIA AD ISSUE",
+      "category": "On/Mobile",
+      "date": "2026-04-16",
+      "url": "https://www.nasmedia.co.kr/정기보고서/2026년-4월-media-ad-issue/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/2.nasreport376-MEDIA-AD-ISSUE_2604-1.pdf",
+      "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/슬라이드2.jpg"
+    },
+    {
+      "id": 20,
+      "source": "nasmedia-regular",
+      "sourceLabel": "나스리포트 정기보고서",
+      "publisher": "케이티 나스미디어",
+      "title": "[2026년 4월] MEDIA & MARKET ISSUE",
+      "category": "On/Mobile",
+      "date": "2026-04-16",
+      "url": "https://www.nasmedia.co.kr/정기보고서/2026년-4월-media-market-issue/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/1.nasreport376-MEDIA-MARKET-ISSUE_2604.pdf",
+      "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/슬라이드1.jpg"
+    },
+    {
+      "id": 21,
+      "source": "cjmezzo-insight-m",
+      "sourceLabel": "CJ Mezzo Insight-M",
+      "publisher": "CJ 메조미디어",
+      "title": "2026 스포츠 대회 소비자 미디어 이용 행태 조사",
+      "category": "타겟 분석",
+      "categories": [
+        "타겟 분석",
+        "리서치 데이터"
+      ],
+      "date": "2026-03-31",
+      "url": "https://cdn.cjmezzomedia.com/attach-file/insight-m/Mezzomedia_4_260326_20260330143847.pdf",
+      "pdfUrl": "https://cdn.cjmezzomedia.com/attach-file/insight-m/Mezzomedia_4_260326_20260330143847.pdf",
+      "thumbnail": "https://cdn.cjmezzomedia.com/attach-file/insight-m/_2_20260330143833.png",
+      "fileSize": "1.8 MB"
+    },
+    {
+      "id": 22,
+      "source": "cjmezzo-insight-m",
+      "sourceLabel": "CJ Mezzo Insight-M",
+      "publisher": "CJ 메조미디어",
+      "title": "AI 광고 상품 가이드 리포트",
+      "category": "마케팅 전략 가이드",
+      "categories": [
+        "마케팅 전략 가이드",
+        "캠페인 사례"
+      ],
+      "date": "2026-03-31",
+      "url": "https://cdn.cjmezzomedia.com/attach-file/insight-m/MezzoMedia_AI_0324_20260330141901.pdf",
+      "pdfUrl": "https://cdn.cjmezzomedia.com/attach-file/insight-m/MezzoMedia_AI_0324_20260330141901.pdf",
+      "thumbnail": "https://cdn.cjmezzomedia.com/attach-file/insight-m/AI__20260330141848.PNG",
+      "fileSize": "1.2 MB"
+    },
+    {
+      "id": 23,
+      "source": "cjmezzo-insight-m",
+      "sourceLabel": "CJ Mezzo Insight-M",
+      "publisher": "CJ 메조미디어",
+      "title": "미디어&마켓 리포트_26년 4월",
+      "category": "미디어&마켓",
+      "categories": [
+        "미디어&마켓"
+      ],
+      "date": "2026-03-31",
+      "url": "https://cdn.cjmezzomedia.com/attach-file/insight-m/Mezzomedia_Media_Market_Report_2026_04_20260330141629.pdf",
+      "pdfUrl": "https://cdn.cjmezzomedia.com/attach-file/insight-m/Mezzomedia_Media_Market_Report_2026_04_20260330141629.pdf",
+      "thumbnail": "https://cdn.cjmezzomedia.com/attach-file/insight-m/__20260330141553.PNG",
+      "fileSize": "2.8 MB"
+    }
+  ]
 }
