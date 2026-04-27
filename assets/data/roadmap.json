@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "builtAt": null,
+    "cardsHash": null,
+    "cardsCount": 0,
+    "model": "claude-haiku-4-5",
+    "buildMs": 0,
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "estimated_cost_usd": 0
+    }
+  },
+  "summary": "",
+  "audiencePillars": [],
+  "saPlays": [],
+  "gfaPlays": [],
+  "caveats": []
+}
