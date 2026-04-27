@@ -59,8 +59,7 @@ const ROADMAP_SCHEMA = {
                     landingHint: { type: 'string' },
                     kpiTarget: { type: 'string' }
                 },
-                required: ['title', 'rationale', 'seedKeywords', 'matchType', 'biddingStrategy', 'adCopyTone', 'kpiTarget'],
-                additionalProperties: false
+                required: ['title', 'rationale', 'targetIndustries', 'targetAudiences', 'seedKeywords', 'negativeKeywords', 'matchType', 'biddingStrategy', 'adCopyTone', 'landingHint', 'kpiTarget']
             }
         },
         gfaPlays: {
@@ -81,14 +80,12 @@ const ROADMAP_SCHEMA = {
                     bidStrategy: { type: 'string' },
                     kpiTarget: { type: 'string' }
                 },
-                required: ['title', 'rationale', 'demoTargeting', 'placements', 'creativeMessage', 'ctaCopy', 'kpiTarget'],
-                additionalProperties: false
+                required: ['title', 'rationale', 'targetIndustries', 'targetAudiences', 'demoTargeting', 'interestSegments', 'placements', 'creativeMessage', 'ctaCopy', 'frequencyCap', 'bidStrategy', 'kpiTarget']
             }
         },
         caveats: { type: 'array', items: { type: 'string' } }
     },
-    required: ['summary', 'audiencePillars', 'saPlays', 'gfaPlays'],
-    additionalProperties: false
+    required: ['summary', 'audiencePillars', 'saPlays', 'gfaPlays', 'caveats']
 };
 
 function nowKstIso() {
@@ -148,24 +145,49 @@ async function main() {
     }
 
     console.log(`[roadmap] cards: ${cards.length}, hash: ${cardsHash}`);
+    console.log(`[roadmap] payload chars: ${cards.length > 0 ? buildPayload(cards).length : 0}`);
     const client = new Anthropic();
     const userMessage = buildPayload(cards);
 
     const t0 = Date.now();
-    const response = await client.messages.create({
-        model: MODEL,
-        max_tokens: 4096,
-        system: [{ type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } }],
-        messages: [{ role: 'user', content: userMessage }],
-        output_config: { format: { type: 'json_schema', schema: ROADMAP_SCHEMA } }
-    });
+    let response;
+    try {
+        response = await client.messages.create({
+            model: MODEL,
+            max_tokens: 8192,
+            system: [{ type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } }],
+            messages: [{ role: 'user', content: userMessage }],
+            output_config: { format: { type: 'json_schema', schema: ROADMAP_SCHEMA } }
+        });
+    } catch (apiErr) {
+        console.error('[roadmap] API call failed:', apiErr.status || '', apiErr.message);
+        if (apiErr.error) console.error('[roadmap] error body:', JSON.stringify(apiErr.error));
+        throw apiErr;
+    }
     const ms = Date.now() - t0;
 
-    let roadmap = null;
-    for (const block of response.content) {
-        if (block.type === 'text') { roadmap = JSON.parse(block.text); break; }
+    if (response.stop_reason && response.stop_reason !== 'end_turn') {
+        console.warn(`[roadmap] stop_reason=${response.stop_reason} (응답이 잘렸을 수 있음)`);
     }
-    if (!roadmap) throw new Error('roadmap parse failed');
+
+    let roadmap = null;
+    let rawText = '';
+    for (const block of response.content) {
+        if (block.type === 'text') {
+            rawText = block.text;
+            try { roadmap = JSON.parse(block.text); }
+            catch (parseErr) {
+                console.error('[roadmap] JSON parse failed:', parseErr.message);
+                console.error('[roadmap] raw response (first 800 chars):\n' + block.text.slice(0, 800));
+                throw parseErr;
+            }
+            break;
+        }
+    }
+    if (!roadmap) {
+        console.error('[roadmap] no text block in response. content blocks:', response.content.map(b => b.type).join(', '));
+        throw new Error('roadmap parse failed — no text block');
+    }
 
     const usage = response.usage || {};
     const cost = (usage.input_tokens || 0) / 1_000_000 * 1.0 +
