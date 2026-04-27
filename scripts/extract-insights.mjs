@@ -53,7 +53,7 @@ JSON 형식으로만 출력. 자연어 설명 금지.`;
 const INSIGHT_SCHEMA = {
     type: 'object',
     properties: {
-        coreFindings: { type: 'array', items: { type: 'string' }, maxItems: 5 },
+        coreFindings: { type: 'array', items: { type: 'string' } },
         metrics: {
             type: 'array',
             items: {
@@ -112,6 +112,9 @@ async function extractOneInsight(client, report, text) {
             parsed = JSON.parse(block.text);
             break;
         }
+    }
+    if (parsed && Array.isArray(parsed.coreFindings) && parsed.coreFindings.length > 5) {
+        parsed.coreFindings = parsed.coreFindings.slice(0, 5);
     }
     return {
         insight: parsed,
