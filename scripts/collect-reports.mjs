@@ -9,6 +9,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { scrapeAllNasmedia } from './scrape-nasmedia.mjs';
+import { scrapeCjMezzo } from './scrape-cjmezzo.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
@@ -20,11 +21,13 @@ const SOURCE_META = [
     { key: 'nasmedia-regular', label: '나스리포트 정기보고서', publisher: '케이티 나스미디어',
       url: 'https://www.nasmedia.co.kr/나스리포트/정기보고서/' },
     { key: 'nasmedia-npr',     label: '나스리포트 NPR',         publisher: '케이티 나스미디어',
-      url: 'https://www.nasmedia.co.kr/나스리포트/npr/' }
-    // 향후 추가: { key: 'cjmezzo-insight-m', label: 'CJ Mezzo Insight-M', publisher: 'CJ Mezzo Media', ... }
+      url: 'https://www.nasmedia.co.kr/나스리포트/npr/' },
+    { key: 'cjmezzo-insight-m', label: 'CJ Mezzo Insight-M',  publisher: 'CJ 메조미디어',
+      url: 'https://www.cjmezzomedia.com/insight-m' }
 ];
 
 const CATEGORY_LABELS = {
+    // Nasmedia
     'Market': 'Market',
     'Global': 'Global',
     'Case': 'Case',
@@ -32,10 +35,22 @@ const CATEGORY_LABELS = {
     'Digital Broadcast': 'Digital Broadcast',
     'Digital OOH': 'Digital OOH',
     'More': 'More',
+    // CJ Mezzo
+    '리서치 데이터': '리서치 데이터',
+    '마케팅 전략 가이드': '마케팅 전략 가이드',
+    '미디어 트렌드': '미디어 트렌드',
+    '미디어&마켓': '미디어&마켓',
+    '소비 트렌드': '소비 트렌드',
+    '시장 트렌드': '시장 트렌드',
+    '업종 분석': '업종 분석',
+    '캠페인 사례': '캠페인 사례',
+    '타겟 분석': '타겟 분석',
+    // 공통
     '기타': '기타'
 };
 
 const CATEGORY_COLORS = {
+    // Nasmedia
     'Market':            '#4a7cff',
     'Global':            '#a78bfa',
     'Case':              '#34d399',
@@ -43,6 +58,16 @@ const CATEGORY_COLORS = {
     'Digital Broadcast': '#22d3ee',
     'Digital OOH':       '#fbbf24',
     'More':              '#6b7280',
+    // CJ Mezzo
+    '리서치 데이터':       '#4a7cff',
+    '마케팅 전략 가이드':   '#a78bfa',
+    '미디어 트렌드':       '#22d3ee',
+    '미디어&마켓':         '#34d399',
+    '소비 트렌드':         '#fb923c',
+    '시장 트렌드':         '#fbbf24',
+    '업종 분석':           '#22d3ee',
+    '캠페인 사례':         '#a78bfa',
+    '타겟 분석':           '#f87171',
     '기타':              '#5a6079'
 };
 
@@ -82,14 +107,16 @@ async function main() {
     console.log('[reports] max pages per source:', MAX_PAGES);
     console.log('[reports] recent window (days):', RECENT_DAYS);
 
-    // 1) 모든 소스 수집
+    // 1) 모든 소스 병렬 수집
+    const [nasmediaResult, cjmezzoResult] = await Promise.allSettled([
+        scrapeAllNasmedia({ maxPages: MAX_PAGES }),
+        scrapeCjMezzo()
+    ]);
     const fresh = [];
-    try {
-        const nasmedia = await scrapeAllNasmedia({ maxPages: MAX_PAGES });
-        fresh.push(...nasmedia);
-    } catch (err) {
-        console.error('[reports] nasmedia scrape failed:', err.message);
-    }
+    if (nasmediaResult.status === 'fulfilled') fresh.push(...nasmediaResult.value);
+    else console.error('[reports] nasmedia scrape failed:', nasmediaResult.reason?.message);
+    if (cjmezzoResult.status === 'fulfilled') fresh.push(...cjmezzoResult.value);
+    else console.error('[reports] cjmezzo scrape failed:', cjmezzoResult.reason?.message);
     console.log(`[reports] fresh fetched: ${fresh.length}`);
 
     // 2) 최근 N일 필터

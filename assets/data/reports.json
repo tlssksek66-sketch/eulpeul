@@ -18,6 +18,12 @@
         "label": "나스리포트 NPR",
         "publisher": "케이티 나스미디어",
         "url": "https://www.nasmedia.co.kr/나스리포트/npr/"
+      },
+      {
+        "key": "cjmezzo-insight-m",
+        "label": "CJ Mezzo Insight-M",
+        "publisher": "CJ 메조미디어",
+        "url": "https://www.cjmezzomedia.com/insight-m"
       }
     ]
   },
@@ -49,6 +55,42 @@
     {
       "key": "More",
       "label": "More"
+    },
+    {
+      "key": "리서치 데이터",
+      "label": "리서치 데이터"
+    },
+    {
+      "key": "마케팅 전략 가이드",
+      "label": "마케팅 전략 가이드"
+    },
+    {
+      "key": "미디어 트렌드",
+      "label": "미디어 트렌드"
+    },
+    {
+      "key": "미디어&마켓",
+      "label": "미디어&마켓"
+    },
+    {
+      "key": "소비 트렌드",
+      "label": "소비 트렌드"
+    },
+    {
+      "key": "시장 트렌드",
+      "label": "시장 트렌드"
+    },
+    {
+      "key": "업종 분석",
+      "label": "업종 분석"
+    },
+    {
+      "key": "캠페인 사례",
+      "label": "캠페인 사례"
+    },
+    {
+      "key": "타겟 분석",
+      "label": "타겟 분석"
     }
   ],
   "categoryColors": {
@@ -58,7 +100,16 @@
     "On/Mobile": "#fb923c",
     "Digital Broadcast": "#22d3ee",
     "Digital OOH": "#fbbf24",
-    "More": "#6b7280"
+    "More": "#6b7280",
+    "리서치 데이터": "#4a7cff",
+    "마케팅 전략 가이드": "#a78bfa",
+    "미디어 트렌드": "#22d3ee",
+    "미디어&마켓": "#34d399",
+    "소비 트렌드": "#fb923c",
+    "시장 트렌드": "#fbbf24",
+    "업종 분석": "#22d3ee",
+    "캠페인 사례": "#a78bfa",
+    "타겟 분석": "#f87171"
   },
   "bySource": {},
   "byCategory": {},
