@@ -1,18 +1,18 @@
 {
   "meta": {
-    "extractedAt": "2026-04-28T05:52:34+09:00",
+    "extractedAt": "2026-04-28T06:56:50+09:00",
     "indexed": 10,
-    "extractedThisRun": 10,
-    "cachedHits": 0,
+    "extractedThisRun": 0,
+    "cachedHits": 10,
     "failed": 0,
     "pruned": 0,
     "model": "claude-haiku-4-5",
     "usageThisRun": {
-      "input_tokens": 86655,
-      "output_tokens": 9475,
+      "input_tokens": 0,
+      "output_tokens": 0,
       "cache_read_input_tokens": 0,
       "cache_creation_input_tokens": 0,
-      "estimated_cost_usd": 0.134
+      "estimated_cost_usd": 0
     }
   },
   "topBrands": [

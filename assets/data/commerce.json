@@ -3,10 +3,10 @@
     "kind": "commerce",
     "title": "플랫폼·이커머스 동향",
     "subtitle": "네이버·쿠팡 등 플랫폼 비즈니스 콘텐츠를 매일 자동 수집",
-    "collectedAt": "2026-04-28T05:49:41+09:00",
+    "collectedAt": "2026-04-28T06:56:46+09:00",
     "totalClippings": 50,
     "filterPassed": 50,
-    "noiseFiltered": 160,
+    "noiseFiltered": 130,
     "keywords": [
       "네이버 쇼핑",
       "스마트스토어",
@@ -81,7 +81,7 @@
     {
       "keyword": "스마트스토어",
       "raw": 15,
-      "kept": 11
+      "kept": 9
     },
     {
       "keyword": "라이브커머스",
@@ -96,12 +96,12 @@
     {
       "keyword": "네이버 광고",
       "raw": 15,
-      "kept": 7
+      "kept": 6
     },
     {
       "keyword": "쇼핑검색광고",
       "raw": 15,
-      "kept": 14
+      "kept": 13
     },
     {
       "keyword": "검색광고",
@@ -131,22 +131,137 @@
     {
       "keyword": "네이버플러스",
       "raw": 15,
-      "kept": 4
+      "kept": 5
     },
     {
       "keyword": "브랜드스토어",
-      "raw": 15,
-      "kept": 8
+      "raw": 0,
+      "kept": 0
     },
     {
       "keyword": "이커머스 트렌드",
-      "raw": 15,
-      "kept": 12
+      "raw": 0,
+      "kept": 0
     }
   ],
   "clippings": [
     {
       "id": 1,
+      "channel": "news",
+      "media": "news1",
+      "category": "policy",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "가정의달 특수 노린 호텔가…케이크·디저트 잇단 출시",
+      "summary": "제품은 온라인 전용으로 롯데호텔 이숍, 카카오톡 선물하기, 네이버 스마트스토어 등에서 구매할 수 있다. 케이크에 담은 감사, 패키지에 담은 쉼 파르나스호텔도 가정의 달을 겨냥해 감사와 동심의 설렘을 담은 케이크를...",
+      "date": "2026-04-28 06:45",
+      "url": "https://www.news1.kr/industry/distribution/6150472",
+      "tags": [
+        "담은",
+        "가정의달",
+        "특수",
+        "노린",
+        "호텔가",
+        "케이크",
+        "디저트",
+        "잇단"
+      ],
+      "sourceKeyword": "스마트스토어"
+    },
+    {
+      "id": 2,
+      "channel": "news",
+      "media": "newstopkorea",
+      "category": "ads",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "피스피스스튜디오, 1조 꿈 접고 3000억도 흔들…수요예측 앞두고 3대 변...",
+      "summary": "다만 2023년 22억원 수준이던 광고선전비는 2025년 98억원으로 4.5배 증가했고, 직원급여 역시 약 2배... 그러나 이후 네이버, W컨셉 등 타 플랫폼에 잇따라 입점하는 행보를 보였다. 한때 '3마'로 불렸던 경쟁 브랜드...",
+      "date": "2026-04-28 06:28",
+      "url": "https://www.newstopkorea.com/news/articleView.html?idxno=44651",
+      "tags": [
+        "피스피스스튜디오",
+        "접고",
+        "억도",
+        "흔들",
+        "수요예측",
+        "앞두고",
+        "다만",
+        "억원"
+      ],
+      "sourceKeyword": "네이버 광고"
+    },
+    {
+      "id": 3,
+      "channel": "news",
+      "media": "조선일보",
+      "category": "trend",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "AI 검색 시대, 작은 브랜드도 발견될 수 있다 [변인호의 스타트업 픽]",
+      "summary": "과거에는 소비자가 검색 결과와 광고, 인플루언서 콘텐츠를 직접 비교해 브랜드를 골랐다. 검색과 인플루언서를 중심으로 광고 시장이 성장한 배경이다. 눈에 띄어야 했기 때문이다. 이제는 브랜드를 알리려면 AI의...",
+      "date": "2026-04-28 06:02",
+      "url": "https://it.chosun.com/news/articleView.html?idxno=2023092161079",
+      "tags": [
+        "검색",
+        "광고",
+        "브랜드를",
+        "시대",
+        "작은",
+        "브랜드도",
+        "발견될",
+        "변인호의"
+      ],
+      "sourceKeyword": "검색광고"
+    },
+    {
+      "id": 4,
+      "channel": "news",
+      "media": "fortunekorea.co",
+      "category": "trend",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "\"중국 없는 애플은 없다\" 팀 쿡의 유산과 터너스의 난제",
+      "summary": "쿡은 베이징을 자주 방문해 고위 관료를 면담하고 애플 스토어와 주요 파트너사를 찾았다. 올해 초... IDC의 2026년 1분기 데이터에서 애플은 중국 스마트폰 시장 점유율 19%로 2위를 기록했다. 화웨이, 오포(Oppo), 비보...",
+      "date": "2026-04-28 06:00",
+      "url": "https://www.fortunekorea.co.kr/news/articleView.html?idxno=52311",
+      "tags": [
+        "중국",
+        "애플은",
+        "없는",
+        "쿡의",
+        "유산과",
+        "터너스의",
+        "난제",
+        "쿡은"
+      ],
+      "sourceKeyword": "스마트스토어"
+    },
+    {
+      "id": 5,
+      "channel": "news",
+      "media": "news1",
+      "category": "ads",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "[르포]\"플스5 싹 다 품절이에요\"…가격인상 전 공식몰도 동났다",
+      "summary": "네이버쇼핑 가격비교 화면에서도 비슷한 흐름이 나타났다. '플스5 프로' 검색 결과에는 쿠팡 광고 상품이 약 169만 원으로 노출됐고, 해외 판매 상품은 약 192만 원으로 표시됐다. 다음 달 1일부터 적용되는 PS5 프로...",
+      "date": "2026-04-28 05:50",
+      "url": "https://www.news1.kr/it-science/game-review/6150429",
+      "tags": [
+        "플스",
+        "프로",
+        "원으로",
+        "르포",
+        "품절이에요",
+        "가격인상",
+        "공식몰도",
+        "동났다"
+      ],
+      "sourceKeyword": "네이버 쇼핑"
+    },
+    {
+      "id": 6,
       "channel": "news",
       "media": "dnews.co",
       "category": "shopping",
@@ -169,7 +284,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 2,
+      "id": 7,
       "channel": "news",
       "media": "etoday.co",
       "category": "shopping",
@@ -192,7 +307,7 @@
       "sourceKeyword": "쇼핑라이브"
     },
     {
-      "id": 3,
+      "id": 8,
       "channel": "news",
       "media": "seoul.co",
       "category": "shopping",
@@ -215,30 +330,7 @@
       "sourceKeyword": "스마트스토어"
     },
     {
-      "id": 4,
-      "channel": "news",
-      "media": "seoul.co",
-      "category": "policy",
-      "sentiment": "positive",
-      "sentimentScore": 2,
-      "title": "아모레퍼시픽, 다크서클 지우고 부기 빼고… 축 처진 눈 아래 ‘탄력 엔...",
-      "summary": "아모레퍼시픽의 글로벌 럭셔리 뷰티 브랜드 설화수가 대표 제품 윤조에센스의 기술력을 눈가 피부로 확장한... 윤조아이세럼 아모레퍼시픽 공식 온라인몰과 설화수 플래그십 스토어, 전국 주요 백화점 및 면세점에서...",
-      "date": "2026-04-28 05:03",
-      "url": "https://www.seoul.co.kr/news/economy/2026/04/28/20260428017003?wlog_tag3=naver",
-      "tags": [
-        "아모레퍼시픽",
-        "다크서클",
-        "지우고",
-        "부기",
-        "빼고",
-        "처진",
-        "아래",
-        "탄력"
-      ],
-      "sourceKeyword": "브랜드스토어"
-    },
-    {
-      "id": 5,
+      "id": 9,
       "channel": "news",
       "media": "news2day.co",
       "category": "ads",
@@ -261,7 +353,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 6,
+      "id": 10,
       "channel": "news",
       "media": "segye",
       "category": "shopping",
@@ -284,30 +376,7 @@
       "sourceKeyword": "네이버페이"
     },
     {
-      "id": 7,
-      "channel": "news",
-      "media": "shinailbo.co",
-      "category": "shopping",
-      "sentiment": "neutral",
-      "sentimentScore": 0,
-      "title": "[K뷰티 키 플레이어②] 아모레의 리밸런싱…존재감 더 키운다",
-      "summary": "무엇보다 미국이 전 세계 뷰티 트렌드가 시작되는 곳인 만큼 미국법인을 거점 삼아 글로벌 사업 확장에... 일본에서는 주요 유통사들과 파트너십을 통해 멀티브랜드숍(MBS)과 이커머스로 채널을 전환하고 있다. 현지...",
-      "date": "2026-04-28 05:00",
-      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5015249",
-      "tags": [
-        "뷰티",
-        "플레이어",
-        "아모레의",
-        "리밸런싱",
-        "존재감",
-        "키운다",
-        "무엇보다",
-        "미국이"
-      ],
-      "sourceKeyword": "이커머스 트렌드"
-    },
-    {
-      "id": 8,
+      "id": 11,
       "channel": "news",
       "media": "동아일보",
       "category": "shopping",
@@ -330,7 +399,7 @@
       "sourceKeyword": "스마트스토어"
     },
     {
-      "id": 9,
+      "id": 12,
       "channel": "news",
       "media": "한국경제",
       "category": "shopping",
@@ -353,53 +422,7 @@
       "sourceKeyword": "라이브커머스"
     },
     {
-      "id": 10,
-      "channel": "news",
-      "media": "경향신문",
-      "category": "policy",
-      "sentiment": "negative",
-      "sentimentScore": -1,
-      "title": "드파운드, 한남 쇼룸서 ‘그로서리 마켓’ 팝업스토어 오픈",
-      "summary": "패션업체 드파운드가 오는 5월 10일까지 ‘그로서리 마켓’ 콘셉트 팝업스토어를 운영해 고객 체험형 공간 연출을 통해 여름 신제품을 공개한다. 브랜드 인큐베이터 하고하우스의 ‘드파운드’가 26 SS 3차 컬렉션...",
-      "date": "2026-04-28 02:46",
-      "url": "https://sports.khan.co.kr/article/202604280245003?pt=nv",
-      "tags": [
-        "드파운드",
-        "그로서리",
-        "마켓",
-        "한남",
-        "쇼룸서",
-        "팝업스토어",
-        "오픈",
-        "패션업체"
-      ],
-      "sourceKeyword": "브랜드스토어"
-    },
-    {
-      "id": 11,
-      "channel": "news",
-      "media": "경향신문",
-      "category": "shopping",
-      "sentiment": "neutral",
-      "sentimentScore": 0,
-      "title": "몽클로스, 무신사 메가스토어 성수 입점",
-      "summary": "이러한 흐름 속에서 몽클로스는 한남동 플래그십 스토어를 중심으로 구축해온 팬덤과 브랜드 경험을 성수로 확장한다는 전략이다. 프랑스 조향사의 손길이 더해진 감각적인 향과 임상 기반의 고기능성 제품력을...",
-      "date": "2026-04-28 01:19",
-      "url": "https://sports.khan.co.kr/article/202604280118003?pt=nv",
-      "tags": [
-        "몽클로스",
-        "무신사",
-        "메가스토어",
-        "성수",
-        "입점",
-        "이러한",
-        "흐름",
-        "속에서"
-      ],
-      "sourceKeyword": "브랜드스토어"
-    },
-    {
-      "id": 12,
+      "id": 13,
       "channel": "news",
       "media": "경향신문",
       "category": "policy",
@@ -422,7 +445,7 @@
       "sourceKeyword": "스마트스토어"
     },
     {
-      "id": 13,
+      "id": 14,
       "channel": "news",
       "media": "조선일보",
       "category": "trend",
@@ -443,29 +466,6 @@
         "평판"
       ],
       "sourceKeyword": "네이버플러스"
-    },
-    {
-      "id": 14,
-      "channel": "news",
-      "media": "동아일보",
-      "category": "shopping",
-      "sentiment": "neutral",
-      "sentimentScore": 0,
-      "title": "가볍게 새롭게… 요즘 시니어는 ‘젊음’을 입는다",
-      "summary": "홈쇼핑 GS샵의 자체 패션 브랜드(PB) ‘라삐아프’가 라이프스타일 편집숍 보마켓(BOMARKET)과 손잡고 마련한 팝업스토어(임시 매장)다. 현장을 찾은 50대 중반 여성은 “홈쇼핑 의류라고 하면 올드하다는 인식도 있는데...",
-      "date": "2026-04-28 00:32",
-      "url": "https://www.donga.com/news/Economy/article/all/20260427/133821419/2",
-      "tags": [
-        "홈쇼핑",
-        "가볍게",
-        "새롭게",
-        "요즘",
-        "시니어는",
-        "젊음",
-        "입는다",
-        "샵의"
-      ],
-      "sourceKeyword": "브랜드스토어"
     },
     {
       "id": 15,
@@ -493,75 +493,6 @@
     {
       "id": 16,
       "channel": "news",
-      "media": "news.tf.co",
-      "category": "policy",
-      "sentiment": "neutral",
-      "sentimentScore": 1,
-      "title": "[예능, 화면 밖으로②] \"TV 속 연극반이 현실로\"…'방과후 태리쌤' 팝업...",
-      "summary": "인기 프로그램들은 방송을 넘어 팝업스토어와 굿즈, 체험형 공간으로 확장되며 하나의 브랜드로 진화하고 있다. 시청자는 화면 밖으로 나와 콘텐츠를 소비하는 데 그치지 않고 직접 체험하고 인증하며 참여한다. 이는...",
-      "date": "2026-04-28 00:00",
-      "url": "https://news.tf.co.kr/read/entertain/2317761.htm",
-      "tags": [
-        "화면",
-        "밖으로",
-        "예능",
-        "연극반이",
-        "현실로",
-        "방과후",
-        "태리쌤",
-        "팝업"
-      ],
-      "sourceKeyword": "브랜드스토어"
-    },
-    {
-      "id": 17,
-      "channel": "news",
-      "media": "kdpress.co",
-      "category": "policy",
-      "sentiment": "neutral",
-      "sentimentScore": 0,
-      "title": "KT&G, 청년창업 생태계 협력 확대",
-      "summary": "양 기관은 중진공이 발굴한 청년창업 기업을 대상으로 팝업스토어와 전시, 온라인 홍보 등을 지원해 브랜드 인지도 제고와 판로 확대를 추진한다. 이를 통해 지역 기업의 성장 기반을 강화하고 지역경제 활성화에 기여할...",
-      "date": "2026-04-27 23:44",
-      "url": "https://www.kdpress.co.kr/news/articleView.html?idxno=204726",
-      "tags": [
-        "청년창업",
-        "생태계",
-        "협력",
-        "확대",
-        "기관은",
-        "중진공이",
-        "발굴한",
-        "기업을"
-      ],
-      "sourceKeyword": "브랜드스토어"
-    },
-    {
-      "id": 18,
-      "channel": "news",
-      "media": "slist",
-      "category": "policy",
-      "sentiment": "neutral",
-      "sentimentScore": 1,
-      "title": "시몬스, 현대百 무역센터점에 '뷰티레스트 블랙 팝업' 재오픈",
-      "summary": "수면 전문 브랜드 시몬스가 현대백화점 무역센터점에 '뷰티레스트 블랙' 팝업스토어를 추가 운영한다. 사진=시몬스 시몬스 침대의 최상위 라인 뷰티레스트 블랙은 국내 초프리미엄 매트리스 시장을 선도하는 모델이자...",
-      "date": "2026-04-27 23:36",
-      "url": "https://www.slist.kr/news/articleView.html?idxno=735128",
-      "tags": [
-        "시몬스",
-        "뷰티레스트",
-        "무역센터점에",
-        "블랙",
-        "현대",
-        "팝업",
-        "재오픈",
-        "수면"
-      ],
-      "sourceKeyword": "브랜드스토어"
-    },
-    {
-      "id": 19,
-      "channel": "news",
       "media": "pointdaily.co",
       "category": "trend",
       "sentiment": "neutral",
@@ -583,7 +514,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 20,
+      "id": 17,
       "channel": "news",
       "media": "datanet.co",
       "category": "trend",
@@ -606,7 +537,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 21,
+      "id": 18,
       "channel": "news",
       "media": "apparelnews.co",
       "category": "shopping",
@@ -629,7 +560,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 22,
+      "id": 19,
       "channel": "news",
       "media": "apparelnews.co",
       "category": "shopping",
@@ -652,7 +583,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 23,
+      "id": 20,
       "channel": "news",
       "media": "apparelnews.co",
       "category": "shopping",
@@ -675,30 +606,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 24,
-      "channel": "news",
-      "media": "apparelnews.co",
-      "category": "trend",
-      "sentiment": "neutral",
-      "sentimentScore": 0,
-      "title": "[핵심 상권 리포트] 성수 / 이태원 / 홍대",
-      "summary": "매장은 여성복 '마리끌레르'가 플래그십 스토어, 신발 '쿠에른', 주점 '한남물터', 음식점 '창화당', 대만 우유도넛 브랜드 '오도넛' 등이 오픈했다. 홍대 - '스탠드오일' 플래그십 오픈 [어패럴뉴스 정민경 기자] 유동...",
-      "date": "2026-04-27 22:02",
-      "url": "http://www.apparelnews.co.kr/news/news_view/?idx=224916",
-      "tags": [
-        "홍대",
-        "플래그십",
-        "핵심",
-        "상권",
-        "리포트",
-        "성수",
-        "이태원",
-        "매장은"
-      ],
-      "sourceKeyword": "브랜드스토어"
-    },
-    {
-      "id": 25,
+      "id": 21,
       "channel": "news",
       "media": "헤럴드경제",
       "category": "shopping",
@@ -721,7 +629,7 @@
       "sourceKeyword": "스마트스토어"
     },
     {
-      "id": 26,
+      "id": 22,
       "channel": "news",
       "media": "gnmaeil",
       "category": "shopping",
@@ -744,7 +652,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 27,
+      "id": 23,
       "channel": "news",
       "media": "econonews.co",
       "category": "shopping",
@@ -767,7 +675,7 @@
       "sourceKeyword": "네이버페이"
     },
     {
-      "id": 28,
+      "id": 24,
       "channel": "news",
       "media": "블로터",
       "category": "trend",
@@ -790,7 +698,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 29,
+      "id": 25,
       "channel": "news",
       "media": "ebn.co",
       "category": "shopping",
@@ -813,7 +721,7 @@
       "sourceKeyword": "스마트스토어"
     },
     {
-      "id": 30,
+      "id": 26,
       "channel": "news",
       "media": "news.jtbc.co",
       "category": "policy",
@@ -836,7 +744,7 @@
       "sourceKeyword": "스마트스토어"
     },
     {
-      "id": 31,
+      "id": 27,
       "channel": "news",
       "media": "worktoday.co",
       "category": "shopping",
@@ -859,30 +767,7 @@
       "sourceKeyword": "스마트스토어"
     },
     {
-      "id": 32,
-      "channel": "news",
-      "media": "enewstoday.co",
-      "category": "shopping",
-      "sentiment": "neutral",
-      "sentimentScore": 0,
-      "title": "경기 투어패스 판매 시작…31개 시군 관광 통합",
-      "summary": "이용객은 스마트스토어를 비롯해 지마켓, 옥션, 쿠팡, 마이리얼트립, 야놀자, 롯데온, 투어패스몰, 여기어때, 클룩 등 다양한 온라인 플랫폼을 통해 순차적으로 상품을 구매할 수 있다. 모바일 티켓 형태로 제공되며...",
-      "date": "2026-04-27 19:40",
-      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2423871",
-      "tags": [
-        "경기",
-        "투어패스",
-        "판매",
-        "시작",
-        "시군",
-        "관광",
-        "통합",
-        "이용객은"
-      ],
-      "sourceKeyword": "스마트스토어"
-    },
-    {
-      "id": 33,
+      "id": 28,
       "channel": "news",
       "media": "bigtanews.co",
       "category": "shopping",
@@ -905,7 +790,7 @@
       "sourceKeyword": "네이버페이"
     },
     {
-      "id": 34,
+      "id": 29,
       "channel": "news",
       "media": "gnnews.co",
       "category": "shopping",
@@ -928,30 +813,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 35,
-      "channel": "news",
-      "media": "naeil",
-      "category": "shopping",
-      "sentiment": "neutral",
-      "sentimentScore": 0,
-      "title": "‘경기 투어패스·베이밸리 투어패스’ 동시 판매",
-      "summary": "스마트스토어 지마켓 옥션 쿠팡 마이리얼트립 야놀자(놀) 롯데온 투어패스몰 여기어때 클룩 등 다양한 채널에서 순차적으로 판매한다. 구매시 모바일 티켓 형태로 제공되며 이용 기간 내 자유롭게 관광시설을...",
-      "date": "2026-04-27 19:14",
-      "url": "https://www.naeil.com/news/read/586938?ref=naver",
-      "tags": [
-        "투어패스",
-        "경기",
-        "베이밸리",
-        "동시",
-        "판매",
-        "스마트스토어",
-        "지마켓",
-        "옥션"
-      ],
-      "sourceKeyword": "스마트스토어"
-    },
-    {
-      "id": 36,
+      "id": 30,
       "channel": "news",
       "media": "gamechosun.co",
       "category": "shopping",
@@ -974,7 +836,7 @@
       "sourceKeyword": "네이버페이"
     },
     {
-      "id": 37,
+      "id": 31,
       "channel": "news",
       "media": "전자신문",
       "category": "policy",
@@ -997,7 +859,7 @@
       "sourceKeyword": "네이버플러스"
     },
     {
-      "id": 38,
+      "id": 32,
       "channel": "news",
       "media": "전자신문",
       "category": "policy",
@@ -1020,7 +882,7 @@
       "sourceKeyword": "네이버플러스"
     },
     {
-      "id": 39,
+      "id": 33,
       "channel": "news",
       "media": "womaneconomy.co",
       "category": "shopping",
@@ -1043,7 +905,7 @@
       "sourceKeyword": "쇼핑라이브"
     },
     {
-      "id": 40,
+      "id": 34,
       "channel": "news",
       "media": "womentimes.co",
       "category": "shopping",
@@ -1066,7 +928,7 @@
       "sourceKeyword": "네이버페이"
     },
     {
-      "id": 41,
+      "id": 35,
       "channel": "news",
       "media": "biztribune.co",
       "category": "shopping",
@@ -1089,30 +951,7 @@
       "sourceKeyword": "쇼핑라이브"
     },
     {
-      "id": 42,
-      "channel": "news",
-      "media": "ccdn.co",
-      "category": "shopping",
-      "sentiment": "neutral",
-      "sentimentScore": 0,
-      "title": "충남도 베이밸리투어패스 '내맘대로 패키지' 첫선",
-      "summary": "네이버 스마트스토어에서 비용을 지불한 뒤 카카오톡이나 문자 메시지를 통해 모바일 티켓을 발급받고, 이를 가맹점 입구나 카운터에서 제시하고 이용하면 된다. 일부 시설의 경우에는 사전 예약이 필요한 만큼, 각 시설...",
-      "date": "2026-04-27 18:56",
-      "url": "https://www.ccdn.co.kr/news/articleView.html?idxno=1075667",
-      "tags": [
-        "충남도",
-        "베이밸리투어패스",
-        "내맘대로",
-        "패키지",
-        "첫선",
-        "네이버",
-        "스마트스토어에서",
-        "비용을"
-      ],
-      "sourceKeyword": "스마트스토어"
-    },
-    {
-      "id": 43,
+      "id": 36,
       "channel": "news",
       "media": "siminilbo.co",
       "category": "shopping",
@@ -1135,53 +974,7 @@
       "sourceKeyword": "네이버페이"
     },
     {
-      "id": 44,
-      "channel": "news",
-      "media": "ccdn.co",
-      "category": "policy",
-      "sentiment": "positive",
-      "sentimentScore": 4,
-      "title": "청년은 머물고, 주민은 편안하게…쌍용동 '구조 바꾸는 정책' 제시",
-      "summary": "이에 따라 공실 상가를 활용한 청년 창업공간 조성과 임대료 지원, 팝업스토어 운영 등을 통해 '청년 창업... 이 밖에도 복합 커뮤니티 공간 확충, CCTV 및 스마트 조명 확대, 노후 도서관 재건축 등 생활 밀착형 정책도 함께...",
-      "date": "2026-04-27 18:55",
-      "url": "https://www.ccdn.co.kr/news/articleView.html?idxno=1075737",
-      "tags": [
-        "청년",
-        "청년은",
-        "머물고",
-        "주민은",
-        "편안하게",
-        "쌍용동",
-        "구조",
-        "바꾸는"
-      ],
-      "sourceKeyword": "스마트스토어"
-    },
-    {
-      "id": 45,
-      "channel": "news",
-      "media": "biztribune.co",
-      "category": "shopping",
-      "sentiment": "neutral",
-      "sentimentScore": 0,
-      "title": "[브리프]애경산업 무신사 블랙야크 바닐라코 外",
-      "summary": "메이크업 트렌드를 반영한 '글로우 레이어 블러 치크' 2026 SS 시즌 뉴컬러 2종을 공개했다. 루나 글로우... 패션 이커머스 플랫폼 '조조타운(ZOZOTOWN)'을 운영하는 조조(ZOZO)와 협력해 일본 최대 연휴인 '골든 위크'를 겨냥한...",
-      "date": "2026-04-27 18:50",
-      "url": "http://www.biztribune.co.kr/news/articleView.html?idxno=353174",
-      "tags": [
-        "글로우",
-        "브리프",
-        "애경산업",
-        "무신사",
-        "블랙야크",
-        "바닐라코",
-        "메이크업",
-        "트렌드를"
-      ],
-      "sourceKeyword": "이커머스 트렌드"
-    },
-    {
-      "id": 46,
+      "id": 37,
       "channel": "news",
       "media": "thebilliards",
       "category": "shopping",
@@ -1204,7 +997,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 47,
+      "id": 38,
       "channel": "news",
       "media": "thepowernews.co",
       "category": "shopping",
@@ -1227,7 +1020,7 @@
       "sourceKeyword": "라이브커머스"
     },
     {
-      "id": 48,
+      "id": 39,
       "channel": "news",
       "media": "thebilliards",
       "category": "shopping",
@@ -1250,7 +1043,7 @@
       "sourceKeyword": "라이브커머스"
     },
     {
-      "id": 49,
+      "id": 40,
       "channel": "news",
       "media": "newsmp",
       "category": "shopping",
@@ -1273,7 +1066,7 @@
       "sourceKeyword": "네이버 쇼핑"
     },
     {
-      "id": 50,
+      "id": 41,
       "channel": "news",
       "media": "newspim",
       "category": "ads",
@@ -1294,6 +1087,213 @@
         "차단"
       ],
       "sourceKeyword": "네이버 광고"
+    },
+    {
+      "id": 42,
+      "channel": "news",
+      "media": "파이낸셜뉴스",
+      "category": "corp",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "증권플러스 비상장,'Npay 비상장'으로 변경",
+      "summary": "네이버페이가 비상장 주식거래 플랫폼 고도화에 나선다. 네이버페이(Npay)는 자회사인 비상장 주식거래 플랫폼 증권플러스 비상장의 사명을 '네이버페이비상장'으로 변경하고, 'Npay 비상장'으로 리브랜딩한다고 27일...",
+      "date": "2026-04-27 18:18",
+      "url": "http://www.fnnews.com/news/202604271816373255",
+      "tags": [
+        "비상장",
+        "Npay",
+        "으로",
+        "증권플러스",
+        "주식거래",
+        "플랫폼",
+        "변경",
+        "네이버페이가"
+      ],
+      "sourceKeyword": "네이버페이"
+    },
+    {
+      "id": 43,
+      "channel": "news",
+      "media": "gokorea",
+      "category": "policy",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "'문화강국 위한 첫걸음… 콘텐츠 불법유통 차단, 다음 달 시행'",
+      "summary": "행사에는 저작권보호원, CJ ENM, 한국방송협회, 네이버웹툰, 카카오엔터테인먼트, 한국만화가협회 등 콘텐츠 제작 및 유통업계 관계자들이 참석해 제도의 성공을 기원했다. 또한 KT, SK브로드밴드, LG유플러스, 드림라인 등...",
+      "date": "2026-04-27 18:16",
+      "url": "https://www.gokorea.kr/news/articleView.html?idxno=864849",
+      "tags": [
+        "콘텐츠",
+        "문화강국",
+        "위한",
+        "첫걸음",
+        "불법유통",
+        "차단",
+        "다음",
+        "시행"
+      ],
+      "sourceKeyword": "네이버플러스"
+    },
+    {
+      "id": 44,
+      "channel": "news",
+      "media": "topstarnews",
+      "category": "corp",
+      "sentiment": "neutral",
+      "sentimentScore": 1,
+      "title": "더본코리아 주가 신저가 기록 속 백종원 배당금 급증한 이유?…최근 공...",
+      "summary": "허위광고 의혹)에 대해서는 실무자와 법인을 기소 의견으로 검찰에 송치했으나 검찰은 고의성을 인정하기... 지난해 10월, 노동부는 더본코리아 본사가 운영하는 새마을식당 네이버 카페에 직원 블랙리스트 게시판을...",
+      "date": "2026-04-27 18:10",
+      "url": "https://www.topstarnews.net/news/articleView.html?idxno=16045968",
+      "tags": [
+        "더본코리아",
+        "주가",
+        "신저가",
+        "기록",
+        "백종원",
+        "배당금",
+        "급증한",
+        "이유"
+      ],
+      "sourceKeyword": "네이버 광고"
+    },
+    {
+      "id": 45,
+      "channel": "news",
+      "media": "slist",
+      "category": "shopping",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "아윌미백, '뱀파이어 톤업 스프레이' 올영 입점 확대→中 라방 완판",
+      "summary": "글로벌 시장에서도 긍정적인 반응이 나오고 있다. '뱀파이어 톤업 스프레이'는 중국 도우인 상위 1% 인플루언서 ally를 중심으로 한 라이브 커머스에서 방송 직후 준비된 물량을 빠르게 소진하며 완판을 기록했다.",
+      "date": "2026-04-27 18:06",
+      "url": "https://www.slist.kr/news/articleView.html?idxno=735107",
+      "tags": [
+        "뱀파이어",
+        "톤업",
+        "스프레이",
+        "아윌미백",
+        "올영",
+        "입점",
+        "확대",
+        "라방"
+      ],
+      "sourceKeyword": "라이브커머스"
+    },
+    {
+      "id": 46,
+      "channel": "news",
+      "media": "동아일보",
+      "category": "dispute",
+      "sentiment": "negative",
+      "sentimentScore": -1,
+      "title": "“놀이공원서 돈 버는 방송?”…디즈니, 인플루언서 규제 검토",
+      "summary": "일부 인플루언서는 후원금이나 광고 수익을 얻거나, 시청자가 요청한 상품을 대신 구매해 주는 ‘라이브 쇼핑’ 방식으로 수익을 올리고 있다. ● 라이브 방송 논란 확산…불편·프라이버시 우려 커져 이 같은 행위는...",
+      "date": "2026-04-27 18:06",
+      "url": "https://www.donga.com/news/Inter/article/all/20260427/133821591/2",
+      "tags": [
+        "방송",
+        "수익을",
+        "라이브",
+        "놀이공원서",
+        "버는",
+        "디즈니",
+        "인플루언서",
+        "규제"
+      ],
+      "sourceKeyword": "쇼핑라이브"
+    },
+    {
+      "id": 47,
+      "channel": "news",
+      "media": "korea",
+      "category": "shopping",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "온라인에서도 단위별 가격 비교 가능…직접 해보니",
+      "summary": "기존에는 단위가격표시제가 대형마트 등 오프라인 매장에서만 의무였으나, 4월 7일부터 쿠팡과 네이버플러스 스토어 등 대규모 온라인 쇼핑 플랫폼으로 확대 시행됐다. 라면, 삼겹살, 화장지 등 일상에서 자주 구매하는...",
+      "date": "2026-04-27 18:05",
+      "url": "https://www.korea.kr/news/reporterView.do?newsId=148962654&call_from=naver_news",
+      "tags": [
+        "온라인에서도",
+        "단위별",
+        "가격",
+        "비교",
+        "가능",
+        "직접",
+        "해보니",
+        "기존에는"
+      ],
+      "sourceKeyword": "네이버플러스"
+    },
+    {
+      "id": 48,
+      "channel": "news",
+      "media": "asiatoday.co",
+      "category": "shopping",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "TV 밖으로 나온 롯데홈쇼핑…패션유통 체질전환",
+      "summary": "여기에 TV·모바일·라이브커머스 등 자체 채널을 활용해 브랜드 론칭 초기 인지도 확보부터 판매 확대까지 전 과정을 통합적으로 운영할 수 있어, 브랜드 입장에서도 시장 안착을 맡길 수 있는 유통 파트너로 기능할 수...",
+      "date": "2026-04-27 18:02",
+      "url": "https://www.asiatoday.co.kr/view.php?key=20260427010008619",
+      "tags": [
+        "브랜드",
+        "밖으로",
+        "나온",
+        "롯데홈쇼핑",
+        "패션유통",
+        "체질전환",
+        "여기에",
+        "모바일"
+      ],
+      "sourceKeyword": "라이브커머스"
+    },
+    {
+      "id": 49,
+      "channel": "news",
+      "media": "ekn",
+      "category": "shopping",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "[금융 풍향계] 카카오뱅크·네이버페이 ‘고유가 피해지원금’ 신청 시...",
+      "summary": "네이버페이도 고유가 피해지원금 안내와 신청 서비스를 이날부터 시작했다. 네이버에서 고유가 피해지원금 또는 네이버페이를 검색하면 통합 안내 페이지로 접속할 수 있다. 안내 페이지에서 '신청하기'를 클릭하면...",
+      "date": "2026-04-27 18:02",
+      "url": "https://www.ekn.kr/web/view.php?key=20260427023590475",
+      "tags": [
+        "고유가",
+        "피해지원금",
+        "신청",
+        "안내",
+        "금융",
+        "풍향계",
+        "카카오뱅크",
+        "네이버페이"
+      ],
+      "sourceKeyword": "네이버페이"
+    },
+    {
+      "id": 50,
+      "channel": "news",
+      "media": "ajunews",
+      "category": "shopping",
+      "sentiment": "neutral",
+      "sentimentScore": 0,
+      "title": "[식품·외식 뉴스픽] 대상 청정원, 서울스프링페스티벌서 '30주년 기념'...",
+      "summary": "행사 첫날에는 라이브 커머스도 진행한다. 네이버 브랜드데이와 연계해 오전 10시 방송을 열고, 기존 할인에 더해 추가 혜택을 제공할 예정이다. 웅진식품 관계자는 “지난 50년간 보내준 고객 성원에 보답하기 위해...",
+      "date": "2026-04-27 18:00",
+      "url": "https://www.ajunews.com/view/20260427155248148",
+      "tags": [
+        "식품",
+        "외식",
+        "뉴스픽",
+        "대상",
+        "청정원",
+        "서울스프링페스티벌서",
+        "주년",
+        "기념"
+      ],
+      "sourceKeyword": "라이브커머스"
     }
   ]
 }

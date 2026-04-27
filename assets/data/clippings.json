@@ -6,7 +6,7 @@
     "title": "샥즈 코리아 매거진",
     "subtitle": "웹 상의 모든 샥즈 관련 뉴스·기사·콘텐츠를 한 화면에서 모니터링",
     "searchKeyword": "SHOKZ, 샥즈, 샥즈코리아, SHOKZ KOREA",
-    "collectedAt": "2026-04-28T05:49:39+09:00",
+    "collectedAt": "2026-04-28T06:56:44+09:00",
     "totalClippings": 60,
     "filterPassed": 60,
     "noiseFiltered": 274,
@@ -82,6 +82,27 @@
     {
       "id": 1,
       "channel": "news",
+      "media": "디지털데일리",
+      "category": "review",
+      "sentiment": "negative",
+      "title": "[PLAY IT] 샥즈 오픈핏 프로…‘음악·통화는 온·소음은 오프’",
+      "summary": "흔히 폐쇄형 이어폰에서만 구현 가능한 기능으로 여겨졌지만, 글로벌 이어폰 제조사 샥즈가 이 공식을... 그러나 샥즈의 신작 오픈핏 프로를 실사용하면서 기능과 편리함이 디자인에 대한 아쉬움을 상쇄, 아니 넘어선다고...",
+      "date": "2026-04-28 06:01",
+      "url": "https://www.ddaily.co.kr/page/view/2026042717090569163",
+      "tags": [
+        "오픈핏",
+        "PLAY",
+        "샥즈",
+        "프로",
+        "음악",
+        "통화는",
+        "소음은",
+        "오프"
+      ]
+    },
+    {
+      "id": 2,
+      "channel": "news",
       "media": "헤럴드경제",
       "category": "press",
       "sentiment": "neutral",
@@ -101,7 +122,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": 3,
       "channel": "news",
       "media": "연합뉴스",
       "category": "product",
@@ -122,7 +143,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "channel": "news",
       "media": "동아일보",
       "category": "review",
@@ -143,7 +164,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "channel": "news",
       "media": "gqkorea.co",
       "category": "product",
@@ -164,7 +185,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": 6,
       "channel": "news",
       "media": "gqkorea.co",
       "category": "sports",
@@ -185,7 +206,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": 7,
       "channel": "news",
       "media": "gqkorea.co",
       "category": "product",
@@ -206,7 +227,7 @@
       ]
     },
     {
-      "id": 7,
+      "id": 8,
       "channel": "news",
       "media": "cbci.co",
       "category": "sports",
@@ -227,7 +248,7 @@
       ]
     },
     {
-      "id": 8,
+      "id": 9,
       "channel": "news",
       "media": "gpkorea",
       "category": "sports",
@@ -248,7 +269,7 @@
       ]
     },
     {
-      "id": 9,
+      "id": 10,
       "channel": "news",
       "media": "biztribune.co",
       "category": "sports",
@@ -269,7 +290,7 @@
       ]
     },
     {
-      "id": 10,
+      "id": 11,
       "channel": "news",
       "media": "ebn.co",
       "category": "sports",
@@ -290,7 +311,7 @@
       ]
     },
     {
-      "id": 11,
+      "id": 12,
       "channel": "news",
       "media": "newspim",
       "category": "sports",
@@ -311,7 +332,7 @@
       ]
     },
     {
-      "id": 12,
+      "id": 13,
       "channel": "news",
       "media": "asiatime.co",
       "category": "sports",
@@ -332,7 +353,7 @@
       ]
     },
     {
-      "id": 13,
+      "id": 14,
       "channel": "news",
       "media": "metroseoul.co",
       "category": "sports",
@@ -353,7 +374,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": 15,
       "channel": "news",
       "media": "viva100",
       "category": "sports",
@@ -374,7 +395,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 16,
       "channel": "news",
       "media": "autodaily.co",
       "category": "sports",
@@ -395,7 +416,7 @@
       ]
     },
     {
-      "id": 16,
+      "id": 17,
       "channel": "news",
       "media": "전자신문",
       "category": "sports",
@@ -416,7 +437,7 @@
       ]
     },
     {
-      "id": 17,
+      "id": 18,
       "channel": "news",
       "media": "헤럴드경제",
       "category": "sports",
@@ -437,7 +458,7 @@
       ]
     },
     {
-      "id": 18,
+      "id": 19,
       "channel": "news",
       "media": "매일경제",
       "category": "sports",
@@ -458,7 +479,7 @@
       ]
     },
     {
-      "id": 19,
+      "id": 20,
       "channel": "news",
       "media": "press9",
       "category": "sports",
@@ -476,27 +497,6 @@
         "전원에게는",
         "웰컴키트와",
         "함께"
-      ]
-    },
-    {
-      "id": 20,
-      "channel": "news",
-      "media": "이데일리",
-      "category": "sports",
-      "sentiment": "neutral",
-      "title": "폭스바겐코리아, '러닝크루' 발대식",
-      "summary": "러닝크루 전원에게는 폭스바겐 웰컴키트와 함께 3개월 간의 활동을 더욱 풍부하게 만들어 줄 아식스 러닝화 ‘소닉블라스트’와 샥즈 오픈형 이어폰 ‘오픈닷 원’이 기념품으로 제공됐다. 러닝크루는 약 3개월간...",
-      "date": "2026-04-15 09:16",
-      "url": "http://www.edaily.co.kr/news/newspath.asp?newsid=02810966645416448",
-      "tags": [
-        "러닝크루",
-        "폭스바겐코리아",
-        "발대식",
-        "전원에게는",
-        "폭스바겐",
-        "웰컴키트와",
-        "함께",
-        "개월"
       ]
     },
     {
@@ -523,6 +523,27 @@
     {
       "id": 22,
       "channel": "blog",
+      "media": "네이버 블로그 · succeeduq님의 블로그",
+      "category": "sports",
+      "sentiment": "neutral",
+      "title": "운동할 때 귀를 막지 않는 [샥즈] 오픈런 프로 2 S820...",
+      "summary": "브랜드: 샥즈 코리아 운동할 때, 이어폰을 쓰고도 주변 소리를 듣고 싶어하는 분들 많죠. 특히 러닝... [샥즈] 오픈런 프로 2 S820은 골전도 이어폰으로, 귀를 막지 않으면서도 음질을 놓치지 않는 제품이에요....",
+      "date": "2026-04-28",
+      "url": "https://blog.naver.com/succeeduq/224267481265",
+      "tags": [
+        "샥즈",
+        "운동할",
+        "귀를",
+        "막지",
+        "않는",
+        "오픈런",
+        "프로",
+        "S820"
+      ]
+    },
+    {
+      "id": 23,
+      "channel": "blog",
       "media": "네이버 블로그 · fycleaner님의 블로그",
       "category": "review",
       "sentiment": "neutral",
@@ -542,7 +563,7 @@
       ]
     },
     {
-      "id": 23,
+      "id": 24,
       "channel": "blog",
       "media": "네이버 블로그 · 떠나보자",
       "category": "review",
@@ -563,7 +584,7 @@
       ]
     },
     {
-      "id": 24,
+      "id": 25,
       "channel": "blog",
       "media": "네이버 블로그 · fogy54791님의 블로그",
       "category": "review",
@@ -584,7 +605,7 @@
       ]
     },
     {
-      "id": 25,
+      "id": 26,
       "channel": "blog",
       "media": "네이버 블로그 · w8fnxpr님의 블로그",
       "category": "review",
@@ -605,7 +626,7 @@
       ]
     },
     {
-      "id": 26,
+      "id": 27,
       "channel": "blog",
       "media": "네이버 블로그 · idiotkd2님의 블로그",
       "category": "sports",
@@ -626,7 +647,7 @@
       ]
     },
     {
-      "id": 27,
+      "id": 28,
       "channel": "blog",
       "media": "네이버 블로그 · imposeoco님의 블로그",
       "category": "review",
@@ -647,7 +668,7 @@
       ]
     },
     {
-      "id": 28,
+      "id": 29,
       "channel": "blog",
       "media": "네이버 블로그 · orstyhs님의 블로그",
       "category": "review",
@@ -668,7 +689,7 @@
       ]
     },
     {
-      "id": 29,
+      "id": 30,
       "channel": "blog",
       "media": "네이버 블로그 · qu1bjl님의 블로그",
       "category": "sports",
@@ -689,7 +710,7 @@
       ]
     },
     {
-      "id": 30,
+      "id": 31,
       "channel": "blog",
       "media": "네이버 블로그 · buckd0r님의 블로그",
       "category": "review",
@@ -710,7 +731,7 @@
       ]
     },
     {
-      "id": 31,
+      "id": 32,
       "channel": "blog",
       "media": "네이버 블로그 · captaineb님의 블로그",
       "category": "review",
@@ -731,7 +752,7 @@
       ]
     },
     {
-      "id": 32,
+      "id": 33,
       "channel": "blog",
       "media": "네이버 블로그 · suddent3님의 블로그",
       "category": "review",
@@ -752,7 +773,7 @@
       ]
     },
     {
-      "id": 33,
+      "id": 34,
       "channel": "blog",
       "media": "네이버 블로그 · succeedlo님의 블로그",
       "category": "review",
@@ -773,7 +794,7 @@
       ]
     },
     {
-      "id": 34,
+      "id": 35,
       "channel": "blog",
       "media": "네이버 블로그 · countqjw님의 블로그",
       "category": "tech",
@@ -794,7 +815,7 @@
       ]
     },
     {
-      "id": 35,
+      "id": 36,
       "channel": "blog",
       "media": "네이버 블로그 · etherealnote61님의 블로그",
       "category": "review",
@@ -815,7 +836,7 @@
       ]
     },
     {
-      "id": 36,
+      "id": 37,
       "channel": "blog",
       "media": "네이버 블로그 · 0507's Life",
       "category": "review",
@@ -836,7 +857,7 @@
       ]
     },
     {
-      "id": 37,
+      "id": 38,
       "channel": "blog",
       "media": "네이버 블로그 · mia_ssong님의 블로그",
       "category": "review",
@@ -857,7 +878,7 @@
       ]
     },
     {
-      "id": 38,
+      "id": 39,
       "channel": "blog",
       "media": "네이버 블로그 · 어르신들 복지용구",
       "category": "review",
@@ -878,7 +899,7 @@
       ]
     },
     {
-      "id": 39,
+      "id": 40,
       "channel": "blog",
       "media": "네이버 블로그 · 코코더스",
       "category": "review",
@@ -896,27 +917,6 @@
         "운동을",
         "즐기시는",
         "활동적인"
-      ]
-    },
-    {
-      "id": 40,
-      "channel": "blog",
-      "media": "네이버 블로그 · IT 레시피(IT Recipe)",
-      "category": "review",
-      "sentiment": "positive",
-      "title": "운동은 장비 빨? 샥즈 S820 안전과 음질 다잡은 비결",
-      "summary": "[1] 샥즈의 혁신 서사와 오픈런 프로 2의 정체성 샥즈(SHOKZ)는 골전도 이어폰이라는 새로운 시장을... [제품 기본정보]: ● 제품명: 샥즈 오픈런 프로 2 (Shokz OpenRun Pro 2 S820) ● 제조사: 샥즈 (Shokz) ● 브랜드명...",
-      "date": "2026-04-27",
-      "url": "https://blog.naver.com/busipline/224266804251",
-      "tags": [
-        "샥즈",
-        "S820",
-        "오픈런",
-        "프로",
-        "Shokz",
-        "운동은",
-        "장비",
-        "안전과"
       ]
     },
     {
