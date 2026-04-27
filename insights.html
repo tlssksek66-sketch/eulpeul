@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>광고 인사이트 KB | SHOKZ KOREA</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="theme-insights">
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <span class="brand-mark">SHOKZ</span>
+                <span class="brand-divider"></span>
+                <span class="brand-sub">AD INSIGHT KB</span>
+            </div>
+            <nav class="mag-toggle">
+                <a href="index.html" class="mag-link">SHOKZ 매거진</a>
+                <a href="commerce.html" class="mag-link">이커머스 동향</a>
+                <a href="reports.html" class="mag-link">리서치 리포트</a>
+                <a href="insights.html" class="mag-link active">인사이트 KB</a>
+            </nav>
+            <div class="topbar-tools">
+                <div class="search-field">
+                    <input id="searchInput" type="text" placeholder="브랜드·플랫폼·산업·키워드 검색…" autocomplete="off">
+                </div>
+                <button id="refreshBtn" class="icon-btn" title="새로고침">⟳</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="title-block">
+            <h1 id="pageTitle">광고 인사이트 지식 베이스</h1>
+            <p class="title-sub" id="pageSub">리서치 PDF 본문에서 LLM이 추출한 핵심 발견·수치·활용 맥락 — 광고 운영과 영업 제안의 베이스</p>
+        </section>
+
+        <section class="kpi-strip">
+            <div class="kpi-cell"><span class="kpi-num" id="kpiTotal">0</span><span class="kpi-label">인사이트 카드</span></div>
+            <div class="kpi-cell"><span class="kpi-num" id="kpiBrands">0</span><span class="kpi-label">브랜드</span></div>
+            <div class="kpi-cell"><span class="kpi-num" id="kpiPlatforms">0</span><span class="kpi-label">플랫폼·매체</span></div>
+            <div class="kpi-cell"><span class="kpi-num" id="kpiIndustries">0</span><span class="kpi-label">산업</span></div>
+            <div class="kpi-cell kpi-time"><span class="kpi-time-value" id="kpiTime">--</span><span class="kpi-label">최근 추출</span></div>
+        </section>
+
+        <!-- 토픽 클라우드 4종 -->
+        <section class="topic-clouds">
+            <div class="tc-block">
+                <h4>브랜드 Top</h4>
+                <div class="tc-row" id="cloudBrands"></div>
+            </div>
+            <div class="tc-block">
+                <h4>플랫폼·매체 Top</h4>
+                <div class="tc-row" id="cloudPlatforms"></div>
+            </div>
+            <div class="tc-block">
+                <h4>산업 Top</h4>
+                <div class="tc-row" id="cloudIndustries"></div>
+            </div>
+            <div class="tc-block">
+                <h4>오디언스 Top</h4>
+                <div class="tc-row" id="cloudAudiences"></div>
+            </div>
+        </section>
+
+        <!-- 필터 칩 -->
+        <nav class="tabs" id="filterTabs"></nav>
+
+        <!-- 비용·메타 -->
+        <div class="filter-strip" id="filterStrip"></div>
+
+        <!-- 인사이트 카드 그리드 -->
+        <section class="insight-list-wrap">
+            <div class="insight-head">
+                <h2>인사이트 카드 <span class="count" id="insightCount">0</span></h2>
+                <span class="insight-sub" id="insightSub"></span>
+            </div>
+            <div class="insight-list" id="insightList"></div>
+        </section>
+
+        <footer class="page-foot">
+            <span>SHOKZ KOREA · AD INSIGHT KNOWLEDGE BASE</span>
+            <span>powered by Claude Haiku 4.5</span>
+        </footer>
+    </main>
+
+    <script src="assets/js/insights-app.js"></script>
+</body>
+</html>
