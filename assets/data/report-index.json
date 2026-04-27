@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "indexedAt": null,
+    "indexed": 0,
+    "analyzedThisRun": 0,
+    "cachedHits": 0,
+    "failed": 0,
+    "pruned": 0,
+    "maxPdfsPerRun": 10,
+    "note": "워크플로 첫 실행 시 채워짐"
+  },
+  "topicCloud": [],
+  "byUrl": {}
+}
