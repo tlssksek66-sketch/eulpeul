@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "kind": "commerce",
+    "title": "플랫폼·이커머스 동향",
+    "subtitle": "네이버·쿠팡 등 플랫폼 비즈니스 콘텐츠를 매일 자동 수집·인덱싱",
+    "collectedAt": null,
+    "totalClippings": 0,
+    "filterPassed": 0,
+    "noiseFiltered": 0,
+    "keywords": [
+      "네이버 쇼핑",
+      "스마트스토어",
+      "라이브커머스",
+      "쇼핑라이브",
+      "네이버 광고",
+      "쇼핑검색광고",
+      "검색광고",
+      "파워컨텐츠",
+      "ADVoost",
+      "부스트업 캠페인",
+      "네이버페이",
+      "네이버플러스",
+      "브랜드스토어",
+      "이커머스 트렌드"
+    ],
+    "accuracyFilter": true
+  },
+  "channels": [
+    {
+      "key": "news",
+      "label": "뉴스",
+      "color": "#4a7cff",
+      "collected": 0,
+      "quota": 50
+    }
+  ],
+  "categories": [
+    {
+      "key": "all",
+      "label": "전체"
+    },
+    {
+      "key": "ads",
+      "label": "광고·마케팅"
+    },
+    {
+      "key": "shopping",
+      "label": "쇼핑·커머스"
+    },
+    {
+      "key": "policy",
+      "label": "정책·기능"
+    },
+    {
+      "key": "trend",
+      "label": "트렌드·분석"
+    },
+    {
+      "key": "dispute",
+      "label": "분쟁·제재"
+    },
+    {
+      "key": "corp",
+      "label": "기업·M&A"
+    }
+  ],
+  "categoryColors": {
+    "ads": "#4a7cff",
+    "shopping": "#fb923c",
+    "policy": "#22d3ee",
+    "trend": "#34d399",
+    "dispute": "#f87171",
+    "corp": "#a78bfa"
+  },
+  "indexByKeyword": [],
+  "clippings": []
+}

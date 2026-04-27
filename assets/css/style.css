@@ -88,6 +88,30 @@ canvas { display: block; width: 100%; height: 100%; }
     font-weight: 500;
 }
 .topbar-tools { display: flex; align-items: center; gap: 10px; }
+
+/* Magazine toggle nav */
+.mag-toggle {
+    display: flex;
+    gap: 4px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px;
+}
+.mag-link {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-soft);
+    border-radius: 999px;
+    transition: background .15s, color .15s;
+    white-space: nowrap;
+}
+.mag-link:hover { color: var(--text-mid); }
+.mag-link.active {
+    background: var(--accent);
+    color: #fff;
+}
 .search-field {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -401,6 +425,89 @@ canvas { display: block; width: 100%; height: 100%; }
     .reactions-counts { gap: 14px; }
 }
 
+/* ---------- Keyword Index (commerce) ---------- */
+.keyword-index {
+    margin: 22px 0 8px;
+    padding: 20px 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+}
+.ki-head { margin-bottom: 14px; }
+.ki-head h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+}
+.ki-sub {
+    font-size: 12px;
+    color: var(--text-mute);
+    margin-top: 4px;
+}
+.ki-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+}
+.ki-card {
+    background: var(--bg-card-hi);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+}
+.ki-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+.ki-keyword {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+}
+.ki-keep {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--accent);
+}
+.ki-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+.ki-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--purple));
+    transition: width .3s;
+}
+.ki-meta {
+    font-size: 11px;
+    color: var(--text-mute);
+}
+
+/* Category pill (commerce magazine - color from data) */
+.cat-pill {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+.kw-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: var(--text-mute);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+}
+
 /* Fresh badge */
 .fresh-badge {
     display: inline-block;
@@ -566,6 +673,8 @@ canvas { display: block; width: 100%; height: 100%; }
     .chart-row-3, .chart-row-2 { grid-template-columns: 1fr; }
     .kpi-strip { grid-template-columns: 1fr 1fr; }
     .title-block h1 { font-size: 22px; }
+    .mag-toggle { width: 100%; }
+    .mag-link { flex: 1; text-align: center; }
 }
 
 
