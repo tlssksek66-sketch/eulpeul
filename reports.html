@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리서치 리포트 | SHOKZ KOREA</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="theme-reports">
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <span class="brand-mark">SHOKZ</span>
+                <span class="brand-divider"></span>
+                <span class="brand-sub">RESEARCH REPORT WATCH</span>
+            </div>
+            <nav class="mag-toggle">
+                <a href="index.html" class="mag-link">SHOKZ 매거진</a>
+                <a href="commerce.html" class="mag-link">이커머스 동향</a>
+                <a href="reports.html" class="mag-link active">리서치 리포트</a>
+            </nav>
+            <div class="topbar-tools">
+                <div class="search-field">
+                    <input id="searchInput" type="text" placeholder="제목·발행사 검색…" autocomplete="off">
+                </div>
+                <button id="refreshBtn" class="icon-btn" title="새로고침">⟳</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="title-block">
+            <h1 id="pageTitle">리서치 리포트</h1>
+            <p class="title-sub" id="pageSub">매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱</p>
+        </section>
+
+        <section class="kpi-strip" id="kpiStrip">
+            <div class="kpi-cell"><span class="kpi-num" id="kpiTotal">0</span><span class="kpi-label">총 리포트</span></div>
+            <div class="kpi-cell"><span class="kpi-num" id="kpiFresh">0</span><span class="kpi-label">최근 추가</span></div>
+            <div class="kpi-cell"><span class="kpi-num" id="kpiSources">0</span><span class="kpi-label">발행 소스</span></div>
+            <div class="kpi-cell"><span class="kpi-num" id="kpiCategories">0</span><span class="kpi-label">카테고리</span></div>
+            <div class="kpi-cell kpi-time"><span class="kpi-time-value" id="kpiTime">--</span><span class="kpi-label">최근 수집</span></div>
+        </section>
+
+        <!-- 발행처 토글 -->
+        <nav class="tabs" id="sourceTabs"></nav>
+        <!-- 카테고리 필터 -->
+        <nav class="tabs tabs-sub" id="categoryTabs"></nav>
+
+        <!-- 발행처별 통계 -->
+        <section class="report-stats" id="reportStats"></section>
+
+        <!-- 리포트 그리드 -->
+        <section class="report-list-wrap">
+            <div class="report-head">
+                <h2>리포트 목록 <span class="count" id="reportCount">0</span></h2>
+                <span class="report-sub" id="reportSub"></span>
+            </div>
+            <div class="report-grid" id="reportGrid"></div>
+        </section>
+
+        <footer class="page-foot">
+            <span>SHOKZ KOREA · RESEARCH REPORT WATCH</span>
+            <span>powered by Magazine Engine</span>
+        </footer>
+    </main>
+
+    <script src="assets/js/reports-app.js"></script>
+</body>
+</html>

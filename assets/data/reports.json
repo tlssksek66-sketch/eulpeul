@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "kind": "reports",
+    "title": "리서치 리포트",
+    "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
+    "collectedAt": null,
+    "totalReports": 0,
+    "freshCount": 0,
+    "sources": [
+      {
+        "key": "nasmedia-regular",
+        "label": "나스리포트 정기보고서",
+        "publisher": "케이티 나스미디어",
+        "url": "https://www.nasmedia.co.kr/나스리포트/정기보고서/"
+      },
+      {
+        "key": "nasmedia-npr",
+        "label": "나스리포트 NPR",
+        "publisher": "케이티 나스미디어",
+        "url": "https://www.nasmedia.co.kr/나스리포트/npr/"
+      }
+    ]
+  },
+  "categories": [
+    {
+      "key": "Market",
+      "label": "Market"
+    },
+    {
+      "key": "Global",
+      "label": "Global"
+    },
+    {
+      "key": "Case",
+      "label": "Case"
+    },
+    {
+      "key": "On/Mobile",
+      "label": "On/Mobile"
+    },
+    {
+      "key": "Digital Broadcast",
+      "label": "Digital Broadcast"
+    },
+    {
+      "key": "Digital OOH",
+      "label": "Digital OOH"
+    },
+    {
+      "key": "More",
+      "label": "More"
+    }
+  ],
+  "categoryColors": {
+    "Market": "#4a7cff",
+    "Global": "#a78bfa",
+    "Case": "#34d399",
+    "On/Mobile": "#fb923c",
+    "Digital Broadcast": "#22d3ee",
+    "Digital OOH": "#fbbf24",
+    "More": "#6b7280"
+  },
+  "bySource": {},
+  "byCategory": {},
+  "reports": []
+}
