@@ -3,9 +3,9 @@
     "kind": "reports",
     "title": "리서치 리포트",
     "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
-    "collectedAt": "2026-04-28T02:44:12+09:00",
+    "collectedAt": "2026-04-28T02:56:51+09:00",
     "totalReports": 23,
-    "freshCount": 23,
+    "freshCount": 0,
     "sources": [
       {
         "key": "nasmedia-regular",
@@ -26,7 +26,7 @@
         "url": "https://www.cjmezzomedia.com/insight-m"
       }
     ],
-    "updatedAt": "2026-04-28T02:44:12+09:00"
+    "updatedAt": "2026-04-28T02:56:51+09:00"
   },
   "categories": [
     {
