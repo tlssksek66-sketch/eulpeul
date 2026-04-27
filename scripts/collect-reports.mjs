@@ -10,6 +10,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { scrapeAllNasmedia } from './scrape-nasmedia.mjs';
 import { scrapeCjMezzo } from './scrape-cjmezzo.mjs';
+import { scrapeAllIncross } from './scrape-incross.mjs';
+import { scrapeDmcReport } from './scrape-dmcreport.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
@@ -23,7 +25,13 @@ const SOURCE_META = [
     { key: 'nasmedia-npr',     label: '나스리포트 NPR',         publisher: '케이티 나스미디어',
       url: 'https://www.nasmedia.co.kr/나스리포트/npr/' },
     { key: 'cjmezzo-insight-m', label: 'CJ Mezzo Insight-M',  publisher: 'CJ 메조미디어',
-      url: 'https://www.cjmezzomedia.com/insight-m' }
+      url: 'https://www.cjmezzomedia.com/insight-m' },
+    { key: 'incross-mineport',  label: '인크로스 마인리포트',     publisher: '인크로스',
+      url: 'https://www.incross.com/ko/insight/report.asp' },
+    { key: 'incross-mineNews',  label: '인크로스 마인카세',       publisher: '인크로스',
+      url: 'https://www.incross.com/ko/insight/news.asp' },
+    { key: 'dmcreport',         label: 'DMC리포트',             publisher: 'DMC미디어',
+      url: 'https://www.dmcreport.co.kr/report' }
 ];
 
 const CATEGORY_LABELS = {
@@ -45,6 +53,15 @@ const CATEGORY_LABELS = {
     '업종 분석': '업종 분석',
     '캠페인 사례': '캠페인 사례',
     '타겟 분석': '타겟 분석',
+    // Incross
+    '마인리포트': '마인리포트',
+    '마인카세': '마인카세',
+    // DMC
+    '광고/마케팅': '광고/마케팅',
+    '마켓': '마켓',
+    '소비자': '소비자',
+    'DMC 브리핑': 'DMC 브리핑',
+    '뉴스': '뉴스',
     // 공통
     '기타': '기타'
 };
@@ -68,6 +85,15 @@ const CATEGORY_COLORS = {
     '업종 분석':           '#22d3ee',
     '캠페인 사례':         '#a78bfa',
     '타겟 분석':           '#f87171',
+    // Incross
+    '마인리포트':          '#4a7cff',
+    '마인카세':            '#34d399',
+    // DMC
+    '광고/마케팅':          '#4a7cff',
+    '마켓':                '#fb923c',
+    '소비자':              '#fbbf24',
+    'DMC 브리핑':          '#a78bfa',
+    '뉴스':                '#f87171',
     '기타':              '#5a6079'
 };
 
@@ -108,15 +134,21 @@ async function main() {
     console.log('[reports] recent window (days):', RECENT_DAYS);
 
     // 1) 모든 소스 병렬 수집
-    const [nasmediaResult, cjmezzoResult] = await Promise.allSettled([
+    const [nasmediaResult, cjmezzoResult, incrossResult, dmcResult] = await Promise.allSettled([
         scrapeAllNasmedia({ maxPages: MAX_PAGES }),
-        scrapeCjMezzo()
+        scrapeCjMezzo(),
+        scrapeAllIncross(),
+        scrapeDmcReport()
     ]);
     const fresh = [];
     if (nasmediaResult.status === 'fulfilled') fresh.push(...nasmediaResult.value);
     else console.error('[reports] nasmedia scrape failed:', nasmediaResult.reason?.message);
     if (cjmezzoResult.status === 'fulfilled') fresh.push(...cjmezzoResult.value);
     else console.error('[reports] cjmezzo scrape failed:', cjmezzoResult.reason?.message);
+    if (incrossResult.status === 'fulfilled') fresh.push(...incrossResult.value);
+    else console.error('[reports] incross scrape failed:', incrossResult.reason?.message);
+    if (dmcResult.status === 'fulfilled') fresh.push(...dmcResult.value);
+    else console.error('[reports] dmcreport scrape failed:', dmcResult.reason?.message);
     console.log(`[reports] fresh fetched: ${fresh.length}`);
 
     // 2) 최근 N일 필터
