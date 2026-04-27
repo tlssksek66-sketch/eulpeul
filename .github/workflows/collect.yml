@@ -10,6 +10,11 @@ on:
         description: '쉼표로 구분된 검색 키워드 (기본: SHOKZ,샥즈,샥즈코리아,SHOKZ KOREA)'
         required: false
         default: ''
+      force_roadmap:
+        description: '로드맵 캐시 무시하고 강제 재생성'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -66,6 +71,7 @@ jobs:
       - name: Build SA/GFA operations roadmap (Phase 1.5)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ROADMAP_FORCE: ${{ github.event.inputs.force_roadmap == 'true' && '1' || '' }}
         run: node scripts/build-roadmap.mjs
         continue-on-error: true
 
