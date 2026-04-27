@@ -53,11 +53,15 @@ jobs:
       - name: Run Reports scraper
         run: node scripts/collect-reports.mjs
 
+      - name: Index recent PDFs (heuristic)
+        run: node scripts/index-reports.mjs
+        continue-on-error: true
+
       - name: Commit if changed
         run: |
           git config user.name "magazine-bot[bot]"
           git config user.email "magazine-bot@users.noreply.github.com"
-          git add assets/data/clippings.json assets/data/commerce.json assets/data/reports.json
+          git add assets/data/clippings.json assets/data/commerce.json assets/data/reports.json assets/data/report-index.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0

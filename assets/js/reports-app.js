@@ -3,8 +3,9 @@
  * 리서치 리포트 페이지 전용 (data-store/chart-engine 미사용 — 단순 카드 그리드)
  */
 const ReportsApp = {
-    state: { source: 'all', category: 'all', query: '' },
+    state: { source: 'all', category: 'all', query: '', expandedUrl: null },
     data: { meta: {}, categories: [], categoryColors: {}, bySource: {}, byCategory: {}, reports: [] },
+    indexData: { meta: {}, topicCloud: [], byUrl: {} },
     refs: {},
 
     async init() {
@@ -17,6 +18,9 @@ const ReportsApp = {
             sourceTabs:    document.getElementById('sourceTabs'),
             categoryTabs:  document.getElementById('categoryTabs'),
             reportStats:   document.getElementById('reportStats'),
+            topicCloudWrap:document.getElementById('topicCloudWrap'),
+            topicCloud:    document.getElementById('topicCloud'),
+            topicCloudSub: document.getElementById('topicCloudSub'),
             reportGrid:    document.getElementById('reportGrid'),
             reportCount:   document.getElementById('reportCount'),
             reportSub:     document.getElementById('reportSub'),
@@ -48,6 +52,13 @@ const ReportsApp = {
             console.error('[ReportsApp] load failed:', err);
             this.data = { meta: {}, categories: [], categoryColors: {}, bySource: {}, byCategory: {}, reports: [] };
         }
+        // 토픽 인덱스 (없어도 무방)
+        try {
+            const res = await fetch('assets/data/report-index.json', { cache: 'no-store' });
+            if (res.ok) this.indexData = await res.json();
+        } catch { this.indexData = { meta: {}, topicCloud: [], byUrl: {} }; }
+        this.indexData.byUrl = this.indexData.byUrl || {};
+        this.indexData.topicCloud = this.indexData.topicCloud || [];
     },
 
     async refresh() {
@@ -65,7 +76,25 @@ const ReportsApp = {
         this.renderSourceTabs();
         this.renderCategoryTabs();
         this.renderStats();
+        this.renderTopicCloud();
         this.renderGrid();
+    },
+
+    renderTopicCloud() {
+        const cloud = this.indexData.topicCloud || [];
+        if (cloud.length === 0) {
+            this.refs.topicCloudWrap.hidden = true;
+            return;
+        }
+        this.refs.topicCloudWrap.hidden = false;
+        const meta = this.indexData.meta || {};
+        this.refs.topicCloudSub.textContent =
+            `최근 ${meta.indexed || 0}개 PDF 분석 결과 — 각 리포트에서 자주 언급된 키워드 (${meta.indexedAt ? meta.indexedAt.slice(0, 10) : ''})`;
+        const max = Math.max(...cloud.map(c => c.count), 1);
+        this.refs.topicCloud.innerHTML = cloud.map(c => {
+            const scale = 0.85 + (c.count / max) * 0.7; // 0.85x ~ 1.55x
+            return `<span class="tc-item" style="font-size:${(scale * 13).toFixed(1)}px">${this.escape(c.keyword)}<em>${c.count}</em></span>`;
+        }).join('');
     },
 
     renderHeader() {
@@ -172,8 +201,11 @@ const ReportsApp = {
                 ? `<img src="${this.escape(r.thumbnail)}" alt="${this.escape(r.title)}" loading="lazy">`
                 : `<div class="thumb-placeholder">📄</div>`;
             const dateStr = r.date ? r.date.replace(/-/g, '.') : '';
+            const idx = this.indexData.byUrl[r.pdfUrl];
+            const expanded = this.state.expandedUrl === r.pdfUrl;
+            const hasIndex = idx && !idx.error && (idx.outline?.length > 0 || idx.headings?.length > 0 || idx.keywords?.length > 0);
             return `
-                <article class="report-card">
+                <article class="report-card${expanded ? ' expanded' : ''}">
                     <a class="report-thumb" href="${this.escape(r.url)}" target="_blank" rel="noopener">${thumb}</a>
                     <div class="report-body">
                         <div class="report-meta">
@@ -187,10 +219,61 @@ const ReportsApp = {
                             <span class="report-date">${this.escape(dateStr)}</span>
                             ${r.pdfUrl ? `<a class="pdf-btn" href="${this.escape(r.pdfUrl)}" target="_blank" rel="noopener">PDF ↓</a>` : ''}
                         </div>
+                        ${hasIndex ? `
+                            <button class="topic-toggle" data-url="${this.escape(r.pdfUrl)}">
+                                ${expanded ? '▲ 토픽 인덱스 닫기' : `▾ 토픽 인덱스 (${idx.pageCount}p · 키워드 ${idx.keywords.length}개)`}
+                            </button>
+                            ${expanded ? this.renderTopicIndex(idx) : ''}
+                        ` : ''}
                     </div>
                 </article>
             `;
         }).join('');
+        this.refs.reportGrid.querySelectorAll('.topic-toggle').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const url = btn.dataset.url;
+                this.state.expandedUrl = this.state.expandedUrl === url ? null : url;
+                this.renderGrid();
+            });
+        });
+    },
+
+    /**
+     * 토픽 인덱스 렌더 — outline / headings / keywords
+     */
+    renderTopicIndex(idx) {
+        const outline = (idx.outline || []).slice(0, 20);
+        const headings = (idx.headings || []).slice(0, 12);
+        const keywords = (idx.keywords || []).slice(0, 12);
+
+        const outlineHtml = outline.length > 0 ? `
+            <div class="ti-section">
+                <h5>목차</h5>
+                <ol class="ti-outline">
+                    ${outline.map(o => `<li class="ti-depth-${Math.min(o.depth, 3)}">${this.escape(o.title)}</li>`).join('')}
+                </ol>
+            </div>
+        ` : '';
+
+        const headingHtml = (outline.length === 0 && headings.length > 0) ? `
+            <div class="ti-section">
+                <h5>주요 섹션</h5>
+                <ul class="ti-headings">
+                    ${headings.map(h => `<li>${this.escape(h.text)}</li>`).join('')}
+                </ul>
+            </div>
+        ` : '';
+
+        const keywordHtml = keywords.length > 0 ? `
+            <div class="ti-section">
+                <h5>핵심 키워드</h5>
+                <div class="ti-keywords">
+                    ${keywords.map(k => `<span class="ti-kw">${this.escape(k.keyword)}<em>${k.count}</em></span>`).join('')}
+                </div>
+            </div>
+        ` : '';
+
+        return `<div class="topic-index">${outlineHtml}${headingHtml}${keywordHtml}</div>`;
     },
 
     filterReports() {
