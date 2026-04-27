@@ -7,10 +7,12 @@
   "scripts": {
     "collect:shokz": "node scripts/collect.mjs",
     "collect:commerce": "node scripts/collect-commerce.mjs",
-    "collect:reports": "node scripts/collect-reports.mjs"
+    "collect:reports": "node scripts/collect-reports.mjs",
+    "extract:insights": "node scripts/extract-insights.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.91.1",
     "cheerio": "^1.0.0-rc.12",
-    "pdfjs-dist": "^5.6.205"
+    "pdf-parse": "^2.4.5"
   }
 }

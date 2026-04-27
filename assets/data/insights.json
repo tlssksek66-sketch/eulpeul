@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "extractedAt": null,
+    "indexed": 0,
+    "extractedThisRun": 0,
+    "cachedHits": 0,
+    "failed": 0,
+    "pruned": 0,
+    "model": "claude-haiku-4-5",
+    "usageThisRun": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "estimated_cost_usd": 0
+    }
+  },
+  "topBrands": [],
+  "topPlatforms": [],
+  "topIndustries": [],
+  "topAudiences": [],
+  "byUrl": {}
+}
