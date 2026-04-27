@@ -6,7 +6,7 @@
     "title": "샥즈 코리아 매거진",
     "subtitle": "웹 상의 모든 샥즈 관련 뉴스·기사·콘텐츠를 한 화면에서 모니터링",
     "searchKeyword": "SHOKZ, 샥즈, 샥즈코리아, SHOKZ KOREA",
-    "collectedAt": "2026-04-28T02:56:28+09:00",
+    "collectedAt": "2026-04-28T03:32:44+09:00",
     "totalClippings": 60,
     "filterPassed": 60,
     "noiseFiltered": 274,
@@ -502,6 +502,27 @@
     {
       "id": 21,
       "channel": "blog",
+      "media": "네이버 블로그 · imposeoco님의 블로그",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "샥즈오픈닷원케이스 오픈닷원 투명 실리콘 E310 케이스...",
+      "summary": "샥즈오픈닷원케이스는 가볍게 씌우는 보호감이 좋고 투명한 색감 유지가 편했습니다. 오픈닷원 투명... 항목 내용 상품명 샥즈오픈닷원케이스 오픈닷원 투명 실리콘 E310 케이스 OPENDOTS ONE 판매가 3,800원 할인가 3...",
+      "date": "2026-04-28",
+      "url": "https://blog.naver.com/imposeoco/224267433961",
+      "tags": [
+        "오픈닷원",
+        "투명",
+        "샥즈오픈닷원케이스",
+        "실리콘",
+        "E310",
+        "케이스",
+        "샥즈오픈닷원케이스는",
+        "가볍게"
+      ]
+    },
+    {
+      "id": 22,
+      "channel": "blog",
       "media": "네이버 블로그 · orstyhs님의 블로그",
       "category": "review",
       "sentiment": "neutral",
@@ -521,7 +542,7 @@
       ]
     },
     {
-      "id": 22,
+      "id": 23,
       "channel": "blog",
       "media": "네이버 블로그 · qu1bjl님의 블로그",
       "category": "sports",
@@ -542,7 +563,7 @@
       ]
     },
     {
-      "id": 23,
+      "id": 24,
       "channel": "blog",
       "media": "네이버 블로그 · buckd0r님의 블로그",
       "category": "review",
@@ -563,7 +584,7 @@
       ]
     },
     {
-      "id": 24,
+      "id": 25,
       "channel": "blog",
       "media": "네이버 블로그 · captaineb님의 블로그",
       "category": "review",
@@ -584,7 +605,7 @@
       ]
     },
     {
-      "id": 25,
+      "id": 26,
       "channel": "blog",
       "media": "네이버 블로그 · suddent3님의 블로그",
       "category": "review",
@@ -605,7 +626,7 @@
       ]
     },
     {
-      "id": 26,
+      "id": 27,
       "channel": "blog",
       "media": "네이버 블로그 · succeedlo님의 블로그",
       "category": "review",
@@ -626,7 +647,7 @@
       ]
     },
     {
-      "id": 27,
+      "id": 28,
       "channel": "blog",
       "media": "네이버 블로그 · countqjw님의 블로그",
       "category": "tech",
@@ -647,7 +668,7 @@
       ]
     },
     {
-      "id": 28,
+      "id": 29,
       "channel": "blog",
       "media": "네이버 블로그 · etherealnote61님의 블로그",
       "category": "review",
@@ -668,7 +689,7 @@
       ]
     },
     {
-      "id": 29,
+      "id": 30,
       "channel": "blog",
       "media": "네이버 블로그 · 0507's Life",
       "category": "review",
@@ -689,7 +710,7 @@
       ]
     },
     {
-      "id": 30,
+      "id": 31,
       "channel": "blog",
       "media": "네이버 블로그 · mia_ssong님의 블로그",
       "category": "review",
@@ -710,7 +731,7 @@
       ]
     },
     {
-      "id": 31,
+      "id": 32,
       "channel": "blog",
       "media": "네이버 블로그 · 어르신들 복지용구",
       "category": "review",
@@ -731,7 +752,7 @@
       ]
     },
     {
-      "id": 32,
+      "id": 33,
       "channel": "blog",
       "media": "네이버 블로그 · 코코더스",
       "category": "review",
@@ -752,7 +773,7 @@
       ]
     },
     {
-      "id": 33,
+      "id": 34,
       "channel": "blog",
       "media": "네이버 블로그 · IT 레시피(IT Recipe)",
       "category": "review",
@@ -773,7 +794,7 @@
       ]
     },
     {
-      "id": 34,
+      "id": 35,
       "channel": "blog",
       "media": "네이버 블로그 · esactor님의 블로그",
       "category": "sports",
@@ -794,7 +815,7 @@
       ]
     },
     {
-      "id": 35,
+      "id": 36,
       "channel": "blog",
       "media": "네이버 블로그 · 알쓸쭌잡",
       "category": "review",
@@ -815,7 +836,7 @@
       ]
     },
     {
-      "id": 36,
+      "id": 37,
       "channel": "blog",
       "media": "네이버 블로그 · 59 Select",
       "category": "review",
@@ -836,7 +857,7 @@
       ]
     },
     {
-      "id": 37,
+      "id": 38,
       "channel": "blog",
       "media": "네이버 블로그 · 간디",
       "category": "review",
@@ -857,7 +878,7 @@
       ]
     },
     {
-      "id": 38,
+      "id": 39,
       "channel": "blog",
       "media": "네이버 블로그 · 가전비교랩",
       "category": "review",
@@ -878,7 +899,7 @@
       ]
     },
     {
-      "id": 39,
+      "id": 40,
       "channel": "blog",
       "media": "네이버 블로그 · 행복한 일상",
       "category": "review",
@@ -896,27 +917,6 @@
         "오픈런",
         "프로",
         "미니"
-      ]
-    },
-    {
-      "id": 40,
-      "channel": "blog",
-      "media": "네이버 블로그 · 행복한 일상",
-      "category": "review",
-      "sentiment": "positive",
-      "title": "샥즈 오픈스윔 프로 S710, 수영부터 일상까지 완벽 활용 후기",
-      "summary": "수영을 좋아하시는 분들이라면 물속에서 정막만 흐르는 게 얼마나 아쉬운지 잘 아실 거예요. 저도 매일 아침 수영장을 찾을 때마다 좋아하는 음악과 함께하고 싶다는 생각을 참 많이 했거든요. 단순히...",
-      "date": "2026-04-27",
-      "url": "https://blog.naver.com/dodolove7376/224266286480",
-      "tags": [
-        "샥즈",
-        "오픈스윔",
-        "프로",
-        "S710",
-        "수영부터",
-        "일상까지",
-        "완벽",
-        "활용"
       ]
     },
     {
