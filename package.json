@@ -1,0 +1,15 @@
+{
+  "name": "eulpeul-magazine",
+  "version": "1.0.0",
+  "description": "SHOKZ KOREA 매거진 + 이커머스 동향 + 리서치 리포트 수집기",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "collect:shokz": "node scripts/collect.mjs",
+    "collect:commerce": "node scripts/collect-commerce.mjs",
+    "collect:reports": "node scripts/collect-reports.mjs"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12"
+  }
+}

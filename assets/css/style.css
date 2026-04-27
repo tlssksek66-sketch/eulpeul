@@ -508,6 +508,201 @@ canvas { display: block; width: 100%; height: 100%; }
     margin-left: 4px;
 }
 
+/* ---------- Reports page ---------- */
+.tabs-sub {
+    margin-top: -8px;
+    margin-bottom: 14px;
+    border-bottom: none;
+    padding-bottom: 4px;
+}
+.tabs-sub .tab {
+    padding: 8px 14px;
+    font-size: 12px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    margin-right: 6px;
+    margin-bottom: -1px;
+}
+.tabs-sub .tab.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+.tab-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    margin-left: 4px;
+    opacity: 0.7;
+}
+
+.report-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+}
+.rs-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.rs-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rs-publisher {
+    font-size: 11px;
+    color: var(--text-mute);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.rs-link {
+    font-size: 11px;
+    color: var(--accent-soft);
+}
+.rs-link:hover { text-decoration: underline; }
+.rs-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+.rs-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-top: 4px;
+}
+.rs-count-unit {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-left: 4px;
+}
+
+.report-list-wrap { margin-top: 18px; }
+.report-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+.report-head h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+}
+.report-head .count {
+    font-family: 'Inter', sans-serif;
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 6px;
+}
+.report-sub {
+    font-size: 12px;
+    color: var(--text-mute);
+}
+.report-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+}
+.report-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color .15s, transform .15s;
+}
+.report-card:hover {
+    border-color: #2f3349;
+    transform: translateY(-2px);
+}
+.report-thumb {
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--bg-card-hi);
+    position: relative;
+}
+.report-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s;
+}
+.report-thumb:hover img {
+    transform: scale(1.04);
+}
+.thumb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 56px;
+    opacity: 0.3;
+}
+.report-body {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+.report-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-mute);
+}
+.report-publisher {
+    color: var(--text-soft);
+    font-weight: 500;
+}
+.report-title {
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+}
+.report-title a:hover { color: var(--accent-soft); }
+.report-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+}
+.report-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--text-mute);
+}
+.pdf-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-soft);
+    padding: 4px 10px;
+    border: 1px solid var(--accent-soft);
+    border-radius: 4px;
+    transition: background .15s, color .15s;
+}
+.pdf-btn:hover {
+    background: var(--accent-soft);
+    color: #fff;
+}
+
 /* Fresh badge */
 .fresh-badge {
     display: inline-block;
