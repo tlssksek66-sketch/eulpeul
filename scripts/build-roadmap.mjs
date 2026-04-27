@@ -59,7 +59,8 @@ const ROADMAP_SCHEMA = {
                     landingHint: { type: 'string' },
                     kpiTarget: { type: 'string' }
                 },
-                required: ['title', 'rationale', 'targetIndustries', 'targetAudiences', 'seedKeywords', 'negativeKeywords', 'matchType', 'biddingStrategy', 'adCopyTone', 'landingHint', 'kpiTarget']
+                required: ['title', 'rationale', 'targetIndustries', 'targetAudiences', 'seedKeywords', 'negativeKeywords', 'matchType', 'biddingStrategy', 'adCopyTone', 'landingHint', 'kpiTarget'],
+                additionalProperties: false
             }
         },
         gfaPlays: {
@@ -80,12 +81,14 @@ const ROADMAP_SCHEMA = {
                     bidStrategy: { type: 'string' },
                     kpiTarget: { type: 'string' }
                 },
-                required: ['title', 'rationale', 'targetIndustries', 'targetAudiences', 'demoTargeting', 'interestSegments', 'placements', 'creativeMessage', 'ctaCopy', 'frequencyCap', 'bidStrategy', 'kpiTarget']
+                required: ['title', 'rationale', 'targetIndustries', 'targetAudiences', 'demoTargeting', 'interestSegments', 'placements', 'creativeMessage', 'ctaCopy', 'frequencyCap', 'bidStrategy', 'kpiTarget'],
+                additionalProperties: false
             }
         },
         caveats: { type: 'array', items: { type: 'string' } }
     },
-    required: ['summary', 'audiencePillars', 'saPlays', 'gfaPlays', 'caveats']
+    required: ['summary', 'audiencePillars', 'saPlays', 'gfaPlays', 'caveats'],
+    additionalProperties: false
 };
 
 function nowKstIso() {
