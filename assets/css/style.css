@@ -1192,6 +1192,218 @@ canvas { display: block; width: 100%; height: 100%; }
     border-radius: var(--radius);
 }
 
+/* ---------- Roadmap (SA / GFA 운영 플레이북) ---------- */
+.roadmap-wrap {
+    margin-top: 36px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(99,102,241,0.06), transparent 60%), var(--bg-card);
+}
+.roadmap-head { margin-bottom: 14px; }
+.roadmap-head h2 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.rm-tag {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    background: rgba(99,102,241,0.12);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.roadmap-sub {
+    margin: 8px 0 0 0;
+    color: var(--text-mute);
+    font-size: 13px;
+    line-height: 1.55;
+}
+.roadmap-pillars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0 18px 0;
+}
+.rm-pillar {
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(99,102,241,0.10);
+    color: var(--accent);
+    border: 1px solid rgba(99,102,241,0.25);
+}
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+.roadmap-col {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+.rm-col-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+.rm-col-head h3 { margin: 0; font-size: 14px; letter-spacing: -0.01em; }
+.rm-count {
+    font-size: 11px;
+    color: var(--text-mute);
+    background: var(--bg-card);
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+.rm-list { display: flex; flex-direction: column; gap: 14px; }
+
+.rm-play {
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 14px 12px 14px;
+    background: var(--bg-card);
+}
+.rm-play.rm-sa { border-left-color: #22d3ee; }
+.rm-play.rm-gfa { border-left-color: #a78bfa; }
+.rm-play-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+.rm-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    color: var(--text-mute);
+    background: var(--bg);
+    padding: 3px 7px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+}
+.rm-play-head h4 {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--text);
+}
+.rm-rationale {
+    margin: 0 0 10px 0;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text-soft);
+}
+.rm-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+.rm-chip {
+    font-size: 10.5px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text-soft);
+}
+.rm-chip.tag-industry { color: #fb923c; border-color: rgba(251,146,60,0.30); background: rgba(251,146,60,0.08); }
+.rm-chip.tag-audience { color: #4ade80; border-color: rgba(74,222,128,0.30); background: rgba(74,222,128,0.08); }
+.rm-chip.kw-seed { color: #22d3ee; border-color: rgba(34,211,238,0.30); background: rgba(34,211,238,0.08); }
+.rm-chip.kw-neg { color: #f87171; border-color: rgba(248,113,113,0.30); background: rgba(248,113,113,0.08); text-decoration: line-through; }
+
+.rm-section { margin: 10px 0; }
+.rm-section h5 {
+    margin: 0 0 6px 0;
+    font-size: 10px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    font-weight: 700;
+}
+.rm-keywords { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.rm-kvs {
+    margin: 10px 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+}
+.rm-kv {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 10px;
+    padding: 6px 0;
+    border-top: 1px dashed var(--border);
+    font-size: 12px;
+    line-height: 1.5;
+}
+.rm-kv:first-child { border-top: none; }
+.rm-kv dt {
+    color: var(--text-mute);
+    font-weight: 600;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding-top: 1px;
+}
+.rm-kv dd {
+    margin: 0;
+    color: var(--text);
+}
+
+.roadmap-caveats {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: rgba(251,191,36,0.05);
+    border: 1px solid rgba(251,191,36,0.25);
+}
+.roadmap-caveats h4 {
+    margin: 0 0 6px 0;
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: #f59e0b;
+}
+.roadmap-caveats ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text-soft);
+    font-size: 12px;
+    line-height: 1.6;
+}
+.roadmap-meta {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-mute);
+}
+
+@media (max-width: 980px) {
+    .roadmap-grid { grid-template-columns: 1fr; }
+    .rm-kv { grid-template-columns: 84px 1fr; }
+}
+
 /* ---------- Footer ---------- */
 .page-foot {
     margin-top: 36px;

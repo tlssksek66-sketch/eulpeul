@@ -4,6 +4,7 @@
 const InsightsApp = {
     state: { filter: 'all', filterValue: null, query: '' },
     data: { meta: {}, topBrands: [], topPlatforms: [], topIndustries: [], topAudiences: [], byUrl: {} },
+    roadmap: null,
     refs: {},
 
     async init() {
@@ -23,7 +24,17 @@ const InsightsApp = {
             insightCount: document.getElementById('insightCount'),
             insightSub: document.getElementById('insightSub'),
             searchInput: document.getElementById('searchInput'),
-            refreshBtn: document.getElementById('refreshBtn')
+            refreshBtn: document.getElementById('refreshBtn'),
+            roadmapWrap: document.getElementById('roadmapWrap'),
+            roadmapSummary: document.getElementById('roadmapSummary'),
+            roadmapPillars: document.getElementById('roadmapPillars'),
+            saList: document.getElementById('saList'),
+            gfaList: document.getElementById('gfaList'),
+            saCount: document.getElementById('saCount'),
+            gfaCount: document.getElementById('gfaCount'),
+            roadmapCaveats: document.getElementById('roadmapCaveats'),
+            caveatsList: document.getElementById('caveatsList'),
+            roadmapMeta: document.getElementById('roadmapMeta')
         };
         await this.load();
         this.renderAll();
@@ -44,6 +55,16 @@ const InsightsApp = {
             console.error('[InsightsApp] load failed:', err);
             this.data = { meta: {}, topBrands: [], topPlatforms: [], topIndustries: [], topAudiences: [], byUrl: {} };
         }
+        try {
+            const res = await fetch('assets/data/roadmap.json', { cache: 'no-store' });
+            if (res.ok) {
+                const rm = await res.json();
+                this.roadmap = (rm.saPlays?.length || rm.gfaPlays?.length) ? rm : null;
+            }
+        } catch (err) {
+            console.warn('[InsightsApp] roadmap load skipped:', err.message);
+            this.roadmap = null;
+        }
     },
 
     async refresh() {
@@ -61,6 +82,7 @@ const InsightsApp = {
         this.renderFilterTabs();
         this.renderFilterStrip();
         this.renderList();
+        this.renderRoadmap();
     },
 
     escape(s) {
@@ -261,6 +283,114 @@ const InsightsApp = {
                 </article>
             `;
         }).join('');
+    },
+
+    renderRoadmap() {
+        const wrap = this.refs.roadmapWrap;
+        if (!wrap) return;
+        const rm = this.roadmap;
+        if (!rm || (!rm.saPlays?.length && !rm.gfaPlays?.length)) {
+            wrap.hidden = true;
+            return;
+        }
+        wrap.hidden = false;
+
+        this.refs.roadmapSummary.textContent = rm.summary || '';
+
+        this.refs.roadmapPillars.innerHTML = (rm.audiencePillars || [])
+            .map(p => `<span class="rm-pillar">${this.escape(p)}</span>`).join('');
+
+        const saArr = rm.saPlays || [];
+        const gfaArr = rm.gfaPlays || [];
+        this.refs.saCount.textContent = saArr.length;
+        this.refs.gfaCount.textContent = gfaArr.length;
+
+        this.refs.saList.innerHTML = saArr.map((p, i) => this.renderSaPlay(p, i + 1)).join('');
+        this.refs.gfaList.innerHTML = gfaArr.map((p, i) => this.renderGfaPlay(p, i + 1)).join('');
+
+        const caveats = rm.caveats || [];
+        this.refs.roadmapCaveats.hidden = caveats.length === 0;
+        this.refs.caveatsList.innerHTML = caveats.map(c => `<li>${this.escape(c)}</li>`).join('');
+
+        const m = rm.meta || {};
+        const cost = m.usage?.estimated_cost_usd ? `$${m.usage.estimated_cost_usd}` : '–';
+        const built = m.builtAt ? this.formatTime(m.builtAt) : '--';
+        this.refs.roadmapMeta.innerHTML = `
+            <span class="fs-key">생성:</span><span class="fs-val">${this.escape(built)}</span>
+            <span class="fs-divider">·</span>
+            <span class="fs-key">근거 카드:</span><span class="fs-val">${m.cardsCount || 0}건</span>
+            <span class="fs-divider">·</span>
+            <span class="fs-key">모델:</span><span class="fs-val">${this.escape(m.model || '-')}</span>
+            <span class="fs-divider">·</span>
+            <span class="fs-key">비용:</span><span class="fs-val">${cost}</span>
+        `;
+    },
+
+    chips(arr, klass = '') {
+        return (arr || []).map(s => `<span class="rm-chip ${klass}">${this.escape(s)}</span>`).join('');
+    },
+
+    kvRow(label, value) {
+        if (!value) return '';
+        return `<div class="rm-kv"><dt>${this.escape(label)}</dt><dd>${this.escape(value)}</dd></div>`;
+    },
+
+    renderSaPlay(p, n) {
+        return `
+            <article class="rm-play rm-sa">
+                <div class="rm-play-head">
+                    <span class="rm-num">SA-${String(n).padStart(2, '0')}</span>
+                    <h4>${this.escape(p.title)}</h4>
+                </div>
+                <p class="rm-rationale">${this.escape(p.rationale || '')}</p>
+                <div class="rm-tags">
+                    ${this.chips(p.targetIndustries, 'tag-industry')}
+                    ${this.chips(p.targetAudiences, 'tag-audience')}
+                </div>
+                <div class="rm-section">
+                    <h5>시드 키워드</h5>
+                    <div class="rm-keywords">${this.chips(p.seedKeywords, 'kw-seed')}</div>
+                </div>
+                ${p.negativeKeywords?.length ? `
+                    <div class="rm-section">
+                        <h5>제외 키워드</h5>
+                        <div class="rm-keywords">${this.chips(p.negativeKeywords, 'kw-neg')}</div>
+                    </div>` : ''}
+                <dl class="rm-kvs">
+                    ${this.kvRow('매칭 타입', p.matchType)}
+                    ${this.kvRow('입찰 전략', p.biddingStrategy)}
+                    ${this.kvRow('광고문안 톤', p.adCopyTone)}
+                    ${this.kvRow('랜딩 단서', p.landingHint)}
+                    ${this.kvRow('KPI 타겟', p.kpiTarget)}
+                </dl>
+            </article>
+        `;
+    },
+
+    renderGfaPlay(p, n) {
+        return `
+            <article class="rm-play rm-gfa">
+                <div class="rm-play-head">
+                    <span class="rm-num">GFA-${String(n).padStart(2, '0')}</span>
+                    <h4>${this.escape(p.title)}</h4>
+                </div>
+                <p class="rm-rationale">${this.escape(p.rationale || '')}</p>
+                <div class="rm-tags">
+                    ${this.chips(p.targetIndustries, 'tag-industry')}
+                    ${this.chips(p.targetAudiences, 'tag-audience')}
+                </div>
+                <dl class="rm-kvs">
+                    ${this.kvRow('데모 타겟', p.demoTargeting)}
+                    ${this.kvRow('관심사 세그먼트', (p.interestSegments || []).join(' · '))}
+                    ${this.kvRow('노출 매체', (p.placements || []).join(' · '))}
+                    ${this.kvRow('소재 메시지', p.creativeMessage)}
+                    ${this.kvRow('CTA 카피', p.ctaCopy)}
+                    ${this.kvRow('빈도 cap', p.frequencyCap)}
+                    ${this.kvRow('입찰 전략', p.bidStrategy)}
+                    ${this.kvRow('KPI 타겟', p.kpiTarget)}
+                </dl>
+            </article>
+        `;
     }
 };
 

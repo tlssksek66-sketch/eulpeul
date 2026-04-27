@@ -8,7 +8,8 @@
     "collect:shokz": "node scripts/collect.mjs",
     "collect:commerce": "node scripts/collect-commerce.mjs",
     "collect:reports": "node scripts/collect-reports.mjs",
-    "extract:insights": "node scripts/extract-insights.mjs"
+    "extract:insights": "node scripts/extract-insights.mjs",
+    "build:roadmap": "node scripts/build-roadmap.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",

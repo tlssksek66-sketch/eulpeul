@@ -63,11 +63,17 @@ jobs:
         run: node scripts/extract-insights.mjs
         continue-on-error: true
 
+      - name: Build SA/GFA operations roadmap (Phase 1.5)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/build-roadmap.mjs
+        continue-on-error: true
+
       - name: Commit if changed
         run: |
           git config user.name "magazine-bot[bot]"
           git config user.email "magazine-bot@users.noreply.github.com"
-          git add assets/data/clippings.json assets/data/commerce.json assets/data/reports.json assets/data/report-index.json assets/data/insights.json
+          git add assets/data/clippings.json assets/data/commerce.json assets/data/reports.json assets/data/report-index.json assets/data/insights.json assets/data/roadmap.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
