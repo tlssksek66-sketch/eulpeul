@@ -3,9 +3,9 @@
     "kind": "reports",
     "title": "리서치 리포트",
     "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
-    "collectedAt": "2026-04-28T08:59:29+09:00",
-    "totalReports": 37,
-    "freshCount": 0,
+    "collectedAt": "2026-04-29T09:01:01+09:00",
+    "totalReports": 42,
+    "freshCount": 6,
     "sources": [
       {
         "key": "nasmedia-regular",
@@ -44,7 +44,7 @@
         "url": "https://www.dmcreport.co.kr/report"
       }
     ],
-    "updatedAt": "2026-04-28T08:59:29+09:00"
+    "updatedAt": "2026-04-29T09:01:01+09:00"
   },
   "categories": [
     {
@@ -173,19 +173,20 @@
   "bySource": {
     "nasmedia-regular": 2,
     "nasmedia-npr": 18,
-    "cjmezzo-insight-m": 3,
+    "cjmezzo-insight-m": 9,
     "incross-mineport": 11,
-    "incross-mineNews": 3,
+    "incross-mineNews": 2,
     "dmcreport": 0
   },
   "byCategory": {
     "기타": 18,
+    "타겟 분석": 6,
+    "미디어 트렌드": 1,
     "최근 게시물": 5,
     "미디어분석": 2,
     "마마트": 4,
-    "마인카세": 3,
+    "마인카세": 2,
     "On/Mobile": 2,
-    "타겟 분석": 1,
     "마케팅 전략 가이드": 1,
     "미디어&마켓": 1
   },
@@ -408,6 +409,108 @@
     },
     {
       "id": 19,
+      "source": "cjmezzo-insight-m",
+      "sourceLabel": "CJ Mezzo Insight-M",
+      "publisher": "CJ 메조미디어",
+      "title": "2026 타겟 리포트_50대",
+      "category": "타겟 분석",
+      "categories": [
+        "타겟 분석",
+        "리서치 데이터"
+      ],
+      "date": "2026-04-28",
+      "url": "https://cdn.cjmezzomedia.com/attach-file/insight-m/01_MezzoMedia_2026_Target_Report_5059_20260428095657.pdf",
+      "pdfUrl": "https://cdn.cjmezzomedia.com/attach-file/insight-m/01_MezzoMedia_2026_Target_Report_5059_20260428095657.pdf",
+      "thumbnail": "https://cdn.cjmezzomedia.com/attach-file/insight-m/50_-__20260428095649.jpg",
+      "fileSize": "935.1 KB"
+    },
+    {
+      "id": 20,
+      "source": "cjmezzo-insight-m",
+      "sourceLabel": "CJ Mezzo Insight-M",
+      "publisher": "CJ 메조미디어",
+      "title": "2026 타겟 리포트_40대",
+      "category": "타겟 분석",
+      "categories": [
+        "타겟 분석",
+        "리서치 데이터"
+      ],
+      "date": "2026-04-28",
+      "url": "https://cdn.cjmezzomedia.com/attach-file/insight-m/01_MezzoMedia_2026_Target_Report_4049_20260428095633.pdf",
+      "pdfUrl": "https://cdn.cjmezzomedia.com/attach-file/insight-m/01_MezzoMedia_2026_Target_Report_4049_20260428095633.pdf",
+      "thumbnail": "https://cdn.cjmezzomedia.com/attach-file/insight-m/40_-__20260428095621.jpg",
+      "fileSize": "956.0 KB"
+    },
+    {
+      "id": 21,
+      "source": "cjmezzo-insight-m",
+      "sourceLabel": "CJ Mezzo Insight-M",
+      "publisher": "CJ 메조미디어",
+      "title": "2026 타겟 리포트_30대",
+      "category": "타겟 분석",
+      "categories": [
+        "타겟 분석",
+        "리서치 데이터"
+      ],
+      "date": "2026-04-28",
+      "url": "https://cdn.cjmezzomedia.com/attach-file/insight-m/01_MezzoMedia_2026_Target_Report_3039_20260428095605.pdf",
+      "pdfUrl": "https://cdn.cjmezzomedia.com/attach-file/insight-m/01_MezzoMedia_2026_Target_Report_3039_20260428095605.pdf",
+      "thumbnail": "https://cdn.cjmezzomedia.com/attach-file/insight-m/30_-__20260428095558.jpg",
+      "fileSize": "981.2 KB"
+    },
+    {
+      "id": 22,
+      "source": "cjmezzo-insight-m",
+      "sourceLabel": "CJ Mezzo Insight-M",
+      "publisher": "CJ 메조미디어",
+      "title": "2026 타겟 리포트_20대",
+      "category": "타겟 분석",
+      "categories": [
+        "타겟 분석",
+        "리서치 데이터"
+      ],
+      "date": "2026-04-28",
+      "url": "https://cdn.cjmezzomedia.com/attach-file/insight-m/01_MezzoMedia_2026_Target_Report_2029_20260428095537.pdf",
+      "pdfUrl": "https://cdn.cjmezzomedia.com/attach-file/insight-m/01_MezzoMedia_2026_Target_Report_2029_20260428095537.pdf",
+      "thumbnail": "https://cdn.cjmezzomedia.com/attach-file/insight-m/20_-__20260428095528.jpg",
+      "fileSize": "920.0 KB"
+    },
+    {
+      "id": 23,
+      "source": "cjmezzo-insight-m",
+      "sourceLabel": "CJ Mezzo Insight-M",
+      "publisher": "CJ 메조미디어",
+      "title": "2026 타겟 리포트_10대",
+      "category": "타겟 분석",
+      "categories": [
+        "타겟 분석",
+        "리서치 데이터"
+      ],
+      "date": "2026-04-28",
+      "url": "https://cdn.cjmezzomedia.com/attach-file/insight-m/01_MezzoMedia_2026_Target_Report_1519_20260428095351.pdf",
+      "pdfUrl": "https://cdn.cjmezzomedia.com/attach-file/insight-m/01_MezzoMedia_2026_Target_Report_1519_20260428095351.pdf",
+      "thumbnail": "https://cdn.cjmezzomedia.com/attach-file/insight-m/10_-__20260428095336.jpg",
+      "fileSize": "942.5 KB"
+    },
+    {
+      "id": 24,
+      "source": "cjmezzo-insight-m",
+      "sourceLabel": "CJ Mezzo Insight-M",
+      "publisher": "CJ 메조미디어",
+      "title": "2026 FIFA 북중미 월드컵 소비자 행동 분석 기반 미디어 전략",
+      "category": "미디어 트렌드",
+      "categories": [
+        "미디어 트렌드",
+        "마케팅 전략 가이드"
+      ],
+      "date": "2026-04-28",
+      "url": "https://cdn.cjmezzomedia.com/attach-file/insight-m/03_MezzoMedia_2026_FIFA_Worldcup_Sales_Guide_20260428173815.pdf",
+      "pdfUrl": "https://cdn.cjmezzomedia.com/attach-file/insight-m/03_MezzoMedia_2026_FIFA_Worldcup_Sales_Guide_20260428173815.pdf",
+      "thumbnail": "https://cdn.cjmezzomedia.com/attach-file/insight-m/_-__20260428094432.png",
+      "fileSize": "2.8 MB"
+    },
+    {
+      "id": 25,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -419,7 +522,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-매체력-평가-리포트-썸네일0.jpg"
     },
     {
-      "id": 20,
+      "id": 26,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -431,7 +534,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-매체력-평가-리포트-썸네일0.jpg"
     },
     {
-      "id": 21,
+      "id": 27,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -443,7 +546,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-넷째주-마마트0.jpg"
     },
     {
-      "id": 22,
+      "id": 28,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -455,7 +558,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-넷째주-마마트0.jpg"
     },
     {
-      "id": 23,
+      "id": 29,
       "source": "incross-mineNews",
       "sourceLabel": "인크로스 마인카세",
       "publisher": "인크로스",
@@ -467,7 +570,7 @@
       "thumbnail": "https://www.incross.com/upload/mineNews/25년-4월-셋째주0.jpg"
     },
     {
-      "id": 24,
+      "id": 30,
       "source": "nasmedia-regular",
       "sourceLabel": "나스리포트 정기보고서",
       "publisher": "케이티 나스미디어",
@@ -479,7 +582,7 @@
       "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/슬라이드2.jpg"
     },
     {
-      "id": 25,
+      "id": 31,
       "source": "nasmedia-regular",
       "sourceLabel": "나스리포트 정기보고서",
       "publisher": "케이티 나스미디어",
@@ -491,7 +594,7 @@
       "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/슬라이드1.jpg"
     },
     {
-      "id": 26,
+      "id": 32,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -503,7 +606,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-셋째주-마마트0.jpg"
     },
     {
-      "id": 27,
+      "id": 33,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -515,7 +618,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-셋째주-마마트0.jpg"
     },
     {
-      "id": 28,
+      "id": 34,
       "source": "incross-mineNews",
       "sourceLabel": "인크로스 마인카세",
       "publisher": "인크로스",
@@ -527,7 +630,7 @@
       "thumbnail": "https://www.incross.com/upload/mineNews/25년-4월-둘째주1.jpg"
     },
     {
-      "id": 29,
+      "id": 35,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -539,7 +642,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-둘째주-마마트0.jpg"
     },
     {
-      "id": 30,
+      "id": 36,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -551,7 +654,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-둘째주-마마트0.jpg"
     },
     {
-      "id": 31,
+      "id": 37,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -563,7 +666,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-미디어이슈리포트_홈페이지-썸네일1.jpg"
     },
     {
-      "id": 32,
+      "id": 38,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -575,7 +678,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-미디어이슈리포트_홈페이지-썸네일1.jpg"
     },
     {
-      "id": 33,
+      "id": 39,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -635,18 +738,6 @@
       "pdfUrl": "https://cdn.cjmezzomedia.com/attach-file/insight-m/Mezzomedia_Media_Market_Report_2026_04_20260330141629.pdf",
       "thumbnail": "https://cdn.cjmezzomedia.com/attach-file/insight-m/__20260330141553.PNG",
       "fileSize": "2.8 MB"
-    },
-    {
-      "id": 37,
-      "source": "incross-mineNews",
-      "sourceLabel": "인크로스 마인카세",
-      "publisher": "인크로스",
-      "title": "'26년 3월 다섯째 주 뉴스레터",
-      "category": "마인카세",
-      "date": "2026-03-30",
-      "url": "https://www.incross.com/ko/insight/?idx=141",
-      "pdfUrl": "",
-      "thumbnail": "https://www.incross.com/upload/mineNews/뉴스레터-3월-다섯째-주.jpg"
     }
   ]
 }
