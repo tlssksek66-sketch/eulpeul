@@ -9,7 +9,8 @@
     "collect:commerce": "node scripts/collect-commerce.mjs",
     "collect:reports": "node scripts/collect-reports.mjs",
     "extract:insights": "node scripts/extract-insights.mjs",
-    "build:roadmap": "node scripts/build-roadmap.mjs"
+    "build:roadmap": "node scripts/build-roadmap.mjs",
+    "build:embeddings": "node scripts/build-embeddings.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",

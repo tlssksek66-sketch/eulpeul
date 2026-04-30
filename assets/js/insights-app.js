@@ -5,6 +5,7 @@ const InsightsApp = {
     state: { filter: 'all', filterValue: null, query: '' },
     data: { meta: {}, topBrands: [], topPlatforms: [], topIndustries: [], topAudiences: [], byUrl: {} },
     roadmap: null,
+    neighbors: null,
     refs: {},
 
     async init() {
@@ -64,6 +65,16 @@ const InsightsApp = {
         } catch (err) {
             console.warn('[InsightsApp] roadmap load skipped:', err.message);
             this.roadmap = null;
+        }
+        try {
+            const res = await fetch('assets/data/neighbors.json', { cache: 'no-store' });
+            if (res.ok) {
+                const nb = await res.json();
+                this.neighbors = (nb.byUrl && Object.keys(nb.byUrl).length > 0) ? nb.byUrl : null;
+            }
+        } catch (err) {
+            console.warn('[InsightsApp] neighbors load skipped:', err.message);
+            this.neighbors = null;
         }
     },
 
@@ -234,7 +245,7 @@ const InsightsApp = {
             const ins = it.insight;
             const dateStr = it.date ? it.date.replace(/-/g, '.') : '';
             return `
-                <article class="insight-card">
+                <article class="insight-card" data-card-url="${this.escape(it.url)}">
                     <div class="ic-head">
                         <div class="ic-meta">
                             <span class="ic-publisher">${this.escape(it.publisher)}</span>
@@ -280,9 +291,50 @@ const InsightsApp = {
                         <h5>활용 맥락</h5>
                         <p>${this.escape(ins.usageContext || '')}</p>
                     </div>
+
+                    ${this.renderNeighbors(it.url)}
                 </article>
             `;
         }).join('');
+
+        this.refs.insightList.querySelectorAll('.ic-neighbor').forEach(a => {
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = a.dataset.target;
+                const card = this.refs.insightList.querySelector(`.insight-card[data-card-url="${CSS.escape(target)}"]`);
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    card.classList.add('flash');
+                    setTimeout(() => card.classList.remove('flash'), 1200);
+                }
+            });
+        });
+    },
+
+    renderNeighbors(url) {
+        if (!this.neighbors) return '';
+        const list = this.neighbors[url];
+        if (!list || list.length === 0) return '';
+        const items = list.slice(0, 4).map(n => {
+            const pct = Math.round(Math.max(0, Math.min(1, n.score)) * 100);
+            const date = (n.date || '').replace(/-/g, '.');
+            return `
+                <a class="ic-neighbor" href="#" data-target="${this.escape(n.url)}" title="유사도 ${pct}%">
+                    <span class="nb-score">${pct}</span>
+                    <span class="nb-meta">
+                        <span class="nb-publisher">${this.escape(n.publisher)}</span>
+                        ${date ? `<span class="dot">·</span><span class="nb-date">${this.escape(date)}</span>` : ''}
+                    </span>
+                    <span class="nb-title">${this.escape(n.title)}</span>
+                </a>
+            `;
+        }).join('');
+        return `
+            <div class="ic-neighbors">
+                <h5>유사 인사이트 <span class="nb-tag">semantic</span></h5>
+                <div class="ic-neighbor-list">${items}</div>
+            </div>
+        `;
     },
 
     renderRoadmap() {

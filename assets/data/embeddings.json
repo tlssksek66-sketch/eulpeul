@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "builtAt": null,
+    "model": "voyage-3.5-lite",
+    "dimensions": 0,
+    "cardsCount": 0,
+    "embeddedThisRun": 0,
+    "pruned": 0,
+    "usage": {
+      "total_tokens": 0,
+      "estimated_cost_usd": 0
+    }
+  },
+  "byUrl": {}
+}
