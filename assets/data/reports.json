@@ -3,8 +3,8 @@
     "kind": "reports",
     "title": "리서치 리포트",
     "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
-    "collectedAt": "2026-04-30T09:02:07+09:00",
-    "totalReports": 41,
+    "collectedAt": "2026-05-01T08:57:54+09:00",
+    "totalReports": 43,
     "freshCount": 2,
     "sources": [
       {
@@ -44,7 +44,7 @@
         "url": "https://www.dmcreport.co.kr/report"
       }
     ],
-    "updatedAt": "2026-04-30T09:02:07+09:00"
+    "updatedAt": "2026-05-01T08:57:54+09:00"
   },
   "categories": [
     {
@@ -174,13 +174,14 @@
     "nasmedia-regular": 2,
     "nasmedia-npr": 18,
     "cjmezzo-insight-m": 6,
-    "incross-mineport": 13,
+    "incross-mineport": 15,
     "incross-mineNews": 2,
     "dmcreport": 0
   },
   "byCategory": {
     "기타": 18,
-    "최근 게시물": 6,
+    "최근 게시물": 7,
+    "소비자분석": 1,
     "마마트": 5,
     "타겟 분석": 5,
     "미디어 트렌드": 1,
@@ -410,6 +411,30 @@
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
+      "title": "[IDL 리포트] 다이소vs.올리브영 뷰티 유저 전격 분석",
+      "category": "최근 게시물",
+      "date": "2026-04-30",
+      "url": "https://www.incross.com/ko/insight/?mode=view&idx=10874",
+      "pdfUrl": "",
+      "thumbnail": "https://www.incross.com/upload/board/홈페이지-썸네일.jpg"
+    },
+    {
+      "id": 20,
+      "source": "incross-mineport",
+      "sourceLabel": "인크로스 마인리포트",
+      "publisher": "인크로스",
+      "title": "[IDL 리포트] 다이소vs.올리브영 뷰티 유저 전격 분석",
+      "category": "소비자분석",
+      "date": "2026-04-30",
+      "url": "https://www.incross.com/ko/insight/?mode=view&page=1&pageSize=12&serboardsort=&searchStr=&idx=10874",
+      "pdfUrl": "",
+      "thumbnail": "https://www.incross.com/upload/board/홈페이지-썸네일.jpg"
+    },
+    {
+      "id": 21,
+      "source": "incross-mineport",
+      "sourceLabel": "인크로스 마인리포트",
+      "publisher": "인크로스",
       "title": "[마마트] 수정사항을 변기에 넣고서 내려 | 2026년 4월 다섯째 주",
       "category": "최근 게시물",
       "date": "2026-04-29",
@@ -418,7 +443,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-다섯째주-마마트0.jpg"
     },
     {
-      "id": 20,
+      "id": 22,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -430,7 +455,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-다섯째주-마마트0.jpg"
     },
     {
-      "id": 21,
+      "id": 23,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -447,7 +472,7 @@
       "fileSize": "935.1 KB"
     },
     {
-      "id": 22,
+      "id": 24,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -464,7 +489,7 @@
       "fileSize": "956.0 KB"
     },
     {
-      "id": 23,
+      "id": 25,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -481,7 +506,7 @@
       "fileSize": "981.2 KB"
     },
     {
-      "id": 24,
+      "id": 26,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -498,7 +523,7 @@
       "fileSize": "920.0 KB"
     },
     {
-      "id": 25,
+      "id": 27,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -515,7 +540,7 @@
       "fileSize": "942.5 KB"
     },
     {
-      "id": 26,
+      "id": 28,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -532,7 +557,7 @@
       "fileSize": "2.8 MB"
     },
     {
-      "id": 27,
+      "id": 29,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -544,7 +569,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-매체력-평가-리포트-썸네일0.jpg"
     },
     {
-      "id": 28,
+      "id": 30,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -556,7 +581,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-매체력-평가-리포트-썸네일0.jpg"
     },
     {
-      "id": 29,
+      "id": 31,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -568,7 +593,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-넷째주-마마트0.jpg"
     },
     {
-      "id": 30,
+      "id": 32,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -580,7 +605,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-넷째주-마마트0.jpg"
     },
     {
-      "id": 31,
+      "id": 33,
       "source": "incross-mineNews",
       "sourceLabel": "인크로스 마인카세",
       "publisher": "인크로스",
@@ -592,7 +617,7 @@
       "thumbnail": "https://www.incross.com/upload/mineNews/25년-4월-셋째주0.jpg"
     },
     {
-      "id": 32,
+      "id": 34,
       "source": "nasmedia-regular",
       "sourceLabel": "나스리포트 정기보고서",
       "publisher": "케이티 나스미디어",
@@ -604,7 +629,7 @@
       "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/슬라이드2.jpg"
     },
     {
-      "id": 33,
+      "id": 35,
       "source": "nasmedia-regular",
       "sourceLabel": "나스리포트 정기보고서",
       "publisher": "케이티 나스미디어",
@@ -616,7 +641,7 @@
       "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/슬라이드1.jpg"
     },
     {
-      "id": 34,
+      "id": 36,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -628,7 +653,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-셋째주-마마트0.jpg"
     },
     {
-      "id": 35,
+      "id": 37,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -640,7 +665,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-셋째주-마마트0.jpg"
     },
     {
-      "id": 36,
+      "id": 38,
       "source": "incross-mineNews",
       "sourceLabel": "인크로스 마인카세",
       "publisher": "인크로스",
@@ -664,7 +689,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-둘째주-마마트0.jpg"
     },
     {
-      "id": 38,
+      "id": 40,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -688,7 +713,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-미디어이슈리포트_홈페이지-썸네일1.jpg"
     },
     {
-      "id": 40,
+      "id": 42,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -700,7 +725,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-미디어이슈리포트_홈페이지-썸네일1.jpg"
     },
     {
-      "id": 41,
+      "id": 43,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
