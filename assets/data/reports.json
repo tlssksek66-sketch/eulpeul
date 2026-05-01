@@ -3,9 +3,9 @@
     "kind": "reports",
     "title": "리서치 리포트",
     "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
-    "collectedAt": "2026-05-01T08:57:54+09:00",
-    "totalReports": 43,
-    "freshCount": 2,
+    "collectedAt": "2026-05-02T08:57:36+09:00",
+    "totalReports": 42,
+    "freshCount": 0,
     "sources": [
       {
         "key": "nasmedia-regular",
@@ -44,7 +44,7 @@
         "url": "https://www.dmcreport.co.kr/report"
       }
     ],
-    "updatedAt": "2026-05-01T08:57:54+09:00"
+    "updatedAt": "2026-05-02T08:57:36+09:00"
   },
   "categories": [
     {
@@ -174,7 +174,7 @@
     "nasmedia-regular": 2,
     "nasmedia-npr": 18,
     "cjmezzo-insight-m": 6,
-    "incross-mineport": 15,
+    "incross-mineport": 14,
     "incross-mineNews": 2,
     "dmcreport": 0
   },
@@ -182,7 +182,7 @@
     "기타": 18,
     "최근 게시물": 7,
     "소비자분석": 1,
-    "마마트": 5,
+    "마마트": 4,
     "타겟 분석": 5,
     "미디어 트렌드": 1,
     "미디어분석": 2,
@@ -723,18 +723,6 @@
       "url": "https://www.incross.com/ko/insight/?mode=view&page=1&pageSize=12&serboardsort=&searchStr=&idx=10837",
       "pdfUrl": "",
       "thumbnail": "https://www.incross.com/upload/board/4월-미디어이슈리포트_홈페이지-썸네일1.jpg"
-    },
-    {
-      "id": 43,
-      "source": "incross-mineport",
-      "sourceLabel": "인크로스 마인리포트",
-      "publisher": "인크로스",
-      "title": "[마마트] 갑자기 몸이 안 좋아져서 구급차 타고 마인카세 읽으러 가요 | 2026년 4월 첫째 주",
-      "category": "마마트",
-      "date": "2026-04-01",
-      "url": "https://www.incross.com/ko/insight/?mode=view&page=1&pageSize=12&serboardsort=&searchStr=&idx=10830",
-      "pdfUrl": "",
-      "thumbnail": "https://www.incross.com/upload/board/4월-첫째주-마마트0.jpg"
     }
   ]
 }
