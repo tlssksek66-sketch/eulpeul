@@ -26,4 +26,5 @@ export interface Env {
   NOTION_DATABASE_ID: string;
   SLACK_BOT_TOKEN: string;
   SLACK_CHANNEL_ID: string;
+  ADMIN_AUTH_TOKEN: string;
 }

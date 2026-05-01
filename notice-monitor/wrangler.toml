@@ -20,3 +20,4 @@ crons = ["0 0 * * *", "0 9 * * *"]
 # - NOTION_DATABASE_ID
 # - SLACK_BOT_TOKEN
 # - SLACK_CHANNEL_ID            (D0866GYA3M1)
+# - ADMIN_AUTH_TOKEN            (/admin/* Bearer 인증)

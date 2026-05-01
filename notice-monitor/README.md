@@ -38,24 +38,62 @@ npx wrangler login
 # KV namespace 생성 (출력된 id를 wrangler.toml 의 REPLACE_WITH_KV_NAMESPACE_ID 에 복사)
 npx wrangler kv namespace create "NOTICE_KV"
 
-# 시크릿 8종 등록
-npx wrangler secret put PERPLEXITY_API_KEY
-npx wrangler secret put ANTHROPIC_API_KEY
-npx wrangler secret put GOOGLE_SHEETS_ID
-npx wrangler secret put GOOGLE_SERVICE_ACCOUNT_JSON   # JSON 전체
-npx wrangler secret put NOTION_API_KEY
-npx wrangler secret put NOTION_DATABASE_ID
-npx wrangler secret put SLACK_BOT_TOKEN
-npx wrangler secret put SLACK_CHANNEL_ID              # D0866GYA3M1
+# 시크릿 9종 일괄 등록 (.env.secrets 작성 후)
+bash scripts/setup-secrets.sh
+# 또는 개별 등록:
+#   npx wrangler secret put PERPLEXITY_API_KEY
+#   npx wrangler secret put ANTHROPIC_API_KEY
+#   npx wrangler secret put GOOGLE_SHEETS_ID
+#   npx wrangler secret put GOOGLE_SERVICE_ACCOUNT_JSON
+#   npx wrangler secret put NOTION_API_KEY
+#   npx wrangler secret put NOTION_DATABASE_ID
+#   npx wrangler secret put SLACK_BOT_TOKEN              # SHOKZ Apps Script C 객체 재사용 가능
+#   npx wrangler secret put SLACK_CHANNEL_ID             # D0866GYA3M1
+#   npx wrangler secret put ADMIN_AUTH_TOKEN             # /admin/* Bearer 토큰
 
 # 배포
 npx wrangler deploy
 
-# 첫 수집 수동 트리거 (검증)
-curl "https://notice-monitor.eupeul.workers.dev/trigger?key=shokz-progress-media-2026"
+# 헬스체크 + KV 상태
+TOKEN='c406...6ed9'
+WORKER='https://notice-monitor.eupeul.workers.dev'
+curl -H "Authorization: Bearer $TOKEN" "$WORKER/admin/status"
 
 # 실시간 로그
 npx wrangler tail
+```
+
+## 관리 엔드포인트 (v2)
+
+전부 `Authorization: Bearer $ADMIN_AUTH_TOKEN` 필요.
+
+| 메서드 | 경로 | 용도 |
+|---|---|---|
+| GET | `/admin/status` | KV 상태 + secrets 점검 + cron 표시 |
+| GET | `/admin/run` | 풀 파이프라인 수동 실행 (수집·분류·적재·알림) |
+| GET | `/admin/run?dry=1` | 분류까지만, 적재·푸시·KV 갱신 모두 스킵 |
+| GET | `/admin/reset` | `seen-ids` KV 비움 (다음 실행에서 전체 재처리) |
+| GET | `/admin/unmark?id=NOTICE_ID` | 특정 noticeId 만 제외 (1건 재처리) |
+| POST | `/admin/classify-test` | NoticeRaw JSON body → 분류 결과만 반환 (적재 X) |
+
+예시:
+```bash
+TOKEN='c406...6ed9'
+WORKER='https://notice-monitor.eupeul.workers.dev'
+
+# 헬스체크
+curl -H "Authorization: Bearer $TOKEN" "$WORKER/admin/status"
+
+# 분류 시뮬레이션 (적재 X, 비용만 분류 1회)
+curl -H "Authorization: Bearer $TOKEN" "$WORKER/admin/run?dry=1"
+
+# 첫 수집 (실제 적재 + Slack 알림)
+curl -H "Authorization: Bearer $TOKEN" "$WORKER/admin/run"
+
+# 특정 공지 1건만 분류 테스트 (POST)
+curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"date":"2026-04-30","title":"검색광고 카테고리 매핑 변경","noticeId":"31108","url":"https://ads.naver.com/notice/31108","category":"검색광고"}' \
+  "$WORKER/admin/classify-test"
 ```
 
 ## Cron
