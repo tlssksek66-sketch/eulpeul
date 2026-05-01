@@ -10,11 +10,18 @@
     "collect:reports": "node scripts/collect-reports.mjs",
     "extract:insights": "node scripts/extract-insights.mjs",
     "build:roadmap": "node scripts/build-roadmap.mjs",
-    "build:embeddings": "node scripts/build-embeddings.mjs"
+    "build:embeddings": "node scripts/build-embeddings.mjs",
+    "mcp:stdio": "node mcp/stdio.mjs",
+    "mcp:worker:dev": "wrangler dev mcp/worker.mjs --config mcp/wrangler.toml",
+    "mcp:worker:deploy": "wrangler deploy --config mcp/wrangler.toml"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",
+    "@modelcontextprotocol/sdk": "^1.0.0",
     "cheerio": "^1.0.0-rc.12",
     "pdf-parse": "^2.4.5"
+  },
+  "devDependencies": {
+    "wrangler": "^3.95.0"
   }
 }
