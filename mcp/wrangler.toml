@@ -1,0 +1,11 @@
+name = "shokz-kb-mcp"
+main = "worker.mjs"
+compatibility_date = "2026-01-15"
+workers_dev = true
+
+# 시크릿은 wrangler secret put 으로 등록 (커밋 금지)
+#   wrangler secret put VOYAGE_API_KEY
+#   wrangler secret put MCP_BEARER_TOKEN
+
+[observability]
+enabled = true
