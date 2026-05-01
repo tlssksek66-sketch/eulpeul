@@ -1,5 +1,6 @@
 import { Env, NoticeRaw } from './types';
 import { classifyNotice } from './claude';
+import { debugPerplexityCollection } from './perplexity';
 
 const KV_KEY = 'seen-ids';
 
@@ -92,6 +93,16 @@ export async function handleAdmin(
       before,
       after: filtered.length
     });
+  }
+
+  // 6. /admin/debug-perplexity — Perplexity 응답 raw + 파싱 결과 진단
+  if (url.pathname === '/admin/debug-perplexity') {
+    try {
+      const result = await debugPerplexityCollection(env);
+      return jsonResponse({ ok: true, ...result });
+    } catch (e: any) {
+      return jsonResponse({ ok: false, error: e?.message ?? String(e) }, 500);
+    }
   }
 
   // 5. /admin/classify-test — POST { date, title, noticeId, url, category } → 분류 결과만 반환 (적재 X)

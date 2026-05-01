@@ -70,3 +70,101 @@ export async function fetchNoticeFullText(noticeId: string, env: Env): Promise<s
   const data: any = await response.json();
   return data.choices[0].message.content;
 }
+
+/**
+ * 진단용 — Perplexity 호출 → raw 응답 + 파싱 시도 결과 모두 반환
+ */
+export async function debugPerplexityCollection(env: Env): Promise<{
+  httpStatus: number;
+  rawContent: string;
+  contentLength: number;
+  hasJsonArrayMatch: boolean;
+  matchedSubstring: string;
+  parsedCount: number;
+  parsedSample: NoticeRaw[] | null;
+  parseError?: string;
+  apiError?: string;
+}> {
+  const response = await fetch(PERPLEXITY_API, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${env.PERPLEXITY_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'sonar-pro',
+      messages: [{ role: 'user', content: COLLECTION_PROMPT }],
+      web_search_options: { search_context_size: 'medium' }
+    })
+  });
+  const httpStatus = response.status;
+  const text = await response.text();
+
+  if (!response.ok) {
+    return {
+      httpStatus,
+      rawContent: text.slice(0, 4000),
+      contentLength: text.length,
+      hasJsonArrayMatch: false,
+      matchedSubstring: '',
+      parsedCount: 0,
+      parsedSample: null,
+      apiError: `HTTP ${httpStatus}`
+    };
+  }
+
+  let data: any;
+  try {
+    data = JSON.parse(text);
+  } catch (e: any) {
+    return {
+      httpStatus,
+      rawContent: text.slice(0, 4000),
+      contentLength: text.length,
+      hasJsonArrayMatch: false,
+      matchedSubstring: '',
+      parsedCount: 0,
+      parsedSample: null,
+      apiError: 'response body not JSON: ' + (e?.message ?? '')
+    };
+  }
+
+  const content: string = data?.choices?.[0]?.message?.content ?? '';
+  const jsonMatch = content.match(/\[[\s\S]*\]/);
+
+  if (!jsonMatch) {
+    return {
+      httpStatus,
+      rawContent: content.slice(0, 4000),
+      contentLength: content.length,
+      hasJsonArrayMatch: false,
+      matchedSubstring: '',
+      parsedCount: 0,
+      parsedSample: null
+    };
+  }
+
+  try {
+    const parsed: NoticeRaw[] = JSON.parse(jsonMatch[0]);
+    return {
+      httpStatus,
+      rawContent: content.slice(0, 2000),
+      contentLength: content.length,
+      hasJsonArrayMatch: true,
+      matchedSubstring: jsonMatch[0].slice(0, 500),
+      parsedCount: parsed.length,
+      parsedSample: parsed.slice(0, 3)
+    };
+  } catch (e: any) {
+    return {
+      httpStatus,
+      rawContent: content.slice(0, 4000),
+      contentLength: content.length,
+      hasJsonArrayMatch: true,
+      matchedSubstring: jsonMatch[0].slice(0, 500),
+      parsedCount: 0,
+      parsedSample: null,
+      parseError: e?.message ?? String(e)
+    };
+  }
+}
