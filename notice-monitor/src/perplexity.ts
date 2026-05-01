@@ -24,8 +24,7 @@ export async function fetchLatestNotices(env: Env): Promise<NoticeRaw[]> {
     body: JSON.stringify({
       model: 'sonar-pro',
       messages: [{ role: 'user', content: COLLECTION_PROMPT }],
-      web_search_options: { search_context_size: 'medium' },
-      response_format: { type: 'json_schema' /* 또는 raw text */ }
+      web_search_options: { search_context_size: 'medium' }
     })
   });
 
