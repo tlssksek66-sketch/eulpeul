@@ -1,0 +1,41 @@
+{
+  "task_id": "T010_NEGKW_REPLACE_2026-04-26",
+  "campaign_name_pattern": "T010",
+  "campaigns": [
+    "#SP05_오픈핏프로_T010_N_MO",
+    "#SP05_오픈핏프로_T010_N_PC",
+    "#SP05_오픈핏프로_T010_N+_MO",
+    "#SP05_오픈핏프로_T010_N+_PC",
+    "#SP05_오픈핏프로_T010_else"
+  ],
+  "groups": [
+    { "idx":  1, "campaign": "#SP05_오픈핏프로_T010_N+_MO", "group": "00.브랜드키워드",          "high_cost": false },
+    { "idx":  2, "campaign": "#SP05_오픈핏프로_T010_N+_MO", "group": "01.노이즈감소_오픈이어",     "high_cost": false },
+    { "idx":  3, "campaign": "#SP05_오픈핏프로_T010_N+_MO", "group": "02.공기전도_이어후크",       "high_cost": false },
+    { "idx":  4, "campaign": "#SP05_오픈핏프로_T010_N+_MO", "group": "03.후크형_오픈이어셋",       "high_cost": false },
+    { "idx":  5, "campaign": "#SP05_오픈핏프로_T010_N+_MO", "group": "04.출퇴근_직장인",          "high_cost": false },
+    { "idx":  6, "campaign": "#SP05_오픈핏프로_T010_N+_MO", "group": "05.사무실_업무용",          "high_cost": false },
+    { "idx":  7, "campaign": "#SP05_오픈핏프로_T010_N+_MO", "group": "08.귀에거는_이어커프",       "high_cost": true  },
+    { "idx":  8, "campaign": "#SP05_오픈핏프로_T010_N+_PC", "group": "00.브랜드키워드",          "high_cost": false },
+    { "idx":  9, "campaign": "#SP05_오픈핏프로_T010_N+_PC", "group": "02.공기전도_이어후크",       "high_cost": false },
+    { "idx": 10, "campaign": "#SP05_오픈핏프로_T010_N+_PC", "group": "03.후크형_오픈이어셋",       "high_cost": false },
+    { "idx": 11, "campaign": "#SP05_오픈핏프로_T010_N+_PC", "group": "04.출퇴근_직장인",          "high_cost": false },
+    { "idx": 12, "campaign": "#SP05_오픈핏프로_T010_N+_PC", "group": "08.귀에거는_이어커프",       "high_cost": false },
+    { "idx": 13, "campaign": "#SP05_오픈핏프로_T010_N_MO",  "group": "00.브랜드키워드",          "high_cost": true  },
+    { "idx": 14, "campaign": "#SP05_오픈핏프로_T010_N_MO",  "group": "01.노이즈감소_오픈이어",     "high_cost": false },
+    { "idx": 15, "campaign": "#SP05_오픈핏프로_T010_N_MO",  "group": "02.공기전도_이어후크",       "high_cost": true  },
+    { "idx": 16, "campaign": "#SP05_오픈핏프로_T010_N_MO",  "group": "03.후크형_오픈이어셋",       "high_cost": true  },
+    { "idx": 17, "campaign": "#SP05_오픈핏프로_T010_N_MO",  "group": "05.사무실_업무용",          "high_cost": true  },
+    { "idx": 18, "campaign": "#SP05_오픈핏프로_T010_N_MO",  "group": "06.귀걸이형_방수",          "high_cost": false },
+    { "idx": 19, "campaign": "#SP05_오픈핏프로_T010_N_MO",  "group": "07.스포츠_운동용_이어버드",   "high_cost": false },
+    { "idx": 20, "campaign": "#SP05_오픈핏프로_T010_N_MO",  "group": "08.귀에거는_이어커프",       "high_cost": true  },
+    { "idx": 21, "campaign": "#SP05_오픈핏프로_T010_N_PC",  "group": "00.브랜드키워드",          "high_cost": false },
+    { "idx": 22, "campaign": "#SP05_오픈핏프로_T010_N_PC",  "group": "01.노이즈감소_오픈이어",     "high_cost": false },
+    { "idx": 23, "campaign": "#SP05_오픈핏프로_T010_N_PC",  "group": "02.공기전도_이어후크",       "high_cost": false },
+    { "idx": 24, "campaign": "#SP05_오픈핏프로_T010_N_PC",  "group": "03.후크형_오픈이어셋",       "high_cost": false },
+    { "idx": 25, "campaign": "#SP05_오픈핏프로_T010_N_PC",  "group": "04.출퇴근_직장인",          "high_cost": false },
+    { "idx": 26, "campaign": "#SP05_오픈핏프로_T010_N_PC",  "group": "06.귀걸이형_방수",          "high_cost": true  },
+    { "idx": 27, "campaign": "#SP05_오픈핏프로_T010_N_PC",  "group": "07.스포츠_운동용_이어버드",   "high_cost": false },
+    { "idx": 28, "campaign": "#SP05_오픈핏프로_T010_N_PC",  "group": "08.귀에거는_이어커프",       "high_cost": true  }
+  ]
+}
