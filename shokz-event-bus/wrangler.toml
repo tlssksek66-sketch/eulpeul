@@ -1,0 +1,11 @@
+name = "shokz-event-bus"
+main = "worker.js"
+compatibility_date = "2025-01-15"
+
+[observability]
+enabled = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "shokz_events"
+database_id = "REPLACE_WITH_D1_UUID"
