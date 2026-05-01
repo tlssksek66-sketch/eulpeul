@@ -1,0 +1,17 @@
+{
+  "name": "notice-monitor",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240403.0",
+    "typescript": "^5.4.0",
+    "wrangler": "^3.50.0"
+  },
+  "dependencies": {
+    "jose": "^5.2.0"
+  }
+}

@@ -1,0 +1,22 @@
+name = "notice-monitor"
+main = "src/index.ts"
+compatibility_date = "2026-04-01"
+
+# 본 모듈 KV namespace
+[[kv_namespaces]]
+binding = "NOTICE_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# 본 Cron 결 — 09:00·18:00 KST = 00:00·09:00 UTC
+[triggers]
+crons = ["0 0 * * *", "0 9 * * *"]
+
+# 시크릿 자리 (wrangler secret put 결로 등록)
+# - PERPLEXITY_API_KEY
+# - ANTHROPIC_API_KEY
+# - GOOGLE_SHEETS_ID
+# - GOOGLE_SERVICE_ACCOUNT_JSON  (Sheets 인증 자리)
+# - NOTION_API_KEY
+# - NOTION_DATABASE_ID
+# - SLACK_BOT_TOKEN
+# - SLACK_CHANNEL_ID            (D0866GYA3M1)
