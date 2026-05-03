@@ -3,8 +3,8 @@
     "kind": "reports",
     "title": "리서치 리포트",
     "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
-    "collectedAt": "2026-05-03T08:54:56+09:00",
-    "totalReports": 42,
+    "collectedAt": "2026-05-04T08:56:41+09:00",
+    "totalReports": 40,
     "freshCount": 0,
     "sources": [
       {
@@ -44,7 +44,7 @@
         "url": "https://www.dmcreport.co.kr/report"
       }
     ],
-    "updatedAt": "2026-05-03T08:54:56+09:00"
+    "updatedAt": "2026-05-04T08:56:41+09:00"
   },
   "categories": [
     {
@@ -174,18 +174,18 @@
     "nasmedia-regular": 2,
     "nasmedia-npr": 18,
     "cjmezzo-insight-m": 6,
-    "incross-mineport": 14,
+    "incross-mineport": 12,
     "incross-mineNews": 2,
     "dmcreport": 0
   },
   "byCategory": {
     "기타": 18,
-    "최근 게시물": 7,
+    "최근 게시물": 6,
     "소비자분석": 1,
     "마마트": 4,
     "타겟 분석": 5,
     "미디어 트렌드": 1,
-    "미디어분석": 2,
+    "미디어분석": 1,
     "마인카세": 2,
     "On/Mobile": 2
   },
@@ -699,30 +699,6 @@
       "url": "https://www.incross.com/ko/insight/?mode=view&page=1&pageSize=12&serboardsort=&searchStr=&idx=10844",
       "pdfUrl": "",
       "thumbnail": "https://www.incross.com/upload/board/4월-둘째주-마마트0.jpg"
-    },
-    {
-      "id": 37,
-      "source": "incross-mineport",
-      "sourceLabel": "인크로스 마인리포트",
-      "publisher": "인크로스",
-      "title": "2026년 4월 미디어 이슈 리포트",
-      "category": "최근 게시물",
-      "date": "2026-04-03",
-      "url": "https://www.incross.com/ko/insight/?mode=view&idx=10837",
-      "pdfUrl": "",
-      "thumbnail": "https://www.incross.com/upload/board/4월-미디어이슈리포트_홈페이지-썸네일1.jpg"
-    },
-    {
-      "id": 42,
-      "source": "incross-mineport",
-      "sourceLabel": "인크로스 마인리포트",
-      "publisher": "인크로스",
-      "title": "2026년 4월 미디어 이슈 리포트",
-      "category": "미디어분석",
-      "date": "2026-04-03",
-      "url": "https://www.incross.com/ko/insight/?mode=view&page=1&pageSize=12&serboardsort=&searchStr=&idx=10837",
-      "pdfUrl": "",
-      "thumbnail": "https://www.incross.com/upload/board/4월-미디어이슈리포트_홈페이지-썸네일1.jpg"
     }
   ]
 }
