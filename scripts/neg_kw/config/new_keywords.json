@@ -1,0 +1,14 @@
+{
+  "match_type": "exact",
+  "type": "NEGATIVE_KEYWORD",
+  "keywords": [
+    { "keyword": "루이량무선이어폰",        "reason": "타브랜드명" },
+    { "keyword": "다이쿠무선이어폰",        "reason": "타브랜드명" },
+    { "keyword": "DAICCO무선이어폰",        "reason": "타브랜드명 영문 표기" },
+    { "keyword": "이어커프이어폰",          "reason": "시스템 25일치 매출 0" },
+    { "keyword": "이어셋",                "reason": "마이크 일체형 헤드셋, T010 형태 무관" },
+    { "keyword": "블루투스이어셋",          "reason": "시스템 25일치 매출 0" },
+    { "keyword": "무선충전이어폰",          "reason": "T010 무선충전 지원하나 본 KW 매출 0" },
+    { "keyword": "프리미엄불루투스이어폰",    "reason": "T010 적합하지만 매출 입증 없음" }
+  ]
+}

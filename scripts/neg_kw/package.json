@@ -1,0 +1,19 @@
+{
+  "name": "shokz-t010-neg-kw",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "T010 SA 제외KW 일괄 교체 (memory #6 #9 #19 #20 #21 #23 정합)",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "step1": "node src/step1_health.mjs",
+    "step2": "node src/step2_dump.mjs",
+    "step3": "node src/step3_diff.mjs",
+    "step4": "node src/step4_plan.mjs",
+    "step5": "node src/step5_register.mjs",
+    "step6": "node src/step6_verify.mjs",
+    "step7": "node src/step7_inventory.mjs"
+  }
+}
