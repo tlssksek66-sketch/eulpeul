@@ -78,6 +78,9 @@ export default function App() {
             case "skip-llm":
               append(`  · LLM 스킵 (명시 variants 사용)`);
               break;
+            case "loading-jszip":
+              append(`  · JSZip 로드`);
+              break;
             case "generating":
               append(`  · LLM 카피 생성 중...`);
               break;
@@ -299,8 +302,23 @@ export default function App() {
     }
   };
 
+  const liveStatus = batchBusy
+    ? `배치 실행 중 — ${batchLog.length}건의 이벤트 누적`
+    : busy
+      ? `${busy.startsWith("all:") ? "전체 PNG 일괄 처리" : "PNG 내보내기"} 진행 중`
+      : "";
+
   return (
     <div className="min-h-screen bg-neutral-100 px-6 py-10">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-shokz-ink focus:px-3 focus:py-2 focus:text-[12px] focus:font-bold focus:text-white"
+      >
+        본문으로 건너뛰기
+      </a>
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {liveStatus}
+      </div>
       <header className="mx-auto mb-6 flex max-w-6xl items-end justify-between">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-shokz-blue">
@@ -386,11 +404,19 @@ export default function App() {
         <BatchRunner onRun={handleRunBatch} busy={batchBusy} log={batchLog} />
       </div>
 
-      <main className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+      <main
+        id="main-content"
+        className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3"
+      >
         {variants.map((v) => {
           const cand = candState[v.id];
+          const sectionLabel = `시안 ${v.id} (${v.axis.audience} · ${v.axis.tone})`;
           return (
-            <section key={v.id} className="flex flex-col items-center">
+            <section
+              key={v.id}
+              aria-label={sectionLabel}
+              className="flex flex-col items-center"
+            >
               <div ref={(el) => (cardRefs.current[v.id] = el)}>
                 <GfaPreview copy={v.copy} image={v.image} />
               </div>
@@ -457,8 +483,9 @@ export default function App() {
                     disabled={busy !== null}
                     className="rounded-md border border-shokz-line bg-white px-3 py-1.5 text-[12px] font-semibold tracking-kr text-shokz-sub transition-colors hover:border-shokz-blue hover:text-shokz-blue disabled:cursor-not-allowed disabled:opacity-50"
                     title="기본 axis 자산으로 되돌림"
+                    aria-label={`${v.id} 이미지 초기화 (기본 axis 자산으로 되돌림)`}
                   >
-                    ↺
+                    <span aria-hidden="true">↺</span>
                   </button>
                 </div>
 
@@ -467,14 +494,16 @@ export default function App() {
                     type="button"
                     onClick={() => handleOpenCandidates(v)}
                     disabled={busy !== null || cand?.busy}
+                    aria-label={`${v.id} 카피 후보 ${CANDIDATE_COUNT}개 생성`}
                     className="rounded-md border border-shokz-blue bg-white px-2 py-1.5 text-[12px] font-bold tracking-kr text-shokz-blue transition-colors hover:bg-shokz-blue/10 disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    🎲 후보 {CANDIDATE_COUNT}
+                    <span aria-hidden="true">🎲</span> 후보 {CANDIDATE_COUNT}
                   </button>
                   <button
                     type="button"
                     onClick={() => handleExportMockup(v.id)}
                     disabled={busy !== null}
+                    aria-label={`${v.id} 지면 시안 PNG 내보내기`}
                     className="rounded-md border border-shokz-line bg-white px-2 py-1.5 text-[12px] font-semibold tracking-kr text-shokz-ink transition-colors hover:border-shokz-blue hover:text-shokz-blue disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {busy === `mockup:${v.id}` ? "..." : "지면 PNG"}
@@ -483,6 +512,7 @@ export default function App() {
                     type="button"
                     onClick={() => handleExportCreative(v.id)}
                     disabled={busy !== null}
+                    aria-label={`${v.id} 1200×1200 PNG 내보내기`}
                     className="rounded-md bg-shokz-blue px-2 py-1.5 text-[12px] font-bold tracking-kr text-white transition-colors hover:bg-shokz-blue-deep disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {busy === `creative:${v.id}` ? "..." : "1200²"}

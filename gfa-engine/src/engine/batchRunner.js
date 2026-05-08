@@ -1,8 +1,17 @@
-import JSZip from "jszip";
 import { toBlob } from "html-to-image";
 import { generateVariants } from "./copyAdapter.js";
 import { injectVariant } from "./inject.js";
 import { serializeDataset } from "./exportDataset.js";
+
+// JSZip은 ~100KB(gzip 30KB)로 초기 번들에서 제외하기 위해 동적 import.
+// 배치 실행 시점에 처음 로드되며 이후 모듈 캐시로 재사용된다.
+let _jszipPromise = null;
+function loadJSZip() {
+  if (!_jszipPromise) {
+    _jszipPromise = import("jszip").then((m) => m.default ?? m);
+  }
+  return _jszipPromise;
+}
 
 /**
  * Batch Runner — V1
@@ -42,6 +51,8 @@ export async function runBatch({
     throw new Error("jobs 배열이 비어 있습니다.");
   }
 
+  onProgress?.({ stage: "loading-jszip" });
+  const JSZip = await loadJSZip();
   const zip = new JSZip();
   const summary = [];
 

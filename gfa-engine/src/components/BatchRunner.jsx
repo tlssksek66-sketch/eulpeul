@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useId, useRef, useState } from "react";
 
 const SAMPLE_JOBS = [
   {
@@ -25,6 +25,9 @@ export default function BatchRunner({ onRun, busy, log }) {
   const [text, setText] = useState(() => JSON.stringify(SAMPLE_JOBS, null, 2));
   const [parseError, setParseError] = useState(null);
   const fileRef = useRef(null);
+  const headingId = useId();
+  const helpId = useId();
+  const errorId = useId();
 
   const handleRun = () => {
     let jobs;
@@ -50,13 +53,22 @@ export default function BatchRunner({ onRun, busy, log }) {
   };
 
   return (
-    <section className="rounded-xl border border-shokz-line bg-white p-5">
+    <section
+      aria-labelledby={headingId}
+      className="rounded-xl border border-shokz-line bg-white p-5"
+    >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="rounded bg-shokz-ink/10 px-2 py-0.5 text-[11px] font-bold tracking-kr text-shokz-ink">
+          <span
+            aria-hidden="true"
+            className="rounded bg-shokz-ink/10 px-2 py-0.5 text-[11px] font-bold tracking-kr text-shokz-ink"
+          >
             BATCH
           </span>
-          <h2 className="text-base font-bold tracking-kr-tight text-shokz-ink">
+          <h2
+            id={headingId}
+            className="text-base font-bold tracking-kr-tight text-shokz-ink"
+          >
             큐 배치 실행 (LLM → 렌더 → ZIP)
           </h2>
         </div>
@@ -90,7 +102,7 @@ export default function BatchRunner({ onRun, busy, log }) {
         </div>
       </div>
 
-      <p className="mt-3 text-[11px] text-shokz-sub">
+      <p id={helpId} className="mt-3 text-[11px] text-shokz-sub">
         각 job은 <code className="rounded bg-neutral-100 px-1 text-[10px]">brief</code>
         (LLM 생성) 또는{" "}
         <code className="rounded bg-neutral-100 px-1 text-[10px]">variants</code>(명시
@@ -105,12 +117,20 @@ export default function BatchRunner({ onRun, busy, log }) {
         disabled={busy}
         rows={10}
         spellCheck={false}
+        aria-label="배치 작업 큐 JSON"
+        aria-describedby={parseError ? `${helpId} ${errorId}` : helpId}
+        aria-invalid={parseError ? "true" : undefined}
         className="mt-3 w-full rounded-md border border-shokz-line bg-neutral-50 px-3 py-2 font-mono text-[11px] leading-relaxed text-shokz-ink outline-none focus:border-shokz-blue disabled:opacity-50"
       />
 
       {parseError && (
-        <p className="mt-2 rounded border border-amber-200 bg-amber-50 px-2.5 py-1.5 text-[11px] text-amber-700">
-          ⚠ {parseError}
+        <p
+          id={errorId}
+          role="alert"
+          className="mt-2 rounded border border-amber-200 bg-amber-50 px-2.5 py-1.5 text-[11px] text-amber-700"
+        >
+          <span aria-hidden="true">⚠ </span>
+          {parseError}
         </p>
       )}
 
@@ -129,7 +149,12 @@ export default function BatchRunner({ onRun, busy, log }) {
       </div>
 
       {log && log.length > 0 && (
-        <div className="mt-3 max-h-48 overflow-auto rounded-md border border-shokz-line bg-neutral-50 p-2 font-mono text-[11px] leading-relaxed text-shokz-sub">
+        <div
+          role="log"
+          aria-live="polite"
+          aria-label="배치 진행 로그"
+          className="mt-3 max-h-48 overflow-auto rounded-md border border-shokz-line bg-neutral-50 p-2 font-mono text-[11px] leading-relaxed text-shokz-sub"
+        >
           {log.map((line, idx) => (
             <div key={idx} className="whitespace-pre">
               {line}

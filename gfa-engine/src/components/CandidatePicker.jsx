@@ -17,7 +17,11 @@ export default function CandidatePicker({
   if (!candidates && !busy && !error) return null;
 
   return (
-    <div className="mt-3 w-gfa-feed rounded-lg border border-shokz-blue/40 bg-shokz-blue/5 p-3">
+    <div
+      role="region"
+      aria-label="카피 후보 패널"
+      className="mt-3 w-gfa-feed rounded-lg border border-shokz-blue/40 bg-shokz-blue/5 p-3"
+    >
       <div className="flex items-center justify-between">
         <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-shokz-blue">
           카피 후보
@@ -44,14 +48,22 @@ export default function CandidatePicker({
       </div>
 
       {busy && (
-        <p className="mt-2 text-[11px] text-shokz-sub">
+        <p
+          aria-live="polite"
+          aria-atomic="true"
+          className="mt-2 text-[11px] text-shokz-sub"
+        >
           생성 중 {progress ? `${progress.index + 1}/${progress.total}` : ""}...
         </p>
       )}
 
       {error && (
-        <p className="mt-2 rounded border border-amber-200 bg-amber-50 px-2 py-1.5 text-[11px] text-amber-700">
-          ⚠ {error}
+        <p
+          role="alert"
+          className="mt-2 rounded border border-amber-200 bg-amber-50 px-2 py-1.5 text-[11px] text-amber-700"
+        >
+          <span aria-hidden="true">⚠ </span>
+          {error}
         </p>
       )}
 

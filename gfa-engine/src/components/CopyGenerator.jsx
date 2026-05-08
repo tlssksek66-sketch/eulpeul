@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { generateVariants } from "../engine/copyAdapter.js";
 
 const DEFAULT_AXES = [
@@ -18,6 +18,7 @@ export default function CopyGenerator({
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState(null);
   const [error, setError] = useState(null);
+  const headingId = useId();
 
   const handleGenerate = async () => {
     setBusy(true);
@@ -46,12 +47,21 @@ export default function CopyGenerator({
   const updateConfig = (k, v) => onLlmConfigChange({ ...llmConfig, [k]: v });
 
   return (
-    <section className="rounded-xl border border-shokz-line bg-white p-5">
+    <section
+      aria-labelledby={headingId}
+      className="rounded-xl border border-shokz-line bg-white p-5"
+    >
       <div className="flex items-center gap-2">
-        <span className="rounded bg-shokz-blue/10 px-2 py-0.5 text-[11px] font-bold tracking-kr text-shokz-blue">
+        <span
+          aria-hidden="true"
+          className="rounded bg-shokz-blue/10 px-2 py-0.5 text-[11px] font-bold tracking-kr text-shokz-blue"
+        >
           LLM
         </span>
-        <h2 className="text-base font-bold tracking-kr-tight text-shokz-ink">
+        <h2
+          id={headingId}
+          className="text-base font-bold tracking-kr-tight text-shokz-ink"
+        >
           카피 자동 생성 (로컬 Ollama)
         </h2>
       </div>
@@ -103,13 +113,21 @@ export default function CopyGenerator({
       </div>
 
       {progress && busy && (
-        <p className="mt-3 text-[11px] text-shokz-sub">
+        <p
+          aria-live="polite"
+          aria-atomic="true"
+          className="mt-3 text-[11px] text-shokz-sub"
+        >
           → {progress.axis?.audience} · {progress.axis?.tone} ({progress.status})
         </p>
       )}
       {error && (
-        <p className="mt-3 rounded border border-amber-200 bg-amber-50 px-3 py-2 text-[12px] text-amber-700">
-          ⚠ {error}
+        <p
+          role="alert"
+          className="mt-3 rounded border border-amber-200 bg-amber-50 px-3 py-2 text-[12px] text-amber-700"
+        >
+          <span aria-hidden="true">⚠ </span>
+          {error}
         </p>
       )}
     </section>
