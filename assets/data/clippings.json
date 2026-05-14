@@ -6,7 +6,7 @@
     "title": "샥즈 코리아 매거진",
     "subtitle": "웹 상의 모든 샥즈 관련 뉴스·기사·콘텐츠를 한 화면에서 모니터링",
     "searchKeyword": "SHOKZ, 샥즈, 샥즈코리아, SHOKZ KOREA",
-    "collectedAt": "2026-05-13T09:08:16+09:00",
+    "collectedAt": "2026-05-14T09:10:19+09:00",
     "totalClippings": 60,
     "filterPassed": 60,
     "noiseFiltered": 275,
@@ -82,6 +82,27 @@
     {
       "id": 1,
       "channel": "news",
+      "media": "비즈니스포스트",
+      "category": "sports",
+      "sentiment": "neutral",
+      "title": "옥스팜 '2026 트레일워커' 개최, 국내에서만 13억 넘게 모금",
+      "summary": "올해 행사에는 인제군체육회, 인제천리길, 인제군자원봉사회 등 인제군의 여러 기관들에 더해 강원우유, 그라미치, 노무법인지금, 닥터유, 샥즈, 아마존, 제주삼다수 등 다양한 기업들이 후원에 나선다....",
+      "date": "2026-05-13 11:40",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=437697",
+      "tags": [
+        "옥스팜",
+        "트레일워커",
+        "개최",
+        "국내에서만",
+        "넘게",
+        "모금",
+        "올해",
+        "행사에는"
+      ]
+    },
+    {
+      "id": 2,
+      "channel": "news",
       "media": "weeklytoday",
       "category": "sports",
       "sentiment": "neutral",
@@ -101,7 +122,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": 3,
       "channel": "news",
       "media": "kookje.co",
       "category": "product",
@@ -122,7 +143,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "channel": "news",
       "media": "ksilbo.co",
       "category": "press",
@@ -143,7 +164,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "channel": "news",
       "media": "gqkorea.co",
       "category": "press",
@@ -164,7 +185,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": 6,
       "channel": "news",
       "media": "디지털데일리",
       "category": "review",
@@ -185,7 +206,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": 7,
       "channel": "news",
       "media": "헤럴드경제",
       "category": "press",
@@ -206,7 +227,7 @@
       ]
     },
     {
-      "id": 7,
+      "id": 8,
       "channel": "news",
       "media": "연합뉴스",
       "category": "product",
@@ -227,7 +248,7 @@
       ]
     },
     {
-      "id": 8,
+      "id": 9,
       "channel": "news",
       "media": "동아일보",
       "category": "review",
@@ -248,7 +269,7 @@
       ]
     },
     {
-      "id": 9,
+      "id": 10,
       "channel": "news",
       "media": "gqkorea.co",
       "category": "product",
@@ -269,7 +290,7 @@
       ]
     },
     {
-      "id": 10,
+      "id": 11,
       "channel": "news",
       "media": "gqkorea.co",
       "category": "sports",
@@ -290,7 +311,7 @@
       ]
     },
     {
-      "id": 11,
+      "id": 12,
       "channel": "news",
       "media": "gqkorea.co",
       "category": "product",
@@ -311,7 +332,7 @@
       ]
     },
     {
-      "id": 12,
+      "id": 13,
       "channel": "news",
       "media": "cbci.co",
       "category": "sports",
@@ -332,7 +353,7 @@
       ]
     },
     {
-      "id": 13,
+      "id": 14,
       "channel": "news",
       "media": "gpkorea",
       "category": "sports",
@@ -353,7 +374,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": 15,
       "channel": "news",
       "media": "biztribune.co",
       "category": "sports",
@@ -374,7 +395,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 16,
       "channel": "news",
       "media": "ebn.co",
       "category": "sports",
@@ -395,7 +416,7 @@
       ]
     },
     {
-      "id": 16,
+      "id": 17,
       "channel": "news",
       "media": "newspim",
       "category": "sports",
@@ -416,7 +437,7 @@
       ]
     },
     {
-      "id": 17,
+      "id": 18,
       "channel": "news",
       "media": "asiatime.co",
       "category": "sports",
@@ -437,7 +458,7 @@
       ]
     },
     {
-      "id": 18,
+      "id": 19,
       "channel": "news",
       "media": "metroseoul.co",
       "category": "sports",
@@ -458,7 +479,7 @@
       ]
     },
     {
-      "id": 19,
+      "id": 20,
       "channel": "news",
       "media": "viva100",
       "category": "sports",
@@ -479,465 +500,444 @@
       ]
     },
     {
-      "id": 20,
-      "channel": "news",
-      "media": "autodaily.co",
-      "category": "sports",
-      "sentiment": "neutral",
-      "title": "폭스바겐, 러닝으로 브랜드를 달린다 '2026 러닝크루' 본격 출범",
-      "summary": "러닝크루 전원에게는 폭스바겐 웰컴키트와 함께 3개월간의 활동을 지원하는 아식스 러닝화 '소닉블라스트'와 샥즈 오픈형 이어폰 '오픈닷 원'이 기념품으로 제공됐다. 선발된 러닝크루는 앞으로 약 3개월 동안 '런트립...",
-      "date": "2026-04-15 12:00",
-      "url": "https://www.autodaily.co.kr/news/articleView.html?idxno=543258",
-      "tags": [
-        "폭스바겐",
-        "러닝크루",
-        "러닝으로",
-        "브랜드를",
-        "달린다",
-        "본격",
-        "출범",
-        "전원에게는"
-      ]
-    },
-    {
       "id": 21,
       "channel": "blog",
-      "media": "네이버 블로그 · runreview_lab님의 블로그",
-      "category": "review",
+      "media": "네이버 블로그 · 놀고먹고사고 우리들이야기",
+      "category": "tech",
       "sentiment": "positive",
-      "title": "러닝할 때 이어폰 뭐 써야 할까? (이어폰 추천)",
-      "summary": "이어폰으로는 Shokz 제품이 많이 사용됩니다 가볍고 착용감 안정적 러닝용으로 검증된 제품 입문자도 부담 없이 사용하기 좋습니다 인기 제품 확인 한 줄 정리 ✍️ “러닝할 땐 잘 들리는 것보다, 안전하게...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/runreview_lab/224283715800",
+      "title": "샥즈 오픈런 C타입 S805 운동할 때 안전한 골전도 블루투스...",
+      "summary": "상품 스펙 항목 내용 모델명 S805 (OpenRun Type-C) 제조사 샥즈 (Shokz) 무게 26g 블루투스 버전 5.1 방수 등급 IP67 배터리 시간 최대 8시간 충전 시간 1.5시간 충전 포트 USB-C 핵심 기능 골전도 기술, 듀얼 노이즈 캔슬링...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/sweetsudal/224282937332",
       "tags": [
-        "러닝할",
-        "이어폰",
-        "써야",
-        "할까",
-        "추천",
-        "이어폰으로는",
-        "Shokz",
-        "제품이"
+        "시간",
+        "샥즈",
+        "S805",
+        "골전도",
+        "블루투스",
+        "충전",
+        "오픈런",
+        "타입"
       ]
     },
     {
       "id": 22,
       "channel": "blog",
-      "media": "네이버 블로그 · 맛냥이의찐후기",
-      "category": "review",
-      "sentiment": "positive",
-      "title": "러닝할 때 이어폰 뭐 써야할까? 샥즈 vs 볼티움 비교(골전도...",
-      "summary": "많더라고요 ☑️샥즈(Shokz) ●러닝용으로 많이 쓰는 골전도 모델 ●착용감, 안전성 좋다는 후기 많음 ●브랜드 인지도 있는 편 ☑️볼티움(Voltium) ●수영까지 가능한 방수 모델 있음 ●가격 부담 적은 편...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/alstnwls90/224283714658",
+      "media": "네이버 블로그 · chm22_님의 블로그",
+      "category": "sports",
+      "sentiment": "neutral",
+      "title": "샥즈 오픈런 프로 2 S820 골전도 이어폰 러닝 마라톤 운동용...",
+      "summary": "♂️ 압도적인 기술력과 디자인의 조화 샥즈(SHOKZ)에서 선보인 이 제품은 기존 골전도 방식에 공기 전도 기술을 결합한 듀얼 드라이버 시스템을 채택했습니다. 덕분에 골전도 특유의 진동은 줄이면서도...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/chm22_/224284688471",
       "tags": [
-        "샥즈",
-        "볼티움",
         "골전도",
-        "모델",
-        "러닝할",
+        "샥즈",
+        "오픈런",
+        "프로",
+        "S820",
         "이어폰",
-        "써야할까",
-        "비교"
+        "러닝",
+        "마라톤"
       ]
     },
     {
       "id": 23,
       "channel": "blog",
-      "media": "네이버 블로그 · 에코페이지 님의 블로그",
+      "media": "네이버 블로그 · Travel Log",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "샥즈 오픈스윔 AS라 쓰고 보상판매 받은 후기",
+      "summary": "https://asia.help.shokz.com/s/submit-case-form-kr?language=ko 이메일 접수하고 24시간 내로 연락 준다고 했는데 메일에 대한 회신도 없고 전화는 며칠 동안 안 받고.. 성질 급한 제가 환장하는 찰나에 카카오톡 문의하기가...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/travelkmja/224284711053",
+      "tags": [
+        "샥즈",
+        "오픈스윔",
+        "쓰고",
+        "보상판매",
+        "받은",
+        "후기",
+        "https",
+        "asia"
+      ]
+    },
+    {
+      "id": 24,
+      "channel": "blog",
+      "media": "네이버 블로그 · 리더의 전략",
+      "category": "tech",
+      "sentiment": "neutral",
+      "title": "샥즈 오픈닷 원 E310 오픈형 블루투스 이어폰 클립형 귀찌...",
+      "summary": "샥즈 오픈닷 원 E310 클립형 귀찌 귀걸이형 오픈형 블루투스 초경량 스포츠 이어폰을 선물용으로 고민하다가 제가 직접 사용해 보았어요. 샥즈 제품답게 경쾌한 착용감과 오픈형 설계로 주변 소리를 어느 정도...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/taupkvzhy/224284957871",
+      "tags": [
+        "샥즈",
+        "오픈형",
+        "오픈닷",
+        "E310",
+        "블루투스",
+        "클립형",
+        "귀찌",
+        "이어폰"
+      ]
+    },
+    {
+      "id": 25,
+      "channel": "blog",
+      "media": "네이버 블로그 · 뉴레카 AI 쇼핑 큐레이터",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "지금 아니면 안돼! 갓성비템 3가지 & 추가 12가지 핫딜 공개",
+      "summary": "샥즈 오픈닷 E310 (디지털/가전) ▲ 샥즈 오픈닷 E310 이어폰 음악을 사랑하는 분들이라면 주목! 귓바퀴에 편안하게 착용하는 오픈형 블루투스 이어폰, 샥즈 오픈닷 E310 딜이 나왔어요. 현재 가격은 141...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/newreka2026/224284954137",
+      "tags": [
+        "샥즈",
+        "오픈닷",
+        "E310",
+        "가지",
+        "이어폰",
+        "지금",
+        "아니면",
+        "안돼"
+      ]
+    },
+    {
+      "id": 26,
+      "channel": "blog",
+      "media": "네이버 블로그 · 오늘의 \"진짜\" 핫딜",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "[지마켓 핫딜] 샥즈 오픈닷 E310 (122,750원/무배)",
+      "summary": "지마켓에서 샥즈 오픈닷 E310 122,750원에 나와요 현재 80개 한정 수량이고 재고도 많이 빠진 상태라고... 핫딜 바로 확인 가능합니다 #지마켓 #샥즈 #오픈닷 #오픈형이어폰 #블루투스이어폰 #전자기기핫딜 #핫딜",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/ohhouse_hotdeal/224284919580",
+      "tags": [
+        "핫딜",
+        "샥즈",
+        "오픈닷",
+        "지마켓",
+        "E310",
+        "무배",
+        "지마켓에서",
+        "원에"
+      ]
+    },
+    {
+      "id": 27,
+      "channel": "blog",
+      "media": "네이버 블로그 · 기록집",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "운동일지(2026.05.13)",
+      "summary": "빠져잇어서 다행 컨디션 난조로 만성피로 상태… 그래도 어제 런닝이랑 플라잉햇으니 오늘은 아쉬탕가를 해보쟈..(30분도 뛸수 잇으면..) 근데 엄지발가락 발톱에 멍든듯 아프다 면세점에서 파는 샥즈..결국..ㅋ",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/seodoongle_/224284918514",
+      "tags": [
+        "운동일지",
+        "빠져잇어서",
+        "다행",
+        "컨디션",
+        "난조로",
+        "만성피로",
+        "상태",
+        "그래도"
+      ]
+    },
+    {
+      "id": 28,
+      "channel": "blog",
+      "media": "네이버 블로그 · 생활참고서",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "초경량으로 운동할 때 최고의 선택 샥즈 오픈닷 원 E310...",
+      "summary": "샥즈 오픈닷 원 E310 클립형 귀찌를 발견했어요. 가격이 조금 나가서 고민했는데, 이걸 사보고 나니 진짜 잘한 선택 같아요. 초경량이라 운동할 때 부담 없이 사용할 수 있어요. 처음 착용했을 때 느낌 샥즈...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/nyrickbx/224283170327",
+      "tags": [
+        "샥즈",
+        "운동할",
+        "선택",
+        "오픈닷",
+        "E310",
+        "초경량으로",
+        "최고의",
+        "클립형"
+      ]
+    },
+    {
+      "id": 29,
+      "channel": "blog",
+      "media": "네이버 블로그 · charmednever3님의 블로그",
+      "category": "review",
+      "sentiment": "positive",
+      "title": "샥즈 신제품 쿠팡단독세트 샥즈 오픈닷 원 OpenDots ONE E310...",
+      "summary": "제품 설명 및 특징 샥즈 오픈닷 원 OpenDots ONE E310 블루투스 무선 이어폰은 편리한 무선 연결과 우수한... 사용 방법 안내 샥즈 오픈닷 원을 사용하기 위해서는 먼저 충전 케이스에서 이어폰을 꺼내어야 한다....",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/charmednever3/224284881786",
+      "tags": [
+        "샥즈",
+        "오픈닷",
+        "OpenDots",
+        "ONE",
+        "E310",
+        "무선",
+        "신제품",
+        "쿠팡단독세트"
+      ]
+    },
+    {
+      "id": 30,
+      "channel": "blog",
+      "media": "네이버 블로그 · 섬세한미소",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "샥즈 오픈핏 2 T921 자연스러운 하루의 동반자",
+      "summary": "이런 와중에 샥즈 오픈핏 2 T921을 접하게 됐는데 자연스럽게 관심이 생겼던 게 사실입니다. 이미지출처... 이미지출처-네이버쇼핑커넥트 ▲▲상품페이지확인▲▲ 이처럼 샥즈 오픈핏 2 T921을 꽤 오래 사용하면서...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/xeodindifug92851/224284830355",
+      "tags": [
+        "샥즈",
+        "오픈핏",
+        "T921",
+        "이미지출처",
+        "자연스러운",
+        "하루의",
+        "동반자",
+        "이런"
+      ]
+    },
+    {
+      "id": 31,
+      "channel": "blog",
+      "media": "네이버 블로그 · lbawlmlq님의 블로그",
+      "category": "review",
+      "sentiment": "neutral",
+      "title": "오픈런 S803 블루투스 이어폰, 반 년 썼는데 이 정도라니",
+      "summary": "바로 샥즈 오픈런 S803 골전도 블루투스 이어폰인데요. 이 제품을 반 년 정도 꾸준히 써보니까, 와 이건 정말 물건이다 싶더라구요. 스포츠 이어폰의 새로운 기준을 제시하는 아이템이라고 할까요? 왜 샥즈...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/lbawlmlq/224284810705",
+      "tags": [
+        "오픈런",
+        "S803",
+        "블루투스",
+        "샥즈",
+        "이어폰",
+        "썼는데",
+        "정도라니",
+        "골전도"
+      ]
+    },
+    {
+      "id": 32,
+      "channel": "blog",
+      "media": "네이버 블로그 · 해피해피",
       "category": "sports",
       "sentiment": "neutral",
-      "title": "오픈런 프로 2 S820 골전도 헬스 운동 마라톤 이어폰 애프터샥...",
-      "summary": "항목 장점 확인할 점 모델명 샥즈 오픈런 프로 2 S820, SHOKZ OpenRun Pro 구매 전 펌웨어 및 정품 여부 확인 사용처 헬스, 운동, 마라톤에서 안전성 제공 시끄러운 환경에서는 음량 한계 존재 특징 골전도 방식으로...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/dxchealth/224283595258",
+      "title": "샥즈 오픈스윔 프로 S710 수영용 골전도 이어폰 방수와 운동...",
+      "summary": "과연 샥즈 오픈스윔 프로 S710은 수영인들에게 어떤 새로운 경험을 선사할까요? [샥즈] 오픈스윔 프로 S710 수영 블루투스 MP3 골전도 방수 무선 운동 이어폰 애프터샥 더 자세한정보는 아래 확인해주세요^^ https...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/sosocoolcool/224282956238",
       "tags": [
+        "샥즈",
+        "오픈스윔",
+        "프로",
+        "S710",
+        "골전도",
+        "이어폰",
+        "운동",
+        "수영용"
+      ]
+    },
+    {
+      "id": 33,
+      "channel": "blog",
+      "media": "네이버 블로그 · LP◎스탁",
+      "category": "sports",
+      "sentiment": "neutral",
+      "title": "[샥즈] 오픈런 프로 2 S820 골전도 헬스 운동 러닝 마라톤...",
+      "summary": "[샥즈] 오픈런 프로 2 S820 골전도 헬스 운동 러닝 마라톤 자전거 이어폰 애프터샥 판매가249,000원 할인가할인율5%236,550원 샥즈 오픈런 프로 자전거 이어폰 애프터샥 https://naver.me/IIDtR6CD 구매 링크 \"이 포스팅은...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/cjclub9/224284785680",
+      "tags": [
+        "샥즈",
         "오픈런",
         "프로",
         "S820",
         "골전도",
         "헬스",
         "운동",
-        "마라톤",
-        "이어폰"
-      ]
-    },
-    {
-      "id": 24,
-      "channel": "blog",
-      "media": "네이버 블로그 · ESLOG",
-      "category": "review",
-      "sentiment": "negative",
-      "title": "[리뷰] 군모 58호 러너의 모자 정착기 : 나이키 ADV 러닝캡 vs...",
-      "summary": "높음, 샥즈 오픈런 프로 동시 착용 1. 나이키 드라이 핏 ADV 플라이 언스트럭처 리플렉티브 러닝 캡 구매... 모자가 깊다 보니 저처럼 렌즈가 큰 고글이나 안경을 쓰고, 그 위에 샥즈 오픈런 프로까지 착용하면 귀...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/cis87/224283749955",
-      "tags": [
-        "나이키",
-        "ADV",
-        "샥즈",
-        "오픈런",
-        "리뷰",
-        "군모",
-        "러너의",
-        "모자"
-      ]
-    },
-    {
-      "id": 25,
-      "channel": "blog",
-      "media": "네이버 블로그 · ITem Review",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "샥즈 오픈런 C타입 S805 골전도 이어폰 솔직 후기",
-      "summary": "샥즈 오픈런 C타입 S805를 영입하게 되었습니다. 단순히 소리를 듣는 도구를 넘어 운동의 질과 안전 지수를 동시에 높여주는 이 제품의 실제 사용 가치를 데이터와 함께 생생하게 공유해 드릴게요. ▼샥즈...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/lifeon1024/224281716430",
-      "tags": [
-        "샥즈",
-        "오픈런",
-        "타입",
-        "S805",
-        "골전도",
-        "이어폰",
-        "솔직",
-        "후기"
-      ]
-    },
-    {
-      "id": 26,
-      "channel": "blog",
-      "media": "네이버 블로그 · ieuehvk62님의 블로그",
-      "category": "review",
-      "sentiment": "positive",
-      "title": "샥즈 오픈스윔 충전기, 편리한 데이터전송 USBA 케이블",
-      "summary": "샥즈 오픈스윔 충전기와 PC 데이터전송 USBA 충전케이블은 여러분의 스마트 기기를 보다 편리하게... 세 번째로, 샥즈 오픈스윔 충전기는 내구성이 뛰어나고 안정성이 높아, 오래 사용할 수 있도록...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/ieuehvk62/224283726631",
-      "tags": [
-        "샥즈",
-        "오픈스윔",
-        "데이터전송",
-        "USBA",
-        "충전기",
-        "편리한",
-        "케이블",
-        "충전기와"
-      ]
-    },
-    {
-      "id": 27,
-      "channel": "blog",
-      "media": "네이버 블로그 · 발견노트",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "운동할 때 최애 이어폰 샥즈 오픈닷 원 E310 소개해요",
-      "summary": "운동을 위한 필수 아이템 요즘 헬스에 푹 빠져서 운동할 때 사용할 이어폰을 찾던 중에 샥즈 오픈닷 원... 총평과 추천 샥즈 오픈닷 원 E310은 운동할 때 정말 필요한 아이템이에요. 클립형이라서 착용감도 좋고...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/xtaolvg/224282334069",
-      "tags": [
-        "운동할",
-        "샥즈",
-        "오픈닷",
-        "E310",
-        "최애",
-        "이어폰",
-        "소개해요",
-        "운동을"
-      ]
-    },
-    {
-      "id": 28,
-      "channel": "blog",
-      "media": "네이버 블로그 · political81님의 블로그",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "이어폰 고민된다면 샥즈 오픈런 미니도 눈여겨볼 만해요",
-      "summary": "운동용으로 찾는 분들 사이에서는 샥즈 브랜드 언급이 꽤 자주 보이더라고요. 그중에서도 눈에 들어온 게 바로 [샥즈 공식] 오픈런 C타입 미니 OpenRun USB-C Mini S806 골전도 블루투스 스포츠 이어폰 애프터샥...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/political81/224283709144",
-      "tags": [
-        "샥즈",
-        "이어폰",
-        "오픈런",
-        "고민된다면",
-        "미니도",
-        "눈여겨볼",
-        "만해요",
-        "운동용으로"
-      ]
-    },
-    {
-      "id": 29,
-      "channel": "blog",
-      "media": "네이버 블로그 · jigffbbt님의 블로그",
-      "category": "review",
-      "sentiment": "positive",
-      "title": "골전도와 공기전도 블루투스 이어폰으로 운동하는 재미를...",
-      "summary": "그러다 우연히 발견한 샥즈 오픈런프로2 듀얼드라이버를 구매했어요. 스포츠에 딱 맞는 디자인과... 그러다 샥즈 오픈런프로2를 알게 됐는데, 골전도와 공기전도가 동시에 작용한다고 해서 궁금해졌어요. 그래서...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/jigffbbt/224281663599",
-      "tags": [
-        "골전도와",
-        "그러다",
-        "샥즈",
-        "오픈런프로",
-        "공기전도",
-        "블루투스",
-        "이어폰으로",
-        "운동하는"
-      ]
-    },
-    {
-      "id": 30,
-      "channel": "blog",
-      "media": "네이버 블로그 · gtkj526411님의 블로그",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "샥즈 오픈핏 에어 블루투스 이어폰 T511 실제 사용 후기와...",
-      "summary": "샥즈 T511은 오픈핏 디자인에 초경량이라서 러닝이나 헬스할 때 지장 없을 것 같아서 구매했어요. 막상 받자마자 기대 이상이라 놀랐답니다. 처음 만난 샥즈 T511 이어폰 느낌 포장부터 심플하고 깔끔했어요....",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/gtkj526411/224282413099",
-      "tags": [
-        "샥즈",
-        "T511",
-        "오픈핏",
-        "이어폰",
-        "에어",
-        "블루투스",
-        "실제",
-        "후기와"
-      ]
-    },
-    {
-      "id": 31,
-      "channel": "blog",
-      "media": "네이버 블로그 · gangsan7367님의 블로그",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "이 가격에 이 성능? 샥즈 오픈런 충전기, 3개월 써본 솔직 후기!",
-      "summary": "있는 '샥즈 오픈런 충전기'인데요. 이거 혹시 필요하신 분들 계신가 해서 얼른 들고 와봤다니깐요. 거의 반 년 가까이 이걸로 충전하고 있는데, 처음엔 조금 망설였지만 지금은 완전 만족이에요! 왜 샥즈 오픈런...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/gangsan7367/224283667164",
-      "tags": [
-        "샥즈",
-        "오픈런",
-        "충전기",
-        "가격에",
-        "성능",
-        "개월",
-        "써본",
-        "솔직"
-      ]
-    },
-    {
-      "id": 32,
-      "channel": "blog",
-      "media": "네이버 블로그 · medicalik님의 블로그",
-      "category": "review",
-      "sentiment": "positive",
-      "title": "골전도 스포츠 이어폰 샥즈 오픈런 프로 2의 모든 것",
-      "summary": "이어폰인 샥즈 오픈런 프로 2는 운동 중 안전과 편안함을 제공하며 뛰어난 음질을 자랑합니다. 이 글에서는 제품의 주요 특징과 사용성, 통화 품질, 배터리 성능에 대해 자세히 알아보겠습니다. 샥즈 오픈런...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/medicalik/224283644070",
-      "tags": [
-        "샥즈",
-        "오픈런",
-        "프로",
-        "골전도",
-        "스포츠",
-        "이어폰",
-        "모든",
-        "이어폰인"
-      ]
-    },
-    {
-      "id": 33,
-      "channel": "blog",
-      "media": "네이버 블로그 · hynmi1121님의블로그",
-      "category": "review",
-      "sentiment": "positive",
-      "title": "디지털 기억의 안전한 금고, 삼성전자 외장하드 J3 2TB가...",
-      "summary": "https://naver.me/x2Y21SoK 다른글보기 [샥즈 공식] 오픈런 C타입 OpenRun USB-C S805 골전도 이어폰: 일상과 몰입을 동시에 잇는 새로운 리듬 귀를 막지 않는 자유로움, 소리와 세상 사이의 완벽한 조화를 경험하는...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/hynmi1121/224268573989",
-      "tags": [
-        "디지털",
-        "기억의",
-        "안전한",
-        "금고",
-        "삼성전자",
-        "외장하드",
-        "https",
-        "naver"
+        "러닝"
       ]
     },
     {
       "id": 34,
       "channel": "blog",
-      "media": "네이버 블로그 · 골프 여행",
+      "media": "네이버 블로그 · annualf3a님의 블로그",
       "category": "review",
-      "sentiment": "neutral",
-      "title": "운동할 때 필수템 오픈런 S803 골전도 이어폰 사용 후기",
-      "summary": "그래서 그냥 지나치지 못하고 샥즈 공식 오픈런 S803을 구매했어요. 사용해보니 정말 매력적이더라고요.... 총평과 추천 샥즈 오픈런 S803은 활용도가 높은 이어폰으로, 운동할 때나 외부 활동 시에 큰 장점이...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/hiabnkkh/224281616100",
+      "sentiment": "positive",
+      "title": "저세상 사운드와 편안함을 제공하는 샥즈 오픈런 프로 2 S820...",
+      "summary": "친구들한테 추천받은 샥즈 오픈런 프로 2 S820을 구매했어요. 처음에는 가격 때문에 망설였는데, 지금은... 하지만 샥즈는 특히 헬스용으로 설계된 제품이라 매력을 느꼈어요. 여러 후기와 사용기를 봤는데...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/annualf3a/224284775195",
       "tags": [
-        "오픈런",
-        "S803",
-        "운동할",
         "샥즈",
-        "필수템",
-        "골전도",
-        "이어폰",
-        "후기"
+        "오픈런",
+        "프로",
+        "S820",
+        "저세상",
+        "사운드와",
+        "편안함을",
+        "제공하는"
       ]
     },
     {
       "id": 35,
       "channel": "blog",
-      "media": "네이버 블로그 · artificialit님의 블로그",
+      "media": "네이버 블로그 · chm22_님의 블로그",
       "category": "review",
-      "sentiment": "neutral",
-      "title": "샥즈 오픈닷 원 E310 클립형 귀찌 귀걸이형 오픈형 블루투스...",
-      "summary": "산책할 때나 자전거 탈 때 편하게 쓸 수 있는 이어폰을 고민하던 중 샥즈 제품을 발견했어요. 지금처럼... 샥즈의 오픈닷 원 E310 OPENDOTS ONE은 오픈형 디자인과 클립형 고정 옵션으로 바람이 불어도 귀가...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/artificialit/224283614531",
+      "sentiment": "positive",
+      "title": "샥즈 오픈런 프로 2 미니 S821 골전도 이어폰 추천 가성비 무선...",
+      "summary": "압도적인 음질과 착용감을 자랑하는 샥즈 오픈런 프로 2 미니 S821은 런닝과 자전거 라이딩을 즐기는... ✨ 샥즈 오픈런 프로 2 미니 S821 상세 정보 운동 매니아들이 가장 선호하는 브랜드, 샥즈의 기술력이...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/chm22_/224284687779",
       "tags": [
         "샥즈",
-        "오픈닷",
-        "E310",
-        "클립형",
-        "오픈형",
-        "귀찌",
-        "귀걸이형",
-        "블루투스"
+        "오픈런",
+        "프로",
+        "미니",
+        "S821",
+        "골전도",
+        "이어폰",
+        "추천"
       ]
     },
     {
       "id": 36,
       "channel": "blog",
-      "media": "네이버 블로그 · 현실적인 쇼핑, 현실쇼핑러",
+      "media": "네이버 블로그 · 밀러의 일상",
       "category": "review",
-      "sentiment": "positive",
-      "title": "골전도의 한계를 넘어 입체적인 소리를 들려주는 샥즈...",
-      "summary": "활기찬 야외 활동 중에 음악에 몰입하다가도 주변의 경적 소리나 위험 신호를 놓칠까 봐 노심초사하며 한쪽 귀를 열어두던 불안한 순간이 이 독창적인 음향 거점 하나를 만나는 순간 순식간에 안전하고 명료한...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/ai_nstudy/224283603094",
+      "sentiment": "neutral",
+      "title": "샥즈 오픈런 S805 골전도 블루투스 이어폰 사용해봤어요",
+      "summary": "한 번 써볼까요 최근에 운동하면서 좋은 이어폰이 필요해서 샥즈 오픈런 S805 골전도 블루투스 이어폰을... 여기저기 찾아보다가 샥즈 오픈런 S805가 갑자기 눈에 띄었거든요. 가격은 179,000원인데, 비싼다고...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/hntg9kkk6xcv/224283226216",
       "tags": [
-        "골전도의",
-        "한계를",
-        "넘어",
-        "입체적인",
-        "소리를",
-        "들려주는",
         "샥즈",
-        "활기찬"
+        "오픈런",
+        "S805",
+        "골전도",
+        "블루투스",
+        "이어폰",
+        "사용해봤어요",
+        "써볼까요"
       ]
     },
     {
       "id": 37,
       "channel": "blog",
-      "media": "네이버 블로그 · ITem Review",
-      "category": "sports",
+      "media": "네이버 블로그 · 10ducks in everywhere",
+      "category": "review",
       "sentiment": "neutral",
-      "title": "샥즈 오픈핏에어 T511 격렬한 운동에도 흔들림 없는 뼈전도...",
-      "summary": "매일 땀 흘리며 달리는 러너로서 귀를 꽉 채우는 답답함은 항상 숙제였는데, 이번에 샥즈 오픈핏에어를... 실제 필드에서 수십 킬로미터를 달리며 체감한 데이터를 바탕으로, 왜 운동 마니아들이 샥즈 코리아의...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/lifeon1024/224281475518",
+      "title": "2025년 10월의 조각",
+      "summary": "다가올 시월이 지난 시월보다 가까운 때지만 뭐 우따용 이건 내 블로그인데 깜빡하고 필테 센터에 내 소듕한 샥즈를 두고 왔는데 쓰앵님이 이렇게 깜찍하게 포스트잇 붙여주셔가지구 오케이 잠시 멈추세요!!...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/tenducks/224284739225",
       "tags": [
-        "샥즈",
-        "오픈핏에어",
-        "T511",
-        "격렬한",
-        "운동에도",
-        "흔들림",
-        "없는",
-        "뼈전도"
+        "월의",
+        "조각",
+        "다가올",
+        "시월이",
+        "시월보다",
+        "가까운",
+        "때지만",
+        "우따용"
       ]
     },
     {
       "id": 38,
       "channel": "blog",
-      "media": "네이버 블로그 · 파란색의마법",
-      "category": "review",
-      "sentiment": "neutral",
-      "title": "[샥즈] 오픈핏 에어 T511 귀안아픈 온화한 이어폰",
-      "summary": "이미지출처-제공이미지 [샥즈] 오픈핏 에어 T511 오픈형 블루투스 무선 공기전도 귀안아픈 이어폰은 귀에 부담을 주지 않고 부드럽게 스며드는 음악의 세계를 선사합니다. 공기전도 기술이 적용되어 소리를...",
-      "date": "2026-05-13",
-      "url": "https://blog.naver.com/tncecrooydo6924/224283597165",
+      "media": "네이버 블로그 · ITem Review",
+      "category": "sports",
+      "sentiment": "positive",
+      "title": "샥즈 오픈스윔 프로 S710으로 운동의 즐거움을 더하다",
+      "summary": "단순히 물이 닿아도 되는 수준을 넘어 수중 환경에 완벽히 최적화된 샥즈 오픈스윔 프로 S710은 제 운동... 샥즈 오픈스윔 프로 S710 Q&A Q : 수영 중에 노래를 넘기거나 조작하기 편리한가요? A : 물리 버튼...",
+      "date": "2026-05-14",
+      "url": "https://blog.naver.com/lifeon1024/224282378232",
       "tags": [
         "샥즈",
-        "오픈핏",
-        "에어",
-        "T511",
-        "귀안아픈",
-        "공기전도",
-        "온화한",
-        "이어폰"
+        "오픈스윔",
+        "프로",
+        "S710",
+        "으로",
+        "운동의",
+        "즐거움을",
+        "더하다"
       ]
     },
     {
       "id": 39,
       "channel": "blog",
-      "media": "네이버 블로그 · 그대와 나의 순간",
+      "media": "네이버 블로그 · 신코세의 일상 기록",
       "category": "review",
       "sentiment": "positive",
-      "title": "샥즈 오픈핏 2 T921 귀안아픈 편안한 귀걸이형 이어폰",
-      "summary": "이미지출처-제공이미지 샥즈 오픈핏 2 T921 오픈형 귀걸이형 귀안아픈 블루투스 공기전도 귀걸이 이어폰은 귀에 편안하게 안착되어 나만의 아늑한 세상을 만들어 줍니다. 바람처럼 스미는 음질이 고요한 공간을...",
+      "title": "러닝 이어폰 오픈형 추천 샥즈 오픈런 프로2 골전도 이어폰...",
+      "summary": "이번엔 러닝 이어폰 오픈형 제품 중 골전도 이어폰이 좋다고 추천받아서 샥즈 오픈런 프로2 (SHOKZ) 내돈내산을 했습니다! 바로 사용 후기 시작해 볼게요! 러닝 이어폰 오픈형 제품 추천 후기이니 언박싱과 함께...",
       "date": "2026-05-13",
-      "url": "https://blog.naver.com/vpd8iq9qsgb4z2/224283583479",
+      "url": "https://blog.naver.com/sincose/224284641263",
       "tags": [
-        "샥즈",
-        "오픈핏",
-        "T921",
-        "귀안아픈",
-        "귀걸이형",
-        "편안한",
         "이어폰",
-        "이미지출처"
+        "러닝",
+        "오픈형",
+        "추천",
+        "샥즈",
+        "오픈런",
+        "프로",
+        "골전도"
       ]
     },
     {
       "id": 40,
       "channel": "blog",
-      "media": "네이버 블로그 · kxle127537님의 블로그",
+      "media": "네이버 블로그 · 쌍둥이육아의달인",
       "category": "review",
-      "sentiment": "positive",
-      "title": "샥즈 오픈런 프로 2 미니로 운동할 때 귀 답답함 없이 완전...",
-      "summary": "그래서 오픈형 골전도 이어폰을 찾다가 샥즈 오픈런 프로 2 미니를 알게 됐어요. 어떤 느낌일지 궁금했는데 직접 써보니 생각보다 훨씬 편하고 안정적이었어요. 블루투스 무선이라 운동할 때 줄 걸림도 없고 진짜...",
+      "sentiment": "neutral",
+      "title": "샥즈 OpenDOTSONE 리뷰 귀 안 아픈 오픈형 이어폰!",
+      "summary": "사용해본 Shokz OpenDOTSONE은 기존 오픈형과도 느낌이 조금 달랐어요 처음에는 클립형 구조가 어색해... 개인적으로는 기존 Shokz OpenRun Pro 2보다 일상 활용성이 더 좋게 느껴졌어요 제품 특징 OpenRun Pro 2 운동...",
       "date": "2026-05-13",
-      "url": "https://blog.naver.com/kxle127537/224282197496",
+      "url": "https://blog.naver.com/cheri2314/224284637664",
       "tags": [
+        "OpenDOTSONE",
+        "Shokz",
+        "기존",
+        "OpenRun",
+        "Pro",
         "샥즈",
-        "오픈런",
-        "프로",
-        "운동할",
-        "미니로",
-        "답답함",
-        "없이",
-        "완전"
+        "리뷰",
+        "아픈"
       ]
     },
     {
       "id": 41,
       "channel": "cafearticle",
-      "media": "네이버 카페 · Qbd3YK6nwK",
+      "media": "네이버 카페 · 쇼핑카페 핫딜",
       "category": "community",
       "sentiment": "neutral",
-      "title": "100000원 / Shokz OpenRun Pro 2 Mini S821/OpenRun S820 골전도 블루투스 이어폰 방수 오픈 스포츠 러닝 사...",
-      "summary": "상품명: Shokz OpenRun Pro 2 Mini S821/OpenRun S820 골전도 블루투스 이어폰 방수 오픈 스포츠 러닝 사이클링 가격: 100000원",
-      "date": "2026-05-13",
-      "url": "http://cafe.naver.com/bluegrayk7028/13861",
+      "title": "샥즈 SHOKZ OpenDots ONE, 어떤 점이 다를까요?",
+      "summary": "✔️ 꼭 확인해야 할 체크리스트 1. 착용감과 사용 편의성 이 이어폰은 오픈형 디자인이라 귀에 걸치는 식으로 착용합니다. 덕분에 장시간 사용해도 귀가 답답하지 않고, 주변 소리도 자연스럽게 들립니다. 운동이나 실외...",
+      "date": "2026-05-14",
+      "url": "http://cafe.naver.com/bluem7msd/1998",
       "tags": [
-        "OpenRun",
-        "Shokz",
-        "Pro",
-        "Mini",
-        "S821",
-        "S820",
-        "골전도",
-        "블루투스"
+        "샥즈",
+        "SHOKZ",
+        "OpenDots",
+        "ONE",
+        "어떤",
+        "점이",
+        "다를까요",
+        "확인해야"
       ]
     },
     {
@@ -948,7 +948,7 @@
       "sentiment": "positive",
       "title": "레인보우 에프터샥스 Shokz 골전도 블루투스 충전 케이블, 블랙 1m C타입 솔직리뷰 + 가성비",
       "summary": "다른 제품과의 차별점 레인보우 에프터샥스 Shokz 골전도 블루투스 충전 케이블을 실제로 사용해보면, 피복... 마무리 — 강력 추천 + 한마디 레인보우 에프터샥스 Shokz 골전도 케이블은 _현재 구성과 품질이 실제 사용에서...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/ourman/255626",
       "tags": [
         "레인보우",
@@ -969,7 +969,7 @@
       "sentiment": "positive",
       "title": "라잇굿즈 샥즈 오픈런 충전기 마그네틱 호환 홀더 케이블 사용 후기",
       "summary": "제가 사용하고 있는 SHOKZ S810 모델과 완벽하게 호환되더라고요. 마그네틱 홀더에 붙이는 것도 쉽게 할 수 있어서, 매번 케이블을 찾느라 애쓰지 않아도 되는 점이 정말 좋았어요. 충전 속도도 빠르고 안정적이어서 고도화된...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/graywcc5l/30212",
       "tags": [
         "마그네틱",
@@ -990,7 +990,7 @@
       "sentiment": "neutral",
       "title": "[G마켓(꼭)(직구)] (역대급) 샥즈 SHOKZ OpenDots ONE 오픈식 블루투스 무선 이어폰 E310 (체감가 116,363원...",
       "summary": "샥즈 SHOKZ OpenDots ONE 오픈식 블루투스 무선 이어폰 E310 ▼ 17% [ 쿠폰할인] -13,830원 [ 카드할인] - 스마일페이 X 스마일 / 삼성 / 롯데 / 비씨 / KB국민 / 신한 / NH농협 / 하나 / 우리12% : 122,750원 최종가: 122,750원...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/v9850/32118",
       "tags": [
         "샥즈",
@@ -1011,7 +1011,7 @@
       "sentiment": "neutral",
       "title": "샥즈오픈닷 미친 핫딜 정보!",
       "summary": "열린 귀로 듣는 새로운 자유, 샥즈 오픈닷 원(SHOKZ E310) 블랙 이어폰 솔직 후기 여러분, 이어폰 착용하다가... 바로 샥즈(SHOKZ)의 야심작, 샥즈 오픈닷 원(SHOKZ E310) 블랙 이어폰입니다! 과연 이 녀석이 제 기대를...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/ourman/250246",
       "tags": [
         "샥즈",
@@ -1027,75 +1027,12 @@
     {
       "id": 46,
       "channel": "cafearticle",
-      "media": "네이버 카페 · 월척특급 for Kakao",
-      "category": "community",
-      "sentiment": "neutral",
-      "title": "shokz이어폰 지금 역대급 특가중이에요!",
-      "summary": "\"이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\" shokz이어폰... 그래서 오늘은 제가 찾아봤던 경험을 바탕으로 shokz이어폰 성능, 특장점과 더불어 주문 시 주의사항에 대해...",
-      "date": "2026-05-13",
-      "url": "http://cafe.naver.com/bigfishexpress/67264",
-      "tags": [
-        "shokz",
-        "이어폰",
-        "지금",
-        "역대급",
-        "특가중이에요",
-        "포스팅은",
-        "쿠팡",
-        "파트너스"
-      ]
-    },
-    {
-      "id": 47,
-      "channel": "cafearticle",
-      "media": "네이버 카페 · 월척특급 for Kakao",
-      "category": "community",
-      "sentiment": "positive",
-      "title": "샥즈오픈런 지금 역대급 특가중이에요!",
-      "summary": "샥즈(Shokz)는 이미 골전도 이어폰의 대명사로 자리 잡으며 많은 분들의 사랑을 받았죠. 그런데 이번에 선보이는 오픈핏 프로 T010은 그들의 혁신 DNA에 '편안함'과 '강력한 성능'이라는 두 마리 토끼를 완벽하게 잡아낸...",
-      "date": "2026-05-13",
-      "url": "http://cafe.naver.com/bigfishexpress/67261",
-      "tags": [
-        "샥즈오픈런",
-        "지금",
-        "역대급",
-        "특가중이에요",
-        "샥즈",
-        "Shokz",
-        "이미",
-        "골전도"
-      ]
-    },
-    {
-      "id": 48,
-      "channel": "cafearticle",
-      "media": "네이버 카페 · 월척특급 for Kakao",
-      "category": "community",
-      "sentiment": "neutral",
-      "title": "샥즈오픈스윔 지금 역대급 특가중이에요!",
-      "summary": "바로 Shokz 샥즈 S710 오픈스윔 프로 (OpenSwim Pro), 이 녀석이 여러분의 물속 액티비티를 완전히 바꿔놓을... Shokz S710 오픈스윔 프로 레드-RD는 그 이름처럼 강렬하고 에너지가 넘치는 레드 컬러로 시선을 사로잡습니다....",
-      "date": "2026-05-13",
-      "url": "http://cafe.naver.com/bigfishexpress/67255",
-      "tags": [
-        "Shokz",
-        "S710",
-        "오픈스윔",
-        "프로",
-        "레드",
-        "샥즈오픈스윔",
-        "지금",
-        "역대급"
-      ]
-    },
-    {
-      "id": 49,
-      "channel": "cafearticle",
       "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
       "category": "community",
       "sentiment": "negative",
       "title": "[샥즈] 이어폰 샥즈s805 핫딜해요 지금만!",
       "summary": "바로 샥즈 오픈런 프로 S810 (Shokz OpenRun Pro S810) 스포츠 골전도 블루투스 이어폰입니다! 이 녀석, 그냥... 압도적인 사운드, 'Shokz TurboPitch™' 기술의 진화 '골전도 이어폰은 음질이 별로'라는 편견, 샥즈 오픈런 프로 S810이...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/ourman/250156",
       "tags": [
         "샥즈",
@@ -1109,35 +1046,14 @@
       ]
     },
     {
-      "id": 50,
-      "channel": "cafearticle",
-      "media": "네이버 카페 · 월척특급 for Kakao",
-      "category": "community",
-      "sentiment": "neutral",
-      "title": "샥즈골전도이어폰 지금 역대급 특가중이에요!",
-      "summary": "S820 블랙 모델에는 샥즈의 독자적인 Shokz TurboPitch™ 2.0+ 기술이 탑재되어 있어요. 이게 무슨 말이냐고요? 한마디로 “골전도 이어폰에서 이렇게 깊고 풍부한 저음을 들을 수 있다고?”라는 감탄사가 절로 나오게 할 만큼...",
-      "date": "2026-05-13",
-      "url": "http://cafe.naver.com/bigfishexpress/67252",
-      "tags": [
-        "샥즈골전도이어폰",
-        "지금",
-        "역대급",
-        "특가중이에요",
-        "S820",
-        "블랙",
-        "모델에는",
-        "샥즈의"
-      ]
-    },
-    {
-      "id": 51,
+      "id": 47,
       "channel": "cafearticle",
       "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
       "category": "community",
       "sentiment": "neutral",
       "title": "샥스이어폰 미친 핫딜 정보!",
       "summary": "더 깊어진 저음, 풍부한 사운드의 비밀: Shokz TurboPitch™ Technology 샥즈 오픈 런 프로 2에는 샥즈만의 독자적인 'Shokz TurboPitch™ Technology'가 적용되어 있어요. 특히 2세대 코어 서스테인 저음 인핸서(Core Sustain Bass Enhancers)가 두...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/ourman/250152",
       "tags": [
         "저음",
@@ -1151,14 +1067,14 @@
       ]
     },
     {
-      "id": 52,
+      "id": 48,
       "channel": "cafearticle",
       "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
       "category": "community",
       "sentiment": "neutral",
       "title": "[샥즈] 이어폰 샥즈s820 핫딜해요 지금만!",
       "summary": "이름하여 샥즈 오픈런 프로 2 (Shokz OpenRun Pro 2, S820)! 이 혁신적인 골전도 이어폰이 쿠팡 단독세트로 그것도 눈길을 확 사로잡는 오렌지 컬러로 출시되었다는 사실, 알고 계셨나요? 이제 더 이상 답답하고 위험한 이어폰은...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/ourman/250138",
       "tags": [
         "샥즈",
@@ -1172,14 +1088,14 @@
       ]
     },
     {
-      "id": 53,
+      "id": 49,
       "channel": "cafearticle",
       "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
       "category": "community",
       "sentiment": "neutral",
       "title": "[샥즈] 이어폰 샥즈스윔프로2 핫딜해요 지금만!",
       "summary": "골전도 이어폰의 명가, 샥즈(Shokz)가 또 한 번 혁신을 가져왔거든요. 바로 샥즈 신제품 골전도 이어폰, 오픈런... 업그레이드된 Shokz TurboPitch™ 기술과 향상된 베이스 인핸서로 차원이 다른 풍부하고 깊은 저음을...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/ourman/250105",
       "tags": [
         "샥즈",
@@ -1193,56 +1109,14 @@
       ]
     },
     {
-      "id": 54,
-      "channel": "cafearticle",
-      "media": "네이버 카페 · 월척특급 for Kakao",
-      "category": "community",
-      "sentiment": "neutral",
-      "title": "샥즈이어폰 지금 역대급 특가중이에요!",
-      "summary": "Shokz만의 독자 기술! 샥즈 오픈핏 프로 T010은 오픈형임에도 불구하고, 믿기지 않을 정도로 풍성하고 선명한 사운드를 자랑합니다. 샥즈의 자랑인 'DirectPitch™ 기술'이 업그레이드되어 소리가 귀로 직접 전달되는 듯한...",
-      "date": "2026-05-13",
-      "url": "http://cafe.naver.com/bigfishexpress/67216",
-      "tags": [
-        "기술",
-        "샥즈이어폰",
-        "지금",
-        "역대급",
-        "특가중이에요",
-        "Shokz",
-        "만의",
-        "독자"
-      ]
-    },
-    {
-      "id": 55,
-      "channel": "cafearticle",
-      "media": "네이버 카페 · 월척특급 for Kakao",
-      "category": "community",
-      "sentiment": "neutral",
-      "title": "shokz 지금 역대급 특가중이에요!",
-      "summary": "\"이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\" shokz 찾아보고... 그래서 오늘은 제가 찾아봤던 경험을 바탕으로 shokz 성능, 특장점과 더불어 주문 시 주의사항에 대해...",
-      "date": "2026-05-13",
-      "url": "http://cafe.naver.com/bigfishexpress/67212",
-      "tags": [
-        "shokz",
-        "지금",
-        "역대급",
-        "특가중이에요",
-        "포스팅은",
-        "쿠팡",
-        "파트너스",
-        "활동의"
-      ]
-    },
-    {
-      "id": 56,
+      "id": 50,
       "channel": "cafearticle",
       "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
       "category": "community",
       "sentiment": "neutral",
       "title": "[샥즈] 이어폰 샥스오픈핏 핫딜해요 지금만!",
       "summary": "드디어 기다리던 샥즈(Shokz)의 혁신적인 신제품, 샥즈 오픈핏 2+ T921 블루투스 무선 이어폰이 우리 곁을 찾아왔습니다! 그것도 오직 쿠팡 단독 세트로 말이죠. 이 흥미진진한 소식에 벌써부터 심장이 두근거리지 않나요?...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/ourman/249918",
       "tags": [
         "샥즈",
@@ -1256,14 +1130,14 @@
       ]
     },
     {
-      "id": 57,
+      "id": 51,
       "channel": "cafearticle",
       "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
       "category": "community",
       "sentiment": "neutral",
       "title": "[샥즈] 이어폰 샥즈오픈닷원e310 핫딜해요 지금만!",
       "summary": "샥즈 오픈닷 원(SHOKZ E310) 블랙, 당신의 귀를 위한 진정한 자유! 혹시 이어폰을 끼고 하루 종일 생활하다 보면... 바로 오늘, 그 답을 ‘샥즈 오픈닷 원(SHOKZ E310) 블랙’에서 찾아볼까 합니다. 단순한 이어폰이 아니라...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/ourman/249804",
       "tags": [
         "샥즈",
@@ -1277,35 +1151,14 @@
       ]
     },
     {
-      "id": 58,
-      "channel": "cafearticle",
-      "media": "네이버 카페 · 월척특급 for Kakao",
-      "category": "community",
-      "sentiment": "neutral",
-      "title": "샥스골전도 지금 역대급 특가중이에요!",
-      "summary": "바로, 샥즈 오픈런 프로 2 (Shokz OpenRun Pro 2) 골전도 이어폰입니다. S820 모델의 시크한 블랙 컬러는 물론... Shokz TurboPitch™ 2.0 기술의 위엄을 느껴봐! 샥즈 오픈런 프로 2에는 2세대 Shokz TurboPitch™ 기술이 적용되어 있습니다....",
-      "date": "2026-05-13",
-      "url": "http://cafe.naver.com/bigfishexpress/67186",
-      "tags": [
-        "Shokz",
-        "샥즈",
-        "오픈런",
-        "프로",
-        "TurboPitch",
-        "샥스골전도",
-        "지금",
-        "역대급"
-      ]
-    },
-    {
-      "id": 59,
+      "id": 52,
       "channel": "cafearticle",
       "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
       "category": "community",
       "sentiment": "positive",
       "title": "샥즈골전도 미친 핫딜 정보!",
       "summary": "바로 골전도 이어폰의 명가, 샥즈(Shokz)의 신제품, 오픈런 프로 2 (OpenRun Pro 2) S820입니다! 특히 이번엔 쿠팡... 안전하고 편안한 운동을 넘어, 스타일까지 완벽하게 잡아줄 샥즈 오픈런 프로 2 (Shokz OpenRun Pro 2) S820! 특히 쿠팡...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/ourman/249761",
       "tags": [
         "샥즈",
@@ -1319,14 +1172,14 @@
       ]
     },
     {
-      "id": 60,
+      "id": 53,
       "channel": "cafearticle",
       "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
       "category": "community",
       "sentiment": "neutral",
       "title": "[샥즈] 이어폰 샥스오픈런프로2 우주 특가 찬스!",
       "summary": "골전도 이어폰의 대명사이자 혁신 그 자체인 샥즈(Shokz)가 또 한 번 일을 냈습니다. 바로 모두가 기다려온... H3: 더 강력해진 9세대 골전도 기술, Shokz TurboPitch™ 샥즈는 언제나 골전도 기술의 최전선에 있었습니다. 그리고...",
-      "date": "2026-05-13",
+      "date": "2026-05-14",
       "url": "http://cafe.naver.com/ourman/249737",
       "tags": [
         "골전도",
@@ -1337,6 +1190,153 @@
         "우주",
         "특가",
         "찬스"
+      ]
+    },
+    {
+      "id": 54,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
+      "category": "community",
+      "sentiment": "positive",
+      "title": "[샥즈] 이어폰 샥즈오픈핏에어se 핫딜해요 지금만!",
+      "summary": "솔직히 말해서, 샥즈(Shokz)라는 이름만 들어도 ‘아, 편안하고 안전한 이어폰!’이라는 이미지가 딱 떠오르지 않나요? 그만큼 샥즈는 귀 건강과 사용자 편의를 최우선으로 생각해왔죠. 이번 샥즈 오픈닷 원 E310은 그들의...",
+      "date": "2026-05-14",
+      "url": "http://cafe.naver.com/ourman/249492",
+      "tags": [
+        "샥즈",
+        "이어폰",
+        "샥즈오픈핏에어",
+        "핫딜해요",
+        "지금만",
+        "솔직히",
+        "말해서",
+        "Shokz"
+      ]
+    },
+    {
+      "id": 55,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "[샥즈] 이어폰 샥즈s810 핫딜해요 지금만!",
+      "summary": "샥즈 오픈런 프로 2는 샥즈의 독자적인 9세대 골전도 기술(Shokz TurboPitch™ Technology)이 적용되어 전작 대비 훨씬 강력하고 풍부한 저음을 자랑합니다. 베이스가 빵빵하게 울려주는 입체적인 사운드는 마치 콘서트 현장에...",
+      "date": "2026-05-14",
+      "url": "http://cafe.naver.com/ourman/249385",
+      "tags": [
+        "샥즈",
+        "이어폰",
+        "s810",
+        "핫딜해요",
+        "지금만",
+        "오픈런",
+        "프로",
+        "샥즈의"
+      ]
+    },
+    {
+      "id": 56,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "[샥즈] 이어폰 샥즈e310 핫딜해요 지금만!",
+      "summary": "골전도 이어폰의 명가, 샥즈(Shokz)에서 드디어 기다리던 신제품, 샥즈 오픈런 프로 2 (OpenRun Pro 2) S820를... 샥즈 오픈런 프로 2 S820는 독자적인 Shokz TurboPitch™ 기술을 더욱 개선하여, 이전에는 경험하기 어려웠던 깊고...",
+      "date": "2026-05-14",
+      "url": "http://cafe.naver.com/ourman/249346",
+      "tags": [
+        "샥즈",
+        "Shokz",
+        "오픈런",
+        "프로",
+        "S820",
+        "이어폰",
+        "e310",
+        "핫딜해요"
+      ]
+    },
+    {
+      "id": 57,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "[샥즈] 이어폰 샥즈오픈컴2 핫딜해요 지금만!",
+      "summary": "바로 골전도 이어폰의 명가, 샥즈(Shokz)의 최신작, 샥즈 오픈런 프로 2 (S820)- 입니다! 그것도 무려 쿠팡에서만 만날 수 있는 특별한 단독세트라는 사실! 골전도 이어폰을 고민하고 계셨다면, 이 글을 놓치지 마세요. 왜...",
+      "date": "2026-05-14",
+      "url": "http://cafe.naver.com/ourman/249086",
+      "tags": [
+        "샥즈",
+        "골전도",
+        "이어폰",
+        "샥즈오픈컴",
+        "핫딜해요",
+        "지금만",
+        "이어폰의",
+        "명가"
+      ]
+    },
+    {
+      "id": 58,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
+      "category": "community",
+      "sentiment": "positive",
+      "title": "[샥즈] 이어폰 샥즈s803 핫딜해요 지금만!",
+      "summary": "샥즈의 독자적인 Shokz TurboPitch™ 기술이 2.0으로 업그레이드되면서 저음역대는 더 풍부해지고, 전체적인 음질은 더욱 선명하고 입체적으로 바뀌었답니다. 마치 귀 바로 옆에서 나만을 위한 콘서트가 펼쳐지는...",
+      "date": "2026-05-14",
+      "url": "http://cafe.naver.com/ourman/249065",
+      "tags": [
+        "샥즈",
+        "이어폰",
+        "s803",
+        "핫딜해요",
+        "지금만",
+        "샥즈의",
+        "독자적인",
+        "Shokz"
+      ]
+    },
+    {
+      "id": 59,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "[샥즈] 이어폰 샥즈오픈런프로s810 미친 핫딜 정보!",
+      "summary": "샥즈의 시그니처 기술인 Shokz TurboPitch™ 기술이 2세대로 진화하면서, 이전 모델보다 훨씬 깊고 풍부한 저음, 즉 베이스를 선사합니다. 마치 작은 우퍼를 귀 옆에 달아놓은 듯, 심장을 울리는 듯한 박진감 넘치는 사운드는...",
+      "date": "2026-05-14",
+      "url": "http://cafe.naver.com/ourman/248918",
+      "tags": [
+        "샥즈",
+        "이어폰",
+        "샥즈오픈런프로",
+        "s810",
+        "미친",
+        "핫딜",
+        "정보",
+        "샥즈의"
+      ]
+    },
+    {
+      "id": 60,
+      "channel": "cafearticle",
+      "media": "네이버 카페 · 필리핀 세부 캡슐트레블 - 자유여행/맛...",
+      "category": "community",
+      "sentiment": "neutral",
+      "title": "[샥즈] 이어폰 샥즈s821 미친 핫딜 정보!",
+      "summary": "바로, 골전도 이어폰의 명가, 샥즈(Shokz)의 따끈따끈한 신제품, 샥즈 오픈런 프로 2 (Shokz OpenRun Pro 2 S820) 가 드디어 세상에 나왔습니다! 그것도 쿠팡에서만 만날 수 있는 특별한 단독세트, 상큼한 오렌지 컬러에...",
+      "date": "2026-05-14",
+      "url": "http://cafe.naver.com/ourman/248882",
+      "tags": [
+        "샥즈",
+        "Shokz",
+        "이어폰",
+        "s821",
+        "미친",
+        "핫딜",
+        "정보",
+        "골전도"
       ]
     }
   ]

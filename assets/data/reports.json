@@ -3,9 +3,9 @@
     "kind": "reports",
     "title": "리서치 리포트",
     "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
-    "collectedAt": "2026-05-13T09:08:22+09:00",
-    "totalReports": 43,
-    "freshCount": 0,
+    "collectedAt": "2026-05-14T09:10:27+09:00",
+    "totalReports": 50,
+    "freshCount": 7,
     "sources": [
       {
         "key": "nasmedia-regular",
@@ -44,7 +44,7 @@
         "url": "https://www.dmcreport.co.kr/report"
       }
     ],
-    "updatedAt": "2026-05-13T09:08:22+09:00"
+    "updatedAt": "2026-05-14T09:10:27+09:00"
   },
   "categories": [
     {
@@ -171,18 +171,19 @@
     "기타": "#5a6079"
   },
   "bySource": {
-    "nasmedia-regular": 2,
+    "nasmedia-regular": 7,
     "nasmedia-npr": 18,
     "cjmezzo-insight-m": 6,
-    "incross-mineport": 14,
+    "incross-mineport": 16,
     "incross-mineNews": 3,
     "dmcreport": 0
   },
   "byCategory": {
     "기타": 18,
-    "최근 게시물": 7,
+    "Market": 5,
+    "최근 게시물": 8,
+    "마마트": 5,
     "미디어분석": 2,
-    "마마트": 4,
     "마인카세": 3,
     "소비자분석": 1,
     "타겟 분석": 5,
@@ -408,6 +409,90 @@
     },
     {
       "id": 19,
+      "source": "nasmedia-regular",
+      "sourceLabel": "나스리포트 정기보고서",
+      "publisher": "케이티 나스미디어",
+      "title": "[2026년 5월] 2026 NPR Target Infographics_10대(숏폼 네이티브)",
+      "category": "Market",
+      "date": "2026-05-14",
+      "url": "https://www.nasmedia.co.kr/정기보고서/2026-5-2026-npr-target-infographics_10s/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/05/2026_NPR_target_report_infographics_10s-1.pdf",
+      "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/05/슬라이드1-1.jpg"
+    },
+    {
+      "id": 20,
+      "source": "nasmedia-regular",
+      "sourceLabel": "나스리포트 정기보고서",
+      "publisher": "케이티 나스미디어",
+      "title": "[2026년 5월] 2026 NPR Target Infographics_20대(디지털 얼리어답터)",
+      "category": "Market",
+      "date": "2026-05-14",
+      "url": "https://www.nasmedia.co.kr/정기보고서/2026-5-2026-npr-target-infographics_20s/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/05/2026_NPR_target_report_infographics_20s-1.pdf",
+      "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/05/슬라이드2-1.jpg"
+    },
+    {
+      "id": 21,
+      "source": "nasmedia-regular",
+      "sourceLabel": "나스리포트 정기보고서",
+      "publisher": "케이티 나스미디어",
+      "title": "[2026년 5월] 2026 NPR Target Infographics_30대(실속형 스마트 컨슈머)",
+      "category": "Market",
+      "date": "2026-05-14",
+      "url": "https://www.nasmedia.co.kr/정기보고서/2026-5-2026-npr-target-infographics_30s/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/05/2026_NPR_target_report_infographics_30s-1.pdf",
+      "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/05/슬라이드3-1.jpg"
+    },
+    {
+      "id": 22,
+      "source": "nasmedia-regular",
+      "sourceLabel": "나스리포트 정기보고서",
+      "publisher": "케이티 나스미디어",
+      "title": "[2026년 5월] 2026 NPR Target Infographics_40대(가족 중심 온라인 쇼퍼)",
+      "category": "Market",
+      "date": "2026-05-14",
+      "url": "https://www.nasmedia.co.kr/정기보고서/2026-5-2026-npr-target-infographics_40s/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/05/2026_NPR_target_report_infographics_40s-1.pdf",
+      "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/05/슬라이드4-1.jpg"
+    },
+    {
+      "id": 23,
+      "source": "nasmedia-regular",
+      "sourceLabel": "나스리포트 정기보고서",
+      "publisher": "케이티 나스미디어",
+      "title": "[2026년 5월] 2026 NPR Target Infographics_50대(생활밀착형 디지털 세대)",
+      "category": "Market",
+      "date": "2026-05-14",
+      "url": "https://www.nasmedia.co.kr/정기보고서/2026-5-2026-npr-target-infographics_50s/",
+      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/05/2026_NPR_target_report_infographics_50s-1.pdf",
+      "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/05/슬라이드5-1.jpg"
+    },
+    {
+      "id": 24,
+      "source": "incross-mineport",
+      "sourceLabel": "인크로스 마인리포트",
+      "publisher": "인크로스",
+      "title": "출근(That’s red-red) 마인카세 읽기 green green | 2026년 5월 둘째 주",
+      "category": "최근 게시물",
+      "date": "2026-05-13",
+      "url": "https://www.incross.com/ko/insight/?mode=view&idx=10889",
+      "pdfUrl": "",
+      "thumbnail": "https://www.incross.com/upload/board/5월-둘째주-마마트0.jpg"
+    },
+    {
+      "id": 25,
+      "source": "incross-mineport",
+      "sourceLabel": "인크로스 마인리포트",
+      "publisher": "인크로스",
+      "title": "출근(That’s red-red) 마인카세 읽기 green green | 2026년 5월 둘째 주",
+      "category": "마마트",
+      "date": "2026-05-13",
+      "url": "https://www.incross.com/ko/insight/?mode=view&page=1&pageSize=12&serboardsort=&searchStr=&idx=10889",
+      "pdfUrl": "",
+      "thumbnail": "https://www.incross.com/upload/board/5월-둘째주-마마트0.jpg"
+    },
+    {
+      "id": 26,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -419,7 +504,7 @@
       "thumbnail": "https://www.incross.com/upload/board/미디어이슈리포트_5월.jpg"
     },
     {
-      "id": 20,
+      "id": 27,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -431,7 +516,7 @@
       "thumbnail": "https://www.incross.com/upload/board/미디어이슈리포트_5월.jpg"
     },
     {
-      "id": 21,
+      "id": 28,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -443,7 +528,7 @@
       "thumbnail": "https://www.incross.com/upload/board/5월-첫째주-마마트0.jpg"
     },
     {
-      "id": 22,
+      "id": 29,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -455,7 +540,7 @@
       "thumbnail": "https://www.incross.com/upload/board/5월-첫째주-마마트0.jpg"
     },
     {
-      "id": 23,
+      "id": 30,
       "source": "incross-mineNews",
       "sourceLabel": "인크로스 마인카세",
       "publisher": "인크로스",
@@ -467,7 +552,7 @@
       "thumbnail": "https://www.incross.com/upload/mineNews/25년-5월-첫째주0.jpg"
     },
     {
-      "id": 24,
+      "id": 31,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -479,7 +564,7 @@
       "thumbnail": "https://www.incross.com/upload/board/홈페이지-썸네일.jpg"
     },
     {
-      "id": 25,
+      "id": 32,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -491,7 +576,7 @@
       "thumbnail": "https://www.incross.com/upload/board/홈페이지-썸네일.jpg"
     },
     {
-      "id": 26,
+      "id": 33,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -503,7 +588,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-다섯째주-마마트0.jpg"
     },
     {
-      "id": 27,
+      "id": 34,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -515,7 +600,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-다섯째주-마마트0.jpg"
     },
     {
-      "id": 28,
+      "id": 35,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -532,7 +617,7 @@
       "fileSize": "935.1 KB"
     },
     {
-      "id": 29,
+      "id": 36,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -549,7 +634,7 @@
       "fileSize": "956.0 KB"
     },
     {
-      "id": 30,
+      "id": 37,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -566,7 +651,7 @@
       "fileSize": "981.2 KB"
     },
     {
-      "id": 31,
+      "id": 38,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -583,7 +668,7 @@
       "fileSize": "920.0 KB"
     },
     {
-      "id": 32,
+      "id": 39,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -600,7 +685,7 @@
       "fileSize": "942.5 KB"
     },
     {
-      "id": 33,
+      "id": 40,
       "source": "cjmezzo-insight-m",
       "sourceLabel": "CJ Mezzo Insight-M",
       "publisher": "CJ 메조미디어",
@@ -617,7 +702,7 @@
       "fileSize": "2.8 MB"
     },
     {
-      "id": 34,
+      "id": 41,
       "source": "incross-mineNews",
       "sourceLabel": "인크로스 마인카세",
       "publisher": "인크로스",
@@ -641,7 +726,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-매체력-평가-리포트-썸네일0.jpg"
     },
     {
-      "id": 36,
+      "id": 43,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -665,7 +750,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-넷째주-마마트0.jpg"
     },
     {
-      "id": 38,
+      "id": 45,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
@@ -677,7 +762,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-넷째주-마마트0.jpg"
     },
     {
-      "id": 39,
+      "id": 46,
       "source": "incross-mineNews",
       "sourceLabel": "인크로스 마인카세",
       "publisher": "인크로스",
@@ -689,7 +774,7 @@
       "thumbnail": "https://www.incross.com/upload/mineNews/25년-4월-셋째주0.jpg"
     },
     {
-      "id": 40,
+      "id": 47,
       "source": "nasmedia-regular",
       "sourceLabel": "나스리포트 정기보고서",
       "publisher": "케이티 나스미디어",
@@ -701,7 +786,7 @@
       "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/슬라이드2.jpg"
     },
     {
-      "id": 41,
+      "id": 48,
       "source": "nasmedia-regular",
       "sourceLabel": "나스리포트 정기보고서",
       "publisher": "케이티 나스미디어",
@@ -725,7 +810,7 @@
       "thumbnail": "https://www.incross.com/upload/board/4월-셋째주-마마트0.jpg"
     },
     {
-      "id": 43,
+      "id": 50,
       "source": "incross-mineport",
       "sourceLabel": "인크로스 마인리포트",
       "publisher": "인크로스",
