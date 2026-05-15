@@ -3,9 +3,9 @@
     "kind": "reports",
     "title": "리서치 리포트",
     "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
-    "collectedAt": "2026-05-14T09:10:27+09:00",
-    "totalReports": 50,
-    "freshCount": 7,
+    "collectedAt": "2026-05-15T09:03:03+09:00",
+    "totalReports": 48,
+    "freshCount": 0,
     "sources": [
       {
         "key": "nasmedia-regular",
@@ -44,7 +44,7 @@
         "url": "https://www.dmcreport.co.kr/report"
       }
     ],
-    "updatedAt": "2026-05-14T09:10:27+09:00"
+    "updatedAt": "2026-05-15T09:03:03+09:00"
   },
   "categories": [
     {
@@ -174,15 +174,15 @@
     "nasmedia-regular": 7,
     "nasmedia-npr": 18,
     "cjmezzo-insight-m": 6,
-    "incross-mineport": 16,
+    "incross-mineport": 14,
     "incross-mineNews": 3,
     "dmcreport": 0
   },
   "byCategory": {
     "기타": 18,
     "Market": 5,
-    "최근 게시물": 8,
-    "마마트": 5,
+    "최근 게시물": 7,
+    "마마트": 4,
     "미디어분석": 2,
     "마인카세": 3,
     "소비자분석": 1,
@@ -796,30 +796,6 @@
       "url": "https://www.nasmedia.co.kr/정기보고서/2026년-4월-media-market-issue/",
       "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/1.nasreport376-MEDIA-MARKET-ISSUE_2604.pdf",
       "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/슬라이드1.jpg"
-    },
-    {
-      "id": 37,
-      "source": "incross-mineport",
-      "sourceLabel": "인크로스 마인리포트",
-      "publisher": "인크로스",
-      "title": "[마마트] 아이 펀치 라이크 킹콩 투 회사🐧 | 2026년 4월 셋째 주",
-      "category": "최근 게시물",
-      "date": "2026-04-15",
-      "url": "https://www.incross.com/ko/insight/?mode=view&idx=10852",
-      "pdfUrl": "",
-      "thumbnail": "https://www.incross.com/upload/board/4월-셋째주-마마트0.jpg"
-    },
-    {
-      "id": 50,
-      "source": "incross-mineport",
-      "sourceLabel": "인크로스 마인리포트",
-      "publisher": "인크로스",
-      "title": "[마마트] 아이 펀치 라이크 킹콩 투 회사🐧 | 2026년 4월 셋째 주",
-      "category": "마마트",
-      "date": "2026-04-15",
-      "url": "https://www.incross.com/ko/insight/?mode=view&page=1&pageSize=12&serboardsort=&searchStr=&idx=10852",
-      "pdfUrl": "",
-      "thumbnail": "https://www.incross.com/upload/board/4월-셋째주-마마트0.jpg"
     }
   ]
 }
