@@ -3,8 +3,8 @@
     "kind": "reports",
     "title": "리서치 리포트",
     "subtitle": "매체사·미디어 에이전시의 정기 인사이트 리포트를 수집·인덱싱",
-    "collectedAt": "2026-05-16T08:59:32+09:00",
-    "totalReports": 48,
+    "collectedAt": "2026-05-17T08:59:39+09:00",
+    "totalReports": 46,
     "freshCount": 0,
     "sources": [
       {
@@ -44,7 +44,7 @@
         "url": "https://www.dmcreport.co.kr/report"
       }
     ],
-    "updatedAt": "2026-05-16T08:59:32+09:00"
+    "updatedAt": "2026-05-17T08:59:39+09:00"
   },
   "categories": [
     {
@@ -171,7 +171,7 @@
     "기타": "#5a6079"
   },
   "bySource": {
-    "nasmedia-regular": 7,
+    "nasmedia-regular": 5,
     "nasmedia-npr": 18,
     "cjmezzo-insight-m": 6,
     "incross-mineport": 14,
@@ -187,8 +187,7 @@
     "마인카세": 3,
     "소비자분석": 1,
     "타겟 분석": 5,
-    "미디어 트렌드": 1,
-    "On/Mobile": 2
+    "미디어 트렌드": 1
   },
   "reports": [
     {
@@ -772,30 +771,6 @@
       "url": "https://www.incross.com/ko/insight/?idx=144",
       "pdfUrl": "",
       "thumbnail": "https://www.incross.com/upload/mineNews/25년-4월-셋째주0.jpg"
-    },
-    {
-      "id": 47,
-      "source": "nasmedia-regular",
-      "sourceLabel": "나스리포트 정기보고서",
-      "publisher": "케이티 나스미디어",
-      "title": "[2026년 4월] MEDIA AD ISSUE",
-      "category": "On/Mobile",
-      "date": "2026-04-16",
-      "url": "https://www.nasmedia.co.kr/정기보고서/2026년-4월-media-ad-issue/",
-      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/2.nasreport376-MEDIA-AD-ISSUE_2604-1.pdf",
-      "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/슬라이드2.jpg"
-    },
-    {
-      "id": 48,
-      "source": "nasmedia-regular",
-      "sourceLabel": "나스리포트 정기보고서",
-      "publisher": "케이티 나스미디어",
-      "title": "[2026년 4월] MEDIA & MARKET ISSUE",
-      "category": "On/Mobile",
-      "date": "2026-04-16",
-      "url": "https://www.nasmedia.co.kr/정기보고서/2026년-4월-media-market-issue/",
-      "pdfUrl": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/1.nasreport376-MEDIA-MARKET-ISSUE_2604.pdf",
-      "thumbnail": "https://www.nasmedia.co.kr/wp-content/uploads/2026/04/슬라이드1.jpg"
     }
   ]
 }
