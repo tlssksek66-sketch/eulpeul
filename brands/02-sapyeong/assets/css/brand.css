@@ -1,0 +1,144 @@
+/* 사평(Sapyeong) 브랜드 전용 스타일.
+   모든 선택자는 .brand--sapyeong 네임스페이스 안에서만 정의해
+   다른 브랜드 페이지와 충돌하지 않도록 한다. */
+
+.brand--sapyeong {
+    --sapyeong-primary: #C97B2B;
+    --sapyeong-deep: #3B2A1E;
+    --sapyeong-cream: #F7F1E6;
+    --sapyeong-line: #E5DCCB;
+    --sapyeong-muted: #6B5B47;
+
+    background: var(--sapyeong-cream);
+    color: var(--sapyeong-deep);
+    font-family: "Noto Serif KR", "Noto Sans KR", serif;
+}
+
+.brand--sapyeong .brand__header {
+    padding: 4rem 0 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--sapyeong-line);
+}
+
+.brand--sapyeong .brand__logo {
+    font-size: 0.875rem;
+    letter-spacing: 0.4em;
+    color: var(--sapyeong-primary);
+    margin-bottom: 0.75rem;
+}
+
+.brand--sapyeong .brand__title {
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.brand--sapyeong .brand__tagline {
+    font-size: 1rem;
+    color: var(--sapyeong-muted);
+    letter-spacing: 0.05em;
+}
+
+.brand--sapyeong .section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--sapyeong-line);
+}
+
+.brand--sapyeong .section:last-of-type {
+    border-bottom: 0;
+}
+
+.brand--sapyeong .section__label {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: var(--sapyeong-primary);
+    margin-bottom: 0.75rem;
+}
+
+.brand--sapyeong .section__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 1.5rem;
+}
+
+.brand--sapyeong .section__body {
+    max-width: 720px;
+    color: var(--sapyeong-deep);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+}
+
+.brand--sapyeong .signature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.brand--sapyeong .signature-card {
+    background: #fff;
+    border: 1px solid var(--sapyeong-line);
+    padding: 1.5rem;
+    border-radius: 4px;
+}
+
+.brand--sapyeong .signature-card__num {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--sapyeong-primary);
+    margin-bottom: 0.5rem;
+}
+
+.brand--sapyeong .signature-card__text {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.brand--sapyeong .channel-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.brand--sapyeong .channel-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    border: 1px solid var(--sapyeong-primary);
+    color: var(--sapyeong-primary);
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    border-radius: 999px;
+}
+
+.brand--sapyeong .channel-tag--featured {
+    background: var(--sapyeong-primary);
+    color: #fff;
+}
+
+.brand--sapyeong .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.brand--sapyeong .meta-item__label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--sapyeong-muted);
+    margin-bottom: 0.5rem;
+}
+
+.brand--sapyeong .meta-item__value {
+    font-size: 1.0625rem;
+    color: var(--sapyeong-deep);
+}
+
+.brand--sapyeong .brand__footer {
+    padding: 2rem 0 3rem;
+    text-align: center;
+    color: var(--sapyeong-muted);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+}

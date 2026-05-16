@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brands - 브랜드 인덱스</title>
+    <meta name="description" content="eulpeul 운영 브랜드 인덱스. 각 브랜드 페이지로 이동.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/styles/base.css">
+    <style>
+        body {
+            background: #0E1525;
+            color: #E8ECF5;
+            font-family: "Inter", "Noto Sans KR", sans-serif;
+        }
+        .index-header {
+            padding: 5rem 0 3rem;
+            border-bottom: 1px solid #1F2A45;
+        }
+        .index-header__label {
+            font-size: 0.75rem;
+            letter-spacing: 0.5em;
+            color: #0066FF;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .index-header__title {
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            color: #fff;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+        .index-header__desc {
+            font-size: 1.0625rem;
+            color: #8893AC;
+            max-width: 640px;
+        }
+        .index-main {
+            padding: 4rem 0 6rem;
+        }
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.25rem;
+        }
+        .brand-card {
+            display: block;
+            position: relative;
+            padding: 2rem;
+            background: #141C30;
+            border: 1px solid #1F2A45;
+            border-radius: 12px;
+            color: inherit;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+            overflow: hidden;
+        }
+        .brand-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 4px;
+            background: var(--brand-color, #0066FF);
+        }
+        .brand-card:hover {
+            border-color: var(--brand-color, #0066FF);
+            transform: translateY(-3px);
+        }
+        .brand-card__id {
+            font-size: 0.6875rem;
+            letter-spacing: 0.3em;
+            color: var(--brand-color, #0066FF);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .brand-card__name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.01em;
+        }
+        .brand-card__name-en {
+            font-size: 0.875rem;
+            color: #8893AC;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+        .brand-card__category {
+            font-size: 0.875rem;
+            color: #8893AC;
+            margin-bottom: 0.75rem;
+        }
+        .brand-card__tagline {
+            font-size: 1rem;
+            color: #E8ECF5;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .brand-card__cta {
+            font-size: 0.8125rem;
+            color: var(--brand-color, #0066FF);
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+        .brand-card__cta::after {
+            content: " →";
+        }
+        .index-footer {
+            text-align: center;
+            color: #8893AC;
+            font-size: 0.8125rem;
+            letter-spacing: 0.15em;
+            padding: 2rem 0 3rem;
+            border-top: 1px solid #1F2A45;
+        }
+    </style>
+</head>
+<body>
+    <header class="index-header">
+        <div class="container">
+            <p class="index-header__label">EULPEUL · BRANDS</p>
+            <h1 class="index-header__title">브랜드 인덱스</h1>
+            <p class="index-header__desc">병렬·상호배타 구조로 운영되는 브랜드 포트폴리오. 각 카드를 클릭해 브랜드 페이지로 이동합니다.</p>
+        </div>
+    </header>
+
+    <main class="index-main">
+        <div class="container">
+            <div class="brand-grid">
+                <a class="brand-card" href="01-shokz/" style="--brand-color:#0066FF;">
+                    <p class="brand-card__id">01 · SHOKZ</p>
+                    <h2 class="brand-card__name">샥즈</h2>
+                    <p class="brand-card__name-en">Shokz</p>
+                    <p class="brand-card__category">골전도·오픈-이어 이어폰</p>
+                    <p class="brand-card__tagline">Open Ear, Open Possibility — 600+ 골전도 특허 기반의 오픈-이어 오디오.</p>
+                    <span class="brand-card__cta">브랜드 페이지 보기</span>
+                </a>
+                <a class="brand-card" href="02-sapyeong/" style="--brand-color:#C97B2B;">
+                    <p class="brand-card__id">02 · SAPYEONG</p>
+                    <h2 class="brand-card__name">사평</h2>
+                    <p class="brand-card__name-en">Sapyeong</p>
+                    <p class="brand-card__category">일본식 카레 · 대구 동성로</p>
+                    <p class="brand-card__tagline">저수분 숙성 키마카레 — 로컬 매장에서 마켓컬리 이커머스까지.</p>
+                    <span class="brand-card__cta">브랜드 페이지 보기</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="index-footer">
+        <div class="container">
+            <p>© <span id="year">2026</span> EULPEUL · BRAND PORTFOLIO</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
